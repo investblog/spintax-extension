@@ -1,0 +1,76 @@
+# Baseline .gitignore — bootstrap copies this to ./.gitignore at git init.
+# Extend per project for its stack (see the env-setup rule). Lock file in
+# .agents/generated/ IS committed (provenance) — do not ignore it.
+
+# secrets — never commit (templates like .env.example are kept)
+.env
+.env.*
+!.env.example
+.dev.vars
+.secrets
+*.pem
+id_rsa
+id_ed25519
+
+# dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# build / generated artifacts
+dist/
+build/
+.astro/
+.wrangler/
+*.log
+
+# local indexes — regenerable caches (code-search / content-vault); never commit
+.codegraph/
+.docindex/
+
+# heavy consumed inputs — context/ is committed, but bulky media is not
+context/attachments/
+
+# OS junk
+.DS_Store
+
+# project: browser-extension build artifacts
+web-ext-artifacts/
+*.zip
+*.crx
+*.xpi
+.claude/settings.local.json
+
+# wxt generated
+.wxt/
+.output/
+
+# e2e scratch profiles
+dist/e2e-profile-*/
+
+# personal contact lists used for manual testing (PII) — never committed
+context/contacts/
+
+# Agent instructions and local agent settings — not part of the extension
+.agents/
+AGENTS.md
+CLAUDE.md
+.claude/
+
+# Internal docs — spec, decisions, research, backlog, i18n conventions, store listings,
+# permission justifications, reviewer notes, screenshots, the dogfood CSV. Ignored as a whole
+# directory on purpose: an enumerated list lets the next internal document leak in silently.
+# The privacy policy is published at https://spintax.net/privacy/ — the copy here is the working
+# text the store forms are filled from, not the canonical one.
+docs/
+
+# Store submission tooling (reads docs/store/)
+scripts/store-check.mjs
+scripts/make-dogfood-csv.mjs
+scripts/make-shots.mjs
+scripts/make-promo.mjs
+scripts/i18n-translate-brief.md

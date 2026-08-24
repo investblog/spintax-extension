@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Acme — Contact</title></head>
+<body>
+  <h1>Contact Acme</h1>
+  <p><a href="mailto:hello@acme.test">hello@acme.test</a> · <a href="/about">About us</a></p>
+  <form id="f" class="wpcf7-form" action="#" method="post">
+    <p><label>Your name<br><input type="text" name="your-name" size="40" maxlength="80"></label></p>
+    <p><label>Your email<br><input type="email" name="your-email" size="40"></label></p>
+    <p><label>Website<br><input type="url" name="your-url" size="40"></label></p>
+    <p><label>Subject<br><input type="text" name="your-subject" size="40" maxlength="120"></label></p>
+    <p><label>Your message<br><textarea name="your-message" cols="40" rows="8"></textarea></label></p>
+    <p style="display:none"><label>Leave this empty<br><input type="text" name="website" autocomplete="off"></label></p>
+    <input type="hidden" name="_wpcf7" value="123">
+    <p><button type="submit" id="submit">Send</button></p>
+  </form>
+  <script>
+    document.getElementById('f').addEventListener('submit', (e) => { e.preventDefault(); document.body.dataset.submitted = '1'; });
+  </script>
+</body>
+</html>

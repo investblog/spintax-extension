@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Wellness Weekly — Pitch a story</title><link rel="stylesheet" href="demo.css"></head>
+<body>
+  <header><strong>Wellness Weekly</strong><small>Demo page 3 of 4 — a select, a length limit and a file upload</small></header>
+  <main>
+    <article>
+      <h1>Pitch a story</h1>
+      <p>Some forms ask for more than text: a category, a short pitch with a character limit, a logo. Each comes from a column of your list.</p>
+    </article>
+    <form data-demo>
+      <label for="name">Name</label><input id="name" type="text" name="name">
+      <label for="email">E-mail</label><input id="email" type="email" name="email">
+      <label for="topic">Topic</label>
+      <select id="topic" name="topic">
+        <option value="">Choose…</option>
+        <option value="nutrition">Nutrition</option>
+        <option value="sleep">Sleep</option>
+        <option value="fitness">Fitness</option>
+      </select>
+      <label for="pitch">Pitch (max 200 characters)</label><textarea id="pitch" name="message" rows="4" maxlength="200"></textarea>
+      <label for="logo">Logo (PNG, 128×128)</label><input id="logo" type="file" name="logo" accept="image/png">
+      <button type="submit">Submit pitch</button>
+      <p class="banner" data-demo-banner hidden></p>
+    </form>
+    <p class="note">The message is longer than 200 characters — the helper refuses to truncate it and tells you so; the topic is picked from the list; the logo comes from the asset library once you add a file named <code>logo.png</code>.</p>
+  </main>
+  <script src="/demo-fill.js"></script>
+</body>
+</html>

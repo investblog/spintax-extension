@@ -1,0 +1,46 @@
+name: Submit to stores
+
+# Thin caller of the shared reusable workflow in investblog/geo-tier-builder (same as
+# redirect-inspector and cookiepeak). Secrets are this repo's GitHub Actions secrets:
+# account-level credentials are reused, the per-extension IDs differ.
+#
+# NO push trigger yet, on purpose: an extension that has never been published has no store item
+# id, and the first listing of every store (CWS / Partner Center / AMO) is created by hand with
+# the description, screenshots and the data-use answers. Once v0.1.0 is live in each store and the
+# ids are in the secrets, add the `push: tags: v*` trigger here so Chrome + Edge auto-submit on a
+# tag — Firefox stays manual by policy (AMO burns version numbers).
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to submit (e.g. v0.1.0)'
+        required: true
+      stores:
+        description: 'Which store(s) to submit'
+        type: choice
+        options:
+          - chrome
+          - edge
+          - chrome-edge
+          - firefox
+          - all
+        default: chrome-edge
+      dry_run:
+        description: 'Dry run (validate credentials only, publish nothing)'
+        type: boolean
+        default: true
+
+concurrency:
+  group: submit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    uses: investblog/geo-tier-builder/.github/workflows/store-submit.yml@main
+    secrets: inherit
+    with:
+      ref: ${{ inputs.tag }}
+      dry_run: ${{ inputs.dry_run }}
+      chrome: ${{ inputs.stores == 'chrome' || inputs.stores == 'chrome-edge' || inputs.stores == 'all' }}
+      firefox: ${{ inputs.stores == 'firefox' || inputs.stores == 'all' }}
+      edge: ${{ inputs.stores == 'edge' || inputs.stores == 'chrome-edge' || inputs.stores == 'all' }}

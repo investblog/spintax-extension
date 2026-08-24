@@ -1,0 +1,4653 @@
+{
+  "extName": {
+    "message": "Spintax — ручное заполнение форм и чатов"
+  },
+  "extDescription": {
+    "message": "Spintax-шаблоны для ручного аутрича: заполняйте формы и чаты из своего списка по одной строке. Локально, без аккаунтов."
+  },
+  "drwQuickActions": {
+    "message": "Быстрые действия"
+  },
+  "drwChipProfile": {
+    "message": "Профиль"
+  },
+  "drwChipProfileTitle": {
+    "message": "Добавить профиль отправителя"
+  },
+  "drwChipRows": {
+    "message": "Строки"
+  },
+  "drwChipRowsTitle": {
+    "message": "Вставить ещё строки в эту кампанию"
+  },
+  "drwChipRowsBlocked": {
+    "message": "Сначала импортируйте список в мастере — строкам нужны колонки"
+  },
+  "drwChipFiles": {
+    "message": "Файлы"
+  },
+  "drwChipFilesTitle": {
+    "message": "Добавить файлы в библиотеку"
+  },
+  "drwChipBackup": {
+    "message": "Копия"
+  },
+  "drwChipBackupTitle": {
+    "message": "Резервная копия и восстановление"
+  },
+  "drwProfileTitle": {
+    "message": "Профиль отправителя"
+  },
+  "drwProfileTitleMore": {
+    "message": "Ещё один профиль отправителя"
+  },
+  "drwProfileSubtitle": {
+    "message": "Кто пишет: подставляется в %my_name%, %my_email%… и в поля «имя», «e-mail», «сайт» контактных форм."
+  },
+  "drwProfileSubtitleMore": {
+    "message": "Берётся первый подошедший профиль; профиль «всегда» — запасной."
+  },
+  "drwProfileLabel": {
+    "message": "Название профиля"
+  },
+  "drwProfileLabelHint": {
+    "message": "Только для вас — например «RU», «EN», «Партнёрства»."
+  },
+  "drwProfilePattern": {
+    "message": "Использовать, когда цель совпадает с маской"
+  },
+  "drwProfilePatternAria": {
+    "message": "Маска цели"
+  },
+  "drwProfilePatternHint": {
+    "message": "Оставьте пустым — выберете вручную позже на странице «Профили»."
+  },
+  "drwProfilePatternPlaceholder": {
+    "message": "регулярное выражение по цели, например \\.de$$|\\.at$$"
+  },
+  "drwProfileNeedsContact": {
+    "message": "Нужно имя или e-mail — из них заполняются поля формы «имя» и «e-mail»."
+  },
+  "drwProfileSave": {
+    "message": "Сохранить"
+  },
+  "drwProfileCancel": {
+    "message": "Отмена"
+  },
+  "drwRowsTitle": {
+    "message": "Добавить строки"
+  },
+  "drwRowsSubtitle": {
+    "message": "Строки объединяются по ключу (сайт / e-mail): у существующих сохраняются статус и непустые значения."
+  },
+  "drwRowsLabel": {
+    "message": "Строки"
+  },
+  "drwRowsPasteSubmit": {
+    "message": "По одному сайту в строке — или целые строки (CSV / через табуляцию) с колонками $COLUMNS$; заголовок необязателен.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPasteMail": {
+    "message": "По одному сайту или e-mail в строке — или целые строки (CSV / через табуляцию) с колонками $COLUMNS$; заголовок необязателен.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNoTargetSubmit": {
+    "message": "Здесь нет ничего похожего на сайт."
+  },
+  "drwRowsNoTargetMail": {
+    "message": "Здесь нет ничего похожего на сайт или e-mail."
+  },
+  "drwRowsNoTargetHint": {
+    "message": "Вставляйте по одному в строке или целые строки с колонкой «$HEADER$» ($COLUMNS$). Другой набор колонок — это новая кампания, её собирает мастер.",
+    "placeholders": {
+      "header": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPlanOne": {
+    "message": "$COUNT$ строка: $ADD$ новых, у $FILLS$ существующих заполнятся пустые ячейки, $DUPES$ уже есть, $EXCLUDED$ без цели.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanFew": {
+    "message": "$COUNT$ строки: $ADD$ новых, у $FILLS$ существующих заполнятся пустые ячейки, $DUPES$ уже есть, $EXCLUDED$ без цели.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanMany": {
+    "message": "$COUNT$ строк: $ADD$ новых, у $FILLS$ существующих заполнятся пустые ячейки, $DUPES$ уже есть, $EXCLUDED$ без цели.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanOther": {
+    "message": "$COUNT$ строки: $ADD$ новых, у $FILLS$ существующих заполнятся пустые ячейки, $DUPES$ уже есть, $EXCLUDED$ без цели.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanConflictOne": {
+    "message": "$COUNT$ строка отличается от сохранённой — здесь остаются прежние значения; выбрать по полям можно в мастере.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictFew": {
+    "message": "$COUNT$ строки отличаются от сохранённых — здесь остаются прежние значения; выбрать по полям можно в мастере.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictMany": {
+    "message": "$COUNT$ строк отличаются от сохранённых — здесь остаются прежние значения; выбрать по полям можно в мастере.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictOther": {
+    "message": "$COUNT$ строки отличается от сохранённой — здесь остаются прежние значения; выбрать по полям можно в мастере.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAdd": {
+    "message": "Добавить"
+  },
+  "drwRowsAddedOne": {
+    "message": "Добавлена $COUNT$ строка.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedFew": {
+    "message": "Добавлено $COUNT$ строки.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedMany": {
+    "message": "Добавлено $COUNT$ строк.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedOther": {
+    "message": "Добавлено $COUNT$ строки.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOne": {
+    "message": "Обновлена $COUNT$ строка.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedFew": {
+    "message": "Обновлено $COUNT$ строки.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedMany": {
+    "message": "Обновлено $COUNT$ строк.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOther": {
+    "message": "Обновлено $COUNT$ строки.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNewColumnsOne": {
+    "message": "Новая колонка: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsFew": {
+    "message": "Новые колонки: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsMany": {
+    "message": "Новые колонки: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsOther": {
+    "message": "Новые колонки: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPasteMore": {
+    "message": "Вставьте ещё или закройте."
+  },
+  "drwAssetsTitle": {
+    "message": "Добавить файлы"
+  },
+  "drwAssetsSubtitle": {
+    "message": "Логотипы, скриншоты, документы для колонок типа «файл»; хранятся локально, одинаковое содержимое — один раз."
+  },
+  "drwAssetsFiles": {
+    "message": "Файлы"
+  },
+  "drwAssetsAddedOne": {
+    "message": "Добавлен $COUNT$ файл.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedFew": {
+    "message": "Добавлено $COUNT$ файла.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedMany": {
+    "message": "Добавлено $COUNT$ файлов.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedOther": {
+    "message": "Добавлено $COUNT$ файла.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedHint": {
+    "message": "Чтобы файл подставился, впишите его имя в ячейку колонки-файла."
+  },
+  "drwAssetsDone": {
+    "message": "Готово"
+  },
+  "drwBackupTitle": {
+    "message": "Резервная копия"
+  },
+  "drwBackupSubtitle": {
+    "message": "ZIP со строками, шаблонами, журналом, рецептами и нужными файлами. Восстановление заменяет кампанию с тем же id и перезаписывает рецепты сайтов."
+  },
+  "drwBackupDownloadLabel": {
+    "message": "Скачать"
+  },
+  "drwBackupDownloadHint": {
+    "message": "Храните рядом с остальными файлами — иначе из браузера ничего не уходит."
+  },
+  "drwBackupDownload": {
+    "message": "Скачать копию"
+  },
+  "drwBackupNoCampaign": {
+    "message": "Выгружать пока нечего — нет кампании"
+  },
+  "drwBackupPacking": {
+    "message": "Упаковываем…"
+  },
+  "drwBackupReady": {
+    "message": "Копия готова: $SIZE$.",
+    "placeholders": {
+      "size": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupExportFailed": {
+    "message": "Не удалось выгрузить: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreLabel": {
+    "message": "Восстановить"
+  },
+  "drwBackupFileAria": {
+    "message": "Файл резервной копии"
+  },
+  "drwBackupPicked": {
+    "message": "$FILE$ · $SIZE$ — восстановление заменит кампанию с тем же id.",
+    "placeholders": {
+      "file": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwBackupRestore": {
+    "message": "Восстановить из этого файла"
+  },
+  "drwBackupRestoring": {
+    "message": "Восстанавливаем…"
+  },
+  "drwBackupRestored": {
+    "message": "Восстановлено: строк — $ROWS$, шаблонов — $TEMPLATES$, событий журнала — $JOURNAL$, рецептов — $RECIPES$, файлов — $ASSETS$.",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "templates": {
+        "content": "$2"
+      },
+      "journal": {
+        "content": "$3"
+      },
+      "recipes": {
+        "content": "$4"
+      },
+      "assets": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwBackupMissingOne": {
+    "message": "$COUNT$ файл не найден в архиве.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingFew": {
+    "message": "$COUNT$ файла не найдены в архиве.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingMany": {
+    "message": "$COUNT$ файлов не найдены в архиве.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingOther": {
+    "message": "$COUNT$ файла не найдено в архиве.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreFailed": {
+    "message": "Не удалось восстановить: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwFooterClose": {
+    "message": "Закрыть"
+  },
+  "rowGone": {
+    "message": "Строки больше нет."
+  },
+  "rowLegendRow": {
+    "message": "Строка"
+  },
+  "rowLegendMessage": {
+    "message": "Сообщение"
+  },
+  "rowLegendOutcome": {
+    "message": "Результат"
+  },
+  "rowLegendJournal": {
+    "message": "Журнал"
+  },
+  "rowStepState": {
+    "message": "шаг $STEP$ · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "state": {
+        "content": "$2"
+      }
+    }
+  },
+  "rowTarget": {
+    "message": "Цель"
+  },
+  "rowTargetHint": {
+    "message": "Если её изменить, ключ строки пересчитается."
+  },
+  "rowLanguage": {
+    "message": "Язык"
+  },
+  "rowNote": {
+    "message": "Заметка"
+  },
+  "rowAssetHint": {
+    "message": "имя файла из библиотеки"
+  },
+  "rowTargetInvalid": {
+    "message": "Цель — это сайт, e-mail или @ник."
+  },
+  "rowKeyClash": {
+    "message": "Ключ «$KEY$» уже занят другой строкой — объедините их.",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSaveFailed": {
+    "message": "Не удалось сохранить: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSave": {
+    "message": "Сохранить строку"
+  },
+  "rowSaved": {
+    "message": "Сохранено."
+  },
+  "rowRecordFailed": {
+    "message": "Не удалось записать: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowClosed": {
+    "message": "Строка закрыта — фоллоу-апы больше не придут."
+  },
+  "rowDefer": {
+    "message": "Отложить"
+  },
+  "rowDaysAria": {
+    "message": "Дни"
+  },
+  "rowNotApplicable": {
+    "message": "Не подходит"
+  },
+  "rowDelete": {
+    "message": "Удалить строку"
+  },
+  "rowDeleteConfirm": {
+    "message": "Точно? Строка и её журнал удалятся"
+  },
+  "rowEdited": {
+    "message": "Текст шага $STEP$ отредактирован.",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowEditedTranslated": {
+    "message": "Текст шага $STEP$ отредактирован (перевод).",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowResetTemplate": {
+    "message": "Вернуть из шаблона"
+  },
+  "rowResetDone": {
+    "message": "Текст снова из шаблона."
+  },
+  "rowJournalLoading": {
+    "message": "Загружаем…"
+  },
+  "rowJournalEmpty": {
+    "message": "Событий пока нет."
+  },
+  "rowDeferDays": {
+    "message": "Задержка, дней",
+    "description": "Label of the numeric field next to the Defer button. Replaces the old \"Defer [n] days\" sentence, which produced \"Defer 1 days\" and could not be reordered."
+  },
+  "slotProfileName": {
+    "message": "Ваше имя"
+  },
+  "slotProfileEmail": {
+    "message": "Ваш e-mail"
+  },
+  "slotProfileSite": {
+    "message": "Ваш сайт"
+  },
+  "slotProfilePhone": {
+    "message": "Ваш номер"
+  },
+  "slotSubject": {
+    "message": "Тема"
+  },
+  "slotBody": {
+    "message": "Сообщение"
+  },
+  "slotNotFound": {
+    "message": "не найдено"
+  },
+  "flagExact": {
+    "message": "точно"
+  },
+  "flagEquivalent": {
+    "message": "почти"
+  },
+  "flagChangedBySite": {
+    "message": "сайт изменил"
+  },
+  "flagPartial": {
+    "message": "неполно"
+  },
+  "flagKept": {
+    "message": "прежнее"
+  },
+  "flagClipboard": {
+    "message": "буфер"
+  },
+  "flagPinned": {
+    "message": "фикс"
+  },
+  "flagPolicySkipIfFilled": {
+    "message": "если пусто"
+  },
+  "flagPolicyReplace": {
+    "message": "заменять"
+  },
+  "flagPolicyAtCursor": {
+    "message": "по курсору"
+  },
+  "flagNoFilePayload": {
+    "message": "нет данных файла"
+  },
+  "flagNoDataTransfer": {
+    "message": "DataTransfer недоступен"
+  },
+  "flagFilesRejected": {
+    "message": "файлы не приняты"
+  },
+  "flagNoOption": {
+    "message": "нет подходящего пункта"
+  },
+  "flagSelectReverted": {
+    "message": "страница сбросила выбор"
+  },
+  "flagFieldNotFound": {
+    "message": "поле не найдено"
+  },
+  "flagValueReverted": {
+    "message": "страница вернула прежнее значение"
+  },
+  "flagRichEditor": {
+    "message": "визуальный редактор: вставьте через Ctrl+V"
+  },
+  "panelCounterPos": {
+    "message": "$POS$ / $TOTAL$",
+    "placeholders": {
+      "pos": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelCounterTodo": {
+    "message": "$COUNT$ осталось",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCounterDue": {
+    "message": "$COUNT$ сегодня",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoCampaign": {
+    "message": "нет кампании"
+  },
+  "panelSettingsAria": {
+    "message": "Открыть настройки"
+  },
+  "panelSettingsTitle": {
+    "message": "Настройки и кампании (страница расширения)"
+  },
+  "panelNoRows": {
+    "message": "В этой кампании нет строк"
+  },
+  "panelNoCampaignYet": {
+    "message": "Кампании пока нет"
+  },
+  "panelEmptyHint": {
+    "message": "Импортируйте список и сохраните шаблон на странице расширения."
+  },
+  "panelOpenCampaigns": {
+    "message": "Создать первый список"
+  },
+  "panelRowAria": {
+    "message": "Текущая строка"
+  },
+  "panelStep": {
+    "message": "шаг $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOtherPage": {
+    "message": "Вы на $HERE$, а строка ведёт на $THERE$.",
+    "placeholders": {
+      "here": {
+        "content": "$1"
+      },
+      "there": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPrevRow": {
+    "message": "Предыдущая строка"
+  },
+  "panelNextRow": {
+    "message": "Следующая строка ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMessageAria": {
+    "message": "Сообщение"
+  },
+  "panelSaveEdit": {
+    "message": "Сохранить правку"
+  },
+  "panelSubjectLabel": {
+    "message": "Тема:"
+  },
+  "panelBodyChars": {
+    "message": "Сообщение · $N$ симв.",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelEdited": {
+    "message": "изменено"
+  },
+  "panelEditRow": {
+    "message": "Изменить строку"
+  },
+  "panelNoMessage": {
+    "message": "Для шага $N$ сообщения пока нет — сначала напишите шаблон.",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelDemoPage": {
+    "message": "демо-страница"
+  },
+  "panelMappingSummary": {
+    "message": "Соответствие полей — $N$ сопоставлено",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingMissing": {
+    "message": "$N$ не найдено",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingStale": {
+    "message": "рецепт устарел, проверьте"
+  },
+  "panelMappingHost": {
+    "message": "Соответствие полей — $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoPage": {
+    "message": "нет страницы"
+  },
+  "panelPolicyTitle": {
+    "message": "Правило заполнения — нажмите, чтобы сменить"
+  },
+  "panelPinnedTitle": {
+    "message": "Закреплено — сохраняется при изменении формы"
+  },
+  "panelPinAria": {
+    "message": "Закрепить поле"
+  },
+  "panelPinTitle": {
+    "message": "Закрепить — поле останется, даже если форма изменится"
+  },
+  "panelClearAria": {
+    "message": "Убрать это соответствие"
+  },
+  "panelClearTitle": {
+    "message": "Убрать — слот вернётся в «не найдено»; сопоставить заново поможет «Указать поле»"
+  },
+  "panelPointAt": {
+    "message": "Указать поле"
+  },
+  "panelForgetRecipe": {
+    "message": "Забыть рецепт"
+  },
+  "panelMappingHelp": {
+    "message": "Нажмите «Заполнить» на странице цели: помощник сам угадывает, какое поле за что отвечает, а для ненайденных даёт кнопку «Указать поле»."
+  },
+  "panelSentNext": {
+    "message": "Отправлено — дальше ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelWriteTemplate": {
+    "message": "Написать шаблон шага $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenTarget": {
+    "message": "Открыть цель"
+  },
+  "panelOpenPath": {
+    "message": "Открыть $PATH$",
+    "placeholders": {
+      "path": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenHost": {
+    "message": "Открыть $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelAllowFill": {
+    "message": "Разрешить: $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilling": {
+    "message": "Заполняем…"
+  },
+  "panelFillOn": {
+    "message": "Заполнить: $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopyOpen": {
+    "message": "Копировать и открыть"
+  },
+  "panelMarkSent": {
+    "message": "Отметить отправленным ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelGroupOutcome": {
+    "message": "Результат"
+  },
+  "panelDefer3Days": {
+    "message": "Отложить на 3 дня"
+  },
+  "panelNotApplicable": {
+    "message": "Не подходит"
+  },
+  "panelReplied": {
+    "message": "Ответили"
+  },
+  "panelDeclined": {
+    "message": "Отказ"
+  },
+  "panelGroupNotSent": {
+    "message": "Не отправлено, потому что"
+  },
+  "panelReasonNoForm": {
+    "message": "нет формы"
+  },
+  "panelReasonCaptcha": {
+    "message": "капча"
+  },
+  "panelReasonNoContact": {
+    "message": "нет контактов"
+  },
+  "panelReasonTechnical": {
+    "message": "тех. проблема"
+  },
+  "panelGroupEdit": {
+    "message": "Правка"
+  },
+  "panelStepsFollowups": {
+    "message": "Шаги и фоллоу-апы…"
+  },
+  "panelSubjectTemplate": {
+    "message": "Шаблон темы…"
+  },
+  "panelRichEditorNote": {
+    "message": "Визуальный редактор: сообщение ушло в буфер обмена — нажмите на поле сообщения на странице и вставьте через Ctrl+V («Копировать и открыть» копирует снова). Потом «Отправлено — дальше»."
+  },
+  "panelFoundOnPage": {
+    "message": "Найдено на странице:"
+  },
+  "panelMoreTitle": {
+    "message": "Ещё действия — нажмите или потяните"
+  },
+  "panelMoreAria": {
+    "message": "Ещё действия"
+  },
+  "panelCleared": {
+    "message": "Убрано: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelRecipeForgotten": {
+    "message": "Рецепт забыт — поля определяются заново."
+  },
+  "panelOpened": {
+    "message": "Открыт $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenedMail": {
+    "message": "Открыто новое письмо для $TO$.",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMailTooLongFill": {
+    "message": "Сообщение длиннее, чем помещается в ссылку — текст скопирован: нажмите «Заполнить» или вставьте через Ctrl+V."
+  },
+  "panelMailTooLongPaste": {
+    "message": "Сообщение длиннее, чем помещается в ссылку — текст скопирован: вставьте через Ctrl+V."
+  },
+  "panelMailTooLongBlocked": {
+    "message": "Сообщение не помещается в ссылку, а буфер обмена заблокирован — скопируйте текст выше вручную."
+  },
+  "panelNoUrlCopied": {
+    "message": "Для этой цели нет ссылки — сообщение скопировано ниже; откройте чат сами и вставьте его."
+  },
+  "panelNoUrlBlocked": {
+    "message": "Для этой цели нет ссылки, а буфер обмена заблокирован — скопируйте сообщение выше вручную."
+  },
+  "panelCopied": {
+    "message": "Сообщение скопировано — вставьте его на странице через Ctrl+V."
+  },
+  "panelCopyBlocked": {
+    "message": "Буфер обмена заблокирован — выделите текст выше и скопируйте."
+  },
+  "panelPermissionDenied": {
+    "message": "Доступ не разрешён — нажмите «Копировать и открыть» и вставьте вручную."
+  },
+  "panelScanning": {
+    "message": "Смотрим страницу…"
+  },
+  "panelStaleRecipe": {
+    "message": "Форма изменилась — сохранённый рецепт устарел; проверьте соответствие ниже и нажмите «Заполнить» ещё раз."
+  },
+  "panelFilledOne": {
+    "message": "Заполнено $COUNT$ поле",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledOther": {
+    "message": "Заполнено $COUNT$ поля",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledFew": {
+    "message": "Заполнено $COUNT$ поля",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledMany": {
+    "message": "Заполнено $COUNT$ полей",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSkipped": {
+    "message": "$COUNT$ не тронуто (там уже был текст)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelClipboardHint": {
+    "message": "сообщение в буфере обмена — нажмите на поле сообщения и вставьте через Ctrl+V"
+  },
+  "panelClipboardBlocked": {
+    "message": "поле сообщения придётся заполнить вручную (буфер обмена заблокирован)"
+  },
+  "panelNothingFilled": {
+    "message": "на этой странице заполнять нечего"
+  },
+  "panelBodyNotFilled": {
+    "message": "поле сообщения не заполнилось — нажмите «Копировать и открыть»"
+  },
+  "panelNotFoundHere": {
+    "message": "не найдено на странице: $SLOTS$",
+    "placeholders": {
+      "slots": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelStaleRebuilt": {
+    "message": "форма изменилась — сохранённый рецепт устарел; соответствие пересобрано, проверьте поля"
+  },
+  "panelFillFailed": {
+    "message": "Не удалось заполнить: $ERROR$. Нажмите «Копировать и открыть».",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarkedSent": {
+    "message": "Отмечено как отправленное: $KEY$",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarked": {
+    "message": "Отмечено: $KIND$",
+    "placeholders": {
+      "kind": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelKindSent": {
+    "message": "отправлено"
+  },
+  "panelKindDeferred": {
+    "message": "отложено"
+  },
+  "panelKindFailed": {
+    "message": "не отправлено"
+  },
+  "panelKindExcluded": {
+    "message": "не подходит"
+  },
+  "panelKindReplied": {
+    "message": "ответили"
+  },
+  "panelKindDeclined": {
+    "message": "отказ"
+  },
+  "panelPickHint": {
+    "message": "Нажмите на странице поле для «$SLOT$» (Esc — отмена).",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSavedSlot": {
+    "message": "Сохранено: $SLOT$ → $FIELD$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      },
+      "field": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPickCancelled": {
+    "message": "Выбор поля отменён."
+  },
+  "panelRateOn": {
+    "message": "Оценить в $STORE$",
+    "placeholders": {
+      "store": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSpintaxLink": {
+    "message": "spintax.net — движок этого расширения"
+  },
+  "panelPublisherLink": {
+    "message": "301.st — Smart Traffic"
+  },
+  "panelOldHelper": {
+    "message": "на странице работает старая версия помощника — перезагрузите её и попробуйте снова"
+  },
+  "panelNoAccess": {
+    "message": "страница не ответила — перезагрузите её и нажмите «Заполнить» ещё раз"
+  },
+  "panelPageChanged": {
+    "message": "страница изменилась после сканирования — нажмите «Заполнить» ещё раз"
+  },
+  "warnMaxLength": {
+    "message": "$LEN$ символов, поле принимает $MAX$",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMinLength": {
+    "message": "$LEN$ символов, полю нужно минимум $MIN$",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "min": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMaxWords": {
+    "message": "$WORDS$ слов, поле принимает $MAX$",
+    "placeholders": {
+      "words": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraint": {
+    "message": "$FIELD$: $PROBLEM$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraintBlocked": {
+    "message": "$FIELD$: $PROBLEM$ — не заполнено",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetAmbiguous": {
+    "message": "$FIELD$: файлов с именем «$NAME$» несколько — впишите в ячейку sha256",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMissing": {
+    "message": "$FIELD$: файла с именем «$NAME$» в библиотеке нет",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMime": {
+    "message": "$FIELD$: «$NAME$» — это $MIME$, а поле принимает $ALLOW$ — не заполнено",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      },
+      "mime": {
+        "content": "$3"
+      },
+      "allow": {
+        "content": "$4"
+      }
+    }
+  },
+  "warnAssetSize": {
+    "message": "$FIELD$: страница просит $WANT$, а «$NAME$» — $GOT$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "want": {
+        "content": "$2"
+      },
+      "name": {
+        "content": "$3"
+      },
+      "got": {
+        "content": "$4"
+      }
+    }
+  },
+  "jrnFilled": {
+    "message": "заполнено"
+  },
+  "jrnSent": {
+    "message": "отправлено"
+  },
+  "jrnFailed": {
+    "message": "не отправлено"
+  },
+  "jrnDeferred": {
+    "message": "отложено"
+  },
+  "jrnReplied": {
+    "message": "ответили"
+  },
+  "jrnDeclined": {
+    "message": "отказ"
+  },
+  "jrnExcluded": {
+    "message": "не подходит"
+  },
+  "jrnEdited": {
+    "message": "изменено"
+  },
+  "jrnReviewed": {
+    "message": "проверено"
+  },
+  "jrnTranslated": {
+    "message": "переведено"
+  },
+  "jrnCorrected": {
+    "message": "исправлено"
+  },
+  "jrnReasonNoForm": {
+    "message": "нет формы"
+  },
+  "jrnReasonCaptcha": {
+    "message": "капча"
+  },
+  "jrnReasonNoContact": {
+    "message": "нет контактов"
+  },
+  "jrnReasonTechnical": {
+    "message": "тех. проблема"
+  },
+  "jrnReviewUnreviewed": {
+    "message": "не проверено"
+  },
+  "jrnReviewApproved": {
+    "message": "одобрено"
+  },
+  "jrnReviewEdited": {
+    "message": "изменено"
+  },
+  "jrnReviewSkipped": {
+    "message": "пропущено"
+  },
+  "jrnUntil": {
+    "message": "до $DAY$",
+    "placeholders": {
+      "day": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnStep": {
+    "message": "шаг $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnAi": {
+    "message": "ИИ: $API$",
+    "placeholders": {
+      "api": {
+        "content": "$1"
+      }
+    }
+  },
+  "mailMailto": {
+    "message": "Почтовая программа (mailto:)"
+  },
+  "mailMailtoHint": {
+    "message": "То, что открывает ссылки mailto: на этом компьютере. Если ничего не открывается — выберите веб-почту ниже."
+  },
+  "mailGmail": {
+    "message": "Gmail"
+  },
+  "mailGmailHint": {
+    "message": "Открывает окно нового письма на mail.google.com в целевой вкладке."
+  },
+  "mailOutlook": {
+    "message": "Outlook.com (личный)"
+  },
+  "mailOutlookHint": {
+    "message": "Прямая ссылка на новое письмо в outlook.live.com."
+  },
+  "mailOutlook365": {
+    "message": "Outlook — Microsoft 365 (рабочий)"
+  },
+  "mailOutlook365Hint": {
+    "message": "Прямая ссылка на новое письмо в outlook.office.com."
+  },
+  "mailYandex": {
+    "message": "Яндекс Почта"
+  },
+  "mailYandexHint": {
+    "message": "Ссылка на новое письмо в mail.yandex.ru."
+  },
+  "mailCustom": {
+    "message": "Свой шаблон ссылки"
+  },
+  "mailCustomHint": {
+    "message": "например https://mail.example.com/compose?to=%to%&subject=%subject%&body=%body%"
+  },
+  "filterAll": {
+    "message": "Все"
+  },
+  "filterTodo": {
+    "message": "Осталось"
+  },
+  "filterDue": {
+    "message": "Сегодня"
+  },
+  "filterDone": {
+    "message": "Готово"
+  },
+  "filterProblems": {
+    "message": "Проблемы"
+  },
+  "drwClose": {
+    "message": "Закрыть"
+  },
+  "tplLeftover": {
+    "message": "Остаток от шаблона — проверьте переменные"
+  },
+  "hdrTheme": {
+    "message": "Сменить тему"
+  },
+  "hdrNewsAriaOn": {
+    "message": "Новости издателя (включены)"
+  },
+  "hdrNewsAriaOff": {
+    "message": "Новости издателя (выключены)"
+  },
+  "hdrNewsTitleOn": {
+    "message": "Новости издателя включены: 301.sh проверяется раз в 6 часов, о новых постах приходит уведомление. Нажмите, чтобы выключить."
+  },
+  "hdrNewsTitleOff": {
+    "message": "Новости издателя выключены. Нажмите, чтобы получать уведомление, когда на 301.sh выходит пост."
+  },
+  "tgtDemoPage": {
+    "message": "демо-страница $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "revNoBody": {
+    "message": "Для шага 1 ещё нет шаблона сообщения — сохраните его на экране «Шаблон»."
+  },
+  "revTemplateLink": {
+    "message": "Шаблон"
+  },
+  "revCounters": {
+    "message": "$ROWS$ · $BLOCKERS$ · $WARNINGS$ · $DUPS$ · $APPROVED$ · $EDITED$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "blockers": {
+        "content": "$2"
+      },
+      "warnings": {
+        "content": "$3"
+      },
+      "dups": {
+        "content": "$4"
+      },
+      "approved": {
+        "content": "$5"
+      },
+      "edited": {
+        "content": "$6"
+      }
+    }
+  },
+  "revRowsOne": {
+    "message": "$COUNT$ строка",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsFew": {
+    "message": "$COUNT$ строки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsMany": {
+    "message": "$COUNT$ строк",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsOther": {
+    "message": "$COUNT$ строки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOne": {
+    "message": "$COUNT$ ошибка",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersFew": {
+    "message": "$COUNT$ ошибки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersMany": {
+    "message": "$COUNT$ ошибок",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOther": {
+    "message": "$COUNT$ ошибки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOne": {
+    "message": "$COUNT$ предупреждение",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsFew": {
+    "message": "$COUNT$ предупреждения",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsMany": {
+    "message": "$COUNT$ предупреждений",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOther": {
+    "message": "$COUNT$ предупреждения",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOne": {
+    "message": "$COUNT$ повтор отправленного текста",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesFew": {
+    "message": "$COUNT$ повтора отправленного текста",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesMany": {
+    "message": "$COUNT$ повторов отправленного текста",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOther": {
+    "message": "$COUNT$ повтора отправленного текста",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproved": {
+    "message": "$COUNT$ одобрено",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdited": {
+    "message": "$COUNT$ изменено",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterProblems": {
+    "message": "Проблемы $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterSample": {
+    "message": "Выборка чистых $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterAll": {
+    "message": "Все $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOne": {
+    "message": "Одобрить $COUNT$ чистую строку",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanFew": {
+    "message": "Одобрить $COUNT$ чистые строки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanMany": {
+    "message": "Одобрить $COUNT$ чистых строк",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOther": {
+    "message": "Одобрить $COUNT$ чистые строки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revStartQueue": {
+    "message": "Начать очередь"
+  },
+  "revNoProblems": {
+    "message": "Проблем нет — одобрите чистые строки или посмотрите выборку."
+  },
+  "revNothingHere": {
+    "message": "Здесь пусто."
+  },
+  "revBadgeBlocker": {
+    "message": "ошибка"
+  },
+  "revBadgeDuplicate": {
+    "message": "повтор"
+  },
+  "revBadgeWarning": {
+    "message": "внимание"
+  },
+  "revStateUnreviewed": {
+    "message": "ждёт"
+  },
+  "revStateApproved": {
+    "message": "одобрено"
+  },
+  "revStateEdited": {
+    "message": "изменено"
+  },
+  "revStateSkipped": {
+    "message": "пропущено"
+  },
+  "revDuplicateNote": {
+    "message": "Ровно такой же текст уже ушёл другой строке — смените вариант или отредактируйте."
+  },
+  "revPrevious": {
+    "message": "Назад"
+  },
+  "revNext": {
+    "message": "Дальше"
+  },
+  "revPosition": {
+    "message": "$INDEX$ / $TOTAL$",
+    "placeholders": {
+      "index": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "revApprove": {
+    "message": "Одобрить ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdit": {
+    "message": "Изменить ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revSaveEdit": {
+    "message": "Сохранить правку"
+  },
+  "revSkip": {
+    "message": "Пропустить ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRespin": {
+    "message": "Другой вариант"
+  },
+  "revReset": {
+    "message": "Вернуть из шаблона"
+  },
+  "revMeta": {
+    "message": "шаг $STEP$ · сид $SEED$ · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revMetaEdited": {
+    "message": "шаг $STEP$ · сид $SEED$ · изменено · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revSubject": {
+    "message": "Тема:"
+  },
+  "profIntro": {
+    "message": "Берётся первый подошедший профиль; профиль «всегда» — запасной. Значения профиля становятся переменными %my_*% и попадают в поля контактных форм (имя, e-mail, сайт, телефон)."
+  },
+  "profEmpty": {
+    "message": "Профиля отправителя ещё нет — добавьте его: он заполняет %my_name%, %my_email% и поля контактных форм с вашими данными."
+  },
+  "profSavedOne": {
+    "message": "Сохранён $COUNT$ профиль.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedFew": {
+    "message": "Сохранено $COUNT$ профиля.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedMany": {
+    "message": "Сохранено $COUNT$ профилей.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedOther": {
+    "message": "Сохранено $COUNT$ профиля.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profFieldName": {
+    "message": "Имя"
+  },
+  "profFieldEmail": {
+    "message": "E-mail"
+  },
+  "profFieldSite": {
+    "message": "Сайт"
+  },
+  "profFieldPhone": {
+    "message": "Телефон"
+  },
+  "profFieldIntro": {
+    "message": "О себе (1–2 предложения)"
+  },
+  "profFieldSignature": {
+    "message": "Подпись"
+  },
+  "profNamePlaceholder": {
+    "message": "Название профиля (например RU, EN, Партнёрства)"
+  },
+  "profRemove": {
+    "message": "Удалить профиль"
+  },
+  "profActivation": {
+    "message": "Когда применять"
+  },
+  "profActivationAlways": {
+    "message": "Всегда (основной профиль)"
+  },
+  "profActivationUrlPattern": {
+    "message": "Когда цель совпала с маской"
+  },
+  "profActivationColumn": {
+    "message": "Когда колонка равна значению"
+  },
+  "profPatternPlaceholder": {
+    "message": "маска цели, например \\.de$$|\\.at$$"
+  },
+  "profColumn": {
+    "message": "Колонка"
+  },
+  "profEqualsPlaceholder": {
+    "message": "значение, например ru"
+  },
+  "profAdd": {
+    "message": "Добавить профиль"
+  },
+  "profSave": {
+    "message": "Сохранить профили"
+  },
+  "setMailTitle": {
+    "message": "Цели по e-mail"
+  },
+  "setMailIntro": {
+    "message": "Строки, у которых цель — адрес e-mail, открывают здесь новое письмо. Текст едет внутри ссылки, если помещается; иначе вставляется уже в редакторе — это меряется по каждой строке, а не угадывается."
+  },
+  "setMailProvider": {
+    "message": "E-mail открывать в",
+    "description": "Label of the provider dropdown and its accessible name — one string, two uses."
+  },
+  "setGmailAccount": {
+    "message": "Аккаунт Gmail (0 — первый вошедший)"
+  },
+  "setGmailAccountAria": {
+    "message": "Номер аккаунта Gmail"
+  },
+  "setBcc": {
+    "message": "Скрытая копия каждого письма на"
+  },
+  "setBccAria": {
+    "message": "Скрытая копия",
+    "description": "Accessible name of the BCC address input."
+  },
+  "setBccHint": {
+    "message": "Копия в вашем ящике — ваша запись о том, что ушло. Оставьте пустым, чтобы не отправлять."
+  },
+  "setCustomLabel": {
+    "message": "Шаблон ссылки на новое письмо"
+  },
+  "setCustomAria": {
+    "message": "Свой шаблон ссылки на новое письмо"
+  },
+  "setCustomHint": {
+    "message": "Подстановки: %to% %subject% %body% %bcc%",
+    "description": "The %tokens% are literal syntax of the URL template — translate only the word before them."
+  },
+  "setCustomInvalid": {
+    "message": "Свой шаблон должен быть https-ссылкой и содержать %to%."
+  },
+  "setSave": {
+    "message": "Сохранить"
+  },
+  "setSaved": {
+    "message": "Сохранено."
+  },
+  "setFitNoTemplate": {
+    "message": "Шаблона шага 1 пока нет — замер появится, когда шаблон будет сохранён."
+  },
+  "setFitMeasuredOne": {
+    "message": "Самое длинное сообщение кампании: $COUNT$ символ (проверено строк: $ROWS$).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredFew": {
+    "message": "Самое длинное сообщение кампании: $COUNT$ символа (проверено строк: $ROWS$).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredMany": {
+    "message": "Самое длинное сообщение кампании: $COUNT$ символов (проверено строк: $ROWS$).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredOther": {
+    "message": "Самое длинное сообщение кампании: $COUNT$ символа (проверено строк: $ROWS$).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitYes": {
+    "message": "$PROVIDER$ принимает в ссылке около $BUDGET$ → текст едет внутри ссылки, редактор открывается уже заполненным.",
+    "description": "Second half of the fit line: the measurement sentence is a separate key, joined with a space in code.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitNo": {
+    "message": "$PROVIDER$ принимает в ссылке около $BUDGET$ → длинные тексты не поместятся: редактор откроется с адресом и темой, а текст скопируется и вставится через Ctrl+V (на веб-почте это делает «Заполнить»).",
+    "description": "Same slot as setFitYes, for a message that does not fit the provider's link.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageTitle": {
+    "message": "Хранилище"
+  },
+  "setStorageUsed": {
+    "message": "Занято $USED$ из $QUOTA$, доступных этому профилю браузера.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageUnknown": {
+    "message": "Этот браузер не сообщает, сколько занято."
+  },
+  "setOrphansOne": {
+    "message": "На $COUNT$ файл больше не ссылается ни одна кампания — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansFew": {
+    "message": "На $COUNT$ файла больше не ссылается ни одна кампания — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansMany": {
+    "message": "На $COUNT$ файлов больше не ссылается ни одна кампания — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansOther": {
+    "message": "На $COUNT$ файла больше не ссылается ни одна кампания — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setNoOrphans": {
+    "message": "На каждый сохранённый файл ссылается строка или значение колонки по умолчанию."
+  },
+  "setDeleteUnusedOne": {
+    "message": "Удалить $COUNT$ ненужный файл",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedFew": {
+    "message": "Удалить $COUNT$ ненужных файла",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedMany": {
+    "message": "Удалить $COUNT$ ненужных файлов",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedOther": {
+    "message": "Удалить $COUNT$ ненужных файла",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOne": {
+    "message": "Точно? $COUNT$ файл ($SIZE$) сотрётся навсегда",
+    "description": "Armed state of the same button — it must stay on one line.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmFew": {
+    "message": "Точно? $COUNT$ файла ($SIZE$) сотрутся навсегда",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmMany": {
+    "message": "Точно? $COUNT$ файлов ($SIZE$) сотрутся навсегда",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOther": {
+    "message": "Точно? $COUNT$ файла ($SIZE$) сотрётся навсегда",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOne": {
+    "message": "Удалён $COUNT$ файл, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedFew": {
+    "message": "Удалено $COUNT$ файла, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedMany": {
+    "message": "Удалено $COUNT$ файлов, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOther": {
+    "message": "Удалено $COUNT$ файла, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setRemoveDemo": {
+    "message": "Удалить демо-кампанию"
+  },
+  "setDemoRemoved": {
+    "message": "Демо-кампания удалена."
+  },
+  "setDeleteCampaign": {
+    "message": "Удалить кампанию «$NAME$»",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteCampaignConfirm": {
+    "message": "Точно? Строки, журнал и шаблоны этой кампании исчезнут",
+    "description": "Armed state of setDeleteCampaign — it must stay on one line."
+  },
+  "setDeleteAll": {
+    "message": "Удалить все данные"
+  },
+  "setDeleteAllConfirm": {
+    "message": "Точно? Всё в этом расширении сотрётся",
+    "description": "Armed state of setDeleteAll — it must stay on one line."
+  },
+  "assetTitle": {
+    "message": "Библиотека файлов"
+  },
+  "assetIntro": {
+    "message": "Картинки и файлы для колонок типа «файл» (логотипы, скриншоты). В ячейке — имя файла; одинаковое содержимое хранится один раз."
+  },
+  "assetAdd": {
+    "message": "Добавить файлы"
+  },
+  "assetEmpty": {
+    "message": "Файлов пока нет. Добавьте сюда логотипы и скриншоты — колонки-файлы ссылаются на них по имени."
+  },
+  "assetColName": {
+    "message": "имя",
+    "description": "Table header. Lowercase on purpose, like the other column headers."
+  },
+  "assetColType": {
+    "message": "тип"
+  },
+  "assetColSize": {
+    "message": "вес"
+  },
+  "assetColDims": {
+    "message": "размеры"
+  },
+  "assetColId": {
+    "message": "id"
+  },
+  "assetColUsed": {
+    "message": "статус"
+  },
+  "assetShaTitle": {
+    "message": "sha256 $SHA$ — впишите его в ячейку, если у двух файлов одинаковое имя",
+    "placeholders": {
+      "sha": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetInUse": {
+    "message": "нужен",
+    "description": "Badge: the file is referenced by a row or a column default."
+  },
+  "assetUnused": {
+    "message": "не нужен"
+  },
+  "assetDeleteAria": {
+    "message": "Удалить $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetDeleteBlocked": {
+    "message": "На него ссылается строка — сначала очистите ячейку"
+  },
+  "assetDeleteTitle": {
+    "message": "Удалить файл"
+  },
+  "assetDeleted": {
+    "message": "Файл $NAME$ удалён.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetStorageUsed": {
+    "message": "Занято в хранилище: $USED$ из $QUOTA$.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "assetAddedOne": {
+    "message": "Добавлен $COUNT$ файл.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedFew": {
+    "message": "Добавлено $COUNT$ файла.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedMany": {
+    "message": "Добавлено $COUNT$ файлов.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedOther": {
+    "message": "Добавлено $COUNT$ файла.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "optPageTitle": {
+    "message": "Spintax — кампании"
+  },
+  "optNavWelcome": {
+    "message": "Начало и помощь"
+  },
+  "optNavWizard": {
+    "message": "Мастер кампании"
+  },
+  "optNavList": {
+    "message": "Список"
+  },
+  "optNavTemplate": {
+    "message": "Шаблон"
+  },
+  "optNavReview": {
+    "message": "Проверка"
+  },
+  "optNavProfiles": {
+    "message": "Профили"
+  },
+  "optNavRecipes": {
+    "message": "Рецепты"
+  },
+  "optNavAssets": {
+    "message": "Файлы"
+  },
+  "optNavJournal": {
+    "message": "Журнал"
+  },
+  "optNavSettings": {
+    "message": "Настройки"
+  },
+  "optNavNews": {
+    "message": "Новости"
+  },
+  "optToggleSidebar": {
+    "message": "Свернуть или развернуть меню"
+  },
+  "optSections": {
+    "message": "Разделы"
+  },
+  "optRecipesStub": {
+    "message": "Рецепт — это соответствие полей, которое расширение запоминает для сайта. Управлять ими можно из боковой панели: «Соответствие полей» → закрепить, убрать или «Забыть рецепт»."
+  },
+  "optJournalStub": {
+    "message": "История каждой строки (отправлено, отложено, изменено…) лежит в ней самой: «Список» → нажмите на строку → «Журнал»."
+  },
+  "optNewsStub": {
+    "message": "Новости издателя появятся под колокольчиком в шапке, когда вы их там включите."
+  },
+  "optNotHereYet": {
+    "message": "Раздел «$SECTION$» ещё не готов.",
+    "placeholders": {
+      "section": {
+        "content": "$1"
+      }
+    }
+  },
+  "optViewFailed": {
+    "message": "Экран не загрузился: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "optDefaultCampaign": {
+    "message": "Моя кампания"
+  },
+  "listFilterRows": {
+    "message": "Фильтр строк"
+  },
+  "listEmpty": {
+    "message": "Здесь пусто."
+  },
+  "listNoRows": {
+    "message": "Строк пока нет — импортируйте список в мастере."
+  },
+  "listRowsOne": {
+    "message": "$COUNT$ строка",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsOther": {
+    "message": "$COUNT$ строки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsFew": {
+    "message": "$COUNT$ строки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsMany": {
+    "message": "$COUNT$ строк",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOne": {
+    "message": "$COUNT$ колонка",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOther": {
+    "message": "$COUNT$ колонки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsFew": {
+    "message": "$COUNT$ колонки",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsMany": {
+    "message": "$COUNT$ колонок",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsColumns": {
+    "message": "$ROWS$ · $COLUMNS$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOne": {
+    "message": "Показано $RANGE$ из $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOther": {
+    "message": "Показано $RANGE$ из $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingFew": {
+    "message": "Показано $RANGE$ из $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingMany": {
+    "message": "Показано $RANGE$ из $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listPrevious": {
+    "message": "Назад"
+  },
+  "listNext": {
+    "message": "Дальше"
+  },
+  "listColKey": {
+    "message": "ключ"
+  },
+  "listColTarget": {
+    "message": "цель"
+  },
+  "listColStatus": {
+    "message": "статус"
+  },
+  "listColLang": {
+    "message": "язык"
+  },
+  "listOpenRow": {
+    "message": "Открыть строку"
+  },
+  "listExportCsv": {
+    "message": "Выгрузить CSV (с фильтром)"
+  },
+  "listExportCsvTitle": {
+    "message": "CSV с вашими колонками плюс _status, _step, _due… — его можно импортировать обратно, статусы сохранятся"
+  },
+  "listBadgeReason": {
+    "message": "$STATUS$ · $REASON$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "reason": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeUntil": {
+    "message": "$STATUS$ до $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeStepDue": {
+    "message": "$STATUS$ · шаг $STEP$ до $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "listBadgeStepOn": {
+    "message": "$STATUS$ · шаг $STEP$ на $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusNotStarted": {
+    "message": "не начата"
+  },
+  "statusFilledUnconfirmed": {
+    "message": "заполнено, не ушло"
+  },
+  "statusSent": {
+    "message": "отправлено"
+  },
+  "statusDeferred": {
+    "message": "отложено"
+  },
+  "statusNotSent": {
+    "message": "не ушло"
+  },
+  "statusNotApplicable": {
+    "message": "не подходит"
+  },
+  "statusReplied": {
+    "message": "ответили"
+  },
+  "statusDeclined": {
+    "message": "отказ"
+  },
+  "failNoForm": {
+    "message": "нет формы"
+  },
+  "failCaptcha": {
+    "message": "капча"
+  },
+  "failNoContact": {
+    "message": "нет контактов"
+  },
+  "failTechnical": {
+    "message": "тех. проблема"
+  },
+  "tplStep": {
+    "message": "Шаг",
+    "description": "Accessible name of the step dropdown on the template screen."
+  },
+  "tplStepInitial": {
+    "message": "Шаг $N$ — первое",
+    "description": "Step dropdown item for the first message of a sequence.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplStepFollowUp": {
+    "message": "Шаг $N$ — фоллоу-ап",
+    "description": "Step dropdown item for a follow-up message.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplChannel": {
+    "message": "Канал",
+    "description": "Accessible name of the channel dropdown (body or subject)."
+  },
+  "tplChannelBody": {
+    "message": "Текст",
+    "description": "Channel dropdown item: the message body."
+  },
+  "tplChannelSubject": {
+    "message": "Тема",
+    "description": "Channel dropdown item: the e-mail subject line."
+  },
+  "tplLocaleAria": {
+    "message": "Язык шаблона",
+    "description": "Accessible name of the locale input."
+  },
+  "tplLocaleLabel": {
+    "message": "язык",
+    "description": "Visible label next to the locale input. Lowercase on purpose."
+  },
+  "tplSourcePlaceholder": {
+    "message": "{Привет|Здравствуйте}, %name%, {короткий|быстрый} вопрос про %topic% …  (вставьте шаблон из Studio или из чата; Ctrl+V работает прямо здесь)",
+    "description": "Placeholder of the template editor. Keep the spintax braces and the %name% / %topic% variables as they are; translate only the sentence in the parentheses."
+  },
+  "tplVarsRawAria": {
+    "message": "Переменные строками #set",
+    "description": "Accessible name of the raw variables box. '#set' is engine syntax — keep it."
+  },
+  "tplRowsAria": {
+    "message": "Сколько строк показать",
+    "description": "Accessible name of the number input that picks how many rows the preview renders."
+  },
+  "tplTabList": {
+    "message": "Из списка",
+    "description": "Variables tab: values taken from the imported recipient list."
+  },
+  "tplTabRaw": {
+    "message": "Текстом",
+    "description": "Variables tab: the same values as raw #set lines."
+  },
+  "tplCopyRawTitle": {
+    "message": "Скопировать строки #set — вставьте их в песочницу или в Studio",
+    "description": "Tooltip of the button that copies the raw variables."
+  },
+  "tplVarsCopied": {
+    "message": "Переменные скопированы.",
+    "description": "Confirmation after the variables were copied to the clipboard."
+  },
+  "tplClipboardBlocked": {
+    "message": "Буфер обмена заблокирован — выделите текст и скопируйте.",
+    "description": "Shown when the browser refused clipboard access."
+  },
+  "tplCopy": {
+    "message": "Копировать",
+    "description": "Button that copies the raw variables."
+  },
+  "tplSave": {
+    "message": "Сохранить шаблон",
+    "description": "Primary button of the template screen."
+  },
+  "tplUnsavedRestored": {
+    "message": "Несохранённая правка восстановлена.",
+    "description": "Shown when the editor text kept from a previous visit was put back."
+  },
+  "tplRemoveInclude": {
+    "message": "Убрать $NAME$",
+    "description": "Accessible name of the button that removes one include file.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "signature"
+      }
+    }
+  },
+  "tplNoIncludes": {
+    "message": "Подключённых файлов нет.",
+    "description": "Shown instead of the include chips when the template has none."
+  },
+  "tplErrorsOne": {
+    "message": "$COUNT$ ошибка",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplErrorsFew": {
+    "message": "$COUNT$ ошибки",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "tplErrorsMany": {
+    "message": "$COUNT$ ошибок",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "tplErrorsOther": {
+    "message": "$COUNT$ ошибки",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplWarningsOne": {
+    "message": "$COUNT$ предупреждение",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplWarningsFew": {
+    "message": "$COUNT$ предупреждения",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "tplWarningsMany": {
+    "message": "$COUNT$ предупреждений",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "tplWarningsOther": {
+    "message": "$COUNT$ предупреждения",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplEngineTitle": {
+    "message": "Движок $VERSION$",
+    "description": "Tooltip of the status line: which engine build validated the template.",
+    "placeholders": {
+      "version": {
+        "content": "$1",
+        "example": "0.6.1"
+      }
+    }
+  },
+  "diagVariableUndefined": {
+    "message": "%$NAME$% — это не колонка и не поле профиля: переименуйте её или добавьте колонку",
+    "description": "Engine diagnostic in user words: the template uses a variable the campaign does not know. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "diagVariableUndefinedAnon": {
+    "message": "эта переменная — не колонка и не поле профиля: переименуйте её или добавьте колонку",
+    "description": "Same diagnostic when the engine did not report which variable it was."
+  },
+  "diagUnclosed": {
+    "message": "Не хватает закрывающей скобки (строка $LINE$)",
+    "description": "Engine diagnostic in user words: an unclosed or unbalanced brace.",
+    "placeholders": {
+      "line": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "diagEmptyAlternative": {
+    "message": "Пустой вариант в строке $LINE$ — уберите лишний «|»",
+    "description": "Engine diagnostic in user words: two pipes with nothing between them. The pipe is spintax syntax — keep it.",
+    "placeholders": {
+      "line": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "tplValid": {
+    "message": "Шаблон в порядке.",
+    "description": "Success panel shown when the engine reported no diagnostics."
+  },
+  "tplSeverityError": {
+    "message": "ошибка",
+    "description": "Badge on a diagnostic that blocks saving."
+  },
+  "tplSeverityWarning": {
+    "message": "внимание",
+    "description": "Badge on a diagnostic that does not block saving."
+  },
+  "varsGroupTarget": {
+    "message": "цель",
+    "description": "Variables table group: the column that holds the contact page or address."
+  },
+  "varsGroupLang": {
+    "message": "язык",
+    "description": "Variables table group: the column that holds the row language."
+  },
+  "varsGroupColumn": {
+    "message": "колонка",
+    "description": "Variables table group: an ordinary column of the list."
+  },
+  "varsGroupProfile": {
+    "message": "профиль",
+    "description": "Variables table group: a constant from the sender profile."
+  },
+  "varsGroupDerived": {
+    "message": "расчёт",
+    "description": "Variables table group: a value the extension computes itself (key, domain, today)."
+  },
+  "varsGroupMissing": {
+    "message": "нет",
+    "description": "Variables table group: used in the template but unknown to the campaign."
+  },
+  "tplVarNotInCampaign": {
+    "message": "нет в кампании",
+    "description": "Sample-value cell of a variable the campaign does not define."
+  },
+  "tplVarUsed": {
+    "message": "нужна",
+    "description": "Flag on a variable the template actually uses."
+  },
+  "tplVarUnused": {
+    "message": "лишняя",
+    "description": "Flag on a variable the campaign has but the template does not use."
+  },
+  "tplVarAdd": {
+    "message": "создать",
+    "description": "Flag on a missing variable with no near-match to rename it to."
+  },
+  "tplRenameTo": {
+    "message": "переименовать → %$NAME$%",
+    "description": "Button that rewrites a misspelled variable to the nearest known one. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "tplAddColumnTitle": {
+    "message": "Добавить колонку с этой переменной или константу профиля",
+    "description": "Tooltip of the 'add' flag on a missing variable."
+  },
+  "tplVarsFromRow": {
+    "message": "Значения из строки $KEY$.",
+    "description": "Hint under the variables table: which row the sample values come from.",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "tplVarsNoRows": {
+    "message": "Импортируйте список, чтобы увидеть примеры значений.",
+    "description": "Hint under the variables table when no list has been imported yet."
+  },
+  "tplVarsConstructs": {
+    "message": "Конструкции: $LIST$ (оценка, а не число вариантов).",
+    "description": "Hint under the variables table: which spintax constructs the template uses. The list itself is engine vocabulary and stays English.",
+    "placeholders": {
+      "list": {
+        "content": "$1",
+        "example": "alternation 4 · variable 3"
+      }
+    }
+  },
+  "tplErrorBannerTitle": {
+    "message": "Ошибка в шаблоне",
+    "description": "Title of the banner that replaces the preview while the template does not compile."
+  },
+  "tplNoRows": {
+    "message": "Импортируйте список, чтобы увидеть настоящие строки — из одного шаблона каждая получает свой текст.",
+    "description": "Empty state of the variants list."
+  },
+  "tplSeed": {
+    "message": "сид $SEED$",
+    "description": "The deterministic seed a preview variant was rendered with.",
+    "placeholders": {
+      "seed": {
+        "content": "$1",
+        "example": "example.com:1"
+      }
+    }
+  },
+  "tplCopyVariant": {
+    "message": "Копировать вариант",
+    "description": "Tooltip and accessible name of the copy button on a preview variant."
+  },
+  "tplVariantCopied": {
+    "message": "Вариант скопирован.",
+    "description": "Confirmation after one preview variant was copied."
+  },
+  "tplRespinTitle": {
+    "message": "Другой вариант для каждой строки (только в превью — в очереди сид строки не меняется)",
+    "description": "Tooltip of the re-spin button."
+  },
+  "tplRespin": {
+    "message": "Ещё варианты",
+    "description": "Button that re-renders the preview with a different variant per row."
+  },
+  "tplPlaygroundTitle": {
+    "message": "Открыть шаблон в песочнице spintax.net с примером строки в переменных",
+    "description": "Tooltip of the playground button. 'spintax.net' is a domain — keep it."
+  },
+  "tplTooLongForLink": {
+    "message": "Слишком длинный для ссылки — сохраните как .spintax и откройте файл в Studio.",
+    "description": "Shown when the template does not fit into a playground URL."
+  },
+  "tplPlayground": {
+    "message": "Открыть в песочнице",
+    "description": "Button that opens the template in the spintax.net playground."
+  },
+  "tplSaveFileTitle": {
+    "message": "Сохранить файлом .spintax — открывается в Spintax Studio, VS Code или Sublime",
+    "description": "Tooltip of the download button. The product names stay as they are."
+  },
+  "tplSaveFile": {
+    "message": "Сохранить .spintax",
+    "description": "Button that downloads the template as a .spintax file. The extension stays as it is."
+  },
+  "tplStudioTitle": {
+    "message": "Spintax Studio — полноценный офлайн-редактор (Windows); откройте в нём сохранённый .spintax",
+    "description": "Tooltip of the Spintax Studio link. The product name stays as it is."
+  },
+  "tplStudioLink": {
+    "message": "Spintax Studio",
+    "description": "Link to the desktop editor. Product name — keep it as it is."
+  },
+  "tplClearTitle": {
+    "message": "Очистить редактор (сохранённый шаблон останется, пока вы не сохраните заново)",
+    "description": "Tooltip of the clear button."
+  },
+  "tplClear": {
+    "message": "Очистить",
+    "description": "Button that empties the template editor."
+  },
+  "tplSaved": {
+    "message": "Сохранено.",
+    "description": "Confirmation after the template was stored."
+  },
+  "tplTemplate": {
+    "message": "Шаблон",
+    "description": "Label of the template editor block and accessible name of its section."
+  },
+  "tplLoadFile": {
+    "message": "Загрузить .spintax",
+    "description": "Label of the file picker that fills the editor from a file."
+  },
+  "tplAddIncludes": {
+    "message": "Подключить файлы",
+    "description": "Label of the file picker that attaches #include files."
+  },
+  "tplVariables": {
+    "message": "Переменные",
+    "description": "Label of the variables block and accessible name of its tab list."
+  },
+  "tplVariants": {
+    "message": "Варианты",
+    "description": "Accessible name of the preview section."
+  },
+  "tplVariantsHead": {
+    "message": "Варианты — настоящие строки",
+    "description": "Label of the preview block: one variant per row of the imported list."
+  },
+  "tplRowsLabel": {
+    "message": "строк",
+    "description": "Label of the input that picks how many rows the preview renders. Lowercase on purpose."
+  },
+  "tplWarnEmptyVariable": {
+    "message": "%$NAME$% пустая, и запасного значения нет",
+    "description": "Render warning under a variant. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "tplWarnLeakedMarkup": {
+    "message": "В текст просочилась разметка: $SAMPLE$",
+    "description": "Render warning under a variant: spintax syntax survived into the rendered text.",
+    "placeholders": {
+      "sample": {
+        "content": "$1",
+        "example": "{quick|short"
+      }
+    }
+  },
+  "tplWarnRenderError": {
+    "message": "Ошибка сборки: $MESSAGE$",
+    "description": "Render warning under a variant. The message comes from the engine and stays English.",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "unexpected token"
+      }
+    }
+  },
+  "aiSummary": {
+    "message": "Написать шаблон с ИИ — без ключей, в своём чате",
+    "description": "Summary line of the collapsible 'write with AI' section."
+  },
+  "aiIntroBuilt": {
+    "message": "Промпт собирается из ваших колонок (названия, примеры, защита от пустых ячеек, подсказки) вместе с каноническим промптом Spintax.",
+    "description": "First sentence of the AI section intro."
+  },
+  "aiIntroPaste": {
+    "message": "Скопируйте его в любой чат, а ответ вставьте в поле шаблона выше — при вставке он сразу проверяется.",
+    "description": "Second sentence of the AI section intro."
+  },
+  "aiIntroOpenIn": {
+    "message": "Кнопки «Открыть в …» подставляют промпт прямо в ссылку; «Отправить» вы нажимаете там сами.",
+    "description": "Third sentence of the AI section intro. 'Open in …' quotes the buttons below it."
+  },
+  "aiBriefLabel": {
+    "message": "Задача",
+    "description": "Label of the textarea where the user describes the message they want."
+  },
+  "aiBriefPlaceholder": {
+    "message": "Что должно сделать сообщение? Аудитория, предложение, тон — одно-два предложения. Про тон можно отдельной строкой.",
+    "description": "Placeholder of the brief textarea."
+  },
+  "aiChannel": {
+    "message": "Канал",
+    "description": "Accessible name of the channel dropdown in the AI section."
+  },
+  "aiChannelGeneric": {
+    "message": "Форма или чат",
+    "description": "AI channel dropdown item: a website contact form or chat widget."
+  },
+  "aiChannelEmail": {
+    "message": "E-mail",
+    "description": "AI channel dropdown item: an e-mail message."
+  },
+  "aiChannelSms": {
+    "message": "Короткое сообщение",
+    "description": "AI channel dropdown item: SMS or a messenger with a tight limit."
+  },
+  "aiVariation": {
+    "message": "Разброс формулировок",
+    "description": "Accessible name of the dropdown that picks how much the wording should vary."
+  },
+  "aiVariationBalanced": {
+    "message": "Средний разброс",
+    "description": "Variation dropdown item: the default amount of variation."
+  },
+  "aiVariationConservative": {
+    "message": "Осторожный",
+    "description": "Variation dropdown item: few alternatives, close wording."
+  },
+  "aiVariationAggressive": {
+    "message": "Широкий разброс",
+    "description": "Variation dropdown item: many alternatives, wider wording."
+  },
+  "aiIncludeSamples": {
+    "message": "добавить примеры значений из списка",
+    "description": "Checkbox that adds real sample values to the prompt. Lowercase on purpose."
+  },
+  "aiPromptLabel": {
+    "message": "Промпт (можно править — копируется ровно он)",
+    "description": "Label of the prompt preview textarea."
+  },
+  "aiCopyPrompt": {
+    "message": "Копировать промпт",
+    "description": "Primary button of the AI section."
+  },
+  "aiOpenChatGpt": {
+    "message": "Открыть в ChatGPT",
+    "description": "Link that opens ChatGPT with the prompt prefilled. Product name — keep it as it is."
+  },
+  "aiOpenClaude": {
+    "message": "Открыть в Claude Desktop",
+    "description": "Link that opens Claude Desktop with the prompt prefilled. Product name — keep it as it is."
+  },
+  "aiCopyFixIt": {
+    "message": "Копировать промпт на исправление",
+    "description": "Button that copies a prompt asking the chat to repair the broken template."
+  },
+  "aiNoBrief": {
+    "message": "Сначала опишите задачу.",
+    "description": "Shown when the copy button is pressed with an empty brief."
+  },
+  "aiPromptCopied": {
+    "message": "Промпт скопирован — вставьте его в чат (Ctrl+V), а ответ вставьте ниже.",
+    "description": "Confirmation after the authoring prompt was copied."
+  },
+  "aiFixItCopied": {
+    "message": "Промпт на исправление скопирован — вставьте его в чат (Ctrl+V), а ответ вставьте ниже.",
+    "description": "Confirmation after the repair prompt was copied."
+  },
+  "aiClipboardBlocked": {
+    "message": "Буфер обмена заблокирован — выделите текст в превью и скопируйте вручную.",
+    "description": "Shown when the browser refused clipboard access in the AI section."
+  },
+  "welPageTitle": {
+    "message": "Знакомство со Spintax",
+    "description": "Title of the standalone welcome page (welcome.html); the <title> tag carries the English fallback."
+  },
+  "welTagline": {
+    "message": "Шаблоны, переменные и очередь для ручного аутрича."
+  },
+  "panelPageTitle": {
+    "message": "Spintax",
+    "description": "Title of the side panel document; the <title> tag carries the English fallback."
+  },
+  "welHeroTitle": {
+    "message": "Ручной аутрич — по одной строке"
+  },
+  "welHeroText": {
+    "message": "Spintax заполняет контактные формы и сообщения по вашему списку и вашему шаблону. Он ничего не отправляет сам, не разгадывает капчи и не ходит на сервер — «Отправить» нажимаете вы."
+  },
+  "welTryDemo": {
+    "message": "Попробовать демо-кампанию"
+  },
+  "welOpenDemo": {
+    "message": "Открыть демо-кампанию",
+    "description": "Same button as welTryDemo once the demo campaign is already installed."
+  },
+  "welStartOwn": {
+    "message": "Начать со своего списка"
+  },
+  "welDemoInstalled": {
+    "message": "Демо-кампания «$NAME$» установлена — пять блогов из комплекта расширения, ничего настоящего.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Demo — five blogs"
+      }
+    }
+  },
+  "welRemoveDemo": {
+    "message": "Удалить демо"
+  },
+  "welDemoRemoved": {
+    "message": "Демо удалено."
+  },
+  "welStep1Title": {
+    "message": "Импортируйте список"
+  },
+  "welStep1Text": {
+    "message": "CSV, XLSX или вставка из буфера. Колонки становятся переменными — %name%, %site%, %topic%. Строки объединяются по сайту или e-mail, поэтому повторный импорт не плодит дубли.",
+    "description": "%name%, %site% and %topic% are template variable names — keep them as they are."
+  },
+  "welStep2Title": {
+    "message": "Напишите один шаблон"
+  },
+  "welStep2Text": {
+    "message": "Spintax: {Привет|Здравствуйте}, %name%… Каждая строка получает свой текст, воспроизводимый по ключу строки. Черновик может написать ваш ИИ-чат — промпт в одно нажатие.",
+    "description": "{Hi|Hello} is spintax syntax; the words inside may be translated, the braces and the pipe may not."
+  },
+  "welStep3Title": {
+    "message": "Пройдите очередь"
+  },
+  "welStep3Text": {
+    "message": "Откройте боковую панель на странице цели, нажмите «Заполнить», проверьте форму, отправьте сами и отметьте строку. Фоллоу-апы вернутся в свой день."
+  },
+  "welQuickTitle": {
+    "message": "Быстрые действия"
+  },
+  "welQuickText": {
+    "message": "Есть на каждом экране, в шапке — открывают панель сбоку и не сбивают вас с работы."
+  },
+  "welQuickProfile": {
+    "message": "Профиль отправителя"
+  },
+  "welQuickRows": {
+    "message": "Добавить строки"
+  },
+  "welQuickRowsBlocked": {
+    "message": "Сначала импортируйте список — строкам нужны колонки",
+    "description": "Tooltip on the disabled \"Add rows\" chip."
+  },
+  "welQuickFiles": {
+    "message": "Добавить файлы"
+  },
+  "welPanelTitle": {
+    "message": "В боковой панели"
+  },
+  "welPanelOpenTarget": {
+    "message": "страница строки (или новое письмо в почтовой программе либо веб-почте — см. «Настройки»).",
+    "description": "Follows the quoted side-panel button name \"Open target\" and an em dash: \"Open target — the row's page…\"."
+  },
+  "welPanelFill": {
+    "message": "один раз спрашивает разрешение на сайт, заполняет распознанные поля и показывает отчёт по каждому; в визуальные редакторы текст едет через буфер обмена.",
+    "description": "Follows the quoted side-panel button name \"Fill on site.com\" and an em dash."
+  },
+  "welPanelSent": {
+    "message": "записывает результат и переходит дальше; остальные результаты — под «Не отправлено, потому что» и «Ещё действия».",
+    "description": "Follows the quoted side-panel button name \"Sent — next (S)\" and an em dash. \"Not sent…\" and \"More…\" quote panel buttons — use the same wording as panelNotSent / panelMore."
+  },
+  "welPanelKeysLabel": {
+    "message": "Клавиши",
+    "description": "Bold lead-in of the keyboard-shortcuts line; not a button name."
+  },
+  "welPanelKeys": {
+    "message": "Enter — главное действие, S — отправлено и дальше, N — следующая строка (вне текстовых полей). Глобальные сочетания вы назначаете сами в настройках расширений браузера.",
+    "description": "Follows the bold \"Keys\" and an em dash. S and N are the physical keys — keep them Latin."
+  },
+  "welPanelMappingLabel": {
+    "message": "Соответствие полей",
+    "description": "Bold lead-in quoting the side panel's field-mapping section."
+  },
+  "welPanelMapping": {
+    "message": "что куда попало; можно указать поле, которое расширение пропустило, закрепить поле или забыть неверный рецепт.",
+    "description": "Follows the bold \"Field mapping\" and an em dash."
+  },
+  "welPrivacyTitle": {
+    "message": "Приватность"
+  },
+  "welPrivacyText": {
+    "message": "Всё остаётся в этом профиле браузера: списки, шаблоны, журнал, файлы. Ни аккаунта, ни телеметрии, ни сети — единственный необязательный запрос это лента новостей 301.sh, и она выключена. Резервная копия и удаление всего — в «Настройках»."
+  },
+  "welNews": {
+    "message": "Новости издателя — уведомление, когда на 301.sh выходит пост (проверка раз в 6 часов, о вас ничего не отправляется). Выключены, пока вы не нажмёте колокольчик.",
+    "description": "Follows the news bell button on the welcome page."
+  },
+  "welPrivacyPolicy": {
+    "message": "Политика приватности"
+  },
+  "welSpintaxWithAi": {
+    "message": "Spintax с помощью ИИ"
+  },
+  "welPlayground": {
+    "message": "Песочница",
+    "description": "Link to the online spintax playground on 301.st."
+  },
+  "colSummaryOne": {
+    "message": "Колонки ($COUNT$) — тип, поля формы, значения по умолчанию, подсказки",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "colSummaryFew": {
+    "message": "Колонки ($COUNT$) — тип, поля формы, значения по умолчанию, подсказки",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "colSummaryMany": {
+    "message": "Колонки ($COUNT$) — тип, поля формы, значения по умолчанию, подсказки",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "colSummaryOther": {
+    "message": "Колонки ($COUNT$) — тип, поля формы, значения по умолчанию, подсказки",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "colTypeOf": {
+    "message": "Тип колонки $COLUMN$",
+    "description": "Accessible name of the column type dropdown.",
+    "placeholders": {
+      "column": {
+        "content": "$1",
+        "example": "Company"
+      }
+    }
+  },
+  "colTypeText": {
+    "message": "текст",
+    "description": "Column type: the cell holds text."
+  },
+  "colTypeFile": {
+    "message": "файл",
+    "description": "Column type: the cell holds the sha256 of a file from the asset library."
+  },
+  "colFillableTitle": {
+    "message": "Предлагать эту колонку как значение для поля формы (список, файл, текст)"
+  },
+  "colFillable": {
+    "message": "подставлять в поле формы"
+  },
+  "colRequired": {
+    "message": "обязательная"
+  },
+  "colHidden": {
+    "message": "скрытая"
+  },
+  "colDefaultPlaceholder": {
+    "message": "значение для пустых ячеек"
+  },
+  "colNotePlaceholder": {
+    "message": "подсказка для промпта, например: бренд — не склонять"
+  },
+  "colSave": {
+    "message": "Сохранить колонки"
+  },
+  "colSaved": {
+    "message": "Сохранено."
+  },
+  "stepSummaryOne": {
+    "message": "Шаги ($COUNT$) — первое сообщение и фоллоу-апы",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSummaryFew": {
+    "message": "Шаги ($COUNT$) — первое сообщение и фоллоу-апы",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSummaryMany": {
+    "message": "Шаги ($COUNT$) — первое сообщение и фоллоу-апы",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSummaryOther": {
+    "message": "Шаги ($COUNT$) — первое сообщение и фоллоу-апы",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "stepLabel": {
+    "message": "Шаг $N$",
+    "description": "Bold lead-in of a step row in the steps editor.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepInitial": {
+    "message": "первое сообщение",
+    "description": "Follows \"Step 1\" and an em dash."
+  },
+  "stepFollowup": {
+    "message": "фоллоу-ап,",
+    "description": "Follows \"Step 2\" and an em dash; the delay input and stepFollowupDays finish the line: \"Step 2 — follow-up, [3] days after the previous step\"."
+  },
+  "stepFollowupDays": {
+    "message": "дней после предыдущего шага",
+    "description": "Follows the delay input; see stepFollowup for the whole line."
+  },
+  "stepDelayAria": {
+    "message": "Задержка в днях для шага $N$",
+    "description": "Accessible name of the delay input.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepAdd": {
+    "message": "Добавить фоллоу-ап"
+  },
+  "stepRemove": {
+    "message": "Убрать последний"
+  },
+  "stepSave": {
+    "message": "Сохранить шаги"
+  },
+  "stepSavedOne": {
+    "message": "Сохранено; пересчитана $COUNT$ строка.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSavedFew": {
+    "message": "Сохранено; пересчитано $COUNT$ строки.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSavedMany": {
+    "message": "Сохранено; пересчитано $COUNT$ строк.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSavedOther": {
+    "message": "Сохранено; пересчитано $COUNT$ строки.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "demoBannerSent": {
+    "message": "Демо: ничего не отправлено. Отметьте строку отправленной в боковой панели, чтобы идти дальше.",
+    "description": "Banner on the bundled demo pages after a harmless \"submit\"."
+  },
+  "cmdActionTitle": {
+    "message": "Spintax",
+    "description": "Tooltip of the toolbar button and title of the Firefox sidebar."
+  },
+  "cmdFill": {
+    "message": "Заполнить распознанные поля на текущей странице",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdCopyOpen": {
+    "message": "Скопировать сообщение и открыть цель",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdMarkSentNext": {
+    "message": "Отметить отправленным и перейти к следующей строке",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdNextRow": {
+    "message": "Перейти к следующей строке",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdSidebar": {
+    "message": "Открыть боковую панель Spintax",
+    "description": "Firefox only: the bindable _execute_sidebar_action command."
+  },
+  "wizStepImport": {
+    "message": "Импорт",
+    "description": "Step chip 1 of the campaign wizard. One word — the five chips share one row."
+  },
+  "wizStepRoles": {
+    "message": "Роли и дубли",
+    "description": "Step chip 2 of the campaign wizard: give each column a role and settle duplicate rows."
+  },
+  "wizStepProfile": {
+    "message": "Профиль и шаблон",
+    "description": "Step chip 3 of the campaign wizard: who writes and what is written."
+  },
+  "wizStepProblems": {
+    "message": "Проблемы",
+    "description": "Step chip 4 of the campaign wizard: rows that cannot be sent as they are."
+  },
+  "wizStepQueue": {
+    "message": "Очередь",
+    "description": "Step chip 5 of the campaign wizard: go through the rows by hand in the side panel."
+  },
+  "wizStep1Title": {
+    "message": "Шаг 1 — импорт списка",
+    "description": "Heading of wizard step 1."
+  },
+  "wizImportHint": {
+    "message": "CSV / TSV / XLSX или вставка из таблицы. Роли определяются по значениям.",
+    "description": "Status line under the step 1 heading before a file is chosen. The file formats are file extensions — keep them."
+  },
+  "wizFileLabel": {
+    "message": "Файл",
+    "description": "Label of the file picker on wizard step 1."
+  },
+  "wizOrPasteLabel": {
+    "message": "Или вставьте",
+    "description": "Label of the paste box on wizard step 1, the alternative to picking a file."
+  },
+  "wizPastePlaceholder": {
+    "message": "Вставьте строки, скопированные из Google Sheets или Excel (через табуляцию)…",
+    "description": "Placeholder of the paste box on wizard step 1."
+  },
+  "wizSheetLabel": {
+    "message": "Лист",
+    "description": "Label and accessible name of the dropdown that picks a sheet of a multi-sheet XLSX file."
+  },
+  "wizSheetOptionOne": {
+    "message": "$NAME$ ($COUNT$ строка)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionFew": {
+    "message": "$NAME$ ($COUNT$ строки)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionMany": {
+    "message": "$NAME$ ($COUNT$ строк)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionOther": {
+    "message": "$NAME$ ($COUNT$ строки)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizPastedTable": {
+    "message": "Вставленная таблица",
+    "description": "Stands in for the file name in the import status line when the rows came from the paste box."
+  },
+  "wizFileError": {
+    "message": "Не удалось прочитать файл: $ERROR$",
+    "description": "Import failed: the browser's own error message follows and stays untranslated.",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Unsupported zip entry"
+      }
+    }
+  },
+  "wizNoRowsFound": {
+    "message": "Строк не нашлось — проверьте, что в первой строке заголовки.",
+    "description": "The chosen file or pasted text parsed to nothing usable."
+  },
+  "wizRowsOne": {
+    "message": "$COUNT$ строка",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizRowsFew": {
+    "message": "$COUNT$ строки",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizRowsMany": {
+    "message": "$COUNT$ строк",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizRowsOther": {
+    "message": "$COUNT$ строки",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
+    }
+  },
+  "wizColumnsOne": {
+    "message": "$COUNT$ колонка",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizColumnsFew": {
+    "message": "$COUNT$ колонки",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizColumnsMany": {
+    "message": "$COUNT$ колонок",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizColumnsOther": {
+    "message": "$COUNT$ колонки",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "wizImportedCounts": {
+    "message": "$SOURCE$: $ROWS$ × $COLUMNS$.",
+    "description": "First sentence of the import status line: where the table came from and its size. SOURCE is a file name (data, never translated), ROWS and COLUMNS arrive already pluralised.",
+    "placeholders": {
+      "source": {
+        "content": "$1",
+        "example": "contacts.csv"
+      },
+      "rows": {
+        "content": "$2",
+        "example": "1200 rows"
+      },
+      "columns": {
+        "content": "$3",
+        "example": "7 columns"
+      }
+    }
+  },
+  "wizNoHeaderRow": {
+    "message": "Строки заголовков нет — названия колонок угаданы (id, email, phone…); переименуйте их на шаге 2.",
+    "description": "Second sentence of the import status line when the file had no header row. The names in the parentheses are examples of guessed column names."
+  },
+  "wizSkippedTitleRowsOne": {
+    "message": "Пропущена $COUNT$ строка над заголовком.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizSkippedTitleRowsFew": {
+    "message": "Пропущено $COUNT$ строки над заголовком.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizSkippedTitleRowsMany": {
+    "message": "Пропущено $COUNT$ строк над заголовком.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizSkippedTitleRowsOther": {
+    "message": "Пропущено $COUNT$ строки над заголовком.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "wizBatchRange": {
+    "message": "Партия: строки $FROM$–$TO$.",
+    "description": "Last sentence of the import status line for a big file: which slice of the rows is being imported. The dash between the two numbers is an en dash.",
+    "placeholders": {
+      "from": {
+        "content": "$1",
+        "example": "1"
+      },
+      "to": {
+        "content": "$2",
+        "example": "1000"
+      }
+    }
+  },
+  "wizFileRowsOne": {
+    "message": "$ROWS$ строка",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "1"
+      }
+    }
+  },
+  "wizFileRowsFew": {
+    "message": "$ROWS$ строки",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "wizFileRowsMany": {
+    "message": "$ROWS$ строк",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "11"
+      }
+    }
+  },
+  "wizFileRowsOther": {
+    "message": "$ROWS$ строки",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "40,000"
+      }
+    }
+  },
+  "wizBatchIntro": {
+    "message": "— это очередь, которую вы проходите руками. Импортируйте партию сейчас; для следующей загрузите файл ещё раз (уже импортированные строки объединятся по ключу).",
+    "description": "Follows the bold row count of the batch panel and finishes its sentence, so it opens with an em dash."
+  },
+  "wizBatchRowsLabel": {
+    "message": "Строки",
+    "description": "Opens the batch form row: Rows [from] to [to] · batch of [size]."
+  },
+  "wizBatchTo": {
+    "message": "по",
+    "description": "Between the first row of the batch (an input) and the last one (a number) in the batch form row."
+  },
+  "wizBatchSizeLabel": {
+    "message": "партия по",
+    "description": "Label of the batch size input in the batch form row. Lowercase on purpose — it continues the line."
+  },
+  "wizBatchFirstAria": {
+    "message": "Первая строка партии",
+    "description": "Accessible name of the number input that picks where the batch starts."
+  },
+  "wizBatchSizeAria": {
+    "message": "Строк в партии",
+    "description": "Accessible name of the number input that picks how many rows the batch takes."
+  },
+  "wizBatchFirst": {
+    "message": "первые $COUNT$",
+    "description": "Button of the batch form row: jump back to the first N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizBatchNext": {
+    "message": "следующие $COUNT$",
+    "description": "Button of the batch form row: move on to the next N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizBatchMax": {
+    "message": "не больше $COUNT$ за партию",
+    "description": "Muted note next to the batch buttons: the hard cap on one batch.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5,000"
+      }
+    }
+  },
+  "wizContinueRolesOne": {
+    "message": "Дальше — роли и дубли ($COUNT$ строка)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizContinueRolesFew": {
+    "message": "Дальше — роли и дубли ($COUNT$ строки)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizContinueRolesMany": {
+    "message": "Дальше — роли и дубли ($COUNT$ строк)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizContinueRolesOther": {
+    "message": "Дальше — роли и дубли ($COUNT$ строки)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizStep2Title": {
+    "message": "Шаг 2 — роли и дубли",
+    "description": "Heading of wizard step 2."
+  },
+  "wizNothingImported": {
+    "message": "В этом сеансе ничего не импортировано — вернитесь на шаг 1 и загрузите список.",
+    "description": "Wizard step 2 opened without a table in memory (after a reload)."
+  },
+  "wizImportSummaryOne": {
+    "message": "Импорт: $COUNT$ строка · добавится $ADDS$ · обновится $UPDATES$ · склеено внутри файла $MERGED$ · точных дублей $DUPES$ · исключено $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "0"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryFew": {
+    "message": "Импорт: $COUNT$ строки · добавится $ADDS$ · обновится $UPDATES$ · склеено внутри файла $MERGED$ · точных дублей $DUPES$ · исключено $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "2"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "1"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryMany": {
+    "message": "Импорт: $COUNT$ строк · добавится $ADDS$ · обновится $UPDATES$ · склеено внутри файла $MERGED$ · точных дублей $DUPES$ · исключено $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "9"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "2"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryOther": {
+    "message": "Импорт: $COUNT$ строки · добавится $ADDS$ · обновится $UPDATES$ · склеено внутри файла $MERGED$ · точных дублей $DUPES$ · исключено $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1180"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "12"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "5"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "2"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "1"
+      }
+    }
+  },
+  "wizNoTargetColumn": {
+    "message": "Выберите колонку с целью (URL / e-mail / @ник) — строки без цели импортировать нельзя.",
+    "description": "Blocker on wizard step 2: no column carries the role \"target\" yet."
+  },
+  "wizApplyImport": {
+    "message": "Применить импорт ($COUNT$)",
+    "description": "Primary button of wizard step 2: how many rows will be written (added plus updated).",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
+    }
+  },
+  "wizNamingPastePlaceholder": {
+    "message": "вставьте строку ответа: id; email; phone; …",
+    "description": "Placeholder of the input that takes the AI chat's answer. The example names show the expected shape — semicolons separate them."
+  },
+  "wizNamingPasteAria": {
+    "message": "Названия колонок из ответа ИИ",
+    "description": "Accessible name of the input that takes the AI chat's answer."
+  },
+  "wizNamingExpectedOne": {
+    "message": "Ожидалось $COUNT$ название через «;».",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizNamingExpectedFew": {
+    "message": "Ожидалось $COUNT$ названия через «;».",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizNamingExpectedMany": {
+    "message": "Ожидалось $COUNT$ названий через «;».",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizNamingExpectedOther": {
+    "message": "Ожидалось $COUNT$ названия через «;».",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "wizPromptCopied": {
+    "message": "Промпт скопирован — вставьте его в ИИ-чат, а ответ вставьте сюда.",
+    "description": "The \"name these columns\" prompt reached the clipboard."
+  },
+  "wizClipboardBlocked": {
+    "message": "Буфер обмена заблокирован — выделите названия вручную.",
+    "description": "The browser refused clipboard access, so the prompt could not be copied."
+  },
+  "wizCopyNamingPrompt": {
+    "message": "Копировать промпт: назови эти колонки",
+    "description": "Button that copies a prompt for an AI chat. The prompt itself is sent to a model and stays English."
+  },
+  "wizApplyNames": {
+    "message": "Применить названия",
+    "description": "Button that renames the columns from the pasted answer line."
+  },
+  "wizColumnNameAria": {
+    "message": "Название колонки",
+    "description": "Accessible name of the header input in the roles table."
+  },
+  "wizVariableTitle": {
+    "message": "Переменная: %$NAME$%",
+    "description": "Tooltip of the header input: the template variable this column feeds. The percent signs are spintax syntax — keep them around the name, and leave the name itself as it is.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "company"
+      }
+    }
+  },
+  "wizRoleFor": {
+    "message": "Роль колонки $COLUMN$",
+    "description": "Accessible name of the role dropdown. COLUMN is the user's own column header — data, never translated.",
+    "placeholders": {
+      "column": {
+        "content": "$1",
+        "example": "E-mail"
+      }
+    }
+  },
+  "wizRoleNone": {
+    "message": "— без роли",
+    "description": "Role dropdown item: an ordinary column, used only as a template variable. Opens with an em dash."
+  },
+  "wizRoleNoneHint": {
+    "message": "просто переменная",
+    "description": "Hint under the \"no role\" dropdown item."
+  },
+  "wizRoleTarget": {
+    "message": "цель",
+    "description": "Role dropdown item: the column that says where to reach the recipient. Lowercase on purpose."
+  },
+  "wizRoleTargetHint": {
+    "message": "сайт / e-mail / @ник, куда писать",
+    "description": "Hint under the \"target\" dropdown item."
+  },
+  "wizRoleLang": {
+    "message": "язык",
+    "description": "Role dropdown item: the column that says which language the row is written in. Lowercase on purpose."
+  },
+  "wizRoleLangHint": {
+    "message": "язык строки (свой шаблон на каждый язык)",
+    "description": "Hint under the \"lang\" dropdown item."
+  },
+  "wizRoleKey": {
+    "message": "ключ (свой)",
+    "description": "Role dropdown item: the column that carries the user's own row key. Lowercase on purpose."
+  },
+  "wizRoleKeyHint": {
+    "message": "ваш ключ строки вместо вычисленного",
+    "description": "Hint under the \"key (override)\" dropdown item."
+  },
+  "wizSampleValue": {
+    "message": "например $VALUE$",
+    "description": "Tooltip of a variable chip: the first non-empty value in that column. The value is the user's data.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "anna@example.com"
+      }
+    }
+  },
+  "wizNoValues": {
+    "message": "значений нет",
+    "description": "Tooltip of a variable chip whose column is empty in every row."
+  },
+  "wizEmptyPct": {
+    "message": "пусто $PCT$%",
+    "description": "Badge on a variable chip: the share of rows where this column is blank. Keep the percent sign next to the number.",
+    "placeholders": {
+      "pct": {
+        "content": "$1",
+        "example": "40"
+      }
+    }
+  },
+  "wizConflictsOne": {
+    "message": "$COUNT$ строка отличается — решите по каждому полю",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizConflictsFew": {
+    "message": "$COUNT$ строки отличаются — решите по каждому полю",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizConflictsMany": {
+    "message": "$COUNT$ строк отличаются — решите по каждому полю",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizConflictsOther": {
+    "message": "$COUNT$ строки отличается — решите по каждому полю",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "wizConflictTwiceInFile": {
+    "message": "дважды в файле",
+    "description": "Follows the row key of a conflict: the same key appears twice in the imported file. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictAlreadyInCampaign": {
+    "message": "уже в кампании",
+    "description": "Follows the row key of a conflict: the key is already stored in the campaign. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictColField": {
+    "message": "поле",
+    "description": "Conflict table header: which field of the row differs. Lowercase on purpose."
+  },
+  "wizConflictColCampaign": {
+    "message": "в кампании",
+    "description": "Conflict table header: the value stored in the campaign. Lowercase on purpose."
+  },
+  "wizConflictColFile": {
+    "message": "в файле",
+    "description": "Conflict table header: the value the imported file carries. Lowercase on purpose."
+  },
+  "wizConflictColAction": {
+    "message": "что делать",
+    "description": "Conflict table header: what to do with this field. Lowercase on purpose."
+  },
+  "wizChoiceFillEmpty": {
+    "message": "если пусто",
+    "description": "Conflict choice: write the incoming value only where the stored one is blank. Lowercase on purpose."
+  },
+  "wizChoiceKeep": {
+    "message": "оставить",
+    "description": "Conflict choice: keep the value already stored in the campaign. Lowercase on purpose."
+  },
+  "wizChoiceTake": {
+    "message": "взять новое",
+    "description": "Conflict choice: overwrite with the value from the imported file. Lowercase on purpose."
+  },
+  "wizWhoWrites": {
+    "message": "Кто пишет",
+    "description": "Heading of the sender profile card on wizard step 3."
+  },
+  "wizNoProfile": {
+    "message": "Профиля отправителя ещё нет — поля формы «имя», «e-mail», «сайт» и %my_*% останутся пустыми.",
+    "description": "The campaign has no sender profile. %my_*% is spintax syntax for the profile variables — keep it as it is."
+  },
+  "wizAddProfile": {
+    "message": "Добавить профиль",
+    "description": "Button that opens the sender profile drawer when there is no profile yet."
+  },
+  "wizAddAnotherProfile": {
+    "message": "Добавить ещё профиль",
+    "description": "Button that opens the sender profile drawer when the campaign already has one."
+  },
+  "wizManageProfiles": {
+    "message": "Управление профилями",
+    "description": "Link from wizard step 3 to the profiles screen."
+  },
+  "wizContinueProblems": {
+    "message": "Дальше — проблемы",
+    "description": "Primary button of wizard step 3 when the template is already saved."
+  },
+  "wizEditFullEditor": {
+    "message": "Открыть в полном редакторе",
+    "description": "Link from wizard step 3 to the template screen."
+  },
+  "wizTemplatePlaceholder": {
+    "message": "{Привет|Здравствуйте}, %$VAR1$%, {короткий|быстрый} вопрос про %$VAR2$% …  (вставьте из ИИ-чата или напишите здесь)",
+    "description": "Placeholder of the small template editor on wizard step 3. The braces are spintax alternatives and the percent signs mark variables — keep both; translate the words inside the braces and the sentence in the parentheses. VAR1 and VAR2 are the campaign's own column variables.",
+    "placeholders": {
+      "var1": {
+        "content": "$1",
+        "example": "name"
+      },
+      "var2": {
+        "content": "$2",
+        "example": "topic"
+      }
+    }
+  },
+  "wizSaveTemplate": {
+    "message": "Сохранить шаблон",
+    "description": "Primary button that stores the step 1 message written on wizard step 3."
+  },
+  "wizErrorsOne": {
+    "message": "$COUNT$ ошибка: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsFew": {
+    "message": "$COUNT$ ошибки: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsMany": {
+    "message": "$COUNT$ ошибок: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsOther": {
+    "message": "$COUNT$ ошибки: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizUnknownVars": {
+    "message": "Неизвестные переменные: $VARS$ — они соберутся пустыми.",
+    "description": "The template uses variables the campaign does not have. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%topic%, %city%"
+      }
+    }
+  },
+  "wizTemplateValid": {
+    "message": "Всё в порядке. Используются переменные: $VARS$.",
+    "description": "The template parses. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%name%, %topic%"
+      }
+    }
+  },
+  "wizVarsNone": {
+    "message": "нет",
+    "description": "Stands in for the variable list when the template uses no variables at all. Lowercase — it sits inside the sentence above."
+  },
+  "wizSpintaxVars": {
+    "message": "Spintax с вашими переменными: $VARS$. Подключаемые файлы, промпт для ИИ и превью по строкам — в полном редакторе.",
+    "description": "Hint above the small template editor. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%name% %topic% %my_name%"
+      }
+    }
+  },
+  "wizFullEditorLink": {
+    "message": "Полный редактор (промпт для ИИ, подключения, превью)",
+    "description": "Link from the small template editor to the template screen."
+  },
+  "wizWhatIsWritten": {
+    "message": "Что пишем — сообщение шага 1",
+    "description": "Heading of the template card on wizard step 3. \"Step 1\" here is the first message of the sequence, not a wizard step."
+  },
+  "wizStep4Title": {
+    "message": "Шаг 4 — проблемы",
+    "description": "Heading of wizard step 4."
+  },
+  "wizChipBlocking": {
+    "message": "$COUNT$ с ошибками",
+    "description": "Chip on wizard step 4: rows that cannot be sent as they are.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizChipWarnings": {
+    "message": "$COUNT$ с предупреждениями",
+    "description": "Chip on wizard step 4: rows that render but look suspicious.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "wizChipClean": {
+    "message": "$COUNT$ чистых",
+    "description": "Chip on wizard step 4: rows with nothing to fix.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1185"
+      }
+    }
+  },
+  "wizChipUnchecked": {
+    "message": "$COUNT$ здесь не проверялись — «Проверка» смотрит все",
+    "description": "Chip on wizard step 4: the screen checks the first few thousand rows only. \"Review\" is the name of another screen — keep it the same as the navigation item.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3000"
+      }
+    }
+  },
+  "wizNoTemplate": {
+    "message": "Шаблона пока нет — вернитесь на шаг 3.",
+    "description": "Wizard step 4 has nothing to check because the campaign has no message yet."
+  },
+  "wizBlockingExplain": {
+    "message": "Ошибка — это пустая обязательная переменная, сбежавшая скобка или превышенный лимит поля. Чините шаблон или строку в «Проверке»; там же чистые строки одобряются одним нажатием.",
+    "description": "Explains what counts as blocking on wizard step 4. \"Review\" is the name of another screen — keep it the same as the navigation item."
+  },
+  "wizReviewCountOne": {
+    "message": "Проверить $COUNT$ строку",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizReviewCountFew": {
+    "message": "Проверить $COUNT$ строки",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizReviewCountMany": {
+    "message": "Проверить $COUNT$ строк",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizReviewCountOther": {
+    "message": "Проверить $COUNT$ строки",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "wizReviewAll": {
+    "message": "Проверить строки",
+    "description": "Link from wizard step 4 to the Review screen when nothing needs attention."
+  },
+  "wizContinueQueue": {
+    "message": "Дальше — очередь",
+    "description": "Button of wizard step 4 that moves on to the last step."
+  },
+  "wizStep5Title": {
+    "message": "Шаг 5 — очередь",
+    "description": "Heading of wizard step 5."
+  },
+  "wizOpenSidePanel": {
+    "message": "Открыть боковую панель",
+    "description": "Primary button of wizard step 5."
+  },
+  "wizHowto1": {
+    "message": "Откройте боковую панель (кнопка на панели браузера или кнопка ниже) — в ней текущая строка и её сообщение.",
+    "description": "First line of the how-to list on wizard step 5."
+  },
+  "wizHowtoOpenTarget": {
+    "message": "Открыть цель",
+    "description": "Quotes the side panel's \"Open target\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoOpens": {
+    "message": "→ откроется страница с контактами;",
+    "description": "Follows the quoted \"Open target\" button in the how-to list. Keep the arrow at the front."
+  },
+  "wizHowtoFillOnSite": {
+    "message": "Заполнить: site.com",
+    "description": "Quotes the side panel's \"Fill on <host>\" button inside the how-to list; site.com is a stand-in host name — must read exactly like that button."
+  },
+  "wizHowtoFilled": {
+    "message": "→ поля заполнены, вы их проверяете и нажимаете «Отправить» на странице.",
+    "description": "Follows the quoted \"Fill on site.com\" button in the how-to list. Keep the arrow at the front; \"Send\" is the contact form's own button on the target site."
+  },
+  "wizHowtoSentNext": {
+    "message": "Отправлено — дальше",
+    "description": "Quotes the side panel's \"Sent — next\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoRecords": {
+    "message": "(или S) записывает результат и переходит дальше; остальные результаты — под «Не отправлено, потому что» и «Ещё действия».",
+    "description": "Follows the quoted \"Sent — next\" button in the how-to list. S is the keyboard shortcut — keep the letter; the two quoted names are side panel buttons."
+  },
+  "wizHowtoShortcuts": {
+    "message": "Свои сочетания клавиш можно назначить на странице сочетаний расширений браузера.",
+    "description": "Last line of the how-to list on wizard step 5."
+  },
+  "wizSeeList": {
+    "message": "Посмотреть список",
+    "description": "Link from wizard step 5 to the List screen."
+  },
+  "panelOpenCampaign": {
+    "message": "Открыть кампанию — строки, колонки, шаги",
+    "description": "Tooltip on the campaign name in the side panel header; it opens the List screen."
+  },
+  "drwRowsPasteNoColumns": {
+    "message": "По одной цели в строке — у кампании ещё нет колонок, мастер создаст их из первого импорта.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  },
+  "drwRowsNoColumnsHint": {
+    "message": "У кампании ещё нет колонок — мастер прочитает их из вашего списка и покажет, что нашёл.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  },
+  "setOpenTitle": {
+    "message": "Где открывается цель",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenIntro": {
+    "message": "Панель остаётся на месте в любом случае; речь о странице, которую вы читали.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenReuse": {
+    "message": "В текущей вкладке — страница, которую вы читали, заменится; вернуться можно кнопкой «Назад»",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenNewTab": {
+    "message": "В новой вкладке — страница остаётся открытой, но вкладки накапливаются",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenHint": {
+    "message": "Ctrl-клик (⌘-клик) или клик колесом всегда открывает в новой вкладке.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "panelMoreCaption": {
+    "message": "Исходы и ещё",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "panelEditStep": {
+    "message": "Изменить сообщение шага $N$",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener).",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenSidePanel": {
+    "message": "Открыть боковую панель",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  }
+}

@@ -1,0 +1,212 @@
+:root {
+  --page-gutter-desktop: var(--space-5);  /* Reduced from space-6 (2rem) to space-5 (1.5rem) for tighter alignment */
+  --page-gutter-mobile: var(--space-4);
+
+  /* Was --space-5 (24px) and had been overridden to 16px by a second
+     `.page-header` rule in site.css since before anyone noticed. The pages have
+     always rendered 16px; the token now says so. */
+  --section-gap: var(--space-4);
+  --block-gap: var(--space-4);
+  /* --stack-gap and --inline-gap live in theme.css with these same values;
+     duplicating them here meant two homes for one number. */
+
+  /* Fluid layout tokens (Phase 1: opt-in, not used yet) */
+  --sidebar-w: clamp(240px, 18vw, 280px);
+  --sidebar-w-collapsed: clamp(64px, 6vw, 80px);
+
+  --table-min-domains: clamp(680px, 52vw, 720px);
+
+  --col-actions: clamp(72px, 6vw, 96px);
+  --col-check: clamp(40px, 3.2vw, 48px);
+
+  --menu-min: clamp(200px, 18vw, 240px);
+  --menu-max: min(92vw, 28rem);
+}
+
+.page-shell {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--page-gutter-desktop);
+  padding-block: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .page-shell {
+    padding-inline: var(--page-gutter-mobile);
+    padding-block: var(--space-4);
+  }
+}
+
+/* Dashboard layouts: remove page-shell padding on desktop to let content expand */
+@media (min-width: 1024px) {
+  .page-shell.dashboard-shell {
+    padding-inline: 0;
+    padding-block: 0;
+  }
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--inline-gap);
+  margin-bottom: var(--section-gap);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Action cluster (right side of header): align children on the same
+   centerline so a text-less control (e.g. sync-indicator pill) and a
+   text-bearing button don't drift vertically off inline baselines. */
+.page-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--inline-gap);
+  flex-wrap: wrap;
+}
+
+/* External/public pages: stack title + lead vertically (no flex-row shrink) */
+.page-header:not(:has(.page-header__title)) {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3); /* More breathing room between heading and button on mobile */
+  }
+
+  .page-header h1 {
+    font-size: var(--fs-lg);
+  }
+
+  .page-header p {
+    font-size: var(--fs-sm);
+  }
+
+  /* Move action buttons to the right on mobile for thumb reach */
+  .page-header__actions {
+    align-self: flex-end;
+  }
+}
+
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--inline-gap);
+  margin-bottom: var(--block-gap);
+}
+
+@media (max-width: 768px) {
+  .controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.divider-text {
+  position: relative;
+  text-align: center;
+  margin: var(--space-2) 0;
+}
+
+.divider-text::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-subtle);
+  z-index: 0;
+}
+
+.divider-text > * {
+  position: relative;
+  display: inline-block;
+  padding: 0 var(--space-2);
+  background: var(--bg);
+  z-index: 1;
+}
+
+/* The `1fr 1fr` here never applied: site.css declared .grid-2 again, later, with
+   an auto-fit template. That template is what the site renders, so it lives here
+   now — a fixed two-column grid would have been a visible change. */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 960px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* A second copy in site.css won on load order and set --space-3, so lists have
+   always been 12px apart, not the 16px --block-gap advertises. The effective
+   value moved here verbatim; --block-gap keeps its other user. */
+.stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  /* Phase 4: Container queries - table adapts to container width */
+  container-type: inline-size;
+  container-name: table;
+}
+
+/* Note: table min-width is controlled by variants (.table--domains, .table--redirects) in tables.css */
+
+.layout-shell {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+@media (min-width: 1024px) {
+  .layout-shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  }
+
+  /* Phase 2.1: Collapsed sidebar state */
+  .layout-shell[data-sidebar="collapsed"] {
+    grid-template-columns: var(--sidebar-w-collapsed) minmax(0, 1fr);
+  }
+
+  .layout-sidebar {
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-subtle);
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .layout-main {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--page-gutter-desktop);
+    padding-block: var(--space-6);
+  }
+}
+
+@media (max-width: 1023px) {
+  .layout-shell {
+    display: block;
+  }
+
+  .layout-sidebar {
+    display: none;
+  }
+
+  .layout-main {
+    padding-inline: var(--page-gutter-mobile);
+    padding-block: var(--space-4);
+  }
+}

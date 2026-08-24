@@ -1,0 +1,4653 @@
+{
+  "extName": {
+    "message": "Spintax — formları elle doldurma"
+  },
+  "extDescription": {
+    "message": "Manuel outreach için spintax şablonları: formları ve sohbetleri listenizden satır satır doldurun. Yerel, hesapsız."
+  },
+  "drwQuickActions": {
+    "message": "Hızlı işlemler"
+  },
+  "drwChipProfile": {
+    "message": "Profil"
+  },
+  "drwChipProfileTitle": {
+    "message": "Gönderen profili ekle"
+  },
+  "drwChipRows": {
+    "message": "Satırlar"
+  },
+  "drwChipRowsTitle": {
+    "message": "Bu kampanyaya daha fazla satır yapıştır"
+  },
+  "drwChipRowsBlocked": {
+    "message": "Önce sihirbazda bir liste içe aktarın — satırların yerleşeceği sütunlar gerekli"
+  },
+  "drwChipFiles": {
+    "message": "Dosyalar"
+  },
+  "drwChipFilesTitle": {
+    "message": "Kitaplığa dosya ekle"
+  },
+  "drwChipBackup": {
+    "message": "Yedek"
+  },
+  "drwChipBackupTitle": {
+    "message": "Yedekle / geri yükle"
+  },
+  "drwProfileTitle": {
+    "message": "Gönderen profili"
+  },
+  "drwProfileTitleMore": {
+    "message": "Başka bir gönderen profili"
+  },
+  "drwProfileSubtitle": {
+    "message": "Kim yazıyor: %my_name%, %my_email%… değişkenlerini ve iletişim formlarındaki ad / e-posta / site alanlarını doldurur."
+  },
+  "drwProfileSubtitleMore": {
+    "message": "İlk eşleşen profil geçerlidir; \"her zaman\" profili varsayılandır."
+  },
+  "drwProfileLabel": {
+    "message": "Profil etiketi"
+  },
+  "drwProfileLabelHint": {
+    "message": "Yalnızca size özel — örn. \"RU\", \"EN\", \"İş birlikleri\"."
+  },
+  "drwProfilePattern": {
+    "message": "Hedef eşleştiğinde kullan"
+  },
+  "drwProfilePatternAria": {
+    "message": "Hedef deseni"
+  },
+  "drwProfilePatternHint": {
+    "message": "Boş bırakın, sonra Profiller sayfasından elle seçin."
+  },
+  "drwProfilePatternPlaceholder": {
+    "message": "hedefte regex, örn. \\.de$$|\\.at$$"
+  },
+  "drwProfileNeedsContact": {
+    "message": "Bir ad ya da e-posta gerekli — formdaki \"ad\" ve \"e-posta\" alanları bunlardan doldurulur."
+  },
+  "drwProfileSave": {
+    "message": "Profili kaydet"
+  },
+  "drwProfileCancel": {
+    "message": "Vazgeç"
+  },
+  "drwRowsTitle": {
+    "message": "Satır ekle"
+  },
+  "drwRowsSubtitle": {
+    "message": "Satırlar anahtara göre birleşir (site / e-posta): var olanlar durumunu ve dolu değerlerini korur."
+  },
+  "drwRowsLabel": {
+    "message": "Satırlar"
+  },
+  "drwRowsPasteSubmit": {
+    "message": "Her satıra bir site — ya da $COLUMNS$ sütunlarıyla tam satırlar (CSV / sekmeyle ayrılmış); başlık satırı isteğe bağlı.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPasteMail": {
+    "message": "Her satıra bir site ya da e-posta — ya da $COLUMNS$ sütunlarıyla tam satırlar (CSV / sekmeyle ayrılmış); başlık satırı isteğe bağlı.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNoTargetSubmit": {
+    "message": "Burada siteye benzeyen bir şey yok."
+  },
+  "drwRowsNoTargetMail": {
+    "message": "Burada siteye ya da e-postaya benzeyen bir şey yok."
+  },
+  "drwRowsNoTargetHint": {
+    "message": "Her satıra bir tane yapıştırın ya da \"$HEADER$\" sütunu olan satırlar ($COLUMNS$). Farklı bir düzen yeni bir kampanya demek — sihirbazı kullanın.",
+    "placeholders": {
+      "header": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPlanOne": {
+    "message": "$COUNT$ satır: $ADD$ yeni, $FILLS$ mevcut satırın boş hücreleri dolacak, $DUPES$ zaten var, $EXCLUDED$ hedefsiz.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanFew": {
+    "message": "$COUNT$ satır: $ADD$ yeni, $FILLS$ mevcut satırın boş hücreleri dolacak, $DUPES$ zaten var, $EXCLUDED$ hedefsiz.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanMany": {
+    "message": "$COUNT$ satır: $ADD$ yeni, $FILLS$ mevcut satırın boş hücreleri dolacak, $DUPES$ zaten var, $EXCLUDED$ hedefsiz.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanOther": {
+    "message": "$COUNT$ satır: $ADD$ yeni, $FILLS$ mevcut satırın boş hücreleri dolacak, $DUPES$ zaten var, $EXCLUDED$ hedefsiz.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanConflictOne": {
+    "message": "$COUNT$ satır kayıtlıdan farklı — burada mevcut değerler KORUNUR; alan alan seçmek için sihirbazı kullanın.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictFew": {
+    "message": "$COUNT$ satır kayıtlıdan farklı — burada mevcut değerler KORUNUR; alan alan seçmek için sihirbazı kullanın.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictMany": {
+    "message": "$COUNT$ satır kayıtlıdan farklı — burada mevcut değerler KORUNUR; alan alan seçmek için sihirbazı kullanın.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictOther": {
+    "message": "$COUNT$ satır kayıtlıdan farklı — burada mevcut değerler KORUNUR; alan alan seçmek için sihirbazı kullanın.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAdd": {
+    "message": "Satır ekle"
+  },
+  "drwRowsAddedOne": {
+    "message": "$COUNT$ satır eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedFew": {
+    "message": "$COUNT$ satır eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedMany": {
+    "message": "$COUNT$ satır eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedOther": {
+    "message": "$COUNT$ satır eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOne": {
+    "message": "$COUNT$ satır güncellendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedFew": {
+    "message": "$COUNT$ satır güncellendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedMany": {
+    "message": "$COUNT$ satır güncellendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOther": {
+    "message": "$COUNT$ satır güncellendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNewColumnsOne": {
+    "message": "Yeni sütun: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsFew": {
+    "message": "Yeni sütunlar: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsMany": {
+    "message": "Yeni sütunlar: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsOther": {
+    "message": "Yeni sütunlar: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPasteMore": {
+    "message": "Daha fazla yapıştırın ya da kapatın."
+  },
+  "drwAssetsTitle": {
+    "message": "Dosya ekle"
+  },
+  "drwAssetsSubtitle": {
+    "message": "Dosya türündeki sütunlar için logolar, ekran görüntüleri, belgeler; yerelde saklanır, içeriğe göre tekilleştirilir."
+  },
+  "drwAssetsFiles": {
+    "message": "Dosyalar"
+  },
+  "drwAssetsAddedOne": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedFew": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedMany": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedOther": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedHint": {
+    "message": "Kullanmak için dosya adını bir dosya sütunu hücresine yazın."
+  },
+  "drwAssetsDone": {
+    "message": "Tamam"
+  },
+  "drwBackupTitle": {
+    "message": "Yedek"
+  },
+  "drwBackupSubtitle": {
+    "message": "Satırları, şablonları, günlüğü, tarifleri ve kullandıkları dosyaları içeren bir ZIP. Geri yükleme, aynı kimlikli kampanyanın yerine geçer ve site tariflerinin üzerine yazar."
+  },
+  "drwBackupDownloadLabel": {
+    "message": "İndir"
+  },
+  "drwBackupDownloadHint": {
+    "message": "Diğer dosyalarınızla birlikte saklayın — bunun dışında tarayıcıdan hiçbir şey çıkmaz."
+  },
+  "drwBackupDownload": {
+    "message": "Yedeği indir"
+  },
+  "drwBackupNoCampaign": {
+    "message": "Henüz dışa aktarılacak kampanya yok"
+  },
+  "drwBackupPacking": {
+    "message": "Paketleniyor…"
+  },
+  "drwBackupReady": {
+    "message": "Yedek hazır: $SIZE$.",
+    "placeholders": {
+      "size": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupExportFailed": {
+    "message": "Dışa aktarılamadı: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreLabel": {
+    "message": "Geri yükle"
+  },
+  "drwBackupFileAria": {
+    "message": "Yedek dosyası"
+  },
+  "drwBackupPicked": {
+    "message": "$FILE$ · $SIZE$ — geri yükleme, aynı kimlikli kampanyanın yerine geçer.",
+    "placeholders": {
+      "file": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwBackupRestore": {
+    "message": "Bu dosyadan geri yükle"
+  },
+  "drwBackupRestoring": {
+    "message": "Geri yükleniyor…"
+  },
+  "drwBackupRestored": {
+    "message": "Geri yüklendi: $ROWS$ satır, $TEMPLATES$ şablon, $JOURNAL$ günlük olayı, $RECIPES$ tarif, $ASSETS$ dosya.",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "templates": {
+        "content": "$2"
+      },
+      "journal": {
+        "content": "$3"
+      },
+      "recipes": {
+        "content": "$4"
+      },
+      "assets": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwBackupMissingOne": {
+    "message": "Arşivde $COUNT$ dosya eksik.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingFew": {
+    "message": "Arşivde $COUNT$ dosya eksik.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingMany": {
+    "message": "Arşivde $COUNT$ dosya eksik.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingOther": {
+    "message": "Arşivde $COUNT$ dosya eksik.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreFailed": {
+    "message": "Geri yüklenemedi: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwFooterClose": {
+    "message": "Kapat"
+  },
+  "rowGone": {
+    "message": "Satır artık yok."
+  },
+  "rowLegendRow": {
+    "message": "Satır"
+  },
+  "rowLegendMessage": {
+    "message": "Mesaj"
+  },
+  "rowLegendOutcome": {
+    "message": "Sonuç"
+  },
+  "rowLegendJournal": {
+    "message": "Günlük"
+  },
+  "rowStepState": {
+    "message": "$STEP$. adım · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "state": {
+        "content": "$2"
+      }
+    }
+  },
+  "rowTarget": {
+    "message": "Hedef"
+  },
+  "rowTargetHint": {
+    "message": "Değiştirmek satır anahtarını yeniden türetir."
+  },
+  "rowLanguage": {
+    "message": "Dil"
+  },
+  "rowNote": {
+    "message": "Not"
+  },
+  "rowAssetHint": {
+    "message": "kitaplıktaki dosya adı"
+  },
+  "rowTargetInvalid": {
+    "message": "Hedef bir site, e-posta ya da @kullanıcı adı olmalı."
+  },
+  "rowKeyClash": {
+    "message": "\"$KEY$\" anahtarı başka bir satırda var — onları birleştirin.",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSaveFailed": {
+    "message": "Kaydedilemedi: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSave": {
+    "message": "Satırı kaydet"
+  },
+  "rowSaved": {
+    "message": "Kaydedildi."
+  },
+  "rowRecordFailed": {
+    "message": "Günlüğe yazılamadı: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowClosed": {
+    "message": "Satır kapatıldı — takipler durdu."
+  },
+  "rowDefer": {
+    "message": "Ertele"
+  },
+  "rowDaysAria": {
+    "message": "Gün"
+  },
+  "rowNotApplicable": {
+    "message": "Uygun değil"
+  },
+  "rowDelete": {
+    "message": "Satırı sil"
+  },
+  "rowDeleteConfirm": {
+    "message": "Emin misiniz? Satır ve günlüğü silinir"
+  },
+  "rowEdited": {
+    "message": "$STEP$. adımın metni düzenlendi.",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowEditedTranslated": {
+    "message": "$STEP$. adımın metni düzenlendi (çevrildi).",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowResetTemplate": {
+    "message": "Şablona döndür"
+  },
+  "rowResetDone": {
+    "message": "Şablona dönüldü."
+  },
+  "rowJournalLoading": {
+    "message": "Yükleniyor…"
+  },
+  "rowJournalEmpty": {
+    "message": "Henüz olay yok."
+  },
+  "rowDeferDays": {
+    "message": "Kaç gün ertelensin",
+    "description": "Label of the numeric field next to the Defer button. Replaces the old \"Defer [n] days\" sentence, which produced \"Defer 1 days\" and could not be reordered."
+  },
+  "slotProfileName": {
+    "message": "Adınız"
+  },
+  "slotProfileEmail": {
+    "message": "E-postanız"
+  },
+  "slotProfileSite": {
+    "message": "Siteniz"
+  },
+  "slotProfilePhone": {
+    "message": "Telefon"
+  },
+  "slotSubject": {
+    "message": "Konu"
+  },
+  "slotBody": {
+    "message": "Mesaj"
+  },
+  "slotNotFound": {
+    "message": "bulunamadı"
+  },
+  "flagExact": {
+    "message": "birebir"
+  },
+  "flagEquivalent": {
+    "message": "eşdeğer"
+  },
+  "flagChangedBySite": {
+    "message": "site düzeltti"
+  },
+  "flagPartial": {
+    "message": "kısmi"
+  },
+  "flagKept": {
+    "message": "korundu"
+  },
+  "flagClipboard": {
+    "message": "pano"
+  },
+  "flagPinned": {
+    "message": "sabit"
+  },
+  "flagPolicySkipIfFilled": {
+    "message": "doluysa atla"
+  },
+  "flagPolicyReplace": {
+    "message": "değiştir"
+  },
+  "flagPolicyAtCursor": {
+    "message": "imleçte"
+  },
+  "flagNoFilePayload": {
+    "message": "dosya içeriği yok"
+  },
+  "flagNoDataTransfer": {
+    "message": "DataTransfer kullanılamıyor"
+  },
+  "flagFilesRejected": {
+    "message": "dosya kabul edilmedi"
+  },
+  "flagNoOption": {
+    "message": "eşleşen seçenek yok"
+  },
+  "flagSelectReverted": {
+    "message": "seçimi sayfa geri aldı"
+  },
+  "flagFieldNotFound": {
+    "message": "alan bulunamadı"
+  },
+  "flagValueReverted": {
+    "message": "değeri sayfa geri aldı"
+  },
+  "flagRichEditor": {
+    "message": "zengin metin editörü: Ctrl+V ile yapıştırın"
+  },
+  "panelCounterPos": {
+    "message": "$POS$ / $TOTAL$",
+    "placeholders": {
+      "pos": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelCounterTodo": {
+    "message": "$COUNT$ kaldı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCounterDue": {
+    "message": "$COUNT$ bugün",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoCampaign": {
+    "message": "kampanya yok"
+  },
+  "panelSettingsAria": {
+    "message": "Ayarları aç"
+  },
+  "panelSettingsTitle": {
+    "message": "Ayarlar ve kampanyalar (seçenekler sayfası)"
+  },
+  "panelNoRows": {
+    "message": "Bu kampanyada satır yok"
+  },
+  "panelNoCampaignYet": {
+    "message": "Henüz kampanya yok"
+  },
+  "panelEmptyHint": {
+    "message": "Seçenekler sayfasında bir liste içe aktarın ve bir şablon kaydedin."
+  },
+  "panelOpenCampaigns": {
+    "message": "İlk listenizi oluşturun"
+  },
+  "panelRowAria": {
+    "message": "Geçerli satır"
+  },
+  "panelStep": {
+    "message": "$N$. adım",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOtherPage": {
+    "message": "Şu anda $HERE$ üzerindesiniz; bu satır $THERE$ hedefini gösteriyor.",
+    "placeholders": {
+      "here": {
+        "content": "$1"
+      },
+      "there": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPrevRow": {
+    "message": "Önceki satır"
+  },
+  "panelNextRow": {
+    "message": "Sonraki satır ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMessageAria": {
+    "message": "Mesaj"
+  },
+  "panelSaveEdit": {
+    "message": "Düzenlemeyi kaydet"
+  },
+  "panelSubjectLabel": {
+    "message": "Konu:"
+  },
+  "panelBodyChars": {
+    "message": "Mesaj · $N$ karakter",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelEdited": {
+    "message": "düzenlendi"
+  },
+  "panelEditRow": {
+    "message": "Bu satırı düzenle"
+  },
+  "panelNoMessage": {
+    "message": "$N$. adım için henüz mesaj yok — önce bir şablon yazın.",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelDemoPage": {
+    "message": "demo sayfası"
+  },
+  "panelMappingSummary": {
+    "message": "Alan eşlemesi — $N$ eşlendi",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingMissing": {
+    "message": "$N$ eksik",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingStale": {
+    "message": "tarif değişti, onaylayın"
+  },
+  "panelMappingHost": {
+    "message": "Alan eşlemesi — $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoPage": {
+    "message": "sayfa yok"
+  },
+  "panelPolicyTitle": {
+    "message": "Doldurma kuralı — değiştirmek için tıklayın"
+  },
+  "panelPinnedTitle": {
+    "message": "Sabit — form değişse de korunur"
+  },
+  "panelPinAria": {
+    "message": "Bu alanı sabitle"
+  },
+  "panelPinTitle": {
+    "message": "Sabitle — form değişse bile bu alan korunur"
+  },
+  "panelClearAria": {
+    "message": "Bu eşlemeyi temizle"
+  },
+  "panelClearTitle": {
+    "message": "Temizle — eşleme yeniden 'bulunamadı' olur; yeniden eşlemek için \"Alanı göster\"i kullanın"
+  },
+  "panelPointAt": {
+    "message": "Alanı göster"
+  },
+  "panelForgetRecipe": {
+    "message": "Tarifi unut"
+  },
+  "panelMappingHelp": {
+    "message": "Hedef sayfada Doldur’a basın: yardımcı hangi kutunun ne olduğunu tahmin eder, bulamadıkları için \"Alanı göster\" düğmesi çıkar."
+  },
+  "panelSentNext": {
+    "message": "Gönderildi — sıradaki ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelWriteTemplate": {
+    "message": "$N$. adım şablonunu yaz",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenTarget": {
+    "message": "Hedefi aç"
+  },
+  "panelOpenPath": {
+    "message": "Aç: $PATH$",
+    "placeholders": {
+      "path": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenHost": {
+    "message": "Aç: $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelAllowFill": {
+    "message": "İzinle doldur: $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilling": {
+    "message": "Dolduruluyor…"
+  },
+  "panelFillOn": {
+    "message": "Doldur: $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopyOpen": {
+    "message": "Kopyala ve aç"
+  },
+  "panelMarkSent": {
+    "message": "Gönderildi olarak işaretle ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelGroupOutcome": {
+    "message": "Sonuç"
+  },
+  "panelDefer3Days": {
+    "message": "3 gün ertele"
+  },
+  "panelNotApplicable": {
+    "message": "Uygun değil"
+  },
+  "panelReplied": {
+    "message": "Yanıt geldi"
+  },
+  "panelDeclined": {
+    "message": "Ret geldi"
+  },
+  "panelGroupNotSent": {
+    "message": "Gönderilmedi, çünkü"
+  },
+  "panelReasonNoForm": {
+    "message": "form yok"
+  },
+  "panelReasonCaptcha": {
+    "message": "captcha"
+  },
+  "panelReasonNoContact": {
+    "message": "iletişim yok"
+  },
+  "panelReasonTechnical": {
+    "message": "teknik"
+  },
+  "panelGroupEdit": {
+    "message": "Düzenle"
+  },
+  "panelStepsFollowups": {
+    "message": "Adımlar ve takipler…"
+  },
+  "panelSubjectTemplate": {
+    "message": "Konu şablonu…"
+  },
+  "panelRichEditorNote": {
+    "message": "Zengin metin editörü: mesaj panoya kopyalandı — sayfadaki mesaj kutusuna tıklayıp Ctrl+V yapın (\"Kopyala ve aç\" yeniden kopyalar). Sonra \"Gönderildi — sıradaki\"."
+  },
+  "panelFoundOnPage": {
+    "message": "Bu sayfada bulunanlar:"
+  },
+  "panelMoreTitle": {
+    "message": "Diğer işlemler — tıklayın ya da sürükleyin"
+  },
+  "panelMoreAria": {
+    "message": "Diğer işlemler"
+  },
+  "panelCleared": {
+    "message": "Temizlendi: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelRecipeForgotten": {
+    "message": "Tarif unutuldu — alanlar yeniden sezgisel olarak eşlendi."
+  },
+  "panelOpened": {
+    "message": "$URL$ açıldı",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenedMail": {
+    "message": "$TO$ adresine yeni bir mesaj açıldı.",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMailTooLongFill": {
+    "message": "Mesaj bağlantı için fazla uzun — gövde kopyalandı: Doldur'a basın ya da Ctrl+V ile yapıştırın."
+  },
+  "panelMailTooLongPaste": {
+    "message": "Mesaj bağlantı için fazla uzun — gövde kopyalandı: Ctrl+V ile yapıştırın."
+  },
+  "panelMailTooLongBlocked": {
+    "message": "Mesaj bağlantı için fazla uzun ve pano engelli — yukarıdaki metni elle kopyalayın."
+  },
+  "panelNoUrlCopied": {
+    "message": "Bu hedef için URL yok — mesaj aşağıya kopyalandı; sohbeti kendiniz açıp yapıştırın."
+  },
+  "panelNoUrlBlocked": {
+    "message": "Bu hedef için URL yok ve pano engelli — yukarıdaki mesajı elle kopyalayın."
+  },
+  "panelCopied": {
+    "message": "Mesaj kopyalandı — sayfada Ctrl+V ile yapıştırın."
+  },
+  "panelCopyBlocked": {
+    "message": "Pano engelli — yukarıdaki metni seçip kopyalayın."
+  },
+  "panelPermissionDenied": {
+    "message": "İzin verilmedi — \"Kopyala ve aç\" ile elle yapıştırın."
+  },
+  "panelScanning": {
+    "message": "Sayfa taranıyor…"
+  },
+  "panelStaleRecipe": {
+    "message": "Form, kayıtlı tariften bu yana değişti — aşağıdaki eşlemeyi kontrol edip yeniden Doldur'a basın."
+  },
+  "panelFilledOne": {
+    "message": "$COUNT$ alan dolduruldu",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledOther": {
+    "message": "$COUNT$ alan dolduruldu",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledFew": {
+    "message": "$COUNT$ alan dolduruldu",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledMany": {
+    "message": "$COUNT$ alan dolduruldu",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSkipped": {
+    "message": "$COUNT$ alana dokunulmadı (zaten metin vardı)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelClipboardHint": {
+    "message": "mesaj panoda — mesaj kutusuna tıklayıp Ctrl+V yapın"
+  },
+  "panelClipboardBlocked": {
+    "message": "mesaj kutusuna elle yapıştırmak gerekiyor (pano engelli)"
+  },
+  "panelNothingFilled": {
+    "message": "bu sayfada hiçbir şey doldurulamadı"
+  },
+  "panelBodyNotFilled": {
+    "message": "mesaj kutusu doldurulmadı — \"Kopyala ve aç\" kullanın"
+  },
+  "panelNotFoundHere": {
+    "message": "bu sayfada bulunamadı: $SLOTS$",
+    "placeholders": {
+      "slots": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelStaleRebuilt": {
+    "message": "form kayıtlı tariften bu yana değişti — eşleme yeniden kuruldu, alanları kontrol edin"
+  },
+  "panelFillFailed": {
+    "message": "Doldurulamadı: $ERROR$. \"Kopyala ve aç\" kullanın.",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarkedSent": {
+    "message": "$KEY$ gönderildi olarak işaretlendi",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarked": {
+    "message": "İşaretlendi: $KIND$",
+    "placeholders": {
+      "kind": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelKindSent": {
+    "message": "gönderildi"
+  },
+  "panelKindDeferred": {
+    "message": "ertelendi"
+  },
+  "panelKindFailed": {
+    "message": "gönderilmedi"
+  },
+  "panelKindExcluded": {
+    "message": "uygun değil"
+  },
+  "panelKindReplied": {
+    "message": "yanıt geldi"
+  },
+  "panelKindDeclined": {
+    "message": "ret geldi"
+  },
+  "panelPickHint": {
+    "message": "\"$SLOT$\" için sayfadaki alana tıklayın (iptal için Esc).",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSavedSlot": {
+    "message": "Kaydedildi: $SLOT$ → $FIELD$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      },
+      "field": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPickCancelled": {
+    "message": "Seçim iptal edildi."
+  },
+  "panelRateOn": {
+    "message": "$STORE$ üzerinde puan verin",
+    "placeholders": {
+      "store": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSpintaxLink": {
+    "message": "spintax.net — bu uzantının arkasındaki motor"
+  },
+  "panelPublisherLink": {
+    "message": "301.st — Smart Traffic"
+  },
+  "panelOldHelper": {
+    "message": "sayfada eski bir yardımcı çalışıyor — sayfayı yenileyip yeniden deneyin"
+  },
+  "panelNoAccess": {
+    "message": "bu sayfa yanıt vermedi — yenileyip yeniden Doldur’a basın"
+  },
+  "panelPageChanged": {
+    "message": "sayfa tarandığından beri değişti — yeniden Doldur'a basın"
+  },
+  "warnMaxLength": {
+    "message": "$LEN$ karakter, alan en fazla $MAX$ alıyor",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMinLength": {
+    "message": "$LEN$ karakter, alan en az $MIN$ istiyor",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "min": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMaxWords": {
+    "message": "$WORDS$ kelime, alan en fazla $MAX$ alıyor",
+    "placeholders": {
+      "words": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraint": {
+    "message": "$FIELD$: $PROBLEM$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraintBlocked": {
+    "message": "$FIELD$: $PROBLEM$ — doldurulmadı",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetAmbiguous": {
+    "message": "$FIELD$: \"$NAME$\" adında birden çok dosya var — hücreye sha256 yazın",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMissing": {
+    "message": "$FIELD$: kitaplıkta \"$NAME$\" adında dosya yok",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMime": {
+    "message": "$FIELD$: \"$NAME$\" $MIME$ türünde, alan $ALLOW$ kabul ediyor — doldurulmadı",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      },
+      "mime": {
+        "content": "$3"
+      },
+      "allow": {
+        "content": "$4"
+      }
+    }
+  },
+  "warnAssetSize": {
+    "message": "$FIELD$: sayfa $WANT$ istiyor, \"$NAME$\" ise $GOT$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "want": {
+        "content": "$2"
+      },
+      "name": {
+        "content": "$3"
+      },
+      "got": {
+        "content": "$4"
+      }
+    }
+  },
+  "jrnFilled": {
+    "message": "dolduruldu"
+  },
+  "jrnSent": {
+    "message": "gönderildi"
+  },
+  "jrnFailed": {
+    "message": "gönderilmedi"
+  },
+  "jrnDeferred": {
+    "message": "ertelendi"
+  },
+  "jrnReplied": {
+    "message": "yanıt geldi"
+  },
+  "jrnDeclined": {
+    "message": "ret geldi"
+  },
+  "jrnExcluded": {
+    "message": "uygun değil"
+  },
+  "jrnEdited": {
+    "message": "düzenlendi"
+  },
+  "jrnReviewed": {
+    "message": "kontrol edildi"
+  },
+  "jrnTranslated": {
+    "message": "çevrildi"
+  },
+  "jrnCorrected": {
+    "message": "düzeltildi"
+  },
+  "jrnReasonNoForm": {
+    "message": "form yok"
+  },
+  "jrnReasonCaptcha": {
+    "message": "captcha"
+  },
+  "jrnReasonNoContact": {
+    "message": "iletişim yok"
+  },
+  "jrnReasonTechnical": {
+    "message": "teknik"
+  },
+  "jrnReviewUnreviewed": {
+    "message": "kontrol edilmedi"
+  },
+  "jrnReviewApproved": {
+    "message": "onaylandı"
+  },
+  "jrnReviewEdited": {
+    "message": "düzenlendi"
+  },
+  "jrnReviewSkipped": {
+    "message": "atlandı"
+  },
+  "jrnUntil": {
+    "message": "$DAY$ tarihine kadar",
+    "placeholders": {
+      "day": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnStep": {
+    "message": "$N$. adım",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnAi": {
+    "message": "yapay zeka: $API$",
+    "placeholders": {
+      "api": {
+        "content": "$1"
+      }
+    }
+  },
+  "mailMailto": {
+    "message": "Sistemin e-posta uygulaması (mailto:)"
+  },
+  "mailMailtoHint": {
+    "message": "Bu bilgisayarda mailto: bağlantılarını hangi uygulama açıyorsa o. Hiçbir şey açılmazsa aşağıdan bir web posta seçin."
+  },
+  "mailGmail": {
+    "message": "Gmail"
+  },
+  "mailGmailHint": {
+    "message": "Hedef sekmede mail.google.com üzerinde yeni mesaj penceresi açar."
+  },
+  "mailOutlook": {
+    "message": "Outlook.com (kişisel)"
+  },
+  "mailOutlookHint": {
+    "message": "outlook.live.com yeni mesaj bağlantısı."
+  },
+  "mailOutlook365": {
+    "message": "Outlook — Microsoft 365 (iş)"
+  },
+  "mailOutlook365Hint": {
+    "message": "outlook.office.com yeni mesaj bağlantısı."
+  },
+  "mailYandex": {
+    "message": "Yandex Mail"
+  },
+  "mailYandexHint": {
+    "message": "mail.yandex.ru yeni mesaj bağlantısı."
+  },
+  "mailCustom": {
+    "message": "Özel URL şablonu"
+  },
+  "mailCustomHint": {
+    "message": "örn. https://mail.example.com/compose?to=%to%&subject=%subject%&body=%body%"
+  },
+  "filterAll": {
+    "message": "Tümü"
+  },
+  "filterTodo": {
+    "message": "Yapılacak"
+  },
+  "filterDue": {
+    "message": "Bugün"
+  },
+  "filterDone": {
+    "message": "Bitti"
+  },
+  "filterProblems": {
+    "message": "Sorunlar"
+  },
+  "drwClose": {
+    "message": "Kapat"
+  },
+  "tplLeftover": {
+    "message": "Şablondan kalmış — değişkenleri kontrol edin"
+  },
+  "hdrTheme": {
+    "message": "Temayı değiştir"
+  },
+  "hdrNewsAriaOn": {
+    "message": "Yayıncı haberleri (açık)"
+  },
+  "hdrNewsAriaOff": {
+    "message": "Yayıncı haberleri (kapalı)"
+  },
+  "hdrNewsTitleOn": {
+    "message": "Yayıncı haberleri — açık: 301.sh 6 saatte bir kontrol edilir, yeni yazılar bildirim olarak gelir. Kapatmak için tıklayın."
+  },
+  "hdrNewsTitleOff": {
+    "message": "Yayıncı haberleri — kapalı. 301.sh yeni yazı yayımladığında bildirim almak için tıklayın."
+  },
+  "tgtDemoPage": {
+    "message": "demo sayfası $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "revNoBody": {
+    "message": "1. adım için henüz gövde şablonu yok — önce Şablon ekranında bir tane kaydedin."
+  },
+  "revTemplateLink": {
+    "message": "Şablon"
+  },
+  "revCounters": {
+    "message": "$ROWS$ · $BLOCKERS$ · $WARNINGS$ · $DUPS$ · $APPROVED$ · $EDITED$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "blockers": {
+        "content": "$2"
+      },
+      "warnings": {
+        "content": "$3"
+      },
+      "dups": {
+        "content": "$4"
+      },
+      "approved": {
+        "content": "$5"
+      },
+      "edited": {
+        "content": "$6"
+      }
+    }
+  },
+  "revRowsOne": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsFew": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsMany": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsOther": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOne": {
+    "message": "$COUNT$ engel",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersFew": {
+    "message": "$COUNT$ engel",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersMany": {
+    "message": "$COUNT$ engel",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOther": {
+    "message": "$COUNT$ engel",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOne": {
+    "message": "$COUNT$ uyarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsFew": {
+    "message": "$COUNT$ uyarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsMany": {
+    "message": "$COUNT$ uyarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOther": {
+    "message": "$COUNT$ uyarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOne": {
+    "message": "gönderilmiş metnin $COUNT$ tekrarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesFew": {
+    "message": "gönderilmiş metnin $COUNT$ tekrarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesMany": {
+    "message": "gönderilmiş metnin $COUNT$ tekrarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOther": {
+    "message": "gönderilmiş metnin $COUNT$ tekrarı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproved": {
+    "message": "$COUNT$ onaylı",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdited": {
+    "message": "$COUNT$ düzenlenmiş",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterProblems": {
+    "message": "Sorunlar $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterSample": {
+    "message": "Temizlerden örnek $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterAll": {
+    "message": "Tümü $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOne": {
+    "message": "$COUNT$ temiz satırı onayla",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanFew": {
+    "message": "$COUNT$ temiz satırı onayla",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanMany": {
+    "message": "$COUNT$ temiz satırı onayla",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOther": {
+    "message": "$COUNT$ temiz satırı onayla",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revStartQueue": {
+    "message": "Kuyruğa başla"
+  },
+  "revNoProblems": {
+    "message": "Sorun yok — temiz satırları onaylayın ya da bir örneğe bakın."
+  },
+  "revNothingHere": {
+    "message": "Burada bir şey yok."
+  },
+  "revBadgeBlocker": {
+    "message": "engel"
+  },
+  "revBadgeDuplicate": {
+    "message": "tekrar"
+  },
+  "revBadgeWarning": {
+    "message": "uyarı"
+  },
+  "revStateUnreviewed": {
+    "message": "kontrolsüz"
+  },
+  "revStateApproved": {
+    "message": "onaylı"
+  },
+  "revStateEdited": {
+    "message": "düzenlendi"
+  },
+  "revStateSkipped": {
+    "message": "atlandı"
+  },
+  "revDuplicateNote": {
+    "message": "Tamamen aynı metin başka bir satıra gönderilmiş — varyantı değiştirin ya da düzenleyin."
+  },
+  "revPrevious": {
+    "message": "Önceki"
+  },
+  "revNext": {
+    "message": "Sonraki"
+  },
+  "revPosition": {
+    "message": "$INDEX$ / $TOTAL$",
+    "placeholders": {
+      "index": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "revApprove": {
+    "message": "Onayla ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdit": {
+    "message": "Düzenle ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revSaveEdit": {
+    "message": "Düzenlemeyi kaydet"
+  },
+  "revSkip": {
+    "message": "Atla ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRespin": {
+    "message": "Başka varyant"
+  },
+  "revReset": {
+    "message": "Şablona döndür"
+  },
+  "revMeta": {
+    "message": "$STEP$. adım · seed $SEED$ · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revMetaEdited": {
+    "message": "$STEP$. adım · seed $SEED$ · düzenlendi · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revSubject": {
+    "message": "Konu:"
+  },
+  "profIntro": {
+    "message": "İlk eşleşen profil geçerlidir; \"her zaman\" profili varsayılandır. Profil değerleri %my_*% değişkenlerine ve iletişim formlarının profil alanlarına (ad, e-posta, site, telefon) gider."
+  },
+  "profEmpty": {
+    "message": "Henüz gönderen profili yok — bir tane ekleyin; %my_name%, %my_email% değişkenlerini ve iletişim formlarının profil alanlarını doldurur."
+  },
+  "profSavedOne": {
+    "message": "$COUNT$ profil kaydedildi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedFew": {
+    "message": "$COUNT$ profil kaydedildi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedMany": {
+    "message": "$COUNT$ profil kaydedildi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedOther": {
+    "message": "$COUNT$ profil kaydedildi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profFieldName": {
+    "message": "Ad"
+  },
+  "profFieldEmail": {
+    "message": "E-posta"
+  },
+  "profFieldSite": {
+    "message": "Site"
+  },
+  "profFieldPhone": {
+    "message": "Telefon"
+  },
+  "profFieldIntro": {
+    "message": "Tanıtım (1–2 cümle)"
+  },
+  "profFieldSignature": {
+    "message": "İmza"
+  },
+  "profNamePlaceholder": {
+    "message": "Profil etiketi (örn. RU, EN, İş birlikleri)"
+  },
+  "profRemove": {
+    "message": "Profili kaldır"
+  },
+  "profActivation": {
+    "message": "Etkinleşme"
+  },
+  "profActivationAlways": {
+    "message": "Her zaman (varsayılan)"
+  },
+  "profActivationUrlPattern": {
+    "message": "Hedef desene uyduğunda"
+  },
+  "profActivationColumn": {
+    "message": "Bir sütun değere eşitse"
+  },
+  "profPatternPlaceholder": {
+    "message": "hedefte regex, örn. \\.de$$|\\.at$$"
+  },
+  "profColumn": {
+    "message": "Sütun"
+  },
+  "profEqualsPlaceholder": {
+    "message": "değer, örn. ru"
+  },
+  "profAdd": {
+    "message": "Profil ekle"
+  },
+  "profSave": {
+    "message": "Profilleri kaydet"
+  },
+  "setMailTitle": {
+    "message": "E-posta hedefleri"
+  },
+  "setMailIntro": {
+    "message": "Hedefi e-posta adresi olan satırlar burada yeni bir mesaj açar. Gövde sığdığında bağlantının içinde taşınır; sığmazsa editöre yapıştırılır — her satır için ölçülür, tahmin edilmez."
+  },
+  "setMailProvider": {
+    "message": "E-posta şurada açılır",
+    "description": "Label of the provider dropdown and its accessible name — one string, two uses."
+  },
+  "setGmailAccount": {
+    "message": "Gmail hesabı (0 = ilk oturum açan)"
+  },
+  "setGmailAccountAria": {
+    "message": "Gmail hesap sırası"
+  },
+  "setBcc": {
+    "message": "Her mesajın BCC kopyası şuraya"
+  },
+  "setBccAria": {
+    "message": "BCC",
+    "description": "Accessible name of the BCC address input."
+  },
+  "setBccHint": {
+    "message": "Kendi posta kutunuzda bir kopya — ne gönderdiğinizin kaydı. Atlamak için boş bırakın."
+  },
+  "setCustomLabel": {
+    "message": "Yeni mesaj URL şablonu"
+  },
+  "setCustomAria": {
+    "message": "Özel yeni mesaj URL şablonu"
+  },
+  "setCustomHint": {
+    "message": "Yer tutucular: %to% %subject% %body% %bcc%",
+    "description": "The %tokens% are literal syntax of the URL template — translate only the word before them."
+  },
+  "setCustomInvalid": {
+    "message": "Özel şablon, %to% içeren bir https adresi olmalı."
+  },
+  "setSave": {
+    "message": "Kaydet"
+  },
+  "setSaved": {
+    "message": "Kaydedildi."
+  },
+  "setFitNoTemplate": {
+    "message": "Henüz 1. adım şablonu yok — ölçüm, bir şablon oluşunca yapılır."
+  },
+  "setFitMeasuredOne": {
+    "message": "Bu kampanyadaki en uzun mesaj: $COUNT$ karakter ($ROWS$ satır kontrol edildi).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredFew": {
+    "message": "Bu kampanyadaki en uzun mesaj: $COUNT$ karakter ($ROWS$ satır kontrol edildi).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredMany": {
+    "message": "Bu kampanyadaki en uzun mesaj: $COUNT$ karakter ($ROWS$ satır kontrol edildi).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredOther": {
+    "message": "Bu kampanyadaki en uzun mesaj: $COUNT$ karakter ($ROWS$ satır kontrol edildi).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitYes": {
+    "message": "$PROVIDER$ bağlantıda yaklaşık $BUDGET$ taşıyor → gövdeler bağlantının içinde gider; editör her şey dolu açılır.",
+    "description": "Second half of the fit line: the measurement sentence is a separate key, joined with a space in code.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitNo": {
+    "message": "$PROVIDER$ bağlantıda yaklaşık $BUDGET$ taşıyor → uzun gövdeler sığmaz — editör adres ve konuyla açılır, gövde kopyalanıp Ctrl+V ile yapıştırılır (web postada bunu Doldur yapar).",
+    "description": "Same slot as setFitYes, for a message that does not fit the provider's link.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageTitle": {
+    "message": "Depolama"
+  },
+  "setStorageUsed": {
+    "message": "Bu tarayıcı profiline ayrılan $QUOTA$ alanın $USED$ kadarı kullanıldı.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageUnknown": {
+    "message": "Bu tarayıcı kullanım bilgisi vermiyor."
+  },
+  "setOrphansOne": {
+    "message": "Hiçbir kampanyanın artık kullanmadığı $COUNT$ dosya — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansFew": {
+    "message": "Hiçbir kampanyanın artık kullanmadığı $COUNT$ dosya — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansMany": {
+    "message": "Hiçbir kampanyanın artık kullanmadığı $COUNT$ dosya — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansOther": {
+    "message": "Hiçbir kampanyanın artık kullanmadığı $COUNT$ dosya — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setNoOrphans": {
+    "message": "Saklanan her dosyayı bir satır ya da sütun varsayılanı kullanıyor."
+  },
+  "setDeleteUnusedOne": {
+    "message": "Boştaki $COUNT$ dosyayı sil",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedFew": {
+    "message": "Boştaki $COUNT$ dosyayı sil",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedMany": {
+    "message": "Boştaki $COUNT$ dosyayı sil",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedOther": {
+    "message": "Boştaki $COUNT$ dosyayı sil",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOne": {
+    "message": "Emin misiniz? $COUNT$ dosya ($SIZE$) kalıcı olarak silinir",
+    "description": "Armed state of the same button — it must stay on one line.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmFew": {
+    "message": "Emin misiniz? $COUNT$ dosya ($SIZE$) kalıcı olarak silinir",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmMany": {
+    "message": "Emin misiniz? $COUNT$ dosya ($SIZE$) kalıcı olarak silinir",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOther": {
+    "message": "Emin misiniz? $COUNT$ dosya ($SIZE$) kalıcı olarak silinir",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOne": {
+    "message": "$COUNT$ dosya silindi, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedFew": {
+    "message": "$COUNT$ dosya silindi, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedMany": {
+    "message": "$COUNT$ dosya silindi, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOther": {
+    "message": "$COUNT$ dosya silindi, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setRemoveDemo": {
+    "message": "Demo kampanyayı kaldır"
+  },
+  "setDemoRemoved": {
+    "message": "Demo kampanya kaldırıldı."
+  },
+  "setDeleteCampaign": {
+    "message": "\"$NAME$\" kampanyasını sil",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteCampaignConfirm": {
+    "message": "Emin misiniz? Bu kampanyanın satırları, günlüğü, şablonları gider",
+    "description": "Armed state of setDeleteCampaign — it must stay on one line."
+  },
+  "setDeleteAll": {
+    "message": "Tüm verileri sil"
+  },
+  "setDeleteAllConfirm": {
+    "message": "Emin misiniz? Bu uzantıdaki her şey silinir",
+    "description": "Armed state of setDeleteAll — it must stay on one line."
+  },
+  "assetTitle": {
+    "message": "Dosya kitaplığı"
+  },
+  "assetIntro": {
+    "message": "Dosya sütunları için görseller ve dosyalar (logolar, ekran görüntüleri). Hücre dosya adını tutar; aynı içerik bir kez saklanır."
+  },
+  "assetAdd": {
+    "message": "Dosya ekle"
+  },
+  "assetEmpty": {
+    "message": "Henüz dosya yok. Logoları ve ekran görüntülerini buraya ekleyin; dosya sütunları onlara adıyla başvurur."
+  },
+  "assetColName": {
+    "message": "ad",
+    "description": "Table header. Lowercase on purpose, like the other column headers."
+  },
+  "assetColType": {
+    "message": "tür"
+  },
+  "assetColSize": {
+    "message": "boyut"
+  },
+  "assetColDims": {
+    "message": "ölçüler"
+  },
+  "assetColId": {
+    "message": "kimlik"
+  },
+  "assetColUsed": {
+    "message": "kullanım"
+  },
+  "assetShaTitle": {
+    "message": "sha256 $SHA$ — iki dosya aynı adı taşıyorsa hücreye bunu yazın",
+    "placeholders": {
+      "sha": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetInUse": {
+    "message": "kullanımda",
+    "description": "Badge: the file is referenced by a row or a column default."
+  },
+  "assetUnused": {
+    "message": "boşta"
+  },
+  "assetDeleteAria": {
+    "message": "$NAME$ dosyasını sil",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetDeleteBlocked": {
+    "message": "Bir satır kullanıyor — önce hücreyi temizleyin"
+  },
+  "assetDeleteTitle": {
+    "message": "Bu dosyayı sil"
+  },
+  "assetDeleted": {
+    "message": "$NAME$ silindi.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetStorageUsed": {
+    "message": "Kullanılan alan: $QUOTA$ içinden $USED$.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "assetAddedOne": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedFew": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedMany": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedOther": {
+    "message": "$COUNT$ dosya eklendi.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "optPageTitle": {
+    "message": "Spintax — Kampanyalar"
+  },
+  "optNavWelcome": {
+    "message": "Karşılama ve yardım"
+  },
+  "optNavWizard": {
+    "message": "Kampanya sihirbazı"
+  },
+  "optNavList": {
+    "message": "Liste"
+  },
+  "optNavTemplate": {
+    "message": "Şablon"
+  },
+  "optNavReview": {
+    "message": "Kontrol"
+  },
+  "optNavProfiles": {
+    "message": "Profiller"
+  },
+  "optNavRecipes": {
+    "message": "Tarifler"
+  },
+  "optNavAssets": {
+    "message": "Dosyalar"
+  },
+  "optNavJournal": {
+    "message": "Günlük"
+  },
+  "optNavSettings": {
+    "message": "Ayarlar"
+  },
+  "optNavNews": {
+    "message": "Haberler"
+  },
+  "optToggleSidebar": {
+    "message": "Kenar çubuğunu aç/kapat"
+  },
+  "optSections": {
+    "message": "Bölümler"
+  },
+  "optRecipesStub": {
+    "message": "Tarifler, yardımcının her site için kaydettiği alan eşlemeleridir. Yan panelden yönetin: Alan eşlemesi → sabitle, temizle ya da \"Tarifi unut\"."
+  },
+  "optJournalStub": {
+    "message": "Her satırın geçmişi (gönderildi, ertelendi, düzenlendi…) kendi satırında: Liste → satıra tıklayın → Günlük."
+  },
+  "optNewsStub": {
+    "message": "Yayıncı haberleri, başlıktaki zilden açtığınızda orada görünür."
+  },
+  "optNotHereYet": {
+    "message": "$SECTION$ henüz burada yok.",
+    "placeholders": {
+      "section": {
+        "content": "$1"
+      }
+    }
+  },
+  "optViewFailed": {
+    "message": "Bu ekran yüklenemedi: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "optDefaultCampaign": {
+    "message": "Kampanyam"
+  },
+  "listFilterRows": {
+    "message": "Satırları filtrele"
+  },
+  "listEmpty": {
+    "message": "Burada bir şey yok."
+  },
+  "listNoRows": {
+    "message": "Henüz satır yok — sihirbazda bir liste içe aktarın."
+  },
+  "listRowsOne": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsOther": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsFew": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsMany": {
+    "message": "$COUNT$ satır",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOne": {
+    "message": "$COUNT$ sütun",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOther": {
+    "message": "$COUNT$ sütun",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsFew": {
+    "message": "$COUNT$ sütun",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsMany": {
+    "message": "$COUNT$ sütun",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsColumns": {
+    "message": "$ROWS$ · $COLUMNS$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOne": {
+    "message": "$COUNT$ içinden $RANGE$ gösteriliyor",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOther": {
+    "message": "$COUNT$ içinden $RANGE$ gösteriliyor",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingFew": {
+    "message": "$COUNT$ içinden $RANGE$ gösteriliyor",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingMany": {
+    "message": "$COUNT$ içinden $RANGE$ gösteriliyor",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listPrevious": {
+    "message": "Önceki"
+  },
+  "listNext": {
+    "message": "Sonraki"
+  },
+  "listColKey": {
+    "message": "anahtar"
+  },
+  "listColTarget": {
+    "message": "hedef"
+  },
+  "listColStatus": {
+    "message": "durum"
+  },
+  "listColLang": {
+    "message": "dil"
+  },
+  "listOpenRow": {
+    "message": "Satırı aç"
+  },
+  "listExportCsv": {
+    "message": "CSV dışa aktar (filtreli)"
+  },
+  "listExportCsvTitle": {
+    "message": "Sütunlarınız ve _status, _step, _due… içeren CSV — istediğinizde yeniden içe aktarın, durumlar korunur"
+  },
+  "listBadgeReason": {
+    "message": "$STATUS$ · $REASON$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "reason": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeUntil": {
+    "message": "$STATUS$ → $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeStepDue": {
+    "message": "$STATUS$ · $STEP$. adım, son gün $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "listBadgeStepOn": {
+    "message": "$STATUS$ · $STEP$. adım $DATE$ tarihinde",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusNotStarted": {
+    "message": "başlanmadı"
+  },
+  "statusFilledUnconfirmed": {
+    "message": "dolduruldu, onaysız"
+  },
+  "statusSent": {
+    "message": "gönderildi"
+  },
+  "statusDeferred": {
+    "message": "ertelendi"
+  },
+  "statusNotSent": {
+    "message": "gönderilmedi"
+  },
+  "statusNotApplicable": {
+    "message": "uygun değil"
+  },
+  "statusReplied": {
+    "message": "yanıt geldi"
+  },
+  "statusDeclined": {
+    "message": "ret geldi"
+  },
+  "failNoForm": {
+    "message": "form yok"
+  },
+  "failCaptcha": {
+    "message": "captcha"
+  },
+  "failNoContact": {
+    "message": "iletişim yok"
+  },
+  "failTechnical": {
+    "message": "teknik"
+  },
+  "tplStep": {
+    "message": "Adım",
+    "description": "Accessible name of the step dropdown on the template screen."
+  },
+  "tplStepInitial": {
+    "message": "$N$. adım — ilk mesaj",
+    "description": "Step dropdown item for the first message of a sequence.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplStepFollowUp": {
+    "message": "$N$. adım — takip",
+    "description": "Step dropdown item for a follow-up message.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplChannel": {
+    "message": "Kanal",
+    "description": "Accessible name of the channel dropdown (body or subject)."
+  },
+  "tplChannelBody": {
+    "message": "Gövde",
+    "description": "Channel dropdown item: the message body."
+  },
+  "tplChannelSubject": {
+    "message": "Konu",
+    "description": "Channel dropdown item: the e-mail subject line."
+  },
+  "tplLocaleAria": {
+    "message": "Yerel ayar",
+    "description": "Accessible name of the locale input."
+  },
+  "tplLocaleLabel": {
+    "message": "yerel ayar",
+    "description": "Visible label next to the locale input. Lowercase on purpose."
+  },
+  "tplSourcePlaceholder": {
+    "message": "{Merhaba|Selam} %name%, %topic% hakkında {kısa|hızlı} bir soru …  (Studio'dan ya da sohbetinizden bir şablon yapıştırın; Ctrl+V burada çalışır)",
+    "description": "Placeholder of the template editor. Keep the spintax braces and the %name% / %topic% variables as they are; translate only the sentence in the parentheses."
+  },
+  "tplVarsRawAria": {
+    "message": "#set satırları olarak değişkenler",
+    "description": "Accessible name of the raw variables box. '#set' is engine syntax — keep it."
+  },
+  "tplRowsAria": {
+    "message": "İşlenecek satırlar",
+    "description": "Accessible name of the number input that picks how many rows the preview renders."
+  },
+  "tplTabList": {
+    "message": "Listeden",
+    "description": "Variables tab: values taken from the imported recipient list."
+  },
+  "tplTabRaw": {
+    "message": "Ham",
+    "description": "Variables tab: the same values as raw #set lines."
+  },
+  "tplCopyRawTitle": {
+    "message": "#set satırlarını kopyala — playground'a ya da Studio'ya yapıştırın",
+    "description": "Tooltip of the button that copies the raw variables."
+  },
+  "tplVarsCopied": {
+    "message": "Değişkenler kopyalandı.",
+    "description": "Confirmation after the variables were copied to the clipboard."
+  },
+  "tplClipboardBlocked": {
+    "message": "Pano engelli — metni seçip kopyalayın.",
+    "description": "Shown when the browser refused clipboard access."
+  },
+  "tplCopy": {
+    "message": "Kopyala",
+    "description": "Button that copies the raw variables."
+  },
+  "tplSave": {
+    "message": "Şablonu kaydet",
+    "description": "Primary button of the template screen."
+  },
+  "tplUnsavedRestored": {
+    "message": "Kaydedilmemiş düzenleme geri getirildi.",
+    "description": "Shown when the editor text kept from a previous visit was put back."
+  },
+  "tplRemoveInclude": {
+    "message": "$NAME$ dosyasını kaldır",
+    "description": "Accessible name of the button that removes one include file.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "signature"
+      }
+    }
+  },
+  "tplNoIncludes": {
+    "message": "#include dosyası yok.",
+    "description": "Shown instead of the include chips when the template has none."
+  },
+  "tplErrorsOne": {
+    "message": "$COUNT$ hata",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplErrorsFew": {
+    "message": "$COUNT$ hata",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "tplErrorsMany": {
+    "message": "$COUNT$ hata",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "tplErrorsOther": {
+    "message": "$COUNT$ hata",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplWarningsOne": {
+    "message": "$COUNT$ uyarı",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplWarningsFew": {
+    "message": "$COUNT$ uyarı",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "tplWarningsMany": {
+    "message": "$COUNT$ uyarı",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "tplWarningsOther": {
+    "message": "$COUNT$ uyarı",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplEngineTitle": {
+    "message": "Motor $VERSION$",
+    "description": "Tooltip of the status line: which engine build validated the template.",
+    "placeholders": {
+      "version": {
+        "content": "$1",
+        "example": "0.6.1"
+      }
+    }
+  },
+  "diagVariableUndefined": {
+    "message": "%$NAME$% bir sütun ya da profil alanı değil — adını değiştirin ya da bir sütun ekleyin",
+    "description": "Engine diagnostic in user words: the template uses a variable the campaign does not know. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "diagVariableUndefinedAnon": {
+    "message": "bu değişken bir sütun ya da profil alanı değil — adını değiştirin ya da bir sütun ekleyin",
+    "description": "Same diagnostic when the engine did not report which variable it was."
+  },
+  "diagUnclosed": {
+    "message": "Kapanış parantezi eksik ($LINE$. satır)",
+    "description": "Engine diagnostic in user words: an unclosed or unbalanced brace.",
+    "placeholders": {
+      "line": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "diagEmptyAlternative": {
+    "message": "$LINE$. satırda boş seçenek — fazladan \"|\" işaretini silin",
+    "description": "Engine diagnostic in user words: two pipes with nothing between them. The pipe is spintax syntax — keep it.",
+    "placeholders": {
+      "line": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "tplValid": {
+    "message": "Şablon geçerli.",
+    "description": "Success panel shown when the engine reported no diagnostics."
+  },
+  "tplSeverityError": {
+    "message": "hata",
+    "description": "Badge on a diagnostic that blocks saving."
+  },
+  "tplSeverityWarning": {
+    "message": "uyarı",
+    "description": "Badge on a diagnostic that does not block saving."
+  },
+  "varsGroupTarget": {
+    "message": "hedef",
+    "description": "Variables table group: the column that holds the contact page or address."
+  },
+  "varsGroupLang": {
+    "message": "dil",
+    "description": "Variables table group: the column that holds the row language."
+  },
+  "varsGroupColumn": {
+    "message": "sütun",
+    "description": "Variables table group: an ordinary column of the list."
+  },
+  "varsGroupProfile": {
+    "message": "profil",
+    "description": "Variables table group: a constant from the sender profile."
+  },
+  "varsGroupDerived": {
+    "message": "türev",
+    "description": "Variables table group: a value the extension computes itself (key, domain, today)."
+  },
+  "varsGroupMissing": {
+    "message": "eksik",
+    "description": "Variables table group: used in the template but unknown to the campaign."
+  },
+  "tplVarNotInCampaign": {
+    "message": "kampanyada yok",
+    "description": "Sample-value cell of a variable the campaign does not define."
+  },
+  "tplVarUsed": {
+    "message": "geçer",
+    "description": "Flag on a variable the template actually uses."
+  },
+  "tplVarUnused": {
+    "message": "geçmez",
+    "description": "Flag on a variable the campaign has but the template does not use."
+  },
+  "tplVarAdd": {
+    "message": "ekle",
+    "description": "Flag on a missing variable with no near-match to rename it to."
+  },
+  "tplRenameTo": {
+    "message": "%$NAME$% olarak değiştir",
+    "description": "Button that rewrites a misspelled variable to the nearest known one. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "tplAddColumnTitle": {
+    "message": "Bu değişkenle bir sütun ya da profil sabiti ekleyin",
+    "description": "Tooltip of the 'add' flag on a missing variable."
+  },
+  "tplVarsFromRow": {
+    "message": "$KEY$ satırından değerler.",
+    "description": "Hint under the variables table: which row the sample values come from.",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "tplVarsNoRows": {
+    "message": "Örnek değerleri görmek için bir liste içe aktarın.",
+    "description": "Hint under the variables table when no list has been imported yet."
+  },
+  "tplVarsConstructs": {
+    "message": "Yapılar: $LIST$ (tahmin, varyant sayısı değil).",
+    "description": "Hint under the variables table: which spintax constructs the template uses. The list itself is engine vocabulary and stays English.",
+    "placeholders": {
+      "list": {
+        "content": "$1",
+        "example": "alternation 4 · variable 3"
+      }
+    }
+  },
+  "tplErrorBannerTitle": {
+    "message": "Şablon hatası",
+    "description": "Title of the banner that replaces the preview while the template does not compile."
+  },
+  "tplNoRows": {
+    "message": "Gerçek satırları işlemek için bir liste içe aktarın — aynı şablondan her satır kendi metnini alır.",
+    "description": "Empty state of the variants list."
+  },
+  "tplSeed": {
+    "message": "seed $SEED$",
+    "description": "The deterministic seed a preview variant was rendered with.",
+    "placeholders": {
+      "seed": {
+        "content": "$1",
+        "example": "example.com:1"
+      }
+    }
+  },
+  "tplCopyVariant": {
+    "message": "Bu varyantı kopyala",
+    "description": "Tooltip and accessible name of the copy button on a preview variant."
+  },
+  "tplVariantCopied": {
+    "message": "Varyant kopyalandı.",
+    "description": "Confirmation after one preview variant was copied."
+  },
+  "tplRespinTitle": {
+    "message": "Her satır için başka bir varyant (yalnızca önizleme — kuyruk satırın seed'ini korur)",
+    "description": "Tooltip of the re-spin button."
+  },
+  "tplRespin": {
+    "message": "Yeniden üret",
+    "description": "Button that re-renders the preview with a different variant per row."
+  },
+  "tplPlaygroundTitle": {
+    "message": "Bu şablonu, örnek bir satır değişken olarak spintax.net playground'da aç",
+    "description": "Tooltip of the playground button. 'spintax.net' is a domain — keep it."
+  },
+  "tplTooLongForLink": {
+    "message": "Bağlantı için fazla uzun — .spintax olarak kaydedip dosyayı Studio'da açın.",
+    "description": "Shown when the template does not fit into a playground URL."
+  },
+  "tplPlayground": {
+    "message": "Playground'da aç",
+    "description": "Button that opens the template in the spintax.net playground."
+  },
+  "tplSaveFileTitle": {
+    "message": ".spintax dosyası olarak kaydet — Spintax Studio, VS Code ya da Sublime ile açılır",
+    "description": "Tooltip of the download button. The product names stay as they are."
+  },
+  "tplSaveFile": {
+    "message": ".spintax kaydet",
+    "description": "Button that downloads the template as a .spintax file. The extension stays as it is."
+  },
+  "tplStudioTitle": {
+    "message": "Spintax Studio — tam çevrimdışı editör (Windows); kaydettiğiniz .spintax dosyasını orada açın",
+    "description": "Tooltip of the Spintax Studio link. The product name stays as it is."
+  },
+  "tplStudioLink": {
+    "message": "Spintax Studio",
+    "description": "Link to the desktop editor. Product name — keep it as it is."
+  },
+  "tplClearTitle": {
+    "message": "Editörü temizle (kayıtlı şablon, yeniden kaydedene kadar durur)",
+    "description": "Tooltip of the clear button."
+  },
+  "tplClear": {
+    "message": "Temizle",
+    "description": "Button that empties the template editor."
+  },
+  "tplSaved": {
+    "message": "Kaydedildi.",
+    "description": "Confirmation after the template was stored."
+  },
+  "tplTemplate": {
+    "message": "Şablon",
+    "description": "Label of the template editor block and accessible name of its section."
+  },
+  "tplLoadFile": {
+    "message": ".spintax yükle",
+    "description": "Label of the file picker that fills the editor from a file."
+  },
+  "tplAddIncludes": {
+    "message": "#include dosyası ekle",
+    "description": "Label of the file picker that attaches #include files."
+  },
+  "tplVariables": {
+    "message": "Değişkenler",
+    "description": "Label of the variables block and accessible name of its tab list."
+  },
+  "tplVariants": {
+    "message": "Varyantlar",
+    "description": "Accessible name of the preview section."
+  },
+  "tplVariantsHead": {
+    "message": "Varyantlar — gerçek satırlar",
+    "description": "Label of the preview block: one variant per row of the imported list."
+  },
+  "tplRowsLabel": {
+    "message": "satır",
+    "description": "Label of the input that picks how many rows the preview renders. Lowercase on purpose."
+  },
+  "tplWarnEmptyVariable": {
+    "message": "%$NAME$% boş ve varsayılanı yok",
+    "description": "Render warning under a variant. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "tplWarnLeakedMarkup": {
+    "message": "Çıktıya sızan işaretleme: $SAMPLE$",
+    "description": "Render warning under a variant: spintax syntax survived into the rendered text.",
+    "placeholders": {
+      "sample": {
+        "content": "$1",
+        "example": "{quick|short"
+      }
+    }
+  },
+  "tplWarnRenderError": {
+    "message": "İşleme hatası: $MESSAGE$",
+    "description": "Render warning under a variant. The message comes from the engine and stays English.",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "unexpected token"
+      }
+    }
+  },
+  "aiSummary": {
+    "message": "Şablonu yapay zeka ile yaz — anahtar yok, kendi sohbetiniz",
+    "description": "Summary line of the collapsible 'write with AI' section."
+  },
+  "aiIntroBuilt": {
+    "message": "İstem, sütunlarınızdan (adlar, örnekler, boş hücre korumaları, ipuçları) ve standart Spintax yazım isteminden kurulur.",
+    "description": "First sentence of the AI section intro."
+  },
+  "aiIntroPaste": {
+    "message": "Herhangi bir sohbete kopyalayın, yanıtı yukarıdaki şablon kutusuna yapıştırın — yapıştırılınca doğrulanır.",
+    "description": "Second sentence of the AI section intro."
+  },
+  "aiIntroOpenIn": {
+    "message": "\"…'de aç\" düğmeleri istemi URL'de taşıyıp sohbeti önceden doldurur; Gönder'e yine siz basarsınız.",
+    "description": "Third sentence of the AI section intro. 'Open in …' quotes the buttons below it."
+  },
+  "aiBriefLabel": {
+    "message": "Brief",
+    "description": "Label of the textarea where the user describes the message they want."
+  },
+  "aiBriefPlaceholder": {
+    "message": "Mesaj ne yapmalı? Hedef kitle, teklif, ton — bir iki cümle. İsterseniz ton için bir satır ekleyin.",
+    "description": "Placeholder of the brief textarea."
+  },
+  "aiChannel": {
+    "message": "Kanal",
+    "description": "Accessible name of the channel dropdown in the AI section."
+  },
+  "aiChannelGeneric": {
+    "message": "İletişim formu / sohbet",
+    "description": "AI channel dropdown item: a website contact form or chat widget."
+  },
+  "aiChannelEmail": {
+    "message": "E-posta",
+    "description": "AI channel dropdown item: an e-mail message."
+  },
+  "aiChannelSms": {
+    "message": "Kısa mesaj",
+    "description": "AI channel dropdown item: SMS or a messenger with a tight limit."
+  },
+  "aiVariation": {
+    "message": "Çeşitlilik düzeyi",
+    "description": "Accessible name of the dropdown that picks how much the wording should vary."
+  },
+  "aiVariationBalanced": {
+    "message": "Dengeli çeşitlilik",
+    "description": "Variation dropdown item: the default amount of variation."
+  },
+  "aiVariationConservative": {
+    "message": "Tutucu",
+    "description": "Variation dropdown item: few alternatives, close wording."
+  },
+  "aiVariationAggressive": {
+    "message": "Agresif",
+    "description": "Variation dropdown item: many alternatives, wider wording."
+  },
+  "aiIncludeSamples": {
+    "message": "listeden örnek değerleri ekle",
+    "description": "Checkbox that adds real sample values to the prompt. Lowercase on purpose."
+  },
+  "aiPromptLabel": {
+    "message": "İstem (düzenlenebilir — kopyalanan tam olarak budur)",
+    "description": "Label of the prompt preview textarea."
+  },
+  "aiCopyPrompt": {
+    "message": "İstemi kopyala",
+    "description": "Primary button of the AI section."
+  },
+  "aiOpenChatGpt": {
+    "message": "ChatGPT'de aç",
+    "description": "Link that opens ChatGPT with the prompt prefilled. Product name — keep it as it is."
+  },
+  "aiOpenClaude": {
+    "message": "Claude Desktop'ta aç",
+    "description": "Link that opens Claude Desktop with the prompt prefilled. Product name — keep it as it is."
+  },
+  "aiCopyFixIt": {
+    "message": "Düzeltme istemini kopyala",
+    "description": "Button that copies a prompt asking the chat to repair the broken template."
+  },
+  "aiNoBrief": {
+    "message": "Önce bir brief yazın.",
+    "description": "Shown when the copy button is pressed with an empty brief."
+  },
+  "aiPromptCopied": {
+    "message": "İstem kopyalandı — sohbetinize yapıştırın (Ctrl+V), sonra yanıtı aşağıya yapıştırın.",
+    "description": "Confirmation after the authoring prompt was copied."
+  },
+  "aiFixItCopied": {
+    "message": "Düzeltme istemi kopyalandı — sohbetinize yapıştırın (Ctrl+V), sonra yanıtı aşağıya yapıştırın.",
+    "description": "Confirmation after the repair prompt was copied."
+  },
+  "aiClipboardBlocked": {
+    "message": "Pano engelli — önizlemedeki metni seçip elle kopyalayın.",
+    "description": "Shown when the browser refused clipboard access in the AI section."
+  },
+  "welPageTitle": {
+    "message": "Spintax'e hoş geldiniz",
+    "description": "Title of the standalone welcome page (welcome.html); the <title> tag carries the English fallback."
+  },
+  "welTagline": {
+    "message": "Manuel outreach için şablonlar, değişkenler ve bir kuyruk."
+  },
+  "panelPageTitle": {
+    "message": "Spintax",
+    "description": "Title of the side panel document; the <title> tag carries the English fallback."
+  },
+  "welHeroTitle": {
+    "message": "Manuel outreach, satır satır"
+  },
+  "welHeroText": {
+    "message": "Spintax, iletişim formlarını ve mesajları listenizden ve şablonunuzdan doldurur. Hiçbir şeyi göndermez, captcha çözmez, sunucuyla konuşmaz — Gönder'e siz basarsınız."
+  },
+  "welTryDemo": {
+    "message": "Demo kampanyayı deneyin"
+  },
+  "welOpenDemo": {
+    "message": "Demo kampanyayı aç",
+    "description": "Same button as welTryDemo once the demo campaign is already installed."
+  },
+  "welStartOwn": {
+    "message": "Kendi listemle başla"
+  },
+  "welDemoInstalled": {
+    "message": "\"$NAME$\" demo kampanyası kuruldu — uzantıyla gelen beş blog, gerçek hiçbir şey yok.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Demo — five blogs"
+      }
+    }
+  },
+  "welRemoveDemo": {
+    "message": "Demoyu kaldır"
+  },
+  "welDemoRemoved": {
+    "message": "Demo kaldırıldı."
+  },
+  "welStep1Title": {
+    "message": "Bir liste içe aktarın"
+  },
+  "welStep1Text": {
+    "message": "CSV, XLSX ya da yapıştırma. Sütunlar değişkene dönüşür — %name%, %site%, %topic%. Satırlar siteye ya da e-postaya göre birleşir, yeniden içe aktarma kopya yaratmaz.",
+    "description": "%name%, %site% and %topic% are template variable names — keep them as they are."
+  },
+  "welStep2Title": {
+    "message": "Tek bir şablon yazın"
+  },
+  "welStep2Text": {
+    "message": "Spintax: {Merhaba|Selam} %name%… Her satır kendi metnini alır, satır anahtarından yeniden üretilebilir. Taslağı yapay zeka sohbetinize yazdırın — istem bir tık uzakta.",
+    "description": "{Hi|Hello} is spintax syntax; the words inside may be translated, the braces and the pipe may not."
+  },
+  "welStep3Title": {
+    "message": "Kuyruğu adımlayın"
+  },
+  "welStep3Text": {
+    "message": "Hedef sayfada yan paneli açın, Doldur'a basın, formu kontrol edin, Gönder'e kendiniz basın, satırı işaretleyin. Takipler kendi gününde geri gelir."
+  },
+  "welQuickTitle": {
+    "message": "Hızlı işlemler"
+  },
+  "welQuickText": {
+    "message": "Her ekranda, başlıkta — bir çekmece açar ve yaptığınız işi hiç bölmez."
+  },
+  "welQuickProfile": {
+    "message": "Gönderen profili ekle"
+  },
+  "welQuickRows": {
+    "message": "Satır ekle"
+  },
+  "welQuickRowsBlocked": {
+    "message": "Önce bir liste içe aktarın — satırların yerleşeceği sütunlar gerekli",
+    "description": "Tooltip on the disabled \"Add rows\" chip."
+  },
+  "welQuickFiles": {
+    "message": "Dosya ekle"
+  },
+  "welPanelTitle": {
+    "message": "Yan panelde"
+  },
+  "welPanelOpenTarget": {
+    "message": "satırın sayfasını açar (ya da posta uygulamanızda / web postanızda yeni bir e-posta — bkz. Ayarlar).",
+    "description": "Follows the quoted side-panel button name \"Open target\" and an em dash: \"Open target — the row's page…\"."
+  },
+  "welPanelFill": {
+    "message": "siteyi bir kez sorar, tanıdığı alanları doldurur, alan alan rapor verir; zengin metin editörlerine metin panodan gider.",
+    "description": "Follows the quoted side-panel button name \"Fill on site.com\" and an em dash."
+  },
+  "welPanelSent": {
+    "message": "sonucu kaydedip ilerler; diğer sonuçlar \"Gönderilmedi, çünkü\" ve \"Diğer işlemler\" altında.",
+    "description": "Follows the quoted side-panel button name \"Sent — next (S)\" and an em dash. \"Not sent…\" and \"More…\" quote panel buttons — use the same wording as panelNotSent / panelMore."
+  },
+  "welPanelKeysLabel": {
+    "message": "Tuşlar",
+    "description": "Bold lead-in of the keyboard-shortcuts line; not a button name."
+  },
+  "welPanelKeys": {
+    "message": "Enter = ana işlem, S = gönderildi ve sıradaki, N = sonraki satır (metin alanlarının dışında). Genel kısayolları tarayıcının uzantı kısayolları sayfasından kendiniz atarsınız.",
+    "description": "Follows the bold \"Keys\" and an em dash. S and N are the physical keys — keep them Latin."
+  },
+  "welPanelMappingLabel": {
+    "message": "Alan eşlemesi",
+    "description": "Bold lead-in quoting the side panel's field-mapping section."
+  },
+  "welPanelMapping": {
+    "message": "neyin nereye gittiğini gösterir; yardımcının atladığı alanı gösterin, bir alanı sabitleyin, yanlış tarifi unutun.",
+    "description": "Follows the bold \"Field mapping\" and an em dash."
+  },
+  "welPrivacyTitle": {
+    "message": "Gizlilik"
+  },
+  "welPrivacyText": {
+    "message": "Her şey bu tarayıcı profilinde kalır: listeler, şablonlar, günlük, dosyalar. Hesap yok, telemetri yok, ağ yok — tek isteğe bağlı istek 301.sh haber akışı, varsayılan olarak kapalı. Yedekleme ve her şeyi silme Ayarlar'da."
+  },
+  "welNews": {
+    "message": "Yayıncı haberleri — 301.sh yeni yazı yayımladığında bildirim (6 saatte bir kontrol edilir, hakkınızda hiçbir şey gönderilmez). Zile basana kadar kapalı.",
+    "description": "Follows the news bell button on the welcome page."
+  },
+  "welPrivacyPolicy": {
+    "message": "Gizlilik politikası"
+  },
+  "welSpintaxWithAi": {
+    "message": "Yapay zeka ile spintax"
+  },
+  "welPlayground": {
+    "message": "Playground",
+    "description": "Link to the online spintax playground on 301.st."
+  },
+  "colSummaryOne": {
+    "message": "Sütunlar ($COUNT$) — tür, form alanları, varsayılanlar, ipuçları",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "colSummaryFew": {
+    "message": "Sütunlar ($COUNT$) — tür, form alanları, varsayılanlar, ipuçları",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "colSummaryMany": {
+    "message": "Sütunlar ($COUNT$) — tür, form alanları, varsayılanlar, ipuçları",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "colSummaryOther": {
+    "message": "Sütunlar ($COUNT$) — tür, form alanları, varsayılanlar, ipuçları",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "colTypeOf": {
+    "message": "$COLUMN$ sütununun türü",
+    "description": "Accessible name of the column type dropdown.",
+    "placeholders": {
+      "column": {
+        "content": "$1",
+        "example": "Company"
+      }
+    }
+  },
+  "colTypeText": {
+    "message": "metin",
+    "description": "Column type: the cell holds text."
+  },
+  "colTypeFile": {
+    "message": "dosya (kitaplıktan)",
+    "description": "Column type: the cell holds the sha256 of a file from the asset library."
+  },
+  "colFillableTitle": {
+    "message": "Bu sütunu bir form alanına değer olarak öner (seçim, dosya, metin)"
+  },
+  "colFillable": {
+    "message": "form alanına doldur"
+  },
+  "colRequired": {
+    "message": "zorunlu"
+  },
+  "colHidden": {
+    "message": "gizli"
+  },
+  "colDefaultPlaceholder": {
+    "message": "boş hücreler için varsayılan"
+  },
+  "colNotePlaceholder": {
+    "message": "yapay zeka istemi için ipucu, örn. marka — ek getirmeyin"
+  },
+  "colSave": {
+    "message": "Sütunları kaydet"
+  },
+  "colSaved": {
+    "message": "Kaydedildi."
+  },
+  "stepSummaryOne": {
+    "message": "Adımlar ($COUNT$) — ilk mesaj + takipler",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSummaryFew": {
+    "message": "Adımlar ($COUNT$) — ilk mesaj + takipler",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSummaryMany": {
+    "message": "Adımlar ($COUNT$) — ilk mesaj + takipler",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSummaryOther": {
+    "message": "Adımlar ($COUNT$) — ilk mesaj + takipler",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "stepLabel": {
+    "message": "$N$. adım",
+    "description": "Bold lead-in of a step row in the steps editor.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepInitial": {
+    "message": "ilk mesaj",
+    "description": "Follows \"Step 1\" and an em dash."
+  },
+  "stepFollowup": {
+    "message": "takip, öncekinden",
+    "description": "Follows \"Step 2\" and an em dash; the delay input and stepFollowupDays finish the line: \"Step 2 — follow-up, [3] days after the previous step\"."
+  },
+  "stepFollowupDays": {
+    "message": "gün sonra",
+    "description": "Follows the delay input; see stepFollowup for the whole line."
+  },
+  "stepDelayAria": {
+    "message": "$N$. adım için gecikme günü",
+    "description": "Accessible name of the delay input.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepAdd": {
+    "message": "Takip ekle"
+  },
+  "stepRemove": {
+    "message": "Sonuncuyu kaldır"
+  },
+  "stepSave": {
+    "message": "Adımları kaydet"
+  },
+  "stepSavedOne": {
+    "message": "Kaydedildi; $COUNT$ satır yeniden hesaplandı.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSavedFew": {
+    "message": "Kaydedildi; $COUNT$ satır yeniden hesaplandı.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSavedMany": {
+    "message": "Kaydedildi; $COUNT$ satır yeniden hesaplandı.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSavedOther": {
+    "message": "Kaydedildi; $COUNT$ satır yeniden hesaplandı.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "demoBannerSent": {
+    "message": "Demo: hiçbir şey gönderilmedi. İlerlemek için yan panelde satırı gönderildi olarak işaretleyin.",
+    "description": "Banner on the bundled demo pages after a harmless \"submit\"."
+  },
+  "cmdActionTitle": {
+    "message": "Spintax",
+    "description": "Tooltip of the toolbar button and title of the Firefox sidebar."
+  },
+  "cmdFill": {
+    "message": "Geçerli sayfada eşlenen alanları doldur",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdCopyOpen": {
+    "message": "Mesajı kopyala ve hedefi aç",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdMarkSentNext": {
+    "message": "Gönderildi olarak işaretle ve sonraki satıra geç",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdNextRow": {
+    "message": "Sonraki satıra geç",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdSidebar": {
+    "message": "Spintax kenar çubuğunu aç",
+    "description": "Firefox only: the bindable _execute_sidebar_action command."
+  },
+  "wizStepImport": {
+    "message": "İçe aktarma",
+    "description": "Step chip 1 of the campaign wizard. One word — the five chips share one row."
+  },
+  "wizStepRoles": {
+    "message": "Roller ve kopyalar",
+    "description": "Step chip 2 of the campaign wizard: give each column a role and settle duplicate rows."
+  },
+  "wizStepProfile": {
+    "message": "Profil ve şablon",
+    "description": "Step chip 3 of the campaign wizard: who writes and what is written."
+  },
+  "wizStepProblems": {
+    "message": "Sorunlar",
+    "description": "Step chip 4 of the campaign wizard: rows that cannot be sent as they are."
+  },
+  "wizStepQueue": {
+    "message": "Kuyruğu adımla",
+    "description": "Step chip 5 of the campaign wizard: go through the rows by hand in the side panel."
+  },
+  "wizStep1Title": {
+    "message": "1. adım — Liste içe aktarma",
+    "description": "Heading of wizard step 1."
+  },
+  "wizImportHint": {
+    "message": "CSV / TSV / XLSX ya da Sheets'ten yapıştırma. Roller değerlerden algılanır.",
+    "description": "Status line under the step 1 heading before a file is chosen. The file formats are file extensions — keep them."
+  },
+  "wizFileLabel": {
+    "message": "Dosya",
+    "description": "Label of the file picker on wizard step 1."
+  },
+  "wizOrPasteLabel": {
+    "message": "Ya da yapıştırın",
+    "description": "Label of the paste box on wizard step 1, the alternative to picking a file."
+  },
+  "wizPastePlaceholder": {
+    "message": "Google Sheets / Excel'den kopyaladığınız satırları yapıştırın (sekmeyle ayrılmış)…",
+    "description": "Placeholder of the paste box on wizard step 1."
+  },
+  "wizSheetLabel": {
+    "message": "Sayfa",
+    "description": "Label and accessible name of the dropdown that picks a sheet of a multi-sheet XLSX file."
+  },
+  "wizSheetOptionOne": {
+    "message": "$NAME$ ($COUNT$ satır)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionFew": {
+    "message": "$NAME$ ($COUNT$ satır)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionMany": {
+    "message": "$NAME$ ($COUNT$ satır)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionOther": {
+    "message": "$NAME$ ($COUNT$ satır)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizPastedTable": {
+    "message": "Yapıştırılan tablo",
+    "description": "Stands in for the file name in the import status line when the rows came from the paste box."
+  },
+  "wizFileError": {
+    "message": "Dosya okunamadı: $ERROR$",
+    "description": "Import failed: the browser's own error message follows and stays untranslated.",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Unsupported zip entry"
+      }
+    }
+  },
+  "wizNoRowsFound": {
+    "message": "Satır bulunamadı — ilk satırda başlıklar var mı bakın.",
+    "description": "The chosen file or pasted text parsed to nothing usable."
+  },
+  "wizRowsOne": {
+    "message": "$COUNT$ satır",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizRowsFew": {
+    "message": "$COUNT$ satır",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizRowsMany": {
+    "message": "$COUNT$ satır",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizRowsOther": {
+    "message": "$COUNT$ satır",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
+    }
+  },
+  "wizColumnsOne": {
+    "message": "$COUNT$ sütun",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizColumnsFew": {
+    "message": "$COUNT$ sütun",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizColumnsMany": {
+    "message": "$COUNT$ sütun",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizColumnsOther": {
+    "message": "$COUNT$ sütun",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "wizImportedCounts": {
+    "message": "$SOURCE$: $ROWS$ × $COLUMNS$.",
+    "description": "First sentence of the import status line: where the table came from and its size. SOURCE is a file name (data, never translated), ROWS and COLUMNS arrive already pluralised.",
+    "placeholders": {
+      "source": {
+        "content": "$1",
+        "example": "contacts.csv"
+      },
+      "rows": {
+        "content": "$2",
+        "example": "1200 rows"
+      },
+      "columns": {
+        "content": "$3",
+        "example": "7 columns"
+      }
+    }
+  },
+  "wizNoHeaderRow": {
+    "message": "Başlık satırı bulunamadı — sütun adları tahmin edildi (id, email, phone…); 2. adımda değiştirin.",
+    "description": "Second sentence of the import status line when the file had no header row. The names in the parentheses are examples of guessed column names."
+  },
+  "wizSkippedTitleRowsOne": {
+    "message": "Başlığın üstündeki $COUNT$ başlık satırı atlandı.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizSkippedTitleRowsFew": {
+    "message": "Başlığın üstündeki $COUNT$ başlık satırı atlandı.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizSkippedTitleRowsMany": {
+    "message": "Başlığın üstündeki $COUNT$ başlık satırı atlandı.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizSkippedTitleRowsOther": {
+    "message": "Başlığın üstündeki $COUNT$ başlık satırı atlandı.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "wizBatchRange": {
+    "message": "Parti: $FROM$–$TO$ arası satırlar.",
+    "description": "Last sentence of the import status line for a big file: which slice of the rows is being imported. The dash between the two numbers is an en dash.",
+    "placeholders": {
+      "from": {
+        "content": "$1",
+        "example": "1"
+      },
+      "to": {
+        "content": "$2",
+        "example": "1000"
+      }
+    }
+  },
+  "wizFileRowsOne": {
+    "message": "$ROWS$ satır",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "1"
+      }
+    }
+  },
+  "wizFileRowsFew": {
+    "message": "$ROWS$ satır",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "wizFileRowsMany": {
+    "message": "$ROWS$ satır",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "11"
+      }
+    }
+  },
+  "wizFileRowsOther": {
+    "message": "$ROWS$ satır",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "40,000"
+      }
+    }
+  },
+  "wizBatchIntro": {
+    "message": "— elle adımlayacağınız bir kuyruk. Şimdi bir parti içe aktarın; sonraki için dosyayı daha sonra yeniden yükleyin (içe aktarılmış satırlar anahtara göre birleşir).",
+    "description": "Follows the bold row count of the batch panel and finishes its sentence, so it opens with an em dash."
+  },
+  "wizBatchRowsLabel": {
+    "message": "Satırlar",
+    "description": "Opens the batch form row: Rows [from] to [to] · batch of [size]."
+  },
+  "wizBatchTo": {
+    "message": "–",
+    "description": "Between the first row of the batch (an input) and the last one (a number) in the batch form row."
+  },
+  "wizBatchSizeLabel": {
+    "message": "parti",
+    "description": "Label of the batch size input in the batch form row. Lowercase on purpose — it continues the line."
+  },
+  "wizBatchFirstAria": {
+    "message": "Partinin ilk satırı",
+    "description": "Accessible name of the number input that picks where the batch starts."
+  },
+  "wizBatchSizeAria": {
+    "message": "Partideki satır sayısı",
+    "description": "Accessible name of the number input that picks how many rows the batch takes."
+  },
+  "wizBatchFirst": {
+    "message": "ilk $COUNT$",
+    "description": "Button of the batch form row: jump back to the first N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizBatchNext": {
+    "message": "sonraki $COUNT$",
+    "description": "Button of the batch form row: move on to the next N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizBatchMax": {
+    "message": "parti başına en fazla $COUNT$",
+    "description": "Muted note next to the batch buttons: the hard cap on one batch.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5,000"
+      }
+    }
+  },
+  "wizContinueRolesOne": {
+    "message": "Roller ve kopyalara geç ($COUNT$ satır)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizContinueRolesFew": {
+    "message": "Roller ve kopyalara geç ($COUNT$ satır)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizContinueRolesMany": {
+    "message": "Roller ve kopyalara geç ($COUNT$ satır)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizContinueRolesOther": {
+    "message": "Roller ve kopyalara geç ($COUNT$ satır)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizStep2Title": {
+    "message": "2. adım — Roller ve kopyalar",
+    "description": "Heading of wizard step 2."
+  },
+  "wizNothingImported": {
+    "message": "Bu oturumda hiçbir şey içe aktarılmadı — liste almak için 1. adıma dönün.",
+    "description": "Wizard step 2 opened without a table in memory (after a reload)."
+  },
+  "wizImportSummaryOne": {
+    "message": "İçe aktarma: $COUNT$ satır · eklenen $ADDS$ · güncellenen $UPDATES$ · dosya içinde birleşen $MERGED$ · birebir kopya $DUPES$ · dışarıda kalan $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "0"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryFew": {
+    "message": "İçe aktarma: $COUNT$ satır · eklenen $ADDS$ · güncellenen $UPDATES$ · dosya içinde birleşen $MERGED$ · birebir kopya $DUPES$ · dışarıda kalan $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "2"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "1"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryMany": {
+    "message": "İçe aktarma: $COUNT$ satır · eklenen $ADDS$ · güncellenen $UPDATES$ · dosya içinde birleşen $MERGED$ · birebir kopya $DUPES$ · dışarıda kalan $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "9"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "2"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryOther": {
+    "message": "İçe aktarma: $COUNT$ satır · eklenen $ADDS$ · güncellenen $UPDATES$ · dosya içinde birleşen $MERGED$ · birebir kopya $DUPES$ · dışarıda kalan $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1180"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "12"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "5"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "2"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "1"
+      }
+    }
+  },
+  "wizNoTargetColumn": {
+    "message": "Bir hedef sütunu seçin (URL / e-posta / @kullanıcı adı) — hedefi olmayan satırlar içe aktarılamaz.",
+    "description": "Blocker on wizard step 2: no column carries the role \"target\" yet."
+  },
+  "wizApplyImport": {
+    "message": "İçe aktarmayı uygula ($COUNT$)",
+    "description": "Primary button of wizard step 2: how many rows will be written (added plus updated).",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
+    }
+  },
+  "wizNamingPastePlaceholder": {
+    "message": "yanıt satırını yapıştırın: id; email; phone; …",
+    "description": "Placeholder of the input that takes the AI chat's answer. The example names show the expected shape — semicolons separate them."
+  },
+  "wizNamingPasteAria": {
+    "message": "Yapay zeka yanıtından sütun adları",
+    "description": "Accessible name of the input that takes the AI chat's answer."
+  },
+  "wizNamingExpectedOne": {
+    "message": "\";\" ile ayrılmış $COUNT$ ad bekleniyordu.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizNamingExpectedFew": {
+    "message": "\";\" ile ayrılmış $COUNT$ ad bekleniyordu.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizNamingExpectedMany": {
+    "message": "\";\" ile ayrılmış $COUNT$ ad bekleniyordu.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizNamingExpectedOther": {
+    "message": "\";\" ile ayrılmış $COUNT$ ad bekleniyordu.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "wizPromptCopied": {
+    "message": "İstem kopyalandı — yapay zeka sohbetinize yapıştırın, sonra yanıtı buraya yapıştırın.",
+    "description": "The \"name these columns\" prompt reached the clipboard."
+  },
+  "wizClipboardBlocked": {
+    "message": "Pano engelli — adları elle seçin.",
+    "description": "The browser refused clipboard access, so the prompt could not be copied."
+  },
+  "wizCopyNamingPrompt": {
+    "message": "İstemi kopyala: bu sütunları adlandır",
+    "description": "Button that copies a prompt for an AI chat. The prompt itself is sent to a model and stays English."
+  },
+  "wizApplyNames": {
+    "message": "Adları uygula",
+    "description": "Button that renames the columns from the pasted answer line."
+  },
+  "wizColumnNameAria": {
+    "message": "Sütun adı",
+    "description": "Accessible name of the header input in the roles table."
+  },
+  "wizVariableTitle": {
+    "message": "Değişken: %$NAME$%",
+    "description": "Tooltip of the header input: the template variable this column feeds. The percent signs are spintax syntax — keep them around the name, and leave the name itself as it is.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "company"
+      }
+    }
+  },
+  "wizRoleFor": {
+    "message": "$COLUMN$ için rol",
+    "description": "Accessible name of the role dropdown. COLUMN is the user's own column header — data, never translated.",
+    "placeholders": {
+      "column": {
+        "content": "$1",
+        "example": "E-mail"
+      }
+    }
+  },
+  "wizRoleNone": {
+    "message": "— rol yok",
+    "description": "Role dropdown item: an ordinary column, used only as a template variable. Opens with an em dash."
+  },
+  "wizRoleNoneHint": {
+    "message": "sıradan bir değişken",
+    "description": "Hint under the \"no role\" dropdown item."
+  },
+  "wizRoleTarget": {
+    "message": "hedef",
+    "description": "Role dropdown item: the column that says where to reach the recipient. Lowercase on purpose."
+  },
+  "wizRoleTargetHint": {
+    "message": "site / e-posta / @kullanıcı adı",
+    "description": "Hint under the \"target\" dropdown item."
+  },
+  "wizRoleLang": {
+    "message": "dil",
+    "description": "Role dropdown item: the column that says which language the row is written in. Lowercase on purpose."
+  },
+  "wizRoleLangHint": {
+    "message": "satırın yerel ayarı (dile göre şablon)",
+    "description": "Hint under the \"lang\" dropdown item."
+  },
+  "wizRoleKey": {
+    "message": "anahtar (elle)",
+    "description": "Role dropdown item: the column that carries the user's own row key. Lowercase on purpose."
+  },
+  "wizRoleKeyHint": {
+    "message": "türetilen yerine kendi satır anahtarınız",
+    "description": "Hint under the \"key (override)\" dropdown item."
+  },
+  "wizSampleValue": {
+    "message": "örn. $VALUE$",
+    "description": "Tooltip of a variable chip: the first non-empty value in that column. The value is the user's data.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "anna@example.com"
+      }
+    }
+  },
+  "wizNoValues": {
+    "message": "değer yok",
+    "description": "Tooltip of a variable chip whose column is empty in every row."
+  },
+  "wizEmptyPct": {
+    "message": "%$PCT$ boş",
+    "description": "Badge on a variable chip: the share of rows where this column is blank. Keep the percent sign next to the number.",
+    "placeholders": {
+      "pct": {
+        "content": "$1",
+        "example": "40"
+      }
+    }
+  },
+  "wizConflictsOne": {
+    "message": "$COUNT$ satır farklı — alan alan karar verin",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizConflictsFew": {
+    "message": "$COUNT$ satır farklı — alan alan karar verin",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizConflictsMany": {
+    "message": "$COUNT$ satır farklı — alan alan karar verin",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizConflictsOther": {
+    "message": "$COUNT$ satır farklı — alan alan karar verin",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "wizConflictTwiceInFile": {
+    "message": "dosyada iki kez",
+    "description": "Follows the row key of a conflict: the same key appears twice in the imported file. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictAlreadyInCampaign": {
+    "message": "kampanyada zaten var",
+    "description": "Follows the row key of a conflict: the key is already stored in the campaign. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictColField": {
+    "message": "alan",
+    "description": "Conflict table header: which field of the row differs. Lowercase on purpose."
+  },
+  "wizConflictColCampaign": {
+    "message": "kampanyada",
+    "description": "Conflict table header: the value stored in the campaign. Lowercase on purpose."
+  },
+  "wizConflictColFile": {
+    "message": "dosyada",
+    "description": "Conflict table header: the value the imported file carries. Lowercase on purpose."
+  },
+  "wizConflictColAction": {
+    "message": "işlem",
+    "description": "Conflict table header: what to do with this field. Lowercase on purpose."
+  },
+  "wizChoiceFillEmpty": {
+    "message": "boşları doldur",
+    "description": "Conflict choice: write the incoming value only where the stored one is blank. Lowercase on purpose."
+  },
+  "wizChoiceKeep": {
+    "message": "koru",
+    "description": "Conflict choice: keep the value already stored in the campaign. Lowercase on purpose."
+  },
+  "wizChoiceTake": {
+    "message": "yenisini al",
+    "description": "Conflict choice: overwrite with the value from the imported file. Lowercase on purpose."
+  },
+  "wizWhoWrites": {
+    "message": "Kim yazıyor",
+    "description": "Heading of the sender profile card on wizard step 3."
+  },
+  "wizNoProfile": {
+    "message": "Henüz gönderen profili yok — formdaki ad / e-posta / site alanları ve %my_*% boş kalır.",
+    "description": "The campaign has no sender profile. %my_*% is spintax syntax for the profile variables — keep it as it is."
+  },
+  "wizAddProfile": {
+    "message": "Profil ekle",
+    "description": "Button that opens the sender profile drawer when there is no profile yet."
+  },
+  "wizAddAnotherProfile": {
+    "message": "Başka bir profil ekle",
+    "description": "Button that opens the sender profile drawer when the campaign already has one."
+  },
+  "wizManageProfiles": {
+    "message": "Profilleri yönet",
+    "description": "Link from wizard step 3 to the profiles screen."
+  },
+  "wizContinueProblems": {
+    "message": "Sorunlara geç",
+    "description": "Primary button of wizard step 3 when the template is already saved."
+  },
+  "wizEditFullEditor": {
+    "message": "Tam editörde düzenle",
+    "description": "Link from wizard step 3 to the template screen."
+  },
+  "wizTemplatePlaceholder": {
+    "message": "{Merhaba|Selam} %$VAR1$%, %$VAR2$% hakkında {kısa|hızlı} bir soru …  (yapay zeka sohbetinizden yapıştırın ya da buraya yazın)",
+    "description": "Placeholder of the small template editor on wizard step 3. The braces are spintax alternatives and the percent signs mark variables — keep both; translate the words inside the braces and the sentence in the parentheses. VAR1 and VAR2 are the campaign's own column variables.",
+    "placeholders": {
+      "var1": {
+        "content": "$1",
+        "example": "name"
+      },
+      "var2": {
+        "content": "$2",
+        "example": "topic"
+      }
+    }
+  },
+  "wizSaveTemplate": {
+    "message": "Şablonu kaydet",
+    "description": "Primary button that stores the step 1 message written on wizard step 3."
+  },
+  "wizErrorsOne": {
+    "message": "$COUNT$ hata: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsFew": {
+    "message": "$COUNT$ hata: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsMany": {
+    "message": "$COUNT$ hata: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsOther": {
+    "message": "$COUNT$ hata: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizUnknownVars": {
+    "message": "Bilinmeyen değişkenler: $VARS$ — boş görünecekler.",
+    "description": "The template uses variables the campaign does not have. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%topic%, %city%"
+      }
+    }
+  },
+  "wizTemplateValid": {
+    "message": "Geçerli. Kullanılan değişkenler: $VARS$.",
+    "description": "The template parses. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%name%, %topic%"
+      }
+    }
+  },
+  "wizVarsNone": {
+    "message": "yok",
+    "description": "Stands in for the variable list when the template uses no variables at all. Lowercase — it sits inside the sentence above."
+  },
+  "wizSpintaxVars": {
+    "message": "Kendi değişkenlerinizle spintax: $VARS$. #include dosyaları, yapay zeka istemi ve satır satır önizleme tam editörde.",
+    "description": "Hint above the small template editor. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%name% %topic% %my_name%"
+      }
+    }
+  },
+  "wizFullEditorLink": {
+    "message": "Tam editör (yapay zeka istemi, #include, önizleme)",
+    "description": "Link from the small template editor to the template screen."
+  },
+  "wizWhatIsWritten": {
+    "message": "Ne yazılıyor — 1. adım mesajı",
+    "description": "Heading of the template card on wizard step 3. \"Step 1\" here is the first message of the sequence, not a wizard step."
+  },
+  "wizStep4Title": {
+    "message": "4. adım — Sorunlar",
+    "description": "Heading of wizard step 4."
+  },
+  "wizChipBlocking": {
+    "message": "$COUNT$ engelli",
+    "description": "Chip on wizard step 4: rows that cannot be sent as they are.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizChipWarnings": {
+    "message": "$COUNT$ uyarılı",
+    "description": "Chip on wizard step 4: rows that render but look suspicious.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "wizChipClean": {
+    "message": "$COUNT$ temiz",
+    "description": "Chip on wizard step 4: rows with nothing to fix.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1185"
+      }
+    }
+  },
+  "wizChipUnchecked": {
+    "message": "$COUNT$ burada bakılmadı — Kontrol hepsine bakar",
+    "description": "Chip on wizard step 4: the screen checks the first few thousand rows only. \"Review\" is the name of another screen — keep it the same as the navigation item.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3000"
+      }
+    }
+  },
+  "wizNoTemplate": {
+    "message": "Henüz şablon yok — 3. adıma dönün.",
+    "description": "Wizard step 4 has nothing to check because the campaign has no message yet."
+  },
+  "wizBlockingExplain": {
+    "message": "Engelleyici: boş zorunlu değişken, sızmış parantez, aşılan alan sınırı. Şablonu ya da satırı Kontrol'de düzeltin; temiz satırlar orada tek tıkla onaylanır.",
+    "description": "Explains what counts as blocking on wizard step 4. \"Review\" is the name of another screen — keep it the same as the navigation item."
+  },
+  "wizReviewCountOne": {
+    "message": "$COUNT$ satırı kontrol et",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizReviewCountFew": {
+    "message": "$COUNT$ satırı kontrol et",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizReviewCountMany": {
+    "message": "$COUNT$ satırı kontrol et",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizReviewCountOther": {
+    "message": "$COUNT$ satırı kontrol et",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "wizReviewAll": {
+    "message": "Satırları kontrol et",
+    "description": "Link from wizard step 4 to the Review screen when nothing needs attention."
+  },
+  "wizContinueQueue": {
+    "message": "Kuyruğa geç",
+    "description": "Button of wizard step 4 that moves on to the last step."
+  },
+  "wizStep5Title": {
+    "message": "5. adım — Kuyruğu adımlama",
+    "description": "Heading of wizard step 5."
+  },
+  "wizOpenSidePanel": {
+    "message": "Yan paneli aç",
+    "description": "Primary button of wizard step 5."
+  },
+  "wizHowto1": {
+    "message": "Yan paneli açın (araç çubuğu düğmesi ya da aşağıdaki düğme) — geçerli satırı ve mesajını gösterir.",
+    "description": "First line of the how-to list on wizard step 5."
+  },
+  "wizHowtoOpenTarget": {
+    "message": "Hedefi aç",
+    "description": "Quotes the side panel's \"Open target\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoOpens": {
+    "message": "→ iletişim sayfası açılır;",
+    "description": "Follows the quoted \"Open target\" button in the how-to list. Keep the arrow at the front."
+  },
+  "wizHowtoFillOnSite": {
+    "message": "Doldur: site.com",
+    "description": "Quotes the side panel's \"Fill on <host>\" button inside the how-to list; site.com is a stand-in host name — must read exactly like that button."
+  },
+  "wizHowtoFilled": {
+    "message": "→ alanlar dolar, kontrol edip sayfadaki Gönder'e basarsınız.",
+    "description": "Follows the quoted \"Fill on site.com\" button in the how-to list. Keep the arrow at the front; \"Send\" is the contact form's own button on the target site."
+  },
+  "wizHowtoSentNext": {
+    "message": "Gönderildi — sıradaki",
+    "description": "Quotes the side panel's \"Sent — next\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoRecords": {
+    "message": "(ya da S) sonucu kaydedip ilerler; diğer sonuçlar \"Gönderilmedi, çünkü\" ve \"Diğer işlemler\" altında.",
+    "description": "Follows the quoted \"Sent — next\" button in the how-to list. S is the keyboard shortcut — keep the letter; the two quoted names are side panel buttons."
+  },
+  "wizHowtoShortcuts": {
+    "message": "İsterseniz tarayıcının uzantı kısayolları sayfasından kendi kısayollarınızı atayın.",
+    "description": "Last line of the how-to list on wizard step 5."
+  },
+  "wizSeeList": {
+    "message": "Listeyi gör",
+    "description": "Link from wizard step 5 to the List screen."
+  },
+  "panelOpenCampaign": {
+    "message": "Kampanyayı aç — satırlar, sütunlar, adımlar",
+    "description": "Tooltip on the campaign name in the side panel header; it opens the List screen."
+  },
+  "drwRowsPasteNoColumns": {
+    "message": "Satır başına bir hedef — bu kampanyanın henüz sütunu yok, sihirbaz ilk içe aktarmada oluşturur.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  },
+  "drwRowsNoColumnsHint": {
+    "message": "Bu kampanyanın henüz sütunu yok — sihirbaz bunları listenizden okur ve bulduklarını gösterir.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  },
+  "setOpenTitle": {
+    "message": "Hedef nerede açılır",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenIntro": {
+    "message": "Panel her durumda kalır; bu, okuduğunuz sayfayla ilgili.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenReuse": {
+    "message": "Geçerli sekmeyi kullan — okuduğunuz sayfa değişir; Geri ile dönersiniz",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenNewTab": {
+    "message": "Her zaman yeni sekme — sayfa açık kalır, sekmeler birikir",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenHint": {
+    "message": "Ctrl-tık (⌘-tık) veya orta tık her zaman yeni sekmede açar.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "panelMoreCaption": {
+    "message": "Sonuçlar ve dahası",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "panelEditStep": {
+    "message": "$N$. adımın mesajını düzenle",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener).",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenSidePanel": {
+    "message": "Yan paneli aç",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  }
+}

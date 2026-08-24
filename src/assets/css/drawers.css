@@ -1,0 +1,342 @@
+/* ============================================
+   DRAWERS
+   ============================================
+
+   Side panel overlays for forms, details, and actions.
+   Used for: integration setup, domain inspector, redirect editor, etc.
+
+   Features:
+   - Slide-in animation from right
+   - Overlay backdrop with dimming (no blur for consistency)
+   - Loading indicators (brand/cf variants)
+   - Responsive mobile optimizations
+   ============================================ */
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer[hidden] {
+  display: none;
+}
+
+.drawer__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.drawer__panel {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background: var(--bg);
+  border-left: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 200ms ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.drawer__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  gap: var(--space-3);
+}
+
+.drawer__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.drawer__header-content > .text-muted {
+  margin-top: var(--space-1);
+}
+
+.drawer__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+/* Add spacing after domain name to separate from action buttons */
+.drawer__title .h4 {
+  margin-right: var(--space-2);
+}
+
+.drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+}
+
+/* Top-up wizard — QR placeholder for crypto deposit. Square, white background
+   so dark themes still scan correctly, centered inside the drawer body. */
+.topup-qr {
+  display: block;
+  width: min(240px, 100%);
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  box-shadow: 0 0 0 1px var(--border-subtle);
+}
+
+.topup-qr svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Inline callout — small warning/info block used inside drawer phases.
+   Used for crypto-deposit safety notes. Sits between QR/amount block and
+   the deposit-address fieldset. */
+.callout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-soft);
+}
+
+/* Status variants share the .panel--* fill recipe — neutral surface + a
+   subtle semantic corner glow at theme-token strength (--panel-glow) — so
+   callouts read as the same family as panels (see StyleGuide "Panels").
+   Each variant just sets --callout-accent. */
+.callout--warning { --callout-accent: var(--warning); }
+.callout--danger  { --callout-accent: var(--danger); }
+
+.callout--warning,
+.callout--danger {
+  background:
+    radial-gradient(
+      125% 130% at 0% 0%,
+      color-mix(in srgb, var(--callout-accent) var(--panel-glow), transparent),
+      transparent 62%
+    ),
+    var(--bg-soft);
+  border-color: color-mix(in srgb, var(--callout-accent) 32%, transparent);
+}
+
+.callout__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--callout-accent, var(--warning)) 25%, transparent);
+  color: var(--callout-accent, var(--warning));
+  flex-shrink: 0;
+}
+
+.callout__title {
+  margin: 0 0 var(--space-1);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm);
+}
+
+.callout__list {
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.callout__list > li + li {
+  margin-top: var(--space-1);
+}
+
+.callout__list strong {
+  color: var(--text);
+}
+
+/* Copy buttons inside the top-up drawer flash green for ~1.5s after a
+   successful copy. The toast confirms it too, but on mobile the drawer
+   covers the toast — this in-drawer flash is the primary signal. */
+.btn-icon.is-copied,
+.btn.is-copied {
+  background: color-mix(in srgb, var(--success) 22%, var(--bg-soft));
+  border-color: color-mix(in srgb, var(--success) 48%, transparent);
+  color: var(--success);
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.btn-icon.is-copied .icon,
+.btn.is-copied .icon {
+  color: var(--success);
+}
+
+/* Payment method + network chips in the top-up drawer need a louder
+   "selected" state than the default `.btn-chip.is-active` (which is just a
+   thin tinted border — fine for filter chips, too quiet for a payment
+   choice). Filled background + heavier border + bolder text so the picked
+   chip reads as "this one is the choice" at a glance. Scoped to the topup
+   surface only so language switcher / filter chips / tabs stay unchanged. */
+[data-topup-methods] .btn-chip.is-active,
+[data-topup-networks] .btn-chip.is-active {
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
+  border-color: var(--primary);
+  color: var(--text);
+  font-weight: var(--fw-medium, 500);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+[data-topup-methods] .btn-chip:hover,
+[data-topup-networks] .btn-chip:hover {
+  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+}
+
+.drawer__footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.drawer__footer > div:not([hidden]) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Drawer-specific component overrides */
+.drawer .empty-state {
+  min-height: 120px;
+}
+
+.drawer .domain-preview-list {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+/* Compact textarea in drawer */
+.drawer .textarea {
+  resize: vertical;
+  min-height: calc(1.5em * 6 + var(--space-2) * 2);
+  max-height: 40vh;
+}
+
+/* Drawer responsive - mobile optimizations */
+@media (max-width: 768px) {
+  .drawer__panel {
+    max-width: 100%;
+  }
+
+  .drawer__header {
+    padding: var(--space-3);
+  }
+
+  .drawer__body {
+    padding: var(--space-3);
+  }
+
+  .drawer__footer {
+    padding: var(--space-3);
+  }
+
+  .btn-close {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .btn-close .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ============================================
+   Locale combobox — typeahead input for site_tag
+   (BCP 47 locale picker with free-text fallback)
+   ============================================ */
+.locale-combobox {
+  position: relative;
+}
+.locale-combobox__input-wrap {
+  position: relative;
+}
+.locale-combobox__input-wrap .input {
+  /* Room for the chevron button. Same recipe as .password-field .input, which
+     solves the identical problem: relative to the control's own padding and
+     font-size, so it tracks the fluid --fs-control instead of pinning a layout
+     step. Yields ~2.21rem against the 1.83rem the chevron measures. The
+     original --space-7 does not exist, so this padding was being dropped
+     entirely and the text ran under the chevron. */
+  padding-right: calc(var(--control-pad-x) + 1.4em);
+  width: 100%;
+}
+.locale-combobox__chevron {
+  position: absolute;
+  right: var(--space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: var(--space-1);
+}
+.locale-combobox__chevron:hover {
+  color: var(--text);
+}
+.locale-combobox__menu {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  right: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-1) 0;
+  z-index: var(--z-dropdown, 20);
+}
+.locale-combobox__menu[hidden] {
+  display: none;
+}
+.locale-combobox__code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  min-width: 64px;
+  display: inline-block;
+}
+.locale-combobox__empty {
+  padding: var(--space-2) var(--space-3);
+  margin: 0;
+}

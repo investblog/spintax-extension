@@ -1,0 +1,461 @@
+{
+  "setMailTitle": {
+    "message": "E-mail targets"
+  },
+  "setMailIntro": {
+    "message": "Rows whose target is an e-mail address open a new message here. The message body travels inside the link when it fits; otherwise it is pasted in the editor — measured per row, never guessed."
+  },
+  "setMailProvider": {
+    "message": "E-mail opens in",
+    "description": "Label of the provider dropdown and its accessible name — one string, two uses."
+  },
+  "setGmailAccount": {
+    "message": "Gmail account (0 = first signed-in)"
+  },
+  "setGmailAccountAria": {
+    "message": "Gmail account index"
+  },
+  "setBcc": {
+    "message": "BCC every message to"
+  },
+  "setBccAria": {
+    "message": "BCC",
+    "description": "Accessible name of the BCC address input."
+  },
+  "setBccHint": {
+    "message": "A copy in your own mailbox — your record of what went out. Leave empty to skip."
+  },
+  "setCustomLabel": {
+    "message": "Compose URL template"
+  },
+  "setCustomAria": {
+    "message": "Custom compose URL template"
+  },
+  "setCustomHint": {
+    "message": "Placeholders: %to% %subject% %body% %bcc%",
+    "description": "The %tokens% are literal syntax of the URL template — translate only the word before them."
+  },
+  "setCustomInvalid": {
+    "message": "The custom template must be an https URL containing %to%."
+  },
+  "setSave": {
+    "message": "Save"
+  },
+  "setSaved": {
+    "message": "Saved."
+  },
+  "setFitNoTemplate": {
+    "message": "No step-1 template yet — the fit is measured once a template exists."
+  },
+  "setFitMeasuredOne": {
+    "message": "Longest message in this campaign: $COUNT$ character ($ROWS$ rows checked).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredFew": {
+    "message": "Longest message in this campaign: $COUNT$ characters ($ROWS$ rows checked).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredMany": {
+    "message": "Longest message in this campaign: $COUNT$ characters ($ROWS$ rows checked).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredOther": {
+    "message": "Longest message in this campaign: $COUNT$ characters ($ROWS$ rows checked).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitYes": {
+    "message": "$PROVIDER$ takes about $BUDGET$ in the link → bodies travel inside the link; the editor opens with everything filled in.",
+    "description": "Second half of the fit line: the measurement sentence is a separate key, joined with a space in code.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitNo": {
+    "message": "$PROVIDER$ takes about $BUDGET$ in the link → long bodies will not fit — the editor opens with the address and subject, the body is copied and pasted with Ctrl+V (Fill does it on web mail).",
+    "description": "Same slot as setFitYes, for a message that does not fit the provider's link.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageTitle": {
+    "message": "Storage"
+  },
+  "setStorageUsed": {
+    "message": "Used $USED$ of $QUOTA$ available to this browser profile.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageUnknown": {
+    "message": "Usage is not reported by this browser."
+  },
+  "setOrphansOne": {
+    "message": "$COUNT$ file no campaign refers to any more — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansFew": {
+    "message": "$COUNT$ files no campaign refers to any more — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansMany": {
+    "message": "$COUNT$ files no campaign refers to any more — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansOther": {
+    "message": "$COUNT$ files no campaign refers to any more — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setNoOrphans": {
+    "message": "Every stored file is referenced by a row or a column default."
+  },
+  "setDeleteUnusedOne": {
+    "message": "Delete $COUNT$ unused file",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedFew": {
+    "message": "Delete $COUNT$ unused files",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedMany": {
+    "message": "Delete $COUNT$ unused files",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedOther": {
+    "message": "Delete $COUNT$ unused files",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOne": {
+    "message": "Sure? $COUNT$ file ($SIZE$) is erased for good",
+    "description": "Armed state of the same button — it must stay on one line.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmFew": {
+    "message": "Sure? $COUNT$ files ($SIZE$) are erased for good",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmMany": {
+    "message": "Sure? $COUNT$ files ($SIZE$) are erased for good",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOther": {
+    "message": "Sure? $COUNT$ files ($SIZE$) are erased for good",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOne": {
+    "message": "Deleted $COUNT$ file, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedFew": {
+    "message": "Deleted $COUNT$ files, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedMany": {
+    "message": "Deleted $COUNT$ files, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOther": {
+    "message": "Deleted $COUNT$ files, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setRemoveDemo": {
+    "message": "Remove the demo campaign"
+  },
+  "setDemoRemoved": {
+    "message": "Demo campaign removed."
+  },
+  "setDeleteCampaign": {
+    "message": "Delete campaign \"$NAME$\"",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteCampaignConfirm": {
+    "message": "Sure? Rows, journal, templates of this campaign go away",
+    "description": "Armed state of setDeleteCampaign — it must stay on one line."
+  },
+  "setDeleteAll": {
+    "message": "Delete all data"
+  },
+  "setDeleteAllConfirm": {
+    "message": "Sure? Everything in this extension is erased",
+    "description": "Armed state of setDeleteAll — it must stay on one line."
+  },
+  "assetTitle": {
+    "message": "Asset library"
+  },
+  "assetIntro": {
+    "message": "Images and files for file columns (logos, screenshots). A cell holds the file name; the same content is stored once."
+  },
+  "assetAdd": {
+    "message": "Add files"
+  },
+  "assetEmpty": {
+    "message": "No assets yet. Add logos and screenshots here; file columns refer to them by name."
+  },
+  "assetColName": {
+    "message": "name",
+    "description": "Table header. Lowercase on purpose, like the other column headers."
+  },
+  "assetColType": {
+    "message": "type"
+  },
+  "assetColSize": {
+    "message": "size"
+  },
+  "assetColDims": {
+    "message": "dimensions"
+  },
+  "assetColId": {
+    "message": "id"
+  },
+  "assetColUsed": {
+    "message": "used"
+  },
+  "assetShaTitle": {
+    "message": "sha256 $SHA$ — put it into a cell when two files share a name",
+    "placeholders": {
+      "sha": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetInUse": {
+    "message": "in use",
+    "description": "Badge: the file is referenced by a row or a column default."
+  },
+  "assetUnused": {
+    "message": "unused"
+  },
+  "assetDeleteAria": {
+    "message": "Delete $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetDeleteBlocked": {
+    "message": "Referenced by a row — clear the cell first"
+  },
+  "assetDeleteTitle": {
+    "message": "Delete this file"
+  },
+  "assetDeleted": {
+    "message": "Deleted $NAME$.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetStorageUsed": {
+    "message": "Storage used: $USED$ of $QUOTA$.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "assetAddedOne": {
+    "message": "Added $COUNT$ file.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedFew": {
+    "message": "Added $COUNT$ files.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedMany": {
+    "message": "Added $COUNT$ files.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedOther": {
+    "message": "Added $COUNT$ files.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setOpenTitle": {
+    "message": "Where a target opens",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenIntro": {
+    "message": "The panel stays put either way; this is about the page you were reading.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenReuse": {
+    "message": "Reuse the current tab — the page you are reading is replaced; press Back to return to it",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenNewTab": {
+    "message": "Always a new tab — the page you are reading stays open, and tabs pile up",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenHint": {
+    "message": "Ctrl-click (⌘-click) or middle-click the button opens a new tab whatever this says.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  }
+}

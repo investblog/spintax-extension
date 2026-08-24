@@ -1,0 +1,434 @@
+{
+  "revNoBody": {
+    "message": "No body template for step 1 yet — save one on the Template screen first."
+  },
+  "revTemplateLink": {
+    "message": "Template"
+  },
+  "revCounters": {
+    "message": "$ROWS$ · $BLOCKERS$ · $WARNINGS$ · $DUPS$ · $APPROVED$ · $EDITED$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "blockers": {
+        "content": "$2"
+      },
+      "warnings": {
+        "content": "$3"
+      },
+      "dups": {
+        "content": "$4"
+      },
+      "approved": {
+        "content": "$5"
+      },
+      "edited": {
+        "content": "$6"
+      }
+    }
+  },
+  "revRowsOne": {
+    "message": "$COUNT$ row",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsFew": {
+    "message": "$COUNT$ rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsMany": {
+    "message": "$COUNT$ rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsOther": {
+    "message": "$COUNT$ rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOne": {
+    "message": "$COUNT$ blocker",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersFew": {
+    "message": "$COUNT$ blockers",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersMany": {
+    "message": "$COUNT$ blockers",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOther": {
+    "message": "$COUNT$ blockers",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOne": {
+    "message": "$COUNT$ warning",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsFew": {
+    "message": "$COUNT$ warnings",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsMany": {
+    "message": "$COUNT$ warnings",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOther": {
+    "message": "$COUNT$ warnings",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOne": {
+    "message": "$COUNT$ duplicate of sent text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesFew": {
+    "message": "$COUNT$ duplicates of sent text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesMany": {
+    "message": "$COUNT$ duplicates of sent text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOther": {
+    "message": "$COUNT$ duplicates of sent text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproved": {
+    "message": "$COUNT$ approved",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdited": {
+    "message": "$COUNT$ edited",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterProblems": {
+    "message": "Problems $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterSample": {
+    "message": "Sample of clean $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterAll": {
+    "message": "All $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOne": {
+    "message": "Approve $COUNT$ clean row",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanFew": {
+    "message": "Approve $COUNT$ clean rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanMany": {
+    "message": "Approve $COUNT$ clean rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOther": {
+    "message": "Approve $COUNT$ clean rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revStartQueue": {
+    "message": "Start the queue"
+  },
+  "revNoProblems": {
+    "message": "No problems — approve the clean rows or look at a sample."
+  },
+  "revNothingHere": {
+    "message": "Nothing here."
+  },
+  "revBadgeBlocker": {
+    "message": "blocker"
+  },
+  "revBadgeDuplicate": {
+    "message": "duplicate"
+  },
+  "revBadgeWarning": {
+    "message": "warning"
+  },
+  "revStateUnreviewed": {
+    "message": "unreviewed"
+  },
+  "revStateApproved": {
+    "message": "approved"
+  },
+  "revStateEdited": {
+    "message": "edited"
+  },
+  "revStateSkipped": {
+    "message": "skipped"
+  },
+  "revDuplicateNote": {
+    "message": "Exactly the same text was already sent to another row — change the variant or edit."
+  },
+  "revPrevious": {
+    "message": "Previous"
+  },
+  "revNext": {
+    "message": "Next"
+  },
+  "revPosition": {
+    "message": "$INDEX$ / $TOTAL$",
+    "placeholders": {
+      "index": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "revApprove": {
+    "message": "Approve ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdit": {
+    "message": "Edit ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revSaveEdit": {
+    "message": "Save edit"
+  },
+  "revSkip": {
+    "message": "Skip ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRespin": {
+    "message": "Another variant"
+  },
+  "revReset": {
+    "message": "Reset to template"
+  },
+  "revMeta": {
+    "message": "step $STEP$ · seed $SEED$ · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revMetaEdited": {
+    "message": "step $STEP$ · seed $SEED$ · edited · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revSubject": {
+    "message": "Subject:"
+  },
+  "profIntro": {
+    "message": "The first matching profile wins; an \"always\" profile is the fallback. Profile values become %my_*% variables and the profile slots of contact forms (name, email, site, phone)."
+  },
+  "profEmpty": {
+    "message": "No sender profile yet — add one; it fills %my_name%, %my_email% and the profile slots of contact forms."
+  },
+  "profSavedOne": {
+    "message": "Saved $COUNT$ profile.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedFew": {
+    "message": "Saved $COUNT$ profiles.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedMany": {
+    "message": "Saved $COUNT$ profiles.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedOther": {
+    "message": "Saved $COUNT$ profiles.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profFieldName": {
+    "message": "Name"
+  },
+  "profFieldEmail": {
+    "message": "Email"
+  },
+  "profFieldSite": {
+    "message": "Site"
+  },
+  "profFieldPhone": {
+    "message": "Phone"
+  },
+  "profFieldIntro": {
+    "message": "Intro (1–2 sentences)"
+  },
+  "profFieldSignature": {
+    "message": "Signature"
+  },
+  "profNamePlaceholder": {
+    "message": "Profile label (e.g. RU, EN, Partnerships)"
+  },
+  "profRemove": {
+    "message": "Remove profile"
+  },
+  "profActivation": {
+    "message": "Activation"
+  },
+  "profActivationAlways": {
+    "message": "Always (default profile)"
+  },
+  "profActivationUrlPattern": {
+    "message": "When target matches a pattern"
+  },
+  "profActivationColumn": {
+    "message": "When a column equals a value"
+  },
+  "profPatternPlaceholder": {
+    "message": "regex over target, e.g. \\.de$$|\\.at$$"
+  },
+  "profColumn": {
+    "message": "Column"
+  },
+  "profEqualsPlaceholder": {
+    "message": "value, e.g. ru"
+  },
+  "profAdd": {
+    "message": "Add profile"
+  },
+  "profSave": {
+    "message": "Save profiles"
+  }
+}

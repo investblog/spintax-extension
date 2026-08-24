@@ -1,0 +1,865 @@
+{
+  "slotProfileName": {
+    "message": "Your name"
+  },
+  "slotProfileEmail": {
+    "message": "Your email"
+  },
+  "slotProfileSite": {
+    "message": "Your site"
+  },
+  "slotProfilePhone": {
+    "message": "Your phone"
+  },
+  "slotSubject": {
+    "message": "Subject"
+  },
+  "slotBody": {
+    "message": "Message"
+  },
+  "slotNotFound": {
+    "message": "not found"
+  },
+  "flagExact": {
+    "message": "exact"
+  },
+  "flagEquivalent": {
+    "message": "equivalent"
+  },
+  "flagChangedBySite": {
+    "message": "site edited"
+  },
+  "flagPartial": {
+    "message": "partial"
+  },
+  "flagKept": {
+    "message": "kept"
+  },
+  "flagClipboard": {
+    "message": "clipboard"
+  },
+  "flagPinned": {
+    "message": "pinned"
+  },
+  "flagPolicySkipIfFilled": {
+    "message": "skip if filled"
+  },
+  "flagPolicyReplace": {
+    "message": "replace"
+  },
+  "flagPolicyAtCursor": {
+    "message": "at cursor"
+  },
+  "flagNoFilePayload": {
+    "message": "no file payload"
+  },
+  "flagNoDataTransfer": {
+    "message": "DataTransfer unavailable"
+  },
+  "flagFilesRejected": {
+    "message": "files not accepted"
+  },
+  "flagNoOption": {
+    "message": "no matching option"
+  },
+  "flagSelectReverted": {
+    "message": "select reverted by the page"
+  },
+  "flagFieldNotFound": {
+    "message": "field not found"
+  },
+  "flagValueReverted": {
+    "message": "the page reverted the value"
+  },
+  "flagRichEditor": {
+    "message": "rich editor: paste with Ctrl+V"
+  },
+  "panelCounterPos": {
+    "message": "$POS$ / $TOTAL$",
+    "placeholders": {
+      "pos": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelCounterTodo": {
+    "message": "$COUNT$ to do",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCounterDue": {
+    "message": "$COUNT$ due",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoCampaign": {
+    "message": "no campaign"
+  },
+  "panelSettingsAria": {
+    "message": "Open settings"
+  },
+  "panelSettingsTitle": {
+    "message": "Settings and campaigns (options page)"
+  },
+  "panelOpenCampaign": {
+    "message": "Open the campaign — rows, columns, steps",
+    "description": "Tooltip on the campaign name in the side panel header; it opens the List screen."
+  },
+  "panelNoRows": {
+    "message": "No rows in this campaign"
+  },
+  "panelNoCampaignYet": {
+    "message": "No campaign yet"
+  },
+  "panelEmptyHint": {
+    "message": "Import a list and save a template on the options page."
+  },
+  "panelOpenCampaigns": {
+    "message": "Set up your first list"
+  },
+  "panelRowAria": {
+    "message": "Current row"
+  },
+  "panelStep": {
+    "message": "step $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOtherPage": {
+    "message": "You are on $HERE$; this row points to $THERE$.",
+    "placeholders": {
+      "here": {
+        "content": "$1"
+      },
+      "there": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPrevRow": {
+    "message": "Previous row"
+  },
+  "panelNextRow": {
+    "message": "Next row ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMessageAria": {
+    "message": "Message"
+  },
+  "panelSaveEdit": {
+    "message": "Save edit"
+  },
+  "panelSubjectLabel": {
+    "message": "Subject:"
+  },
+  "panelBodyChars": {
+    "message": "Message · $N$ chars",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelEdited": {
+    "message": "edited"
+  },
+  "panelEditRow": {
+    "message": "Edit this row"
+  },
+  "panelNoMessage": {
+    "message": "No message for step $N$ yet — write a template first.",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelDemoPage": {
+    "message": "the demo page"
+  },
+  "panelMappingSummary": {
+    "message": "Field mapping — $N$ mapped",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingMissing": {
+    "message": "$N$ missing",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingStale": {
+    "message": "recipe changed, confirm"
+  },
+  "panelMappingHost": {
+    "message": "Field mapping — $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoPage": {
+    "message": "no page"
+  },
+  "panelPolicyTitle": {
+    "message": "Fill policy — click to change"
+  },
+  "panelPinnedTitle": {
+    "message": "Pinned — kept when the form changes"
+  },
+  "panelPinAria": {
+    "message": "Pin this field"
+  },
+  "panelPinTitle": {
+    "message": "Pin — keep this field even if the form changes"
+  },
+  "panelClearAria": {
+    "message": "Clear this mapping"
+  },
+  "panelClearTitle": {
+    "message": "Clear — the slot goes back to 'not found'; use Point at field to re-map"
+  },
+  "panelPointAt": {
+    "message": "Point at field"
+  },
+  "panelForgetRecipe": {
+    "message": "Forget this recipe"
+  },
+  "panelMappingHelp": {
+    "message": "Press Fill on the target page: the helper guesses which box is which, and anything it cannot find gets a \"Point at field\" button."
+  },
+  "panelSentNext": {
+    "message": "Sent — next ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelWriteTemplate": {
+    "message": "Write the step $N$ template",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenTarget": {
+    "message": "Open target"
+  },
+  "panelOpenPath": {
+    "message": "Open $PATH$",
+    "placeholders": {
+      "path": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenHost": {
+    "message": "Open $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelAllowFill": {
+    "message": "Allow & fill on $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilling": {
+    "message": "Filling…"
+  },
+  "panelFillOn": {
+    "message": "Fill on $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopyOpen": {
+    "message": "Copy & open"
+  },
+  "panelMarkSent": {
+    "message": "Mark sent ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelGroupOutcome": {
+    "message": "Outcome"
+  },
+  "panelDefer3Days": {
+    "message": "Defer 3 days"
+  },
+  "panelNotApplicable": {
+    "message": "Not applicable"
+  },
+  "panelReplied": {
+    "message": "Replied"
+  },
+  "panelDeclined": {
+    "message": "Declined"
+  },
+  "panelGroupNotSent": {
+    "message": "Not sent because"
+  },
+  "panelReasonNoForm": {
+    "message": "no form"
+  },
+  "panelReasonCaptcha": {
+    "message": "captcha"
+  },
+  "panelReasonNoContact": {
+    "message": "no contact"
+  },
+  "panelReasonTechnical": {
+    "message": "technical"
+  },
+  "panelGroupEdit": {
+    "message": "Edit"
+  },
+  "panelStepsFollowups": {
+    "message": "Steps & follow-ups…"
+  },
+  "panelSubjectTemplate": {
+    "message": "Subject template…"
+  },
+  "panelRichEditorNote": {
+    "message": "Rich editor: the message went to your clipboard — click the message box on the page and press Ctrl+V (\"Copy & open\" copies it again). Then \"Sent — next\"."
+  },
+  "panelFoundOnPage": {
+    "message": "Found on this page:"
+  },
+  "panelMoreTitle": {
+    "message": "More actions — click or drag"
+  },
+  "panelMoreAria": {
+    "message": "More actions"
+  },
+  "panelCleared": {
+    "message": "Cleared: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelRecipeForgotten": {
+    "message": "Recipe forgotten — fields mapped again by heuristics."
+  },
+  "panelOpened": {
+    "message": "Opened $URL$",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenedMail": {
+    "message": "Opened a new message to $TO$.",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMailTooLongFill": {
+    "message": "Message too long for the link — body copied: press Fill, or paste it with Ctrl+V."
+  },
+  "panelMailTooLongPaste": {
+    "message": "Message too long for the link — body copied: paste it with Ctrl+V."
+  },
+  "panelMailTooLongBlocked": {
+    "message": "Message too long for the link and the clipboard is blocked — copy the text above by hand."
+  },
+  "panelNoUrlCopied": {
+    "message": "No URL for this target — the message is copied below; open the chat yourself and paste it."
+  },
+  "panelNoUrlBlocked": {
+    "message": "No URL for this target and the clipboard is blocked — copy the message above by hand."
+  },
+  "panelCopied": {
+    "message": "Message copied — paste it with Ctrl+V on the page."
+  },
+  "panelCopyBlocked": {
+    "message": "Clipboard blocked — select the text above and copy it."
+  },
+  "panelPermissionDenied": {
+    "message": "Permission declined — use \"Copy & open\" and paste by hand."
+  },
+  "panelScanning": {
+    "message": "Scanning the page…"
+  },
+  "panelStaleRecipe": {
+    "message": "The form changed since the saved recipe — check the mapping below, then press Fill again."
+  },
+  "panelFilledOne": {
+    "message": "Filled $COUNT$ field",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledOther": {
+    "message": "Filled $COUNT$ fields",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledFew": {
+    "message": "Filled $COUNT$ fields",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledMany": {
+    "message": "Filled $COUNT$ fields",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSkipped": {
+    "message": "$COUNT$ left untouched (already had text)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelClipboardHint": {
+    "message": "the message is in your clipboard — click the message box and press Ctrl+V"
+  },
+  "panelClipboardBlocked": {
+    "message": "the message box needs a manual paste (clipboard blocked)"
+  },
+  "panelNothingFilled": {
+    "message": "nothing could be filled on this page"
+  },
+  "panelBodyNotFilled": {
+    "message": "the message box was not filled — use \"Copy & open\""
+  },
+  "panelNotFoundHere": {
+    "message": "not found on this page: $SLOTS$",
+    "placeholders": {
+      "slots": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelStaleRebuilt": {
+    "message": "the form changed since the saved recipe — mapping rebuilt, check the fields"
+  },
+  "panelFillFailed": {
+    "message": "Could not fill: $ERROR$. Use \"Copy & open\".",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarkedSent": {
+    "message": "Marked as sent: $KEY$",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarked": {
+    "message": "Marked: $KIND$",
+    "placeholders": {
+      "kind": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelKindSent": {
+    "message": "sent"
+  },
+  "panelKindDeferred": {
+    "message": "deferred"
+  },
+  "panelKindFailed": {
+    "message": "failed"
+  },
+  "panelKindExcluded": {
+    "message": "excluded"
+  },
+  "panelKindReplied": {
+    "message": "replied"
+  },
+  "panelKindDeclined": {
+    "message": "declined"
+  },
+  "panelPickHint": {
+    "message": "Click the field on the page for \"$SLOT$\" (Esc to cancel).",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSavedSlot": {
+    "message": "Saved: $SLOT$ → $FIELD$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      },
+      "field": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPickCancelled": {
+    "message": "Picking cancelled."
+  },
+  "panelRateOn": {
+    "message": "Rate on $STORE$",
+    "placeholders": {
+      "store": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSpintaxLink": {
+    "message": "spintax.net — the engine behind this extension"
+  },
+  "panelPublisherLink": {
+    "message": "301.st — Smart Traffic"
+  },
+  "panelOldHelper": {
+    "message": "the page runs an older helper — reload the page and try again"
+  },
+  "panelNoAccess": {
+    "message": "this page did not answer — reload it and press Fill again"
+  },
+  "panelPageChanged": {
+    "message": "the page changed since it was scanned — press Fill again"
+  },
+  "warnMaxLength": {
+    "message": "$LEN$ characters, the field takes $MAX$",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMinLength": {
+    "message": "$LEN$ characters, the field needs at least $MIN$",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "min": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMaxWords": {
+    "message": "$WORDS$ words, the field takes $MAX$",
+    "placeholders": {
+      "words": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraint": {
+    "message": "$FIELD$: $PROBLEM$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraintBlocked": {
+    "message": "$FIELD$: $PROBLEM$ — not filled",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetAmbiguous": {
+    "message": "$FIELD$: several assets are named \"$NAME$\" — put the sha256 in the cell",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMissing": {
+    "message": "$FIELD$: no asset named \"$NAME$\" in the library",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMime": {
+    "message": "$FIELD$: \"$NAME$\" is $MIME$, the field accepts $ALLOW$ — not filled",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      },
+      "mime": {
+        "content": "$3"
+      },
+      "allow": {
+        "content": "$4"
+      }
+    }
+  },
+  "warnAssetSize": {
+    "message": "$FIELD$: the page asks for $WANT$, \"$NAME$\" is $GOT$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "want": {
+        "content": "$2"
+      },
+      "name": {
+        "content": "$3"
+      },
+      "got": {
+        "content": "$4"
+      }
+    }
+  },
+  "jrnFilled": {
+    "message": "filled"
+  },
+  "jrnSent": {
+    "message": "sent"
+  },
+  "jrnFailed": {
+    "message": "not sent"
+  },
+  "jrnDeferred": {
+    "message": "deferred"
+  },
+  "jrnReplied": {
+    "message": "replied"
+  },
+  "jrnDeclined": {
+    "message": "declined"
+  },
+  "jrnExcluded": {
+    "message": "not applicable"
+  },
+  "jrnEdited": {
+    "message": "edited"
+  },
+  "jrnReviewed": {
+    "message": "reviewed"
+  },
+  "jrnTranslated": {
+    "message": "translated"
+  },
+  "jrnCorrected": {
+    "message": "corrected"
+  },
+  "jrnReasonNoForm": {
+    "message": "no form"
+  },
+  "jrnReasonCaptcha": {
+    "message": "captcha"
+  },
+  "jrnReasonNoContact": {
+    "message": "no contact"
+  },
+  "jrnReasonTechnical": {
+    "message": "technical"
+  },
+  "jrnReviewUnreviewed": {
+    "message": "unreviewed"
+  },
+  "jrnReviewApproved": {
+    "message": "approved"
+  },
+  "jrnReviewEdited": {
+    "message": "edited"
+  },
+  "jrnReviewSkipped": {
+    "message": "skipped"
+  },
+  "jrnUntil": {
+    "message": "until $DAY$",
+    "placeholders": {
+      "day": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnStep": {
+    "message": "step $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnAi": {
+    "message": "AI: $API$",
+    "placeholders": {
+      "api": {
+        "content": "$1"
+      }
+    }
+  },
+  "mailMailto": {
+    "message": "System mail app (mailto:)"
+  },
+  "mailMailtoHint": {
+    "message": "Whatever handles mailto: links on this computer. If nothing opens, pick a web mail below."
+  },
+  "mailGmail": {
+    "message": "Gmail"
+  },
+  "mailGmailHint": {
+    "message": "Opens a compose window at mail.google.com in the target tab."
+  },
+  "mailOutlook": {
+    "message": "Outlook.com (personal)"
+  },
+  "mailOutlookHint": {
+    "message": "outlook.live.com compose deep link."
+  },
+  "mailOutlook365": {
+    "message": "Outlook — Microsoft 365 (work)"
+  },
+  "mailOutlook365Hint": {
+    "message": "outlook.office.com compose deep link."
+  },
+  "mailYandex": {
+    "message": "Yandex Mail"
+  },
+  "mailYandexHint": {
+    "message": "mail.yandex.ru compose link."
+  },
+  "mailCustom": {
+    "message": "Custom URL template"
+  },
+  "mailCustomHint": {
+    "message": "e.g. https://mail.example.com/compose?to=%to%&subject=%subject%&body=%body%"
+  },
+  "filterAll": {
+    "message": "All"
+  },
+  "filterTodo": {
+    "message": "To do"
+  },
+  "filterDue": {
+    "message": "Due today"
+  },
+  "filterDone": {
+    "message": "Done"
+  },
+  "filterProblems": {
+    "message": "Problems"
+  },
+  "drwClose": {
+    "message": "Close"
+  },
+  "tplLeftover": {
+    "message": "Left over from the template — check the variables"
+  },
+  "hdrTheme": {
+    "message": "Toggle theme"
+  },
+  "hdrNewsAriaOn": {
+    "message": "Publisher news (on)"
+  },
+  "hdrNewsAriaOff": {
+    "message": "Publisher news (off)"
+  },
+  "hdrNewsTitleOn": {
+    "message": "Publisher news — on: 301.sh is checked every 6 hours, new posts arrive as notifications. Click to turn off."
+  },
+  "hdrNewsTitleOff": {
+    "message": "Publisher news — off. Click to get a notification when 301.sh publishes a post."
+  },
+  "tgtDemoPage": {
+    "message": "demo page $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMoreCaption": {
+    "message": "Outcomes & more",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "panelEditStep": {
+    "message": "Edit the step $N$ message",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener).",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenSidePanel": {
+    "message": "Open the side panel",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  }
+}

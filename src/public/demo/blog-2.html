@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>TechNotes — Message the editor</title><link rel="stylesheet" href="demo.css"></head>
+<body>
+  <header><strong>TechNotes</strong><small>Demo page 2 of 4 — a chat-style editor (contenteditable, like Gmail or LinkedIn)</small></header>
+  <main>
+    <article>
+      <h1>Message the editor</h1>
+      <p>Rich editors do not accept text the way inputs do. The helper puts the message in your clipboard and focuses the editor — you paste with Ctrl+V.</p>
+    </article>
+    <form data-demo>
+      <label for="sender">Your email</label><input id="sender" type="email" name="email">
+      <label for="msg">Message</label>
+      <div id="msg" class="editor" contenteditable="true" role="textbox" aria-label="Message" aria-multiline="true"></div>
+      <button type="submit">Send</button>
+      <p class="banner" data-demo-banner hidden></p>
+    </form>
+  </main>
+  <script src="/demo-fill.js"></script>
+</body>
+</html>

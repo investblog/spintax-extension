@@ -1,0 +1,1164 @@
+/* Options page layout (spec §15.1, wireframe 1) — shell specifics only; components from 301-ui. */
+
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width, 280px) 1fr;
+  min-height: 100vh;
+  transition: grid-template-columns var(--sidebar-transition, 300ms ease);
+}
+
+body.sidebar-collapsed .app-shell {
+  grid-template-columns: var(--sidebar-width-collapsed, 72px) 1fr;
+}
+
+/* Labels never wrap: a two-word label in the 72px rail used to wrap (opacity 0 still takes space)
+   and made its item taller than the others. Collapsed, the label gives up its width so the icon
+   is truly centred. */
+.sidebar .navitem .label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.sidebar-collapsed .sidebar .navitem .label {
+  flex: 0 0 0;
+  width: 0;
+}
+
+/* Tooltip element (301-ui site.css `.tooltip`; ui.css does not carry it) */
+.tooltip {
+  position: fixed;
+  z-index: var(--z-tooltip);
+  pointer-events: none;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  max-width: 280px;
+  white-space: nowrap;
+  animation: tooltip-fade-in 150ms ease;
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* No site header on an extension page: the sidebar is a full-height rail, not a floating card
+   under a 96px header (301-ui default), so its top and bottom line up with the content column. */
+.app-shell > .sidebar {
+  top: 0;
+  height: 100dvh;
+  max-height: 100dvh;
+  border-radius: 0;
+  border-width: 0 1px 0 0;
+}
+
+.sidebar__brand {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.sidebar-collapsed .sidebar__brand {
+  display: none;
+}
+
+.options__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.options__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--inline-gap);
+  padding: var(--space-4) var(--space-5) 0;
+}
+
+.options__title {
+  margin: 0;
+  font-size: var(--fs-xl);
+}
+
+.dashboard-content {
+  padding: var(--space-4) var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.wizard-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wizard-step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--control-pad-y) var(--control-pad-x);
+  border: var(--border-width) var(--border-style) var(--border-subtle);
+  border-radius: var(--r-pill);
+  color: var(--text-muted);
+}
+
+.wizard-step.is-current {
+  color: var(--text-main);
+  border-color: var(--primary);
+}
+
+.wizard-step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: var(--r-pill);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.card__body {
+  padding: var(--card-pad-y) var(--card-pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.card__actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.card__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--fs-lg);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.panel__tools {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.btn svg,
+.btn-icon svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* ── Import wizard (wireframes 1–2) ──────────────────────────────────────── */
+
+.options__heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.options__subtitle {
+  font-size: var(--fs-sm);
+}
+
+.wizard-step.is-done {
+  color: var(--success);
+}
+
+.wizard-step.is-link {
+  cursor: pointer;
+}
+
+/* Tables come from tables.css (301-ui copy); .table-scroll from layout.css. Only the
+   column-header stack of the wizard's roles table is ours: name + role, unified controls. */
+.th-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.th-stack .dropdown__trigger {
+  max-width: 100%;
+}
+
+.cell-key {
+  font-weight: var(--fw-medium);
+}
+
+.cell-target {
+  color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip--warn {
+  border-color: var(--warning);
+}
+
+.import-summary {
+  margin: 0;
+  font-weight: var(--fw-medium);
+}
+
+.import-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.conflicts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.conflicts__title {
+  margin: 0;
+  font-size: var(--fs-md);
+}
+
+.conflict__key {
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.conflict__choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-right: var(--space-3);
+  white-space: nowrap;
+}
+
+/* ── Template screen (§14.2–14.4) ───────────────────────────────────────────── */
+
+.template__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.template__locale {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.template__locale .input {
+  width: 6rem;
+}
+
+.template__source {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  min-height: 12rem;
+}
+
+.template__files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.template__diagnostics,
+.template__chips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.template__diag,
+.template__diagnostics .panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: var(--space-2);
+}
+
+.template__diagnostics svg {
+  width: 1.25em;
+  height: 1.25em;
+  flex: 0 0 auto;
+}
+
+.template__pos {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.template__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.template__group-title {
+  min-width: 14rem;
+  font-size: var(--fs-sm);
+}
+
+.chip--ok {
+  border-color: var(--success);
+}
+
+.chip--danger {
+  border-color: var(--danger);
+}
+
+.template__preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.template__text {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.var-mark {
+  background: color-mix(in srgb, var(--info) 22%, transparent);
+  color: inherit;
+  border-radius: var(--radius-xs);
+  padding: 0 0.15em;
+  box-decoration-break: clone;
+}
+
+.template__warnings {
+  margin: var(--space-2) 0 0;
+  padding-left: 1.2em;
+  font-size: var(--fs-sm);
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+.text-danger {
+  color: var(--danger);
+}
+
+/* ── AI handoff (§14.3) ─────────────────────────────────────────────────────── */
+
+.ai-handoff {
+  padding: 0;
+}
+
+.ai-handoff__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--card-pad-y) var(--card-pad-x);
+  cursor: pointer;
+  font-weight: var(--fw-medium);
+}
+
+.ai-handoff__summary svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.ai-handoff__check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.ai-handoff__actions {
+  flex-wrap: wrap;
+}
+
+/* ── Profiles (§3) ──────────────────────────────────────────────────────────── */
+
+.profiles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.profiles__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.profiles__head .input {
+  flex: 1;
+}
+
+.profiles__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-3);
+}
+
+/* ── Review (§14.4, wireframe 3) ────────────────────────────────────────────── */
+
+.review__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.review__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.review {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) 2fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.review__list {
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.review__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-bottom: var(--border-width) var(--border-style) var(--border-subtle);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.review__item:hover {
+  background: var(--panel-hover);
+}
+
+.review__item.is-active {
+  background: var(--primary-soft);
+}
+
+/* A flex item defaults to min-width:auto, so a nowrap key refused to shrink and pushed the badge
+   out of the 14rem track — the ellipsis never fired. */
+.review__item-key {
+  min-width: 0;
+  font-weight: var(--fw-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.review__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.review__nav {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+.review__subject {
+  margin: 0 0 var(--space-2);
+}
+
+.review__editor {
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+.review__actions {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .review {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Columns editor ─────────────────────────────────────────────────────────── */
+
+.columns__card {
+  padding: 0;
+}
+
+.columns__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--card-pad-y) var(--card-pad-x);
+  cursor: pointer;
+  font-weight: var(--fw-medium);
+}
+
+.columns__summary svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.columns__row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 1fr) 2fr 2fr;
+  gap: var(--space-3);
+  align-items: center;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-width) var(--border-style) var(--border-subtle);
+}
+
+.columns__controls,
+.columns__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.columns__check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .columns__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Steps editor + list filters ───────────────────────────────────────────── */
+
+.steps__card {
+  padding: 0;
+}
+
+.steps__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--card-pad-y) var(--card-pad-x);
+  cursor: pointer;
+  font-weight: var(--fw-medium);
+}
+
+.steps__summary svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.steps__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.steps__delay {
+  width: 5rem;
+}
+
+.list__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+/* Brand mark (spintax.net cube) next to the product / campaign name */
+.brand-mark {
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: -0.3em;
+  margin-right: var(--space-2);
+}
+
+/* Step 2: editable column names + AI naming helper */
+.th-name {
+  width: 11rem;
+  min-width: 8rem;
+  font-weight: var(--fw-medium);
+}
+
+/* Step 2 / list / assets: a table inside a card body gets the card's own spacing */
+.view .table td {
+  vertical-align: top;
+  max-width: 24rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-bottom: var(--border-width) var(--border-style) var(--border-subtle);
+}
+
+.naming-helper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.naming-helper .input {
+  flex: 1 1 18rem;
+}
+
+/* Step 1: batch picker for big lists */
+.batch {
+  margin-bottom: var(--space-3);
+}
+
+.batch__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.batch__row .input {
+  width: 6.5rem;
+}
+
+.view .pagination {
+  margin-top: var(--space-3);
+}
+
+/* Roles table: header menus open to the right of their chip (the first column sits at the card edge). */
+.th-stack .dropdown__menu {
+  right: auto;
+  left: 0;
+}
+
+/* Quick actions (header) + wizard steps 3–5 + drawer forms */
+.quick-actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-right: var(--space-3);
+}
+
+.wizard__template {
+  white-space: pre-wrap;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  background: var(--bg-subtle);
+  border: var(--border-width) var(--border-style) var(--border-subtle);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  margin: 0;
+}
+
+.wizard__howto {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.is-flash {
+  color: var(--success);
+  font-weight: var(--fw-medium);
+}
+
+.drawer .field {
+  margin-bottom: 0;
+}
+
+/* Row drawer */
+.list__row {
+  cursor: pointer;
+}
+
+.row-drawer__journal li {
+  font-size: var(--fs-sm);
+}
+
+/* Welcome & help (standalone welcome.html and the options view) */
+.welcome {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+}
+
+.welcome__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.welcome__icon {
+  width: 48px;
+  height: 48px;
+}
+
+.welcome__main,
+.view:has(.welcome__hero) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.welcome__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-4);
+}
+
+.welcome__num {
+  display: inline-flex;
+  width: 1.75rem;
+  height: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.welcome__list {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Template editor with an overlay (ported from spintax.net/play) ────────────────────────
+   The <pre> mirrors the textarea text exactly (same font metrics, padding, wrapping) and
+   carries the wavy underlines; the textarea on top keeps the caret and selection. */
+.editor {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+}
+
+.editor__overlay,
+.editor__textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+  padding: var(--space-3);
+  border: var(--border-width) var(--border-style) var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  min-height: 220px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  tab-size: 2;
+}
+
+.editor__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 4%, var(--bg));
+  overflow: auto;
+  z-index: 1;
+}
+
+.editor__textarea {
+  position: relative;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--text);
+  resize: vertical;
+  z-index: 2;
+  max-height: 520px;
+  overflow: auto;
+}
+
+.editor__textarea::selection {
+  background: color-mix(in srgb, var(--primary) 45%, transparent);
+}
+
+.editor__textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+/* Wavy underline for issues (and for leftovers in rendered variants): danger = error, warning. */
+.err {
+  text-decoration: underline wavy var(--danger);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+.warn {
+  text-decoration: underline wavy var(--warning);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+/* ── Template screen laid out like the spintax.net playground ─────────────────────────────── */
+.play__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 900px) {
+  .play__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.play__input,
+.play__output {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.play__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.play__block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.play__block-label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.play__hint {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.play__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.play__field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.play__count {
+  width: 4rem;
+}
+
+.play__tabs {
+  display: inline-flex;
+  gap: 2px;
+  background: color-mix(in srgb, var(--text) 6%, var(--bg));
+  border: var(--border-width) var(--border-style) var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 2px;
+}
+
+.play__tab {
+  font: inherit;
+  font-size: var(--fs-xs);
+  padding: 0.3em 0.75em;
+  background: transparent;
+  color: var(--text-muted);
+  border: 0;
+  border-radius: calc(var(--radius-xs) - 1px);
+  cursor: pointer;
+}
+
+.play__tab:hover {
+  color: var(--text);
+}
+
+.play__tab.is-active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.play__tab:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Variables: read-only rows (group · %name% · sample value · state) */
+.vars__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.vars__row {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(6rem, auto) minmax(0, 1fr) auto;
+  gap: var(--space-2);
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: var(--border-width) var(--border-style) var(--border-subtle);
+  font-size: var(--fs-sm);
+}
+
+.vars__group {
+  font-size: var(--fs-xs);
+  color: color-mix(in srgb, var(--text) 75%, var(--text-muted));
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.vars__name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88rem;
+}
+
+.vars__row--unused .vars__name {
+  color: var(--text-muted);
+}
+
+.vars__row--missing .vars__name {
+  color: var(--danger);
+}
+
+.vars__value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.vars__raw {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  padding: var(--space-3);
+  border: var(--border-width) var(--border-style) var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--text) 4%, var(--bg));
+  color: var(--text);
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Later block rules set display on the same elements; a scoped selector outranks them (no !important). */
+.play .hidden {
+  display: none;
+}
+
+.variant__seed {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Variants */
+.variants {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.variants__empty {
+  padding: var(--space-4);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.variant {
+  border: var(--border-width) var(--border-style) var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.variant__head {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-muted);
+  border-bottom: var(--border-width) var(--border-style) var(--border-subtle);
+}
+
+.variant__body {
+  padding: var(--space-3) var(--space-4);
+  line-height: 1.65;
+}
+
+.variant__body .template__text {
+  white-space: pre-wrap;
+}
+
+.error-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: color-mix(in srgb, var(--danger) 10%, var(--bg));
+  border: 1px solid var(--danger);
+  border-left-width: 3px;
+  border-radius: var(--radius-lg);
+}
+
+.error-banner__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.error-banner__title {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--danger);
+}
+
+.error-banner__message {
+  font-size: var(--fs-sm);
+}
+
+/* Flags reused from the panel (same look): */
+.flag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: var(--fw-semibold);
+  padding: 1px 4px;
+  border-radius: var(--radius-xs);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.flag--ok {
+  background: color-mix(in srgb, var(--success) 16%, transparent);
+  color: var(--success);
+}
+
+.flag--warn {
+  background: color-mix(in srgb, var(--warning) 16%, transparent);
+  color: var(--warning);
+}
+
+.flag--muted {
+  color: var(--text-muted);
+}
+
+.variant__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.variant__copy {
+  margin-left: auto;
+}
+
+.welcome__news {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* 301-ui site.css `.btn--outline` (StyleGuide: a destructive action next to a primary one keeps the
+   colour as text + border and drops the fill, so Save stays the only filled button). ui.css does
+   not carry it. */
+.btn.btn--outline {
+  background: transparent;
+  border-color: currentColor;
+}
+
+.btn.btn--outline.btn--danger {
+  color: var(--danger);
+}
+
+.btn.btn--outline.btn--danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+}
+
+/* The dropdown trigger's label had no rule at all (src/shared/dropdown.ts builds it), so it
+   inherited nowrap from .btn-chip and could never ellipsize — a long translated option widened
+   the trigger instead of truncating. */
+.dropdown__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

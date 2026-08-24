@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Pre-JS fallback only: main.ts sets the title in the UI language (panelPageTitle). Firefox
+         also takes sidebar_action.default_title from here — harmless, cmdActionTitle is "Spintax"
+         in all seven locales. -->
+    <title>Spintax</title>
+    <!-- Firefox sidebar_action. WXT builds this key from the ENTRYPOINT's options and overwrites
+         whatever wxt.config.ts declares, so it has to be stated here or the sidebar pops open on
+         install (Firefox defaults open_at_install to true) — pre-release review #6. -->
+    <meta name="manifest.open_at_install" content="false" />
+    <meta name="manifest.default_icon" content='{"16":"icons/16.png","32":"icons/32.png"}' />
+    <link rel="stylesheet" href="../../assets/css/theme.css" />
+    <link rel="stylesheet" href="../../assets/css/ui.css" />
+    <link rel="stylesheet" href="../../assets/css/panel.css" />
+  </head>
+  <body class="sidepanel">
+    <div id="app" class="sidepanel-shell"></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

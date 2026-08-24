@@ -1,0 +1,53 @@
+{
+  "name": "spintax-outreach",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Spintax Outreach — templates, variables and a queue for manual outreach (browser extension)",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "build:edge": "wxt build -b edge",
+    "build:all": "wxt build && wxt build -b firefox && wxt build -b edge",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "zip:edge": "wxt zip -b edge",
+    "zip:all": "wxt zip && wxt zip -b firefox && wxt zip -b edge",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src/ wxt.config.ts",
+    "lint:fix": "biome check --write src/ wxt.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "postinstall": "wxt prepare",
+    "e2e": "node e2e/run.mjs",
+    "e2e:edge": "node e2e/run.mjs --edge",
+    "icons": "node scripts/make-icons.mjs",
+    "bench": "node e2e/bench.mjs",
+    "shot:wizard": "node e2e/shot-wizard.mjs",
+    "lint:ext": "web-ext lint --source-dir dist/firefox-mv2",
+    "check": "tsc --noEmit && biome check src/ wxt.config.ts && vitest run && npm run i18n:check",
+    "i18n:check": "node scripts/i18n-merge.mjs --check && node scripts/i18n-plurals.mjs --check && node scripts/i18n-check.mjs",
+    "i18n:merge": "node scripts/i18n-merge.mjs",
+    "i18n:overflow": "node e2e/i18n-overflow.mjs",
+    "i18n:seed": "node scripts/i18n-seed.mjs"
+  },
+  "dependencies": {
+    "@spintax/authoring-prompt": "^0.1.0",
+    "@spintax/core": "^0.6.1",
+    "fflate": "^0.8.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.10",
+    "@types/node": "^26.2.0",
+    "fake-indexeddb": "^6.2.5",
+    "jsdom": "^26.1.0",
+    "playwright": "^1.62.1",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.11",
+    "web-ext": "^10.6.0",
+    "wxt": "^0.21.4"
+  }
+}

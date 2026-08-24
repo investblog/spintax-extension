@@ -1,0 +1,775 @@
+{
+  "wizStepImport": {
+    "message": "Import",
+    "description": "Step chip 1 of the campaign wizard. One word — the five chips share one row."
+  },
+  "wizStepRoles": {
+    "message": "Roles & duplicates",
+    "description": "Step chip 2 of the campaign wizard: give each column a role and settle duplicate rows."
+  },
+  "wizStepProfile": {
+    "message": "Profile & template",
+    "description": "Step chip 3 of the campaign wizard: who writes and what is written."
+  },
+  "wizStepProblems": {
+    "message": "Problems",
+    "description": "Step chip 4 of the campaign wizard: rows that cannot be sent as they are."
+  },
+  "wizStepQueue": {
+    "message": "Walk the queue",
+    "description": "Step chip 5 of the campaign wizard: go through the rows by hand in the side panel."
+  },
+  "wizStep1Title": {
+    "message": "Step 1 — Import a list",
+    "description": "Heading of wizard step 1."
+  },
+  "wizImportHint": {
+    "message": "CSV / TSV / XLSX, or paste from Sheets. Roles are detected from values.",
+    "description": "Status line under the step 1 heading before a file is chosen. The file formats are file extensions — keep them."
+  },
+  "wizFileLabel": {
+    "message": "File",
+    "description": "Label of the file picker on wizard step 1."
+  },
+  "wizOrPasteLabel": {
+    "message": "Or paste",
+    "description": "Label of the paste box on wizard step 1, the alternative to picking a file."
+  },
+  "wizPastePlaceholder": {
+    "message": "Paste rows copied from Google Sheets / Excel (tab-separated)…",
+    "description": "Placeholder of the paste box on wizard step 1."
+  },
+  "wizSheetLabel": {
+    "message": "Sheet",
+    "description": "Label and accessible name of the dropdown that picks a sheet of a multi-sheet XLSX file."
+  },
+  "wizSheetOptionOne": {
+    "message": "$NAME$ ($COUNT$ row)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" },
+      "name": { "content": "$2", "example": "Contacts" }
+    }
+  },
+  "wizSheetOptionFew": {
+    "message": "$NAME$ ($COUNT$ rows)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "name": { "content": "$2", "example": "Contacts" }
+    }
+  },
+  "wizSheetOptionMany": {
+    "message": "$NAME$ ($COUNT$ rows)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" },
+      "name": { "content": "$2", "example": "Contacts" }
+    }
+  },
+  "wizSheetOptionOther": {
+    "message": "$NAME$ ($COUNT$ rows)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1200" },
+      "name": { "content": "$2", "example": "Contacts" }
+    }
+  },
+  "wizPastedTable": {
+    "message": "Pasted table",
+    "description": "Stands in for the file name in the import status line when the rows came from the paste box."
+  },
+  "wizFileError": {
+    "message": "Could not read the file: $ERROR$",
+    "description": "Import failed: the browser's own error message follows and stays untranslated.",
+    "placeholders": {
+      "error": { "content": "$1", "example": "Unsupported zip entry" }
+    }
+  },
+  "wizNoRowsFound": {
+    "message": "No rows found — check the first line holds headers.",
+    "description": "The chosen file or pasted text parsed to nothing usable."
+  },
+  "wizRowsOne": {
+    "message": "$COUNT$ row",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "wizRowsFew": {
+    "message": "$COUNT$ rows",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizRowsMany": {
+    "message": "$COUNT$ rows",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" }
+    }
+  },
+  "wizRowsOther": {
+    "message": "$COUNT$ rows",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1200" }
+    }
+  },
+  "wizColumnsOne": {
+    "message": "$COUNT$ column",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "wizColumnsFew": {
+    "message": "$COUNT$ columns",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizColumnsMany": {
+    "message": "$COUNT$ columns",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" }
+    }
+  },
+  "wizColumnsOther": {
+    "message": "$COUNT$ columns",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "7" }
+    }
+  },
+  "wizImportedCounts": {
+    "message": "$SOURCE$: $ROWS$ × $COLUMNS$.",
+    "description": "First sentence of the import status line: where the table came from and its size. SOURCE is a file name (data, never translated), ROWS and COLUMNS arrive already pluralised.",
+    "placeholders": {
+      "source": { "content": "$1", "example": "contacts.csv" },
+      "rows": { "content": "$2", "example": "1200 rows" },
+      "columns": { "content": "$3", "example": "7 columns" }
+    }
+  },
+  "wizNoHeaderRow": {
+    "message": "No header row found — column names were guessed (id, email, phone…); rename them in step 2.",
+    "description": "Second sentence of the import status line when the file had no header row. The names in the parentheses are examples of guessed column names."
+  },
+  "wizSkippedTitleRowsOne": {
+    "message": "Skipped $COUNT$ title row above the header.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "wizSkippedTitleRowsFew": {
+    "message": "Skipped $COUNT$ title rows above the header.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizSkippedTitleRowsMany": {
+    "message": "Skipped $COUNT$ title rows above the header.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" }
+    }
+  },
+  "wizSkippedTitleRowsOther": {
+    "message": "Skipped $COUNT$ title rows above the header.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "2" }
+    }
+  },
+  "wizBatchRange": {
+    "message": "Batch: rows $FROM$–$TO$.",
+    "description": "Last sentence of the import status line for a big file: which slice of the rows is being imported. The dash between the two numbers is an en dash.",
+    "placeholders": {
+      "from": { "content": "$1", "example": "1" },
+      "to": { "content": "$2", "example": "1000" }
+    }
+  },
+  "wizFileRowsOne": {
+    "message": "$ROWS$ row",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": { "content": "$2", "example": "1" }
+    }
+  },
+  "wizFileRowsFew": {
+    "message": "$ROWS$ rows",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": { "content": "$2", "example": "3" }
+    }
+  },
+  "wizFileRowsMany": {
+    "message": "$ROWS$ rows",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": { "content": "$2", "example": "11" }
+    }
+  },
+  "wizFileRowsOther": {
+    "message": "$ROWS$ rows",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": { "content": "$2", "example": "40,000" }
+    }
+  },
+  "wizBatchIntro": {
+    "message": "— a queue you walk by hand. Import a batch now; load the file again later for the next one (rows already imported merge by key).",
+    "description": "Follows the bold row count of the batch panel and finishes its sentence, so it opens with an em dash."
+  },
+  "wizBatchRowsLabel": {
+    "message": "Rows",
+    "description": "Opens the batch form row: Rows [from] to [to] · batch of [size]."
+  },
+  "wizBatchTo": {
+    "message": "to",
+    "description": "Between the first row of the batch (an input) and the last one (a number) in the batch form row."
+  },
+  "wizBatchSizeLabel": {
+    "message": "batch of",
+    "description": "Label of the batch size input in the batch form row. Lowercase on purpose — it continues the line."
+  },
+  "wizBatchFirstAria": {
+    "message": "First row of the batch",
+    "description": "Accessible name of the number input that picks where the batch starts."
+  },
+  "wizBatchSizeAria": {
+    "message": "Rows in the batch",
+    "description": "Accessible name of the number input that picks how many rows the batch takes."
+  },
+  "wizBatchFirst": {
+    "message": "first $COUNT$",
+    "description": "Button of the batch form row: jump back to the first N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1000" }
+    }
+  },
+  "wizBatchNext": {
+    "message": "next $COUNT$",
+    "description": "Button of the batch form row: move on to the next N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1000" }
+    }
+  },
+  "wizBatchMax": {
+    "message": "up to $COUNT$ per batch",
+    "description": "Muted note next to the batch buttons: the hard cap on one batch.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "5,000" }
+    }
+  },
+  "wizContinueRolesOne": {
+    "message": "Continue to roles & duplicates ($COUNT$ row)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "wizContinueRolesFew": {
+    "message": "Continue to roles & duplicates ($COUNT$ rows)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizContinueRolesMany": {
+    "message": "Continue to roles & duplicates ($COUNT$ rows)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" }
+    }
+  },
+  "wizContinueRolesOther": {
+    "message": "Continue to roles & duplicates ($COUNT$ rows)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1000" }
+    }
+  },
+  "wizStep2Title": {
+    "message": "Step 2 — Roles & duplicates",
+    "description": "Heading of wizard step 2."
+  },
+  "wizNothingImported": {
+    "message": "Nothing imported in this session — go back to step 1 to import a list.",
+    "description": "Wizard step 2 opened without a table in memory (after a reload)."
+  },
+  "wizImportSummaryOne": {
+    "message": "Import: $COUNT$ row · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" },
+      "adds": { "content": "$2", "example": "1" },
+      "updates": { "content": "$3", "example": "0" },
+      "merged": { "content": "$4", "example": "0" },
+      "dupes": { "content": "$5", "example": "0" },
+      "excluded": { "content": "$6", "example": "0" }
+    }
+  },
+  "wizImportSummaryFew": {
+    "message": "Import: $COUNT$ rows · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "adds": { "content": "$2", "example": "2" },
+      "updates": { "content": "$3", "example": "1" },
+      "merged": { "content": "$4", "example": "0" },
+      "dupes": { "content": "$5", "example": "0" },
+      "excluded": { "content": "$6", "example": "0" }
+    }
+  },
+  "wizImportSummaryMany": {
+    "message": "Import: $COUNT$ rows · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" },
+      "adds": { "content": "$2", "example": "9" },
+      "updates": { "content": "$3", "example": "2" },
+      "merged": { "content": "$4", "example": "0" },
+      "dupes": { "content": "$5", "example": "0" },
+      "excluded": { "content": "$6", "example": "0" }
+    }
+  },
+  "wizImportSummaryOther": {
+    "message": "Import: $COUNT$ rows · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1200" },
+      "adds": { "content": "$2", "example": "1180" },
+      "updates": { "content": "$3", "example": "12" },
+      "merged": { "content": "$4", "example": "5" },
+      "dupes": { "content": "$5", "example": "2" },
+      "excluded": { "content": "$6", "example": "1" }
+    }
+  },
+  "wizNoTargetColumn": {
+    "message": "Pick a target column (URL / email / @handle) — rows without a target cannot be imported.",
+    "description": "Blocker on wizard step 2: no column carries the role \"target\" yet."
+  },
+  "wizApplyImport": {
+    "message": "Apply import ($COUNT$)",
+    "description": "Primary button of wizard step 2: how many rows will be written (added plus updated).",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1200" }
+    }
+  },
+  "wizNamingPastePlaceholder": {
+    "message": "paste the answer line: id; email; phone; …",
+    "description": "Placeholder of the input that takes the AI chat's answer. The example names show the expected shape — semicolons separate them."
+  },
+  "wizNamingPasteAria": {
+    "message": "Column names from the AI answer",
+    "description": "Accessible name of the input that takes the AI chat's answer."
+  },
+  "wizNamingExpectedOne": {
+    "message": "Expected $COUNT$ name separated by \";\".",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "wizNamingExpectedFew": {
+    "message": "Expected $COUNT$ names separated by \";\".",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizNamingExpectedMany": {
+    "message": "Expected $COUNT$ names separated by \";\".",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" }
+    }
+  },
+  "wizNamingExpectedOther": {
+    "message": "Expected $COUNT$ names separated by \";\".",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "7" }
+    }
+  },
+  "wizPromptCopied": {
+    "message": "Prompt copied — paste it into your AI chat, then paste the answer here.",
+    "description": "The \"name these columns\" prompt reached the clipboard."
+  },
+  "wizClipboardBlocked": {
+    "message": "Clipboard blocked — select the names by hand.",
+    "description": "The browser refused clipboard access, so the prompt could not be copied."
+  },
+  "wizCopyNamingPrompt": {
+    "message": "Copy prompt: name these columns",
+    "description": "Button that copies a prompt for an AI chat. The prompt itself is sent to a model and stays English."
+  },
+  "wizApplyNames": {
+    "message": "Apply names",
+    "description": "Button that renames the columns from the pasted answer line."
+  },
+  "wizColumnNameAria": {
+    "message": "Column name",
+    "description": "Accessible name of the header input in the roles table."
+  },
+  "wizVariableTitle": {
+    "message": "Variable: %$NAME$%",
+    "description": "Tooltip of the header input: the template variable this column feeds. The percent signs are spintax syntax — keep them around the name, and leave the name itself as it is.",
+    "placeholders": {
+      "name": { "content": "$1", "example": "company" }
+    }
+  },
+  "wizRoleFor": {
+    "message": "Role for $COLUMN$",
+    "description": "Accessible name of the role dropdown. COLUMN is the user's own column header — data, never translated.",
+    "placeholders": {
+      "column": { "content": "$1", "example": "E-mail" }
+    }
+  },
+  "wizRoleNone": {
+    "message": "— no role",
+    "description": "Role dropdown item: an ordinary column, used only as a template variable. Opens with an em dash."
+  },
+  "wizRoleNoneHint": {
+    "message": "a plain variable",
+    "description": "Hint under the \"no role\" dropdown item."
+  },
+  "wizRoleTarget": {
+    "message": "target",
+    "description": "Role dropdown item: the column that says where to reach the recipient. Lowercase on purpose."
+  },
+  "wizRoleTargetHint": {
+    "message": "site / e-mail / @handle to reach",
+    "description": "Hint under the \"target\" dropdown item."
+  },
+  "wizRoleLang": {
+    "message": "lang",
+    "description": "Role dropdown item: the column that says which language the row is written in. Lowercase on purpose."
+  },
+  "wizRoleLangHint": {
+    "message": "locale of the row (template per language)",
+    "description": "Hint under the \"lang\" dropdown item."
+  },
+  "wizRoleKey": {
+    "message": "key (override)",
+    "description": "Role dropdown item: the column that carries the user's own row key. Lowercase on purpose."
+  },
+  "wizRoleKeyHint": {
+    "message": "your own row key instead of the derived one",
+    "description": "Hint under the \"key (override)\" dropdown item."
+  },
+  "wizSampleValue": {
+    "message": "e.g. $VALUE$",
+    "description": "Tooltip of a variable chip: the first non-empty value in that column. The value is the user's data.",
+    "placeholders": {
+      "value": { "content": "$1", "example": "anna@example.com" }
+    }
+  },
+  "wizNoValues": {
+    "message": "no values",
+    "description": "Tooltip of a variable chip whose column is empty in every row."
+  },
+  "wizEmptyPct": {
+    "message": "empty $PCT$%",
+    "description": "Badge on a variable chip: the share of rows where this column is blank. Keep the percent sign next to the number.",
+    "placeholders": {
+      "pct": { "content": "$1", "example": "40" }
+    }
+  },
+  "wizConflictsOne": {
+    "message": "$COUNT$ row differs — decide per field",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "wizConflictsFew": {
+    "message": "$COUNT$ rows differ — decide per field",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizConflictsMany": {
+    "message": "$COUNT$ rows differ — decide per field",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" }
+    }
+  },
+  "wizConflictsOther": {
+    "message": "$COUNT$ rows differ — decide per field",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "wizConflictTwiceInFile": {
+    "message": "twice in the file",
+    "description": "Follows the row key of a conflict: the same key appears twice in the imported file. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictAlreadyInCampaign": {
+    "message": "already in campaign",
+    "description": "Follows the row key of a conflict: the key is already stored in the campaign. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictColField": {
+    "message": "field",
+    "description": "Conflict table header: which field of the row differs. Lowercase on purpose."
+  },
+  "wizConflictColCampaign": {
+    "message": "in campaign",
+    "description": "Conflict table header: the value stored in the campaign. Lowercase on purpose."
+  },
+  "wizConflictColFile": {
+    "message": "in file",
+    "description": "Conflict table header: the value the imported file carries. Lowercase on purpose."
+  },
+  "wizConflictColAction": {
+    "message": "action",
+    "description": "Conflict table header: what to do with this field. Lowercase on purpose."
+  },
+  "wizChoiceFillEmpty": {
+    "message": "fill empty",
+    "description": "Conflict choice: write the incoming value only where the stored one is blank. Lowercase on purpose."
+  },
+  "wizChoiceKeep": {
+    "message": "keep",
+    "description": "Conflict choice: keep the value already stored in the campaign. Lowercase on purpose."
+  },
+  "wizChoiceTake": {
+    "message": "take new",
+    "description": "Conflict choice: overwrite with the value from the imported file. Lowercase on purpose."
+  },
+  "wizWhoWrites": {
+    "message": "Who writes",
+    "description": "Heading of the sender profile card on wizard step 3."
+  },
+  "wizNoProfile": {
+    "message": "No sender profile yet — the form fields name / e-mail / site and %my_*% stay empty.",
+    "description": "The campaign has no sender profile. %my_*% is spintax syntax for the profile variables — keep it as it is."
+  },
+  "wizAddProfile": {
+    "message": "Add profile",
+    "description": "Button that opens the sender profile drawer when there is no profile yet."
+  },
+  "wizAddAnotherProfile": {
+    "message": "Add another profile",
+    "description": "Button that opens the sender profile drawer when the campaign already has one."
+  },
+  "wizManageProfiles": {
+    "message": "Manage profiles",
+    "description": "Link from wizard step 3 to the profiles screen."
+  },
+  "wizContinueProblems": {
+    "message": "Continue to problems",
+    "description": "Primary button of wizard step 3 when the template is already saved."
+  },
+  "wizEditFullEditor": {
+    "message": "Edit in the full editor",
+    "description": "Link from wizard step 3 to the template screen."
+  },
+  "wizTemplatePlaceholder": {
+    "message": "{Hi|Hello} %$VAR1$%, {quick|short} question about %$VAR2$% …  (paste from your AI chat or write it here)",
+    "description": "Placeholder of the small template editor on wizard step 3. The braces are spintax alternatives and the percent signs mark variables — keep both; translate the words inside the braces and the sentence in the parentheses. VAR1 and VAR2 are the campaign's own column variables.",
+    "placeholders": {
+      "var1": { "content": "$1", "example": "name" },
+      "var2": { "content": "$2", "example": "topic" }
+    }
+  },
+  "wizSaveTemplate": {
+    "message": "Save template",
+    "description": "Primary button that stores the step 1 message written on wizard step 3."
+  },
+  "wizErrorsOne": {
+    "message": "$COUNT$ error: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" },
+      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+    }
+  },
+  "wizErrorsFew": {
+    "message": "$COUNT$ errors: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" },
+      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+    }
+  },
+  "wizErrorsMany": {
+    "message": "$COUNT$ errors: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" },
+      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+    }
+  },
+  "wizErrorsOther": {
+    "message": "$COUNT$ errors: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "2" },
+      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+    }
+  },
+  "wizUnknownVars": {
+    "message": "Unknown variables: $VARS$ — they will render empty.",
+    "description": "The template uses variables the campaign does not have. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": { "content": "$1", "example": "%topic%, %city%" }
+    }
+  },
+  "wizTemplateValid": {
+    "message": "Valid. Variables used: $VARS$.",
+    "description": "The template parses. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": { "content": "$1", "example": "%name%, %topic%" }
+    }
+  },
+  "wizVarsNone": {
+    "message": "none",
+    "description": "Stands in for the variable list when the template uses no variables at all. Lowercase — it sits inside the sentence above."
+  },
+  "wizSpintaxVars": {
+    "message": "Spintax with your variables: $VARS$. Includes, the AI prompt and a per-row preview live in the full editor.",
+    "description": "Hint above the small template editor. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": { "content": "$1", "example": "%name% %topic% %my_name%" }
+    }
+  },
+  "wizFullEditorLink": {
+    "message": "Full editor (AI prompt, includes, preview)",
+    "description": "Link from the small template editor to the template screen."
+  },
+  "wizWhatIsWritten": {
+    "message": "What is written — step 1 message",
+    "description": "Heading of the template card on wizard step 3. \"Step 1\" here is the first message of the sequence, not a wizard step."
+  },
+  "wizStep4Title": {
+    "message": "Step 4 — Problems",
+    "description": "Heading of wizard step 4."
+  },
+  "wizChipBlocking": {
+    "message": "$COUNT$ blocking",
+    "description": "Chip on wizard step 4: rows that cannot be sent as they are.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizChipWarnings": {
+    "message": "$COUNT$ with warnings",
+    "description": "Chip on wizard step 4: rows that render but look suspicious.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "12" }
+    }
+  },
+  "wizChipClean": {
+    "message": "$COUNT$ clean",
+    "description": "Chip on wizard step 4: rows with nothing to fix.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1185" }
+    }
+  },
+  "wizChipUnchecked": {
+    "message": "$COUNT$ not checked here — Review checks all",
+    "description": "Chip on wizard step 4: the screen checks the first few thousand rows only. \"Review\" is the name of another screen — keep it the same as the navigation item.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3000" }
+    }
+  },
+  "wizNoTemplate": {
+    "message": "No template yet — go back to step 3.",
+    "description": "Wizard step 4 has nothing to check because the campaign has no message yet."
+  },
+  "wizBlockingExplain": {
+    "message": "Blocking: empty required variable, leaked brace, a field limit exceeded. Fix the template or the row in Review; clean rows can be approved in one click there.",
+    "description": "Explains what counts as blocking on wizard step 4. \"Review\" is the name of another screen — keep it the same as the navigation item."
+  },
+  "wizReviewCountOne": {
+    "message": "Review $COUNT$ row",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "1" }
+    }
+  },
+  "wizReviewCountFew": {
+    "message": "Review $COUNT$ rows",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "3" }
+    }
+  },
+  "wizReviewCountMany": {
+    "message": "Review $COUNT$ rows",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "11" }
+    }
+  },
+  "wizReviewCountOther": {
+    "message": "Review $COUNT$ rows",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": { "content": "$1", "example": "15" }
+    }
+  },
+  "wizReviewAll": {
+    "message": "Review rows",
+    "description": "Link from wizard step 4 to the Review screen when nothing needs attention."
+  },
+  "wizContinueQueue": {
+    "message": "Continue to the queue",
+    "description": "Button of wizard step 4 that moves on to the last step."
+  },
+  "wizStep5Title": {
+    "message": "Step 5 — Walk the queue",
+    "description": "Heading of wizard step 5."
+  },
+  "wizOpenSidePanel": {
+    "message": "Open the side panel",
+    "description": "Primary button of wizard step 5."
+  },
+  "wizHowto1": {
+    "message": "Open the side panel (toolbar button or the button below) — it shows the current row and its message.",
+    "description": "First line of the how-to list on wizard step 5."
+  },
+  "wizHowtoOpenTarget": {
+    "message": "Open target",
+    "description": "Quotes the side panel's \"Open target\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoOpens": {
+    "message": "→ the contact page opens;",
+    "description": "Follows the quoted \"Open target\" button in the how-to list. Keep the arrow at the front."
+  },
+  "wizHowtoFillOnSite": {
+    "message": "Fill on site.com",
+    "description": "Quotes the side panel's \"Fill on <host>\" button inside the how-to list; site.com is a stand-in host name — must read exactly like that button."
+  },
+  "wizHowtoFilled": {
+    "message": "→ fields are filled, you check them and press Send on the page.",
+    "description": "Follows the quoted \"Fill on site.com\" button in the how-to list. Keep the arrow at the front; \"Send\" is the contact form's own button on the target site."
+  },
+  "wizHowtoSentNext": {
+    "message": "Sent — next",
+    "description": "Quotes the side panel's \"Sent — next\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoRecords": {
+    "message": "(or S) records the outcome and moves on; other outcomes live under \"Not sent…\" and \"More…\".",
+    "description": "Follows the quoted \"Sent — next\" button in the how-to list. S is the keyboard shortcut — keep the letter; the two quoted names are side panel buttons."
+  },
+  "wizHowtoShortcuts": {
+    "message": "Assign your own keyboard shortcuts in the browser's extension shortcuts page if you like.",
+    "description": "Last line of the how-to list on wizard step 5."
+  },
+  "wizSeeList": {
+    "message": "See the list",
+    "description": "Link from wizard step 5 to the List screen."
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "welPageTitle": {
+    "message": "Welcome to Spintax",
+    "description": "Title of the standalone welcome page (welcome.html); the <title> tag carries the English fallback."
+  },
+  "welTagline": {
+    "message": "Templates, variables and a queue for manual outreach."
+  },
+  "panelPageTitle": {
+    "message": "Spintax",
+    "description": "Title of the side panel document; the <title> tag carries the English fallback."
+  },
+  "welHeroTitle": {
+    "message": "Manual outreach, one row at a time"
+  },
+  "welHeroText": {
+    "message": "Spintax fills contact forms and messages from your list and your template. It never submits anything, never solves captchas, never talks to a server — you press Send."
+  },
+  "welTryDemo": {
+    "message": "Try the demo campaign"
+  },
+  "welOpenDemo": {
+    "message": "Open the demo campaign",
+    "description": "Same button as welTryDemo once the demo campaign is already installed."
+  },
+  "welStartOwn": {
+    "message": "Start with my list"
+  },
+  "welDemoInstalled": {
+    "message": "The demo campaign \"$NAME$\" is installed — five blogs bundled with the extension, nothing real.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Demo — five blogs"
+      }
+    }
+  },
+  "welRemoveDemo": {
+    "message": "Remove the demo"
+  },
+  "welDemoRemoved": {
+    "message": "Demo removed."
+  },
+  "welStep1Title": {
+    "message": "Import a list"
+  },
+  "welStep1Text": {
+    "message": "CSV, XLSX or paste. Columns become variables — %name%, %site%, %topic%. Rows merge by site or e-mail, so re-imports never duplicate.",
+    "description": "%name%, %site% and %topic% are template variable names — keep them as they are."
+  },
+  "welStep2Title": {
+    "message": "Write one template"
+  },
+  "welStep2Text": {
+    "message": "Spintax: {Hi|Hello} %name%… Every row gets its own wording, reproducible from the row key. Let your AI chat draft it — the prompt is one click away.",
+    "description": "{Hi|Hello} is spintax syntax; the words inside may be translated, the braces and the pipe may not."
+  },
+  "welStep3Title": {
+    "message": "Walk the queue"
+  },
+  "welStep3Text": {
+    "message": "Open the side panel on a target page, press Fill, check the form, press Send yourself, mark the row. Follow-ups come back on their day."
+  },
+  "welQuickTitle": {
+    "message": "Quick actions"
+  },
+  "welQuickText": {
+    "message": "Available on every screen, in the header — they open a drawer and never interrupt what you are doing."
+  },
+  "welQuickProfile": {
+    "message": "Add a sender profile"
+  },
+  "welQuickRows": {
+    "message": "Add rows"
+  },
+  "welQuickRowsBlocked": {
+    "message": "Import a list first — rows need columns to land in",
+    "description": "Tooltip on the disabled \"Add rows\" chip."
+  },
+  "welQuickFiles": {
+    "message": "Add files"
+  },
+  "welPanelTitle": {
+    "message": "In the side panel"
+  },
+  "welPanelOpenTarget": {
+    "message": "the row's page (or a new e-mail in your mail app / web mail — see Settings).",
+    "description": "Follows the quoted side-panel button name \"Open target\" and an em dash: \"Open target — the row's page…\"."
+  },
+  "welPanelFill": {
+    "message": "asks for the site once, fills the recognised fields, shows a report per field; rich editors get the text via the clipboard.",
+    "description": "Follows the quoted side-panel button name \"Fill on site.com\" and an em dash."
+  },
+  "welPanelSent": {
+    "message": "records the outcome and moves on; \"Not sent…\" and \"More…\" hold the other outcomes.",
+    "description": "Follows the quoted side-panel button name \"Sent — next (S)\" and an em dash. \"Not sent…\" and \"More…\" quote panel buttons — use the same wording as panelNotSent / panelMore."
+  },
+  "welPanelKeysLabel": {
+    "message": "Keys",
+    "description": "Bold lead-in of the keyboard-shortcuts line; not a button name."
+  },
+  "welPanelKeys": {
+    "message": "Enter = primary action, S = sent & next, N = next row (outside text fields). Global shortcuts are yours to assign in the browser's extension shortcuts.",
+    "description": "Follows the bold \"Keys\" and an em dash. S and N are the physical keys — keep them Latin."
+  },
+  "welPanelMappingLabel": {
+    "message": "Field mapping",
+    "description": "Bold lead-in quoting the side panel's field-mapping section."
+  },
+  "welPanelMapping": {
+    "message": "what went where; point at a field the helper missed, pin a field, forget a wrong recipe.",
+    "description": "Follows the bold \"Field mapping\" and an em dash."
+  },
+  "welPrivacyTitle": {
+    "message": "Privacy"
+  },
+  "welPrivacyText": {
+    "message": "Everything stays in this browser profile: lists, templates, journal, files. No account, no telemetry, no network — the only optional request is the 301.sh news feed, off by default. Backup and delete everything from Settings."
+  },
+  "welNews": {
+    "message": "Publisher news — a notification when 301.sh publishes a post (checked every 6 hours, nothing about you is sent). Off until you click the bell.",
+    "description": "Follows the news bell button on the welcome page."
+  },
+  "welPrivacyPolicy": {
+    "message": "Privacy policy"
+  },
+  "welSpintaxWithAi": {
+    "message": "Writing spintax with AI"
+  },
+  "welPlayground": {
+    "message": "Playground",
+    "description": "Link to the online spintax playground on 301.st."
+  },
+  "colSummaryOne": {
+    "message": "Columns ($COUNT$) — type, form fields, defaults, hints",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "colSummaryFew": {
+    "message": "Columns ($COUNT$) — type, form fields, defaults, hints",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "colSummaryMany": {
+    "message": "Columns ($COUNT$) — type, form fields, defaults, hints",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "colSummaryOther": {
+    "message": "Columns ($COUNT$) — type, form fields, defaults, hints",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "colTypeOf": {
+    "message": "Type of $COLUMN$",
+    "description": "Accessible name of the column type dropdown.",
+    "placeholders": {
+      "column": {
+        "content": "$1",
+        "example": "Company"
+      }
+    }
+  },
+  "colTypeText": {
+    "message": "text",
+    "description": "Column type: the cell holds text."
+  },
+  "colTypeFile": {
+    "message": "file (asset)",
+    "description": "Column type: the cell holds the sha256 of a file from the asset library."
+  },
+  "colFillableTitle": {
+    "message": "Offer this column as a value for a form field (select, file, text)"
+  },
+  "colFillable": {
+    "message": "fill into a form field"
+  },
+  "colRequired": {
+    "message": "required"
+  },
+  "colHidden": {
+    "message": "hidden"
+  },
+  "colDefaultPlaceholder": {
+    "message": "default for empty cells"
+  },
+  "colNotePlaceholder": {
+    "message": "hint for the AI prompt, e.g. brand — do not inflect"
+  },
+  "colSave": {
+    "message": "Save columns"
+  },
+  "colSaved": {
+    "message": "Saved."
+  },
+  "stepSummaryOne": {
+    "message": "Steps ($COUNT$) — initial message + follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSummaryFew": {
+    "message": "Steps ($COUNT$) — initial message + follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSummaryMany": {
+    "message": "Steps ($COUNT$) — initial message + follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSummaryOther": {
+    "message": "Steps ($COUNT$) — initial message + follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "stepLabel": {
+    "message": "Step $N$",
+    "description": "Bold lead-in of a step row in the steps editor.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepInitial": {
+    "message": "initial message",
+    "description": "Follows \"Step 1\" and an em dash."
+  },
+  "stepFollowup": {
+    "message": "follow-up,",
+    "description": "Follows \"Step 2\" and an em dash; the delay input and stepFollowupDays finish the line: \"Step 2 — follow-up, [3] days after the previous step\"."
+  },
+  "stepFollowupDays": {
+    "message": "days after the previous step",
+    "description": "Follows the delay input; see stepFollowup for the whole line."
+  },
+  "stepDelayAria": {
+    "message": "Delay days for step $N$",
+    "description": "Accessible name of the delay input.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepAdd": {
+    "message": "Add follow-up"
+  },
+  "stepRemove": {
+    "message": "Remove last"
+  },
+  "stepSave": {
+    "message": "Save steps"
+  },
+  "stepSavedOne": {
+    "message": "Saved; $COUNT$ row re-projected.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSavedFew": {
+    "message": "Saved; $COUNT$ rows re-projected.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSavedMany": {
+    "message": "Saved; $COUNT$ rows re-projected.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSavedOther": {
+    "message": "Saved; $COUNT$ rows re-projected.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "demoBannerSent": {
+    "message": "Demo: nothing was sent. Mark the row as sent in the side panel to move on.",
+    "description": "Banner on the bundled demo pages after a harmless \"submit\"."
+  },
+  "cmdActionTitle": {
+    "message": "Spintax",
+    "description": "Tooltip of the toolbar button and title of the Firefox sidebar."
+  },
+  "cmdFill": {
+    "message": "Fill the mapped fields on the current page",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdCopyOpen": {
+    "message": "Copy the message and open the target",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdMarkSentNext": {
+    "message": "Mark as sent and go to the next row",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdNextRow": {
+    "message": "Go to the next row",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdSidebar": {
+    "message": "Open the Spintax sidebar",
+    "description": "Firefox only: the bindable _execute_sidebar_action command."
+  }
+}

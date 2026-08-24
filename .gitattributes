@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
+
+# CSV exports keep CRLF (Excel); generated store assets are binary
+*.csv -text

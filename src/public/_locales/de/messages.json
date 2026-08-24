@@ -1,0 +1,4653 @@
+{
+  "extName": {
+    "message": "Spintax — Formulare von Hand ausfüllen"
+  },
+  "extDescription": {
+    "message": "Spintax-Vorlagen für manuelles Outreach: Kontaktformulare und Chats aus Ihrer Liste Zeile für Zeile ausfüllen. Lokal, ohne Konto."
+  },
+  "drwQuickActions": {
+    "message": "Schnellaktionen"
+  },
+  "drwChipProfile": {
+    "message": "Profil"
+  },
+  "drwChipProfileTitle": {
+    "message": "Absenderprofil anlegen"
+  },
+  "drwChipRows": {
+    "message": "Zeilen"
+  },
+  "drwChipRowsTitle": {
+    "message": "Weitere Zeilen in diese Kampagne einfügen"
+  },
+  "drwChipRowsBlocked": {
+    "message": "Zuerst eine Liste im Assistenten importieren — Zeilen brauchen Spalten, in die sie passen"
+  },
+  "drwChipFiles": {
+    "message": "Dateien"
+  },
+  "drwChipFilesTitle": {
+    "message": "Dateien zur Bibliothek hinzufügen"
+  },
+  "drwChipBackup": {
+    "message": "Backup"
+  },
+  "drwChipBackupTitle": {
+    "message": "Backup / Zurückspielen"
+  },
+  "drwProfileTitle": {
+    "message": "Absenderprofil"
+  },
+  "drwProfileTitleMore": {
+    "message": "Weiteres Absenderprofil"
+  },
+  "drwProfileSubtitle": {
+    "message": "Wer schreibt: füllt %my_name%, %my_email% … und die Felder Name / E-Mail / Website in Kontaktformularen."
+  },
+  "drwProfileSubtitleMore": {
+    "message": "Das erste passende Profil gewinnt; das Profil „immer“ greift, wenn keins passt."
+  },
+  "drwProfileLabel": {
+    "message": "Profilname"
+  },
+  "drwProfileLabelHint": {
+    "message": "Nur für Sie — z. B. „DE“, „EN“, „Partnerschaften“."
+  },
+  "drwProfilePattern": {
+    "message": "Verwenden, wenn das Ziel passt"
+  },
+  "drwProfilePatternAria": {
+    "message": "Zielmuster"
+  },
+  "drwProfilePatternHint": {
+    "message": "Leer lassen und später auf der Seite „Profile“ von Hand wählen."
+  },
+  "drwProfilePatternPlaceholder": {
+    "message": "Regex über das Ziel, z. B. \\.de$$|\\.at$$"
+  },
+  "drwProfileNeedsContact": {
+    "message": "Ein Name oder eine E-Mail wird gebraucht — daraus werden die Formularfelder „Name“ und „E-Mail“ gefüllt."
+  },
+  "drwProfileSave": {
+    "message": "Speichern"
+  },
+  "drwProfileCancel": {
+    "message": "Abbrechen"
+  },
+  "drwRowsTitle": {
+    "message": "Zeilen hinzufügen"
+  },
+  "drwRowsSubtitle": {
+    "message": "Zeilen werden über den Schlüssel (Website / E-Mail) zusammengeführt: vorhandene behalten ihren Status und ihre gefüllten Werte."
+  },
+  "drwRowsLabel": {
+    "message": "Zeilen"
+  },
+  "drwRowsPasteSubmit": {
+    "message": "Eine Website pro Zeile — oder ganze Zeilen (CSV / Tab-getrennt) mit den Spalten $COLUMNS$; eine Kopfzeile ist optional.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPasteMail": {
+    "message": "Eine Website oder E-Mail pro Zeile — oder ganze Zeilen (CSV / Tab-getrennt) mit den Spalten $COLUMNS$; eine Kopfzeile ist optional.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNoTargetSubmit": {
+    "message": "Hier sieht nichts nach einer Website aus."
+  },
+  "drwRowsNoTargetMail": {
+    "message": "Hier sieht nichts nach einer Website oder E-Mail aus."
+  },
+  "drwRowsNoTargetHint": {
+    "message": "Eine pro Zeile einfügen oder Zeilen mit einer Spalte „$HEADER$“ ($COLUMNS$). Ein anderer Aufbau ist eine neue Kampagne — dafür der Assistent.",
+    "placeholders": {
+      "header": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPlanOne": {
+    "message": "$COUNT$ Zeile: $ADD$ neu, bei $FILLS$ vorhandenen werden leere Zellen gefüllt, $DUPES$ schon da, $EXCLUDED$ ohne Ziel.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanFew": {
+    "message": "$COUNT$ Zeilen: $ADD$ neu, bei $FILLS$ vorhandenen werden leere Zellen gefüllt, $DUPES$ schon da, $EXCLUDED$ ohne Ziel.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanMany": {
+    "message": "$COUNT$ Zeilen: $ADD$ neu, bei $FILLS$ vorhandenen werden leere Zellen gefüllt, $DUPES$ schon da, $EXCLUDED$ ohne Ziel.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanOther": {
+    "message": "$COUNT$ Zeilen: $ADD$ neu, bei $FILLS$ vorhandenen werden leere Zellen gefüllt, $DUPES$ schon da, $EXCLUDED$ ohne Ziel.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanConflictOne": {
+    "message": "$COUNT$ Zeile weicht vom Gespeicherten ab — vorhandene Werte bleiben hier ERHALTEN; im Assistenten entscheiden Sie Feld für Feld.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictFew": {
+    "message": "$COUNT$ Zeilen weichen vom Gespeicherten ab — vorhandene Werte bleiben hier ERHALTEN; im Assistenten entscheiden Sie Feld für Feld.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictMany": {
+    "message": "$COUNT$ Zeilen weichen vom Gespeicherten ab — vorhandene Werte bleiben hier ERHALTEN; im Assistenten entscheiden Sie Feld für Feld.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictOther": {
+    "message": "$COUNT$ Zeilen weichen vom Gespeicherten ab — vorhandene Werte bleiben hier ERHALTEN; im Assistenten entscheiden Sie Feld für Feld.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAdd": {
+    "message": "Hinzufügen"
+  },
+  "drwRowsAddedOne": {
+    "message": "$COUNT$ Zeile hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedFew": {
+    "message": "$COUNT$ Zeilen hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedMany": {
+    "message": "$COUNT$ Zeilen hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedOther": {
+    "message": "$COUNT$ Zeilen hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOne": {
+    "message": "$COUNT$ Zeile aktualisiert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedFew": {
+    "message": "$COUNT$ Zeilen aktualisiert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedMany": {
+    "message": "$COUNT$ Zeilen aktualisiert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOther": {
+    "message": "$COUNT$ Zeilen aktualisiert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNewColumnsOne": {
+    "message": "Neue Spalte: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsFew": {
+    "message": "Neue Spalten: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsMany": {
+    "message": "Neue Spalten: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsOther": {
+    "message": "Neue Spalten: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPasteMore": {
+    "message": "Weitere einfügen oder schließen."
+  },
+  "drwAssetsTitle": {
+    "message": "Dateien hinzufügen"
+  },
+  "drwAssetsSubtitle": {
+    "message": "Logos, Screenshots, Dokumente für Datei-Spalten; lokal gespeichert, nach Inhalt entdoppelt."
+  },
+  "drwAssetsFiles": {
+    "message": "Dateien"
+  },
+  "drwAssetsAddedOne": {
+    "message": "$COUNT$ Datei hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedFew": {
+    "message": "$COUNT$ Dateien hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedMany": {
+    "message": "$COUNT$ Dateien hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedOther": {
+    "message": "$COUNT$ Dateien hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedHint": {
+    "message": "Tragen Sie den Dateinamen in die Zelle einer Datei-Spalte ein, um sie zu nutzen."
+  },
+  "drwAssetsDone": {
+    "message": "Fertig"
+  },
+  "drwBackupTitle": {
+    "message": "Backup"
+  },
+  "drwBackupSubtitle": {
+    "message": "Ein ZIP mit Zeilen, Vorlagen, Journal, Rezepten und den genutzten Dateien. Beim Zurückspielen wird die Kampagne mit derselben ID ersetzt und Website-Rezepte werden überschrieben."
+  },
+  "drwBackupDownloadLabel": {
+    "message": "Herunterladen"
+  },
+  "drwBackupDownloadHint": {
+    "message": "Legen Sie es zu Ihren anderen Dateien — sonst verlässt nichts den Browser."
+  },
+  "drwBackupDownload": {
+    "message": "Backup herunterladen"
+  },
+  "drwBackupNoCampaign": {
+    "message": "Noch keine Kampagne zum Exportieren"
+  },
+  "drwBackupPacking": {
+    "message": "Wird gepackt …"
+  },
+  "drwBackupReady": {
+    "message": "Backup fertig: $SIZE$.",
+    "placeholders": {
+      "size": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupExportFailed": {
+    "message": "Export fehlgeschlagen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreLabel": {
+    "message": "Zurückspielen"
+  },
+  "drwBackupFileAria": {
+    "message": "Backup-Datei"
+  },
+  "drwBackupPicked": {
+    "message": "$FILE$ · $SIZE$ — beim Zurückspielen wird die Kampagne mit derselben ID ersetzt.",
+    "placeholders": {
+      "file": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwBackupRestore": {
+    "message": "Aus dieser Datei zurückspielen"
+  },
+  "drwBackupRestoring": {
+    "message": "Wird zurückgespielt …"
+  },
+  "drwBackupRestored": {
+    "message": "Zurückgespielt: $ROWS$ Zeilen, $TEMPLATES$ Vorlagen, $JOURNAL$ Journaleinträge, $RECIPES$ Rezepte, $ASSETS$ Dateien.",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "templates": {
+        "content": "$2"
+      },
+      "journal": {
+        "content": "$3"
+      },
+      "recipes": {
+        "content": "$4"
+      },
+      "assets": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwBackupMissingOne": {
+    "message": "$COUNT$ Datei fehlt im Archiv.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingFew": {
+    "message": "$COUNT$ Dateien fehlen im Archiv.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingMany": {
+    "message": "$COUNT$ Dateien fehlen im Archiv.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingOther": {
+    "message": "$COUNT$ Dateien fehlen im Archiv.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreFailed": {
+    "message": "Zurückspielen fehlgeschlagen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwFooterClose": {
+    "message": "Schließen"
+  },
+  "rowGone": {
+    "message": "Die Zeile gibt es nicht mehr."
+  },
+  "rowLegendRow": {
+    "message": "Zeile"
+  },
+  "rowLegendMessage": {
+    "message": "Nachricht"
+  },
+  "rowLegendOutcome": {
+    "message": "Ergebnis"
+  },
+  "rowLegendJournal": {
+    "message": "Journal"
+  },
+  "rowStepState": {
+    "message": "Schritt $STEP$ · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "state": {
+        "content": "$2"
+      }
+    }
+  },
+  "rowTarget": {
+    "message": "Ziel"
+  },
+  "rowTargetHint": {
+    "message": "Eine Änderung berechnet den Zeilenschlüssel neu."
+  },
+  "rowLanguage": {
+    "message": "Sprache"
+  },
+  "rowNote": {
+    "message": "Notiz"
+  },
+  "rowAssetHint": {
+    "message": "Dateiname aus der Bibliothek"
+  },
+  "rowTargetInvalid": {
+    "message": "Das Ziel muss eine Website, eine E-Mail oder ein @Handle sein."
+  },
+  "rowKeyClash": {
+    "message": "Eine andere Zeile hat schon den Schlüssel „$KEY$“ — führen Sie die beiden lieber zusammen.",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSaveFailed": {
+    "message": "Speichern fehlgeschlagen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSave": {
+    "message": "Zeile speichern"
+  },
+  "rowSaved": {
+    "message": "Gespeichert."
+  },
+  "rowRecordFailed": {
+    "message": "Eintragen fehlgeschlagen: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowClosed": {
+    "message": "Zeile abgeschlossen — Follow-ups gestoppt."
+  },
+  "rowDefer": {
+    "message": "Zurückstellen"
+  },
+  "rowDaysAria": {
+    "message": "Tage"
+  },
+  "rowNotApplicable": {
+    "message": "Nicht zutreffend"
+  },
+  "rowDelete": {
+    "message": "Zeile löschen"
+  },
+  "rowDeleteConfirm": {
+    "message": "Sicher? Zeile und ihr Journal löschen"
+  },
+  "rowEdited": {
+    "message": "Text für Schritt $STEP$ bearbeitet.",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowEditedTranslated": {
+    "message": "Text für Schritt $STEP$ bearbeitet (übersetzt).",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowResetTemplate": {
+    "message": "Auf Vorlage zurücksetzen"
+  },
+  "rowResetDone": {
+    "message": "Zurück zur Vorlage."
+  },
+  "rowJournalLoading": {
+    "message": "Wird geladen …"
+  },
+  "rowJournalEmpty": {
+    "message": "Noch keine Ereignisse."
+  },
+  "rowDeferDays": {
+    "message": "Verzögerung in Tagen",
+    "description": "Label of the numeric field next to the Defer button. Replaces the old \"Defer [n] days\" sentence, which produced \"Defer 1 days\" and could not be reordered."
+  },
+  "slotProfileName": {
+    "message": "Ihr Name"
+  },
+  "slotProfileEmail": {
+    "message": "Ihre Mail"
+  },
+  "slotProfileSite": {
+    "message": "Ihre Seite"
+  },
+  "slotProfilePhone": {
+    "message": "Ihr Tel."
+  },
+  "slotSubject": {
+    "message": "Betreff"
+  },
+  "slotBody": {
+    "message": "Nachricht"
+  },
+  "slotNotFound": {
+    "message": "fehlt"
+  },
+  "flagExact": {
+    "message": "exakt"
+  },
+  "flagEquivalent": {
+    "message": "äquivalent"
+  },
+  "flagChangedBySite": {
+    "message": "Seite änderte"
+  },
+  "flagPartial": {
+    "message": "teils"
+  },
+  "flagKept": {
+    "message": "bleibt"
+  },
+  "flagClipboard": {
+    "message": "kopiert"
+  },
+  "flagPinned": {
+    "message": "fixiert"
+  },
+  "flagPolicySkipIfFilled": {
+    "message": "nur wenn leer"
+  },
+  "flagPolicyReplace": {
+    "message": "ersetzen"
+  },
+  "flagPolicyAtCursor": {
+    "message": "am Cursor"
+  },
+  "flagNoFilePayload": {
+    "message": "keine Dateidaten"
+  },
+  "flagNoDataTransfer": {
+    "message": "DataTransfer nicht verfügbar"
+  },
+  "flagFilesRejected": {
+    "message": "Dateien nicht akzeptiert"
+  },
+  "flagNoOption": {
+    "message": "keine passende Option"
+  },
+  "flagSelectReverted": {
+    "message": "Auswahl von der Seite zurückgesetzt"
+  },
+  "flagFieldNotFound": {
+    "message": "Feld nicht gefunden"
+  },
+  "flagValueReverted": {
+    "message": "die Seite hat den Wert zurückgesetzt"
+  },
+  "flagRichEditor": {
+    "message": "Rich-Text-Editor: mit Ctrl+V einfügen"
+  },
+  "panelCounterPos": {
+    "message": "$POS$ / $TOTAL$",
+    "placeholders": {
+      "pos": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelCounterTodo": {
+    "message": "$COUNT$ offen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCounterDue": {
+    "message": "$COUNT$ fällig",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoCampaign": {
+    "message": "keine Kampagne"
+  },
+  "panelSettingsAria": {
+    "message": "Einstellungen öffnen"
+  },
+  "panelSettingsTitle": {
+    "message": "Einstellungen und Kampagnen (Optionsseite)"
+  },
+  "panelNoRows": {
+    "message": "Keine Zeilen in dieser Kampagne"
+  },
+  "panelNoCampaignYet": {
+    "message": "Noch keine Kampagne"
+  },
+  "panelEmptyHint": {
+    "message": "Importieren Sie auf der Optionsseite eine Liste und speichern Sie eine Vorlage."
+  },
+  "panelOpenCampaigns": {
+    "message": "Erste Liste einrichten"
+  },
+  "panelRowAria": {
+    "message": "Aktuelle Zeile"
+  },
+  "panelStep": {
+    "message": "Schritt $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOtherPage": {
+    "message": "Sie sind auf $HERE$; diese Zeile zeigt auf $THERE$.",
+    "placeholders": {
+      "here": {
+        "content": "$1"
+      },
+      "there": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPrevRow": {
+    "message": "Vorherige Zeile"
+  },
+  "panelNextRow": {
+    "message": "Nächste Zeile ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMessageAria": {
+    "message": "Nachricht"
+  },
+  "panelSaveEdit": {
+    "message": "Änderung speichern"
+  },
+  "panelSubjectLabel": {
+    "message": "Betreff:"
+  },
+  "panelBodyChars": {
+    "message": "Nachricht · $N$ Zeichen",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelEdited": {
+    "message": "bearbeitet"
+  },
+  "panelEditRow": {
+    "message": "Diese Zeile bearbeiten"
+  },
+  "panelNoMessage": {
+    "message": "Noch keine Nachricht für Schritt $N$ — schreiben Sie zuerst eine Vorlage.",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelDemoPage": {
+    "message": "die Demoseite"
+  },
+  "panelMappingSummary": {
+    "message": "Feldzuordnung — $N$ zugeordnet",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingMissing": {
+    "message": "$N$ fehlen",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMappingStale": {
+    "message": "Rezept geändert, bitte bestätigen"
+  },
+  "panelMappingHost": {
+    "message": "Feldzuordnung — $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoPage": {
+    "message": "keine Seite"
+  },
+  "panelPolicyTitle": {
+    "message": "Füllregel — zum Ändern klicken"
+  },
+  "panelPinnedTitle": {
+    "message": "Fixiert — bleibt, auch wenn sich das Formular ändert"
+  },
+  "panelPinAria": {
+    "message": "Dieses Feld fixieren"
+  },
+  "panelPinTitle": {
+    "message": "Fixieren — dieses Feld behalten, auch wenn sich das Formular ändert"
+  },
+  "panelClearAria": {
+    "message": "Diese Zuordnung löschen"
+  },
+  "panelClearTitle": {
+    "message": "Löschen — der Slot steht wieder auf „fehlt“; mit „Feld zuordnen“ neu zuordnen"
+  },
+  "panelPointAt": {
+    "message": "Feld zuordnen"
+  },
+  "panelForgetRecipe": {
+    "message": "Rezept vergessen"
+  },
+  "panelMappingHelp": {
+    "message": "Drücken Sie auf der Zielseite auf Ausfüllen: der Helfer errät, welches Feld welches ist; für alles Übrige gibt es „Feld zuordnen“."
+  },
+  "panelSentNext": {
+    "message": "Gesendet — weiter ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelWriteTemplate": {
+    "message": "Vorlage für Schritt $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenTarget": {
+    "message": "Ziel öffnen"
+  },
+  "panelOpenPath": {
+    "message": "$PATH$ öffnen",
+    "placeholders": {
+      "path": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenHost": {
+    "message": "$HOST$ öffnen",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelAllowFill": {
+    "message": "$HOST$ erlauben/füllen",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilling": {
+    "message": "Wird ausgefüllt …"
+  },
+  "panelFillOn": {
+    "message": "$HOST$ ausfüllen",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopyOpen": {
+    "message": "Kopieren & öffnen"
+  },
+  "panelMarkSent": {
+    "message": "Als gesendet markieren ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelGroupOutcome": {
+    "message": "Ergebnis"
+  },
+  "panelDefer3Days": {
+    "message": "3 Tage zurückstellen"
+  },
+  "panelNotApplicable": {
+    "message": "Nicht zutreffend"
+  },
+  "panelReplied": {
+    "message": "Antwort erhalten"
+  },
+  "panelDeclined": {
+    "message": "Absage"
+  },
+  "panelGroupNotSent": {
+    "message": "Nicht gesendet, weil"
+  },
+  "panelReasonNoForm": {
+    "message": "kein Formular"
+  },
+  "panelReasonCaptcha": {
+    "message": "Captcha"
+  },
+  "panelReasonNoContact": {
+    "message": "kein Kontakt"
+  },
+  "panelReasonTechnical": {
+    "message": "technisch"
+  },
+  "panelGroupEdit": {
+    "message": "Bearbeiten"
+  },
+  "panelStepsFollowups": {
+    "message": "Schritte/Follow-ups…"
+  },
+  "panelSubjectTemplate": {
+    "message": "Betreffvorlage…"
+  },
+  "panelRichEditorNote": {
+    "message": "Rich-Text-Editor: Die Nachricht liegt in der Zwischenablage — klicken Sie auf der Seite in das Nachrichtenfeld und drücken Sie Ctrl+V („Kopieren & öffnen“ kopiert sie erneut). Danach „Gesendet — weiter“."
+  },
+  "panelFoundOnPage": {
+    "message": "Auf dieser Seite gefunden:"
+  },
+  "panelMoreTitle": {
+    "message": "Weitere Aktionen — klicken oder ziehen"
+  },
+  "panelMoreAria": {
+    "message": "Weitere Aktionen"
+  },
+  "panelCleared": {
+    "message": "Gelöscht: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelRecipeForgotten": {
+    "message": "Rezept vergessen — die Felder wurden wieder heuristisch zugeordnet."
+  },
+  "panelOpened": {
+    "message": "$URL$ geöffnet",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenedMail": {
+    "message": "Neue Nachricht an $TO$ geöffnet.",
+    "placeholders": {
+      "to": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMailTooLongFill": {
+    "message": "Nachricht zu lang für den Link — Text kopiert: „Ausfüllen“ drücken oder mit Ctrl+V einfügen."
+  },
+  "panelMailTooLongPaste": {
+    "message": "Nachricht zu lang für den Link — Text kopiert: mit Ctrl+V einfügen."
+  },
+  "panelMailTooLongBlocked": {
+    "message": "Nachricht zu lang für den Link und die Zwischenablage ist blockiert — kopieren Sie den Text oben von Hand."
+  },
+  "panelNoUrlCopied": {
+    "message": "Keine URL für dieses Ziel — die Nachricht liegt unten kopiert bereit; öffnen Sie den Chat selbst und fügen Sie sie ein."
+  },
+  "panelNoUrlBlocked": {
+    "message": "Keine URL für dieses Ziel und die Zwischenablage ist blockiert — kopieren Sie die Nachricht oben von Hand."
+  },
+  "panelCopied": {
+    "message": "Nachricht kopiert — auf der Seite mit Ctrl+V einfügen."
+  },
+  "panelCopyBlocked": {
+    "message": "Zwischenablage blockiert — markieren Sie den Text oben und kopieren Sie ihn."
+  },
+  "panelPermissionDenied": {
+    "message": "Berechtigung abgelehnt — nutzen Sie „Kopieren & öffnen“ und fügen Sie von Hand ein."
+  },
+  "panelScanning": {
+    "message": "Seite wird durchsucht …"
+  },
+  "panelStaleRecipe": {
+    "message": "Das Formular hat sich seit dem gespeicherten Rezept geändert — prüfen Sie die Zuordnung unten und drücken Sie erneut „Ausfüllen“."
+  },
+  "panelFilledOne": {
+    "message": "$COUNT$ Feld ausgefüllt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledOther": {
+    "message": "$COUNT$ Felder ausgefüllt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledFew": {
+    "message": "$COUNT$ Felder ausgefüllt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelFilledMany": {
+    "message": "$COUNT$ Felder ausgefüllt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSkipped": {
+    "message": "$COUNT$ unberührt gelassen (stand schon Text drin)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelClipboardHint": {
+    "message": "die Nachricht liegt in der Zwischenablage — klicken Sie in das Nachrichtenfeld und drücken Sie Ctrl+V"
+  },
+  "panelClipboardBlocked": {
+    "message": "das Nachrichtenfeld muss von Hand eingefügt werden (Zwischenablage blockiert)"
+  },
+  "panelNothingFilled": {
+    "message": "auf dieser Seite ließ sich nichts ausfüllen"
+  },
+  "panelBodyNotFilled": {
+    "message": "das Nachrichtenfeld wurde nicht ausgefüllt — nutzen Sie „Kopieren & öffnen“"
+  },
+  "panelNotFoundHere": {
+    "message": "auf dieser Seite nicht gefunden: $SLOTS$",
+    "placeholders": {
+      "slots": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelStaleRebuilt": {
+    "message": "das Formular hat sich seit dem gespeicherten Rezept geändert — Zuordnung neu erstellt, prüfen Sie die Felder"
+  },
+  "panelFillFailed": {
+    "message": "Ausfüllen fehlgeschlagen: $ERROR$. Nutzen Sie „Kopieren & öffnen“.",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarkedSent": {
+    "message": "Als gesendet markiert: $KEY$",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelMarked": {
+    "message": "Markiert: $KIND$",
+    "placeholders": {
+      "kind": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelKindSent": {
+    "message": "gesendet"
+  },
+  "panelKindDeferred": {
+    "message": "zurückgestellt"
+  },
+  "panelKindFailed": {
+    "message": "nicht gesendet"
+  },
+  "panelKindExcluded": {
+    "message": "ausgeschlossen"
+  },
+  "panelKindReplied": {
+    "message": "beantwortet"
+  },
+  "panelKindDeclined": {
+    "message": "abgelehnt"
+  },
+  "panelPickHint": {
+    "message": "Klicken Sie auf der Seite das Feld für „$SLOT$“ an (Esc bricht ab).",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSavedSlot": {
+    "message": "Gespeichert: $SLOT$ → $FIELD$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      },
+      "field": {
+        "content": "$2"
+      }
+    }
+  },
+  "panelPickCancelled": {
+    "message": "Auswahl abgebrochen."
+  },
+  "panelRateOn": {
+    "message": "Im $STORE$ bewerten",
+    "placeholders": {
+      "store": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSpintaxLink": {
+    "message": "spintax.net — die Engine hinter dieser Erweiterung"
+  },
+  "panelPublisherLink": {
+    "message": "301.st — Smart Traffic"
+  },
+  "panelOldHelper": {
+    "message": "die Seite nutzt einen älteren Helfer — laden Sie die Seite neu und versuchen Sie es erneut"
+  },
+  "panelNoAccess": {
+    "message": "Diese Seite hat nicht geantwortet — neu laden und erneut auf Ausfüllen drücken"
+  },
+  "panelPageChanged": {
+    "message": "die Seite hat sich seit dem Scan geändert — drücken Sie erneut „Ausfüllen“"
+  },
+  "warnMaxLength": {
+    "message": "$LEN$ Zeichen, das Feld nimmt $MAX$",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMinLength": {
+    "message": "$LEN$ Zeichen, das Feld braucht mindestens $MIN$",
+    "placeholders": {
+      "len": {
+        "content": "$1"
+      },
+      "min": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnMaxWords": {
+    "message": "$WORDS$ Wörter, das Feld nimmt $MAX$",
+    "placeholders": {
+      "words": {
+        "content": "$1"
+      },
+      "max": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraint": {
+    "message": "$FIELD$: $PROBLEM$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnConstraintBlocked": {
+    "message": "$FIELD$: $PROBLEM$ — nicht ausgefüllt",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "problem": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetAmbiguous": {
+    "message": "$FIELD$: mehrere Dateien heißen „$NAME$“ — tragen Sie den sha256 in die Zelle ein",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMissing": {
+    "message": "$FIELD$: keine Datei namens „$NAME$“ in der Bibliothek",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      }
+    }
+  },
+  "warnAssetMime": {
+    "message": "$FIELD$: „$NAME$“ ist $MIME$, das Feld nimmt $ALLOW$ — nicht ausgefüllt",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "name": {
+        "content": "$2"
+      },
+      "mime": {
+        "content": "$3"
+      },
+      "allow": {
+        "content": "$4"
+      }
+    }
+  },
+  "warnAssetSize": {
+    "message": "$FIELD$: die Seite verlangt $WANT$, „$NAME$“ ist $GOT$",
+    "placeholders": {
+      "field": {
+        "content": "$1"
+      },
+      "want": {
+        "content": "$2"
+      },
+      "name": {
+        "content": "$3"
+      },
+      "got": {
+        "content": "$4"
+      }
+    }
+  },
+  "jrnFilled": {
+    "message": "ausgefüllt"
+  },
+  "jrnSent": {
+    "message": "gesendet"
+  },
+  "jrnFailed": {
+    "message": "nicht gesendet"
+  },
+  "jrnDeferred": {
+    "message": "zurückgestellt"
+  },
+  "jrnReplied": {
+    "message": "beantwortet"
+  },
+  "jrnDeclined": {
+    "message": "abgelehnt"
+  },
+  "jrnExcluded": {
+    "message": "nicht zutreffend"
+  },
+  "jrnEdited": {
+    "message": "bearbeitet"
+  },
+  "jrnReviewed": {
+    "message": "geprüft"
+  },
+  "jrnTranslated": {
+    "message": "übersetzt"
+  },
+  "jrnCorrected": {
+    "message": "korrigiert"
+  },
+  "jrnReasonNoForm": {
+    "message": "kein Formular"
+  },
+  "jrnReasonCaptcha": {
+    "message": "Captcha"
+  },
+  "jrnReasonNoContact": {
+    "message": "kein Kontakt"
+  },
+  "jrnReasonTechnical": {
+    "message": "technisch"
+  },
+  "jrnReviewUnreviewed": {
+    "message": "ungeprüft"
+  },
+  "jrnReviewApproved": {
+    "message": "bestätigt"
+  },
+  "jrnReviewEdited": {
+    "message": "bearbeitet"
+  },
+  "jrnReviewSkipped": {
+    "message": "übergangen"
+  },
+  "jrnUntil": {
+    "message": "bis $DAY$",
+    "placeholders": {
+      "day": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnStep": {
+    "message": "Schritt $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "jrnAi": {
+    "message": "KI: $API$",
+    "placeholders": {
+      "api": {
+        "content": "$1"
+      }
+    }
+  },
+  "mailMailto": {
+    "message": "System-Mailprogramm (mailto:)"
+  },
+  "mailMailtoHint": {
+    "message": "Was auf diesem Rechner mailto:-Links öffnet. Öffnet sich nichts, wählen Sie unten einen Webmailer."
+  },
+  "mailGmail": {
+    "message": "Gmail"
+  },
+  "mailGmailHint": {
+    "message": "Öffnet im Ziel-Tab ein Schreibfenster auf mail.google.com."
+  },
+  "mailOutlook": {
+    "message": "Outlook.com (privat)"
+  },
+  "mailOutlookHint": {
+    "message": "Direktlink zum Schreibfenster von outlook.live.com."
+  },
+  "mailOutlook365": {
+    "message": "Outlook — Microsoft 365 (dienstlich)"
+  },
+  "mailOutlook365Hint": {
+    "message": "Direktlink zum Schreibfenster von outlook.office.com."
+  },
+  "mailYandex": {
+    "message": "Yandex Mail"
+  },
+  "mailYandexHint": {
+    "message": "Schreib-Link von mail.yandex.ru."
+  },
+  "mailCustom": {
+    "message": "Eigene URL-Vorlage"
+  },
+  "mailCustomHint": {
+    "message": "z. B. https://mail.example.com/compose?to=%to%&subject=%subject%&body=%body%"
+  },
+  "filterAll": {
+    "message": "Alle"
+  },
+  "filterTodo": {
+    "message": "Offen"
+  },
+  "filterDue": {
+    "message": "Heute fällig"
+  },
+  "filterDone": {
+    "message": "Erledigt"
+  },
+  "filterProblems": {
+    "message": "Probleme"
+  },
+  "drwClose": {
+    "message": "Schließen"
+  },
+  "tplLeftover": {
+    "message": "Aus der Vorlage übrig geblieben — prüfen Sie die Variablen"
+  },
+  "hdrTheme": {
+    "message": "Design wechseln"
+  },
+  "hdrNewsAriaOn": {
+    "message": "Neuigkeiten des Herausgebers (an)"
+  },
+  "hdrNewsAriaOff": {
+    "message": "Neuigkeiten des Herausgebers (aus)"
+  },
+  "hdrNewsTitleOn": {
+    "message": "Neuigkeiten des Herausgebers — an: 301.sh wird alle 6 Stunden geprüft, neue Beiträge kommen als Benachrichtigung. Zum Ausschalten klicken."
+  },
+  "hdrNewsTitleOff": {
+    "message": "Neuigkeiten des Herausgebers — aus. Klicken Sie, um benachrichtigt zu werden, wenn 301.sh einen Beitrag veröffentlicht."
+  },
+  "tgtDemoPage": {
+    "message": "Demoseite $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "revNoBody": {
+    "message": "Noch keine Textvorlage für Schritt 1 — speichern Sie zuerst eine unter „Vorlage“."
+  },
+  "revTemplateLink": {
+    "message": "Vorlage"
+  },
+  "revCounters": {
+    "message": "$ROWS$ · $BLOCKERS$ · $WARNINGS$ · $DUPS$ · $APPROVED$ · $EDITED$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "blockers": {
+        "content": "$2"
+      },
+      "warnings": {
+        "content": "$3"
+      },
+      "dups": {
+        "content": "$4"
+      },
+      "approved": {
+        "content": "$5"
+      },
+      "edited": {
+        "content": "$6"
+      }
+    }
+  },
+  "revRowsOne": {
+    "message": "$COUNT$ Zeile",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsFew": {
+    "message": "$COUNT$ Zeilen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsMany": {
+    "message": "$COUNT$ Zeilen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRowsOther": {
+    "message": "$COUNT$ Zeilen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOne": {
+    "message": "$COUNT$ Blocker",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersFew": {
+    "message": "$COUNT$ Blocker",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersMany": {
+    "message": "$COUNT$ Blocker",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revBlockersOther": {
+    "message": "$COUNT$ Blocker",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOne": {
+    "message": "$COUNT$ Warnung",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsFew": {
+    "message": "$COUNT$ Warnungen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsMany": {
+    "message": "$COUNT$ Warnungen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revWarningsOther": {
+    "message": "$COUNT$ Warnungen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOne": {
+    "message": "$COUNT$ Dublette von gesendetem Text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesFew": {
+    "message": "$COUNT$ Dubletten von gesendetem Text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesMany": {
+    "message": "$COUNT$ Dubletten von gesendetem Text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revDuplicatesOther": {
+    "message": "$COUNT$ Dubletten von gesendetem Text",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproved": {
+    "message": "$COUNT$ bestätigt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdited": {
+    "message": "$COUNT$ bearbeitet",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterProblems": {
+    "message": "Probleme $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterSample": {
+    "message": "Stichprobe $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revFilterAll": {
+    "message": "Alle $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOne": {
+    "message": "$COUNT$ saubere Zeile bestätigen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanFew": {
+    "message": "$COUNT$ saubere Zeilen bestätigen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanMany": {
+    "message": "$COUNT$ saubere Zeilen bestätigen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revApproveCleanOther": {
+    "message": "$COUNT$ saubere Zeilen bestätigen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "revStartQueue": {
+    "message": "Warteschlange starten"
+  },
+  "revNoProblems": {
+    "message": "Keine Probleme — bestätigen Sie die sauberen Zeilen oder sehen Sie sich eine Stichprobe an."
+  },
+  "revNothingHere": {
+    "message": "Nichts vorhanden."
+  },
+  "revBadgeBlocker": {
+    "message": "Blocker"
+  },
+  "revBadgeDuplicate": {
+    "message": "Dublette"
+  },
+  "revBadgeWarning": {
+    "message": "Warnung"
+  },
+  "revStateUnreviewed": {
+    "message": "ungeprüft"
+  },
+  "revStateApproved": {
+    "message": "bestätigt"
+  },
+  "revStateEdited": {
+    "message": "bearbeitet"
+  },
+  "revStateSkipped": {
+    "message": "übergangen"
+  },
+  "revDuplicateNote": {
+    "message": "Genau derselbe Text ging schon an eine andere Zeile — nehmen Sie eine andere Variante oder bearbeiten Sie ihn."
+  },
+  "revPrevious": {
+    "message": "Zurück"
+  },
+  "revNext": {
+    "message": "Weiter"
+  },
+  "revPosition": {
+    "message": "$INDEX$ / $TOTAL$",
+    "placeholders": {
+      "index": {
+        "content": "$1"
+      },
+      "total": {
+        "content": "$2"
+      }
+    }
+  },
+  "revApprove": {
+    "message": "Bestätigen ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revEdit": {
+    "message": "Bearbeiten ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revSaveEdit": {
+    "message": "Änderung speichern"
+  },
+  "revSkip": {
+    "message": "Übergehen ($KEY$)",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "revRespin": {
+    "message": "Andere Variante"
+  },
+  "revReset": {
+    "message": "Auf Vorlage zurücksetzen"
+  },
+  "revMeta": {
+    "message": "Schritt $STEP$ · Seed $SEED$ · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revMetaEdited": {
+    "message": "Schritt $STEP$ · Seed $SEED$ · bearbeitet · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "seed": {
+        "content": "$2"
+      },
+      "state": {
+        "content": "$3"
+      }
+    }
+  },
+  "revSubject": {
+    "message": "Betreff:"
+  },
+  "profIntro": {
+    "message": "Das erste passende Profil gewinnt; ein Profil „immer“ greift, wenn keins passt. Profilwerte werden zu %my_*%-Variablen und füllen die Profilfelder von Kontaktformularen (Name, E-Mail, Website, Telefon)."
+  },
+  "profEmpty": {
+    "message": "Noch kein Absenderprofil — legen Sie eins an; es füllt %my_name%, %my_email% und die Profilfelder von Kontaktformularen."
+  },
+  "profSavedOne": {
+    "message": "$COUNT$ Profil gespeichert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedFew": {
+    "message": "$COUNT$ Profile gespeichert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedMany": {
+    "message": "$COUNT$ Profile gespeichert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profSavedOther": {
+    "message": "$COUNT$ Profile gespeichert.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "profFieldName": {
+    "message": "Name"
+  },
+  "profFieldEmail": {
+    "message": "E-Mail"
+  },
+  "profFieldSite": {
+    "message": "Website"
+  },
+  "profFieldPhone": {
+    "message": "Telefon"
+  },
+  "profFieldIntro": {
+    "message": "Vorstellung (1–2 Sätze)"
+  },
+  "profFieldSignature": {
+    "message": "Signatur"
+  },
+  "profNamePlaceholder": {
+    "message": "Profilname (z. B. DE, EN, Partnerschaften)"
+  },
+  "profRemove": {
+    "message": "Profil entfernen"
+  },
+  "profActivation": {
+    "message": "Aktivierung"
+  },
+  "profActivationAlways": {
+    "message": "Immer (Standardprofil)"
+  },
+  "profActivationUrlPattern": {
+    "message": "Wenn Ziel zum Muster passt"
+  },
+  "profActivationColumn": {
+    "message": "Wenn Spalte = Wert"
+  },
+  "profPatternPlaceholder": {
+    "message": "Regex über Ziel, z. B. \\.de$$|\\.at$$"
+  },
+  "profColumn": {
+    "message": "Spalte"
+  },
+  "profEqualsPlaceholder": {
+    "message": "Wert, z. B. de"
+  },
+  "profAdd": {
+    "message": "Profil hinzufügen"
+  },
+  "profSave": {
+    "message": "Profile speichern"
+  },
+  "setMailTitle": {
+    "message": "E-Mail-Ziele"
+  },
+  "setMailIntro": {
+    "message": "Zeilen, deren Ziel eine E-Mail-Adresse ist, öffnen hier eine neue Nachricht. Der Nachrichtentext reist im Link mit, solange er hineinpasst; sonst wird er im Editor eingefügt — pro Zeile gemessen, nie geraten."
+  },
+  "setMailProvider": {
+    "message": "E-Mail öffnet in",
+    "description": "Label of the provider dropdown and its accessible name — one string, two uses."
+  },
+  "setGmailAccount": {
+    "message": "Gmail-Konto (0 = erstes angemeldetes)"
+  },
+  "setGmailAccountAria": {
+    "message": "Index des Gmail-Kontos"
+  },
+  "setBcc": {
+    "message": "Blindkopie jeder Nachricht an"
+  },
+  "setBccAria": {
+    "message": "BCC",
+    "description": "Accessible name of the BCC address input."
+  },
+  "setBccHint": {
+    "message": "Eine Kopie in Ihrem eigenen Postfach — Ihr Nachweis, was rausging. Leer lassen, wenn Sie keine wollen."
+  },
+  "setCustomLabel": {
+    "message": "URL-Vorlage fürs Schreibfenster"
+  },
+  "setCustomAria": {
+    "message": "Eigene URL-Vorlage fürs Schreibfenster"
+  },
+  "setCustomHint": {
+    "message": "Platzhalter: %to% %subject% %body% %bcc%",
+    "description": "The %tokens% are literal syntax of the URL template — translate only the word before them."
+  },
+  "setCustomInvalid": {
+    "message": "Die eigene Vorlage muss eine https-URL sein und %to% enthalten."
+  },
+  "setSave": {
+    "message": "Speichern"
+  },
+  "setSaved": {
+    "message": "Gespeichert."
+  },
+  "setFitNoTemplate": {
+    "message": "Noch keine Vorlage für Schritt 1 — gemessen wird, sobald es eine gibt."
+  },
+  "setFitMeasuredOne": {
+    "message": "Längste Nachricht dieser Kampagne: $COUNT$ Zeichen ($ROWS$ Zeilen geprüft).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredFew": {
+    "message": "Längste Nachricht dieser Kampagne: $COUNT$ Zeichen ($ROWS$ Zeilen geprüft).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredMany": {
+    "message": "Längste Nachricht dieser Kampagne: $COUNT$ Zeichen ($ROWS$ Zeilen geprüft).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitMeasuredOther": {
+    "message": "Längste Nachricht dieser Kampagne: $COUNT$ Zeichen ($ROWS$ Zeilen geprüft).",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "rows": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitYes": {
+    "message": "$PROVIDER$ nimmt etwa $BUDGET$ im Link → der Text reist im Link mit; das Schreibfenster öffnet sich fertig ausgefüllt.",
+    "description": "Second half of the fit line: the measurement sentence is a separate key, joined with a space in code.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setFitNo": {
+    "message": "$PROVIDER$ nimmt etwa $BUDGET$ im Link → lange Texte passen nicht — das Schreibfenster öffnet sich mit Adresse und Betreff, der Text wird kopiert und mit Ctrl+V eingefügt (bei Webmail übernimmt das „Ausfüllen“).",
+    "description": "Same slot as setFitYes, for a message that does not fit the provider's link.",
+    "placeholders": {
+      "provider": {
+        "content": "$1"
+      },
+      "budget": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageTitle": {
+    "message": "Speicher"
+  },
+  "setStorageUsed": {
+    "message": "$USED$ von $QUOTA$ belegt, die diesem Browserprofil zur Verfügung stehen.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "setStorageUnknown": {
+    "message": "Dieser Browser meldet die Belegung nicht."
+  },
+  "setOrphansOne": {
+    "message": "$COUNT$ Datei, auf die keine Kampagne mehr verweist — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansFew": {
+    "message": "$COUNT$ Dateien, auf die keine Kampagne mehr verweist — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansMany": {
+    "message": "$COUNT$ Dateien, auf die keine Kampagne mehr verweist — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setOrphansOther": {
+    "message": "$COUNT$ Dateien, auf die keine Kampagne mehr verweist — $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setNoOrphans": {
+    "message": "Jede gespeicherte Datei wird von einer Zeile oder einem Spaltenstandard genutzt."
+  },
+  "setDeleteUnusedOne": {
+    "message": "$COUNT$ unbenutzte Datei löschen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedFew": {
+    "message": "$COUNT$ unbenutzte löschen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedMany": {
+    "message": "$COUNT$ unbenutzte löschen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedOther": {
+    "message": "$COUNT$ unbenutzte löschen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOne": {
+    "message": "Sicher? $COUNT$ Datei ($SIZE$) ist endgültig weg",
+    "description": "Armed state of the same button — it must stay on one line.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmFew": {
+    "message": "Sicher? $COUNT$ Dateien ($SIZE$) sind endgültig weg",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmMany": {
+    "message": "Sicher? $COUNT$ Dateien ($SIZE$) sind endgültig weg",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeleteUnusedConfirmOther": {
+    "message": "Sicher? $COUNT$ Dateien ($SIZE$) sind endgültig weg",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOne": {
+    "message": "$COUNT$ Datei gelöscht, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedFew": {
+    "message": "$COUNT$ Dateien gelöscht, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedMany": {
+    "message": "$COUNT$ Dateien gelöscht, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setDeletedOther": {
+    "message": "$COUNT$ Dateien gelöscht, $SIZE$.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "setRemoveDemo": {
+    "message": "Demo-Kampagne entfernen"
+  },
+  "setDemoRemoved": {
+    "message": "Demo-Kampagne entfernt."
+  },
+  "setDeleteCampaign": {
+    "message": "Kampagne „$NAME$“ löschen",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "setDeleteCampaignConfirm": {
+    "message": "Sicher? Zeilen, Journal und Vorlagen dieser Kampagne sind weg",
+    "description": "Armed state of setDeleteCampaign — it must stay on one line."
+  },
+  "setDeleteAll": {
+    "message": "Alle Daten löschen"
+  },
+  "setDeleteAllConfirm": {
+    "message": "Sicher? Alles in dieser Erweiterung wird gelöscht",
+    "description": "Armed state of setDeleteAll — it must stay on one line."
+  },
+  "assetTitle": {
+    "message": "Dateibibliothek"
+  },
+  "assetIntro": {
+    "message": "Bilder und Dateien für Datei-Spalten (Logos, Screenshots). In der Zelle steht der Dateiname; gleicher Inhalt wird nur einmal gespeichert."
+  },
+  "assetAdd": {
+    "message": "Dateien hinzufügen"
+  },
+  "assetEmpty": {
+    "message": "Noch keine Dateien. Legen Sie hier Logos und Screenshots ab; Datei-Spalten verweisen über den Namen darauf."
+  },
+  "assetColName": {
+    "message": "Name",
+    "description": "Table header. Lowercase on purpose, like the other column headers."
+  },
+  "assetColType": {
+    "message": "Typ"
+  },
+  "assetColSize": {
+    "message": "Größe"
+  },
+  "assetColDims": {
+    "message": "Maße"
+  },
+  "assetColId": {
+    "message": "ID"
+  },
+  "assetColUsed": {
+    "message": "genutzt"
+  },
+  "assetShaTitle": {
+    "message": "sha256 $SHA$ — in die Zelle eintragen, wenn zwei Dateien gleich heißen",
+    "placeholders": {
+      "sha": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetInUse": {
+    "message": "in Benutzung",
+    "description": "Badge: the file is referenced by a row or a column default."
+  },
+  "assetUnused": {
+    "message": "unbenutzt"
+  },
+  "assetDeleteAria": {
+    "message": "$NAME$ löschen",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetDeleteBlocked": {
+    "message": "Wird von einer Zeile genutzt — leeren Sie zuerst die Zelle"
+  },
+  "assetDeleteTitle": {
+    "message": "Diese Datei löschen"
+  },
+  "assetDeleted": {
+    "message": "$NAME$ gelöscht.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetStorageUsed": {
+    "message": "Speicher belegt: $USED$ von $QUOTA$.",
+    "description": "Both amounts arrive formatted with their unit (e.g. \"12 KB\", \"1.4 GB\").",
+    "placeholders": {
+      "used": {
+        "content": "$1"
+      },
+      "quota": {
+        "content": "$2"
+      }
+    }
+  },
+  "assetAddedOne": {
+    "message": "$COUNT$ Datei hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedFew": {
+    "message": "$COUNT$ Dateien hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedMany": {
+    "message": "$COUNT$ Dateien hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "assetAddedOther": {
+    "message": "$COUNT$ Dateien hinzugefügt.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "optPageTitle": {
+    "message": "Spintax — Kampagnen"
+  },
+  "optNavWelcome": {
+    "message": "Start & Hilfe"
+  },
+  "optNavWizard": {
+    "message": "Kampagnen-Assistent"
+  },
+  "optNavList": {
+    "message": "Liste"
+  },
+  "optNavTemplate": {
+    "message": "Vorlage"
+  },
+  "optNavReview": {
+    "message": "Prüfung"
+  },
+  "optNavProfiles": {
+    "message": "Profile"
+  },
+  "optNavRecipes": {
+    "message": "Rezepte"
+  },
+  "optNavAssets": {
+    "message": "Dateien"
+  },
+  "optNavJournal": {
+    "message": "Journal"
+  },
+  "optNavSettings": {
+    "message": "Einstellungen"
+  },
+  "optNavNews": {
+    "message": "Neuigkeiten"
+  },
+  "optToggleSidebar": {
+    "message": "Seitenleiste ein-/ausblenden"
+  },
+  "optSections": {
+    "message": "Bereiche"
+  },
+  "optRecipesStub": {
+    "message": "Rezepte sind die Feldzuordnungen, die der Helfer pro Website speichert. Verwalten Sie sie in der Seitenleiste: Feldzuordnung → fixieren, löschen oder „Rezept vergessen“."
+  },
+  "optJournalStub": {
+    "message": "Die Historie jeder Zeile (gesendet, zurückgestellt, bearbeitet …) steht in der Zeile selbst: Liste → Zeile anklicken → Journal."
+  },
+  "optNewsStub": {
+    "message": "Neuigkeiten des Herausgebers erscheinen unter der Glocke in der Kopfzeile, sobald Sie sie dort einschalten."
+  },
+  "optNotHereYet": {
+    "message": "$SECTION$ gibt es hier noch nicht.",
+    "placeholders": {
+      "section": {
+        "content": "$1"
+      }
+    }
+  },
+  "optViewFailed": {
+    "message": "Dieser Bildschirm ließ sich nicht laden: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "optDefaultCampaign": {
+    "message": "Meine Kampagne"
+  },
+  "listFilterRows": {
+    "message": "Zeilen filtern"
+  },
+  "listEmpty": {
+    "message": "Nichts vorhanden."
+  },
+  "listNoRows": {
+    "message": "Noch keine Zeilen — importieren Sie eine Liste im Assistenten."
+  },
+  "listRowsOne": {
+    "message": "$COUNT$ Zeile",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsOther": {
+    "message": "$COUNT$ Zeilen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsFew": {
+    "message": "$COUNT$ Zeilen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsMany": {
+    "message": "$COUNT$ Zeilen",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOne": {
+    "message": "$COUNT$ Spalte",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOther": {
+    "message": "$COUNT$ Spalten",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsFew": {
+    "message": "$COUNT$ Spalten",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsMany": {
+    "message": "$COUNT$ Spalten",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsColumns": {
+    "message": "$ROWS$ · $COLUMNS$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOne": {
+    "message": "$RANGE$ von $COUNT$ angezeigt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOther": {
+    "message": "$RANGE$ von $COUNT$ angezeigt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingFew": {
+    "message": "$RANGE$ von $COUNT$ angezeigt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingMany": {
+    "message": "$RANGE$ von $COUNT$ angezeigt",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listPrevious": {
+    "message": "Zurück"
+  },
+  "listNext": {
+    "message": "Weiter"
+  },
+  "listColKey": {
+    "message": "Schlüssel"
+  },
+  "listColTarget": {
+    "message": "Ziel"
+  },
+  "listColStatus": {
+    "message": "Status"
+  },
+  "listColLang": {
+    "message": "Sprache"
+  },
+  "listOpenRow": {
+    "message": "Zeile öffnen"
+  },
+  "listExportCsv": {
+    "message": "CSV exportieren (gefiltert)"
+  },
+  "listExportCsvTitle": {
+    "message": "CSV mit Ihren Spalten plus _status, _step, _due … — jederzeit wieder importierbar, der Status bleibt erhalten"
+  },
+  "listBadgeReason": {
+    "message": "$STATUS$ · $REASON$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "reason": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeUntil": {
+    "message": "$STATUS$ bis $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeStepDue": {
+    "message": "$STATUS$ · Schritt $STEP$ fällig $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "listBadgeStepOn": {
+    "message": "$STATUS$ · Schritt $STEP$ am $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusNotStarted": {
+    "message": "offen"
+  },
+  "statusFilledUnconfirmed": {
+    "message": "ausgefüllt, offen"
+  },
+  "statusSent": {
+    "message": "gesendet"
+  },
+  "statusDeferred": {
+    "message": "verschoben"
+  },
+  "statusNotSent": {
+    "message": "gescheitert"
+  },
+  "statusNotApplicable": {
+    "message": "passt nicht"
+  },
+  "statusReplied": {
+    "message": "beantwortet"
+  },
+  "statusDeclined": {
+    "message": "abgelehnt"
+  },
+  "failNoForm": {
+    "message": "kein Formular"
+  },
+  "failCaptcha": {
+    "message": "Captcha"
+  },
+  "failNoContact": {
+    "message": "kein Kontakt"
+  },
+  "failTechnical": {
+    "message": "technisch"
+  },
+  "tplStep": {
+    "message": "Schritt",
+    "description": "Accessible name of the step dropdown on the template screen."
+  },
+  "tplStepInitial": {
+    "message": "Schritt $N$ — Auftakt",
+    "description": "Step dropdown item for the first message of a sequence.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplStepFollowUp": {
+    "message": "Schritt $N$ — Follow-up",
+    "description": "Step dropdown item for a follow-up message.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplChannel": {
+    "message": "Kanal",
+    "description": "Accessible name of the channel dropdown (body or subject)."
+  },
+  "tplChannelBody": {
+    "message": "Nachrichtentext",
+    "description": "Channel dropdown item: the message body."
+  },
+  "tplChannelSubject": {
+    "message": "Betreff",
+    "description": "Channel dropdown item: the e-mail subject line."
+  },
+  "tplLocaleAria": {
+    "message": "Sprache",
+    "description": "Accessible name of the locale input."
+  },
+  "tplLocaleLabel": {
+    "message": "Sprache",
+    "description": "Visible label next to the locale input. Lowercase on purpose."
+  },
+  "tplSourcePlaceholder": {
+    "message": "{Hallo|Guten Tag} %name%, {kurze|schnelle} Frage zu %topic% …  (Vorlage aus Studio oder Ihrem Chat einfügen; Ctrl+V geht direkt hier)",
+    "description": "Placeholder of the template editor. Keep the spintax braces and the %name% / %topic% variables as they are; translate only the sentence in the parentheses."
+  },
+  "tplVarsRawAria": {
+    "message": "Variablen als #set-Zeilen",
+    "description": "Accessible name of the raw variables box. '#set' is engine syntax — keep it."
+  },
+  "tplRowsAria": {
+    "message": "Zeilen für die Vorschau",
+    "description": "Accessible name of the number input that picks how many rows the preview renders."
+  },
+  "tplTabList": {
+    "message": "Aus der Liste",
+    "description": "Variables tab: values taken from the imported recipient list."
+  },
+  "tplTabRaw": {
+    "message": "Roh",
+    "description": "Variables tab: the same values as raw #set lines."
+  },
+  "tplCopyRawTitle": {
+    "message": "Die #set-Zeilen kopieren — im Playground oder in Studio einfügen",
+    "description": "Tooltip of the button that copies the raw variables."
+  },
+  "tplVarsCopied": {
+    "message": "Variablen kopiert.",
+    "description": "Confirmation after the variables were copied to the clipboard."
+  },
+  "tplClipboardBlocked": {
+    "message": "Zwischenablage blockiert — markieren Sie den Text und kopieren Sie ihn.",
+    "description": "Shown when the browser refused clipboard access."
+  },
+  "tplCopy": {
+    "message": "Kopieren",
+    "description": "Button that copies the raw variables."
+  },
+  "tplSave": {
+    "message": "Vorlage speichern",
+    "description": "Primary button of the template screen."
+  },
+  "tplUnsavedRestored": {
+    "message": "Nicht gespeicherte Änderung wiederhergestellt.",
+    "description": "Shown when the editor text kept from a previous visit was put back."
+  },
+  "tplRemoveInclude": {
+    "message": "$NAME$ entfernen",
+    "description": "Accessible name of the button that removes one include file.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "signature"
+      }
+    }
+  },
+  "tplNoIncludes": {
+    "message": "Keine Include-Dateien.",
+    "description": "Shown instead of the include chips when the template has none."
+  },
+  "tplErrorsOne": {
+    "message": "$COUNT$ Fehler",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplErrorsFew": {
+    "message": "$COUNT$ Fehler",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "tplErrorsMany": {
+    "message": "$COUNT$ Fehler",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "tplErrorsOther": {
+    "message": "$COUNT$ Fehler",
+    "description": "Error count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplWarningsOne": {
+    "message": "$COUNT$ Warnung",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "tplWarningsFew": {
+    "message": "$COUNT$ Warnungen",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "tplWarningsMany": {
+    "message": "$COUNT$ Warnungen",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "tplWarningsOther": {
+    "message": "$COUNT$ Warnungen",
+    "description": "Warning count in the template status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "tplEngineTitle": {
+    "message": "Engine $VERSION$",
+    "description": "Tooltip of the status line: which engine build validated the template.",
+    "placeholders": {
+      "version": {
+        "content": "$1",
+        "example": "0.6.1"
+      }
+    }
+  },
+  "diagVariableUndefined": {
+    "message": "%$NAME$% ist weder eine Spalte noch ein Profilfeld — benennen Sie es um oder legen Sie eine Spalte an",
+    "description": "Engine diagnostic in user words: the template uses a variable the campaign does not know. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "diagVariableUndefinedAnon": {
+    "message": "Diese Variable ist weder eine Spalte noch ein Profilfeld — benennen Sie sie um oder legen Sie eine Spalte an",
+    "description": "Same diagnostic when the engine did not report which variable it was."
+  },
+  "diagUnclosed": {
+    "message": "Es fehlt eine schließende Klammer (Zeile $LINE$)",
+    "description": "Engine diagnostic in user words: an unclosed or unbalanced brace.",
+    "placeholders": {
+      "line": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "diagEmptyAlternative": {
+    "message": "Leere Alternative in Zeile $LINE$ — entfernen Sie das überzählige „|“",
+    "description": "Engine diagnostic in user words: two pipes with nothing between them. The pipe is spintax syntax — keep it.",
+    "placeholders": {
+      "line": {
+        "content": "$1",
+        "example": "4"
+      }
+    }
+  },
+  "tplValid": {
+    "message": "Die Vorlage ist gültig.",
+    "description": "Success panel shown when the engine reported no diagnostics."
+  },
+  "tplSeverityError": {
+    "message": "Fehler",
+    "description": "Badge on a diagnostic that blocks saving."
+  },
+  "tplSeverityWarning": {
+    "message": "Warnung",
+    "description": "Badge on a diagnostic that does not block saving."
+  },
+  "varsGroupTarget": {
+    "message": "Ziel",
+    "description": "Variables table group: the column that holds the contact page or address."
+  },
+  "varsGroupLang": {
+    "message": "Sprache",
+    "description": "Variables table group: the column that holds the row language."
+  },
+  "varsGroupColumn": {
+    "message": "Spalte",
+    "description": "Variables table group: an ordinary column of the list."
+  },
+  "varsGroupProfile": {
+    "message": "Profil",
+    "description": "Variables table group: a constant from the sender profile."
+  },
+  "varsGroupDerived": {
+    "message": "intern",
+    "description": "Variables table group: a value the extension computes itself (key, domain, today)."
+  },
+  "varsGroupMissing": {
+    "message": "fehlt",
+    "description": "Variables table group: used in the template but unknown to the campaign."
+  },
+  "tplVarNotInCampaign": {
+    "message": "nicht in der Kampagne",
+    "description": "Sample-value cell of a variable the campaign does not define."
+  },
+  "tplVarUsed": {
+    "message": "genutzt",
+    "description": "Flag on a variable the template actually uses."
+  },
+  "tplVarUnused": {
+    "message": "übrig",
+    "description": "Flag on a variable the campaign has but the template does not use."
+  },
+  "tplVarAdd": {
+    "message": "anlegen",
+    "description": "Flag on a missing variable with no near-match to rename it to."
+  },
+  "tplRenameTo": {
+    "message": "umbenennen → %$NAME$%",
+    "description": "Button that rewrites a misspelled variable to the nearest known one. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "tplAddColumnTitle": {
+    "message": "Eine Spalte mit dieser Variable oder eine Profilkonstante anlegen",
+    "description": "Tooltip of the 'add' flag on a missing variable."
+  },
+  "tplVarsFromRow": {
+    "message": "Werte aus Zeile $KEY$.",
+    "description": "Hint under the variables table: which row the sample values come from.",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "tplVarsNoRows": {
+    "message": "Importieren Sie eine Liste, um Beispielwerte zu sehen.",
+    "description": "Hint under the variables table when no list has been imported yet."
+  },
+  "tplVarsConstructs": {
+    "message": "Konstrukte: $LIST$ (eine Schätzung, keine Variantenzahl).",
+    "description": "Hint under the variables table: which spintax constructs the template uses. The list itself is engine vocabulary and stays English.",
+    "placeholders": {
+      "list": {
+        "content": "$1",
+        "example": "alternation 4 · variable 3"
+      }
+    }
+  },
+  "tplErrorBannerTitle": {
+    "message": "Fehler in der Vorlage",
+    "description": "Title of the banner that replaces the preview while the template does not compile."
+  },
+  "tplNoRows": {
+    "message": "Importieren Sie eine Liste, um echte Zeilen zu rendern — jede Zeile bekommt aus derselben Vorlage ihren eigenen Wortlaut.",
+    "description": "Empty state of the variants list."
+  },
+  "tplSeed": {
+    "message": "Seed $SEED$",
+    "description": "The deterministic seed a preview variant was rendered with.",
+    "placeholders": {
+      "seed": {
+        "content": "$1",
+        "example": "example.com:1"
+      }
+    }
+  },
+  "tplCopyVariant": {
+    "message": "Diese Variante kopieren",
+    "description": "Tooltip and accessible name of the copy button on a preview variant."
+  },
+  "tplVariantCopied": {
+    "message": "Variante kopiert.",
+    "description": "Confirmation after one preview variant was copied."
+  },
+  "tplRespinTitle": {
+    "message": "Andere Variante für jede Zeile (nur Vorschau — in der Warteschlange bleibt der Seed der Zeile)",
+    "description": "Tooltip of the re-spin button."
+  },
+  "tplRespin": {
+    "message": "Neu würfeln",
+    "description": "Button that re-renders the preview with a different variant per row."
+  },
+  "tplPlaygroundTitle": {
+    "message": "Diese Vorlage im Playground von spintax.net öffnen, mit einer Beispielzeile als Variablen",
+    "description": "Tooltip of the playground button. 'spintax.net' is a domain — keep it."
+  },
+  "tplTooLongForLink": {
+    "message": "Zu lang für einen Link — als .spintax speichern und die Datei in Studio öffnen.",
+    "description": "Shown when the template does not fit into a playground URL."
+  },
+  "tplPlayground": {
+    "message": "Im Playground öffnen",
+    "description": "Button that opens the template in the spintax.net playground."
+  },
+  "tplSaveFileTitle": {
+    "message": "Als .spintax-Datei speichern — öffnet sich in Spintax Studio, VS Code oder Sublime",
+    "description": "Tooltip of the download button. The product names stay as they are."
+  },
+  "tplSaveFile": {
+    "message": ".spintax speichern",
+    "description": "Button that downloads the template as a .spintax file. The extension stays as it is."
+  },
+  "tplStudioTitle": {
+    "message": "Spintax Studio — der vollständige Offline-Editor (Windows); laden Sie dort die gespeicherte .spintax",
+    "description": "Tooltip of the Spintax Studio link. The product name stays as it is."
+  },
+  "tplStudioLink": {
+    "message": "Spintax Studio",
+    "description": "Link to the desktop editor. Product name — keep it as it is."
+  },
+  "tplClearTitle": {
+    "message": "Editor leeren (die gespeicherte Vorlage bleibt, bis Sie erneut speichern)",
+    "description": "Tooltip of the clear button."
+  },
+  "tplClear": {
+    "message": "Leeren",
+    "description": "Button that empties the template editor."
+  },
+  "tplSaved": {
+    "message": "Gespeichert.",
+    "description": "Confirmation after the template was stored."
+  },
+  "tplTemplate": {
+    "message": "Vorlage",
+    "description": "Label of the template editor block and accessible name of its section."
+  },
+  "tplLoadFile": {
+    "message": ".spintax laden",
+    "description": "Label of the file picker that fills the editor from a file."
+  },
+  "tplAddIncludes": {
+    "message": "Include-Dateien hinzufügen",
+    "description": "Label of the file picker that attaches #include files."
+  },
+  "tplVariables": {
+    "message": "Variablen",
+    "description": "Label of the variables block and accessible name of its tab list."
+  },
+  "tplVariants": {
+    "message": "Varianten",
+    "description": "Accessible name of the preview section."
+  },
+  "tplVariantsHead": {
+    "message": "Varianten — echte Zeilen",
+    "description": "Label of the preview block: one variant per row of the imported list."
+  },
+  "tplRowsLabel": {
+    "message": "Zeilen",
+    "description": "Label of the input that picks how many rows the preview renders. Lowercase on purpose."
+  },
+  "tplWarnEmptyVariable": {
+    "message": "%$NAME$% ist leer und hat keinen Ersatzwert",
+    "description": "Render warning under a variant. The percent signs are spintax syntax — keep them around the name.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "topic"
+      }
+    }
+  },
+  "tplWarnLeakedMarkup": {
+    "message": "Markup im Ergebnis gelandet: $SAMPLE$",
+    "description": "Render warning under a variant: spintax syntax survived into the rendered text.",
+    "placeholders": {
+      "sample": {
+        "content": "$1",
+        "example": "{quick|short"
+      }
+    }
+  },
+  "tplWarnRenderError": {
+    "message": "Render-Fehler: $MESSAGE$",
+    "description": "Render warning under a variant. The message comes from the engine and stays English.",
+    "placeholders": {
+      "message": {
+        "content": "$1",
+        "example": "unexpected token"
+      }
+    }
+  },
+  "aiSummary": {
+    "message": "Die Vorlage mit KI schreiben — keine Schlüssel, Ihr eigener Chat",
+    "description": "Summary line of the collapsible 'write with AI' section."
+  },
+  "aiIntroBuilt": {
+    "message": "Der Prompt entsteht aus Ihren Spalten (Namen, Beispiele, Schutz für leere Zellen, Hinweise) zusammen mit dem kanonischen Spintax-Prompt.",
+    "description": "First sentence of the AI section intro."
+  },
+  "aiIntroPaste": {
+    "message": "Kopieren Sie ihn in einen beliebigen Chat und fügen Sie die Antwort oben in das Vorlagenfeld ein — beim Einfügen wird sie geprüft.",
+    "description": "Second sentence of the AI section intro."
+  },
+  "aiIntroOpenIn": {
+    "message": "Die Schaltflächen „In … öffnen“ füllen den Chat über die URL mit dem Prompt vor; auf Senden drücken Sie dort selbst.",
+    "description": "Third sentence of the AI section intro. 'Open in …' quotes the buttons below it."
+  },
+  "aiBriefLabel": {
+    "message": "Briefing",
+    "description": "Label of the textarea where the user describes the message they want."
+  },
+  "aiBriefPlaceholder": {
+    "message": "Was soll die Nachricht erreichen? Zielgruppe, Angebot, Ton — ein bis zwei Sätze. Gern auch eine Zeile zum Tonfall.",
+    "description": "Placeholder of the brief textarea."
+  },
+  "aiChannel": {
+    "message": "Kanal",
+    "description": "Accessible name of the channel dropdown in the AI section."
+  },
+  "aiChannelGeneric": {
+    "message": "Kontaktformular / Chat",
+    "description": "AI channel dropdown item: a website contact form or chat widget."
+  },
+  "aiChannelEmail": {
+    "message": "E-Mail",
+    "description": "AI channel dropdown item: an e-mail message."
+  },
+  "aiChannelSms": {
+    "message": "Kurznachricht",
+    "description": "AI channel dropdown item: SMS or a messenger with a tight limit."
+  },
+  "aiVariation": {
+    "message": "Variantenbreite",
+    "description": "Accessible name of the dropdown that picks how much the wording should vary."
+  },
+  "aiVariationBalanced": {
+    "message": "Ausgewogen",
+    "description": "Variation dropdown item: the default amount of variation."
+  },
+  "aiVariationConservative": {
+    "message": "Zurückhaltend",
+    "description": "Variation dropdown item: few alternatives, close wording."
+  },
+  "aiVariationAggressive": {
+    "message": "Weit gefächert",
+    "description": "Variation dropdown item: many alternatives, wider wording."
+  },
+  "aiIncludeSamples": {
+    "message": "Beispielwerte aus der Liste mitgeben",
+    "description": "Checkbox that adds real sample values to the prompt. Lowercase on purpose."
+  },
+  "aiPromptLabel": {
+    "message": "Prompt (änderbar — genau das wird kopiert)",
+    "description": "Label of the prompt preview textarea."
+  },
+  "aiCopyPrompt": {
+    "message": "Prompt kopieren",
+    "description": "Primary button of the AI section."
+  },
+  "aiOpenChatGpt": {
+    "message": "In ChatGPT öffnen",
+    "description": "Link that opens ChatGPT with the prompt prefilled. Product name — keep it as it is."
+  },
+  "aiOpenClaude": {
+    "message": "In Claude Desktop öffnen",
+    "description": "Link that opens Claude Desktop with the prompt prefilled. Product name — keep it as it is."
+  },
+  "aiCopyFixIt": {
+    "message": "Reparatur-Prompt kopieren",
+    "description": "Button that copies a prompt asking the chat to repair the broken template."
+  },
+  "aiNoBrief": {
+    "message": "Schreiben Sie zuerst ein Briefing.",
+    "description": "Shown when the copy button is pressed with an empty brief."
+  },
+  "aiPromptCopied": {
+    "message": "Prompt kopiert — fügen Sie ihn in Ihren Chat ein (Ctrl+V) und die Antwort dann unten.",
+    "description": "Confirmation after the authoring prompt was copied."
+  },
+  "aiFixItCopied": {
+    "message": "Reparatur-Prompt kopiert — fügen Sie ihn in Ihren Chat ein (Ctrl+V) und die Antwort dann unten.",
+    "description": "Confirmation after the repair prompt was copied."
+  },
+  "aiClipboardBlocked": {
+    "message": "Zwischenablage blockiert — markieren Sie den Text in der Vorschau und kopieren Sie ihn von Hand.",
+    "description": "Shown when the browser refused clipboard access in the AI section."
+  },
+  "welPageTitle": {
+    "message": "Willkommen bei Spintax",
+    "description": "Title of the standalone welcome page (welcome.html); the <title> tag carries the English fallback."
+  },
+  "welTagline": {
+    "message": "Vorlagen, Variablen und eine Warteschlange für manuelles Outreach."
+  },
+  "panelPageTitle": {
+    "message": "Spintax",
+    "description": "Title of the side panel document; the <title> tag carries the English fallback."
+  },
+  "welHeroTitle": {
+    "message": "Manuelles Outreach, Zeile für Zeile"
+  },
+  "welHeroText": {
+    "message": "Spintax füllt Kontaktformulare und Nachrichten aus Ihrer Liste und Ihrer Vorlage. Es schickt nichts ab, löst keine Captchas, spricht mit keinem Server — auf Senden drücken Sie."
+  },
+  "welTryDemo": {
+    "message": "Demo-Kampagne ausprobieren"
+  },
+  "welOpenDemo": {
+    "message": "Demo-Kampagne öffnen",
+    "description": "Same button as welTryDemo once the demo campaign is already installed."
+  },
+  "welStartOwn": {
+    "message": "Mit meiner Liste starten"
+  },
+  "welDemoInstalled": {
+    "message": "Die Demo-Kampagne „$NAME$“ ist eingerichtet — fünf Blogs, die der Erweiterung beiliegen, nichts davon echt.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Demo — five blogs"
+      }
+    }
+  },
+  "welRemoveDemo": {
+    "message": "Demo entfernen"
+  },
+  "welDemoRemoved": {
+    "message": "Demo entfernt."
+  },
+  "welStep1Title": {
+    "message": "Liste importieren"
+  },
+  "welStep1Text": {
+    "message": "CSV, XLSX oder einfügen. Spalten werden zu Variablen — %name%, %site%, %topic%. Zeilen werden über Website oder E-Mail zusammengeführt, ein erneuter Import erzeugt also keine Dubletten.",
+    "description": "%name%, %site% and %topic% are template variable names — keep them as they are."
+  },
+  "welStep2Title": {
+    "message": "Eine Vorlage schreiben"
+  },
+  "welStep2Text": {
+    "message": "Spintax: {Hallo|Guten Tag} %name% … Jede Zeile bekommt ihren eigenen Wortlaut, reproduzierbar aus dem Zeilenschlüssel. Den Entwurf kann Ihr KI-Chat schreiben — der Prompt ist einen Klick entfernt.",
+    "description": "{Hi|Hello} is spintax syntax; the words inside may be translated, the braces and the pipe may not."
+  },
+  "welStep3Title": {
+    "message": "Die Warteschlange abarbeiten"
+  },
+  "welStep3Text": {
+    "message": "Seitenleiste auf der Zielseite öffnen, „Ausfüllen“ drücken, das Formular prüfen, selbst auf Senden drücken, die Zeile markieren. Follow-ups kommen an ihrem Tag zurück."
+  },
+  "welQuickTitle": {
+    "message": "Schnellaktionen"
+  },
+  "welQuickText": {
+    "message": "Auf jedem Bildschirm in der Kopfzeile — sie öffnen einen kleinen Bereich und unterbrechen nie, woran Sie gerade sind."
+  },
+  "welQuickProfile": {
+    "message": "Absenderprofil anlegen"
+  },
+  "welQuickRows": {
+    "message": "Zeilen hinzufügen"
+  },
+  "welQuickRowsBlocked": {
+    "message": "Zuerst eine Liste importieren — Zeilen brauchen Spalten, in die sie passen",
+    "description": "Tooltip on the disabled \"Add rows\" chip."
+  },
+  "welQuickFiles": {
+    "message": "Dateien hinzufügen"
+  },
+  "welPanelTitle": {
+    "message": "In der Seitenleiste"
+  },
+  "welPanelOpenTarget": {
+    "message": "die Seite der Zeile (oder eine neue E-Mail im Mailprogramm / Webmail — siehe Einstellungen).",
+    "description": "Follows the quoted side-panel button name \"Open target\" and an em dash: \"Open target — the row's page…\"."
+  },
+  "welPanelFill": {
+    "message": "fragt einmal nach der Website, füllt die erkannten Felder und zeigt einen Bericht pro Feld; Rich-Text-Editoren bekommen den Text über die Zwischenablage.",
+    "description": "Follows the quoted side-panel button name \"Fill on site.com\" and an em dash."
+  },
+  "welPanelSent": {
+    "message": "hält das Ergebnis fest und geht weiter; „Nicht gesendet …“ und „Mehr …“ enthalten die übrigen Ergebnisse.",
+    "description": "Follows the quoted side-panel button name \"Sent — next (S)\" and an em dash. \"Not sent…\" and \"More…\" quote panel buttons — use the same wording as panelNotSent / panelMore."
+  },
+  "welPanelKeysLabel": {
+    "message": "Tasten",
+    "description": "Bold lead-in of the keyboard-shortcuts line; not a button name."
+  },
+  "welPanelKeys": {
+    "message": "Enter = Hauptaktion, S = gesendet & weiter, N = nächste Zeile (außerhalb von Textfeldern). Globale Kürzel vergeben Sie selbst bei den Tastenkürzeln für Erweiterungen im Browser.",
+    "description": "Follows the bold \"Keys\" and an em dash. S and N are the physical keys — keep them Latin."
+  },
+  "welPanelMappingLabel": {
+    "message": "Feldzuordnung",
+    "description": "Bold lead-in quoting the side panel's field-mapping section."
+  },
+  "welPanelMapping": {
+    "message": "was wohin ging; ein übersehenes Feld zuordnen, ein Feld fixieren, ein falsches Rezept vergessen.",
+    "description": "Follows the bold \"Field mapping\" and an em dash."
+  },
+  "welPrivacyTitle": {
+    "message": "Datenschutz"
+  },
+  "welPrivacyText": {
+    "message": "Alles bleibt in diesem Browserprofil: Listen, Vorlagen, Journal, Dateien. Kein Konto, keine Telemetrie, kein Netz — die einzige freiwillige Anfrage ist der Neuigkeiten-Feed von 301.sh, ab Werk aus. Backup und Löschen aller Daten in den Einstellungen."
+  },
+  "welNews": {
+    "message": "Neuigkeiten des Herausgebers — eine Benachrichtigung, wenn 301.sh einen Beitrag veröffentlicht (alle 6 Stunden geprüft, nichts über Sie wird gesendet). Aus, bis Sie auf die Glocke klicken.",
+    "description": "Follows the news bell button on the welcome page."
+  },
+  "welPrivacyPolicy": {
+    "message": "Datenschutzerklärung"
+  },
+  "welSpintaxWithAi": {
+    "message": "Spintax mit KI schreiben"
+  },
+  "welPlayground": {
+    "message": "Playground",
+    "description": "Link to the online spintax playground on 301.st."
+  },
+  "colSummaryOne": {
+    "message": "Spalten ($COUNT$) — Typ, Formularfelder, Standardwerte, Hinweise",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "colSummaryFew": {
+    "message": "Spalten ($COUNT$) — Typ, Formularfelder, Standardwerte, Hinweise",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "colSummaryMany": {
+    "message": "Spalten ($COUNT$) — Typ, Formularfelder, Standardwerte, Hinweise",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "colSummaryOther": {
+    "message": "Spalten ($COUNT$) — Typ, Formularfelder, Standardwerte, Hinweise",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "colTypeOf": {
+    "message": "Typ von $COLUMN$",
+    "description": "Accessible name of the column type dropdown.",
+    "placeholders": {
+      "column": {
+        "content": "$1",
+        "example": "Company"
+      }
+    }
+  },
+  "colTypeText": {
+    "message": "Text",
+    "description": "Column type: the cell holds text."
+  },
+  "colTypeFile": {
+    "message": "Datei (Bibliothek)",
+    "description": "Column type: the cell holds the sha256 of a file from the asset library."
+  },
+  "colFillableTitle": {
+    "message": "Diese Spalte als Wert für ein Formularfeld anbieten (Auswahl, Datei, Text)"
+  },
+  "colFillable": {
+    "message": "in ein Formularfeld füllen"
+  },
+  "colRequired": {
+    "message": "Pflicht"
+  },
+  "colHidden": {
+    "message": "versteckt"
+  },
+  "colDefaultPlaceholder": {
+    "message": "Standard für leere Zellen"
+  },
+  "colNotePlaceholder": {
+    "message": "Hinweis für den KI-Prompt, z. B. Marke — nicht beugen"
+  },
+  "colSave": {
+    "message": "Spalten speichern"
+  },
+  "colSaved": {
+    "message": "Gespeichert."
+  },
+  "stepSummaryOne": {
+    "message": "Schritte ($COUNT$) — erste Nachricht + Follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSummaryFew": {
+    "message": "Schritte ($COUNT$) — erste Nachricht + Follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSummaryMany": {
+    "message": "Schritte ($COUNT$) — erste Nachricht + Follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSummaryOther": {
+    "message": "Schritte ($COUNT$) — erste Nachricht + Follow-ups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "stepLabel": {
+    "message": "Schritt $N$",
+    "description": "Bold lead-in of a step row in the steps editor.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepInitial": {
+    "message": "erste Nachricht",
+    "description": "Follows \"Step 1\" and an em dash."
+  },
+  "stepFollowup": {
+    "message": "Follow-up,",
+    "description": "Follows \"Step 2\" and an em dash; the delay input and stepFollowupDays finish the line: \"Step 2 — follow-up, [3] days after the previous step\"."
+  },
+  "stepFollowupDays": {
+    "message": "Tage nach dem vorigen Schritt",
+    "description": "Follows the delay input; see stepFollowup for the whole line."
+  },
+  "stepDelayAria": {
+    "message": "Verzögerung in Tagen für Schritt $N$",
+    "description": "Accessible name of the delay input.",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "stepAdd": {
+    "message": "Follow-up anlegen"
+  },
+  "stepRemove": {
+    "message": "Letzten entfernen"
+  },
+  "stepSave": {
+    "message": "Schritte speichern"
+  },
+  "stepSavedOne": {
+    "message": "Gespeichert; $COUNT$ Zeile neu berechnet.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "stepSavedFew": {
+    "message": "Gespeichert; $COUNT$ Zeilen neu berechnet.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "stepSavedMany": {
+    "message": "Gespeichert; $COUNT$ Zeilen neu berechnet.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "stepSavedOther": {
+    "message": "Gespeichert; $COUNT$ Zeilen neu berechnet.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "demoBannerSent": {
+    "message": "Demo: Es wurde nichts gesendet. Markieren Sie die Zeile in der Seitenleiste als gesendet, um weiterzugehen.",
+    "description": "Banner on the bundled demo pages after a harmless \"submit\"."
+  },
+  "cmdActionTitle": {
+    "message": "Spintax",
+    "description": "Tooltip of the toolbar button and title of the Firefox sidebar."
+  },
+  "cmdFill": {
+    "message": "Die zugeordneten Felder auf der aktuellen Seite ausfüllen",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdCopyOpen": {
+    "message": "Die Nachricht kopieren und das Ziel öffnen",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdMarkSentNext": {
+    "message": "Als gesendet markieren und zur nächsten Zeile gehen",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdNextRow": {
+    "message": "Zur nächsten Zeile gehen",
+    "description": "Keyboard shortcut description in the browser's shortcuts UI; truncated past ~60 characters."
+  },
+  "cmdSidebar": {
+    "message": "Die Spintax-Seitenleiste öffnen",
+    "description": "Firefox only: the bindable _execute_sidebar_action command."
+  },
+  "wizStepImport": {
+    "message": "Import",
+    "description": "Step chip 1 of the campaign wizard. One word — the five chips share one row."
+  },
+  "wizStepRoles": {
+    "message": "Rollen & Dubletten",
+    "description": "Step chip 2 of the campaign wizard: give each column a role and settle duplicate rows."
+  },
+  "wizStepProfile": {
+    "message": "Profil & Vorlage",
+    "description": "Step chip 3 of the campaign wizard: who writes and what is written."
+  },
+  "wizStepProblems": {
+    "message": "Probleme",
+    "description": "Step chip 4 of the campaign wizard: rows that cannot be sent as they are."
+  },
+  "wizStepQueue": {
+    "message": "Warteschlange",
+    "description": "Step chip 5 of the campaign wizard: go through the rows by hand in the side panel."
+  },
+  "wizStep1Title": {
+    "message": "Schritt 1 — Liste importieren",
+    "description": "Heading of wizard step 1."
+  },
+  "wizImportHint": {
+    "message": "CSV / TSV / XLSX oder aus Sheets einfügen. Die Rollen werden aus den Werten erkannt.",
+    "description": "Status line under the step 1 heading before a file is chosen. The file formats are file extensions — keep them."
+  },
+  "wizFileLabel": {
+    "message": "Datei",
+    "description": "Label of the file picker on wizard step 1."
+  },
+  "wizOrPasteLabel": {
+    "message": "Oder einfügen",
+    "description": "Label of the paste box on wizard step 1, the alternative to picking a file."
+  },
+  "wizPastePlaceholder": {
+    "message": "Zeilen aus Google Sheets / Excel einfügen (Tab-getrennt) …",
+    "description": "Placeholder of the paste box on wizard step 1."
+  },
+  "wizSheetLabel": {
+    "message": "Blatt",
+    "description": "Label and accessible name of the dropdown that picks a sheet of a multi-sheet XLSX file."
+  },
+  "wizSheetOptionOne": {
+    "message": "$NAME$ ($COUNT$ Zeile)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionFew": {
+    "message": "$NAME$ ($COUNT$ Zeilen)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionMany": {
+    "message": "$NAME$ ($COUNT$ Zeilen)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizSheetOptionOther": {
+    "message": "$NAME$ ($COUNT$ Zeilen)",
+    "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
+    }
+  },
+  "wizPastedTable": {
+    "message": "Eingefügte Tabelle",
+    "description": "Stands in for the file name in the import status line when the rows came from the paste box."
+  },
+  "wizFileError": {
+    "message": "Die Datei ließ sich nicht lesen: $ERROR$",
+    "description": "Import failed: the browser's own error message follows and stays untranslated.",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Unsupported zip entry"
+      }
+    }
+  },
+  "wizNoRowsFound": {
+    "message": "Keine Zeilen gefunden — prüfen Sie, ob in der ersten Zeile die Spaltennamen stehen.",
+    "description": "The chosen file or pasted text parsed to nothing usable."
+  },
+  "wizRowsOne": {
+    "message": "$COUNT$ Zeile",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizRowsFew": {
+    "message": "$COUNT$ Zeilen",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizRowsMany": {
+    "message": "$COUNT$ Zeilen",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizRowsOther": {
+    "message": "$COUNT$ Zeilen",
+    "description": "Row count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
+    }
+  },
+  "wizColumnsOne": {
+    "message": "$COUNT$ Spalte",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizColumnsFew": {
+    "message": "$COUNT$ Spalten",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizColumnsMany": {
+    "message": "$COUNT$ Spalten",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizColumnsOther": {
+    "message": "$COUNT$ Spalten",
+    "description": "Column count in the import status line.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "wizImportedCounts": {
+    "message": "$SOURCE$: $ROWS$ × $COLUMNS$.",
+    "description": "First sentence of the import status line: where the table came from and its size. SOURCE is a file name (data, never translated), ROWS and COLUMNS arrive already pluralised.",
+    "placeholders": {
+      "source": {
+        "content": "$1",
+        "example": "contacts.csv"
+      },
+      "rows": {
+        "content": "$2",
+        "example": "1200 rows"
+      },
+      "columns": {
+        "content": "$3",
+        "example": "7 columns"
+      }
+    }
+  },
+  "wizNoHeaderRow": {
+    "message": "Keine Kopfzeile gefunden — die Spaltennamen wurden geraten (id, email, phone …); benennen Sie sie in Schritt 2 um.",
+    "description": "Second sentence of the import status line when the file had no header row. The names in the parentheses are examples of guessed column names."
+  },
+  "wizSkippedTitleRowsOne": {
+    "message": "$COUNT$ Titelzeile über der Kopfzeile übersprungen.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizSkippedTitleRowsFew": {
+    "message": "$COUNT$ Titelzeilen über der Kopfzeile übersprungen.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizSkippedTitleRowsMany": {
+    "message": "$COUNT$ Titelzeilen über der Kopfzeile übersprungen.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizSkippedTitleRowsOther": {
+    "message": "$COUNT$ Titelzeilen über der Kopfzeile übersprungen.",
+    "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "wizBatchRange": {
+    "message": "Paket: Zeilen $FROM$–$TO$.",
+    "description": "Last sentence of the import status line for a big file: which slice of the rows is being imported. The dash between the two numbers is an en dash.",
+    "placeholders": {
+      "from": {
+        "content": "$1",
+        "example": "1"
+      },
+      "to": {
+        "content": "$2",
+        "example": "1000"
+      }
+    }
+  },
+  "wizFileRowsOne": {
+    "message": "$ROWS$ Zeile",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "1"
+      }
+    }
+  },
+  "wizFileRowsFew": {
+    "message": "$ROWS$ Zeilen",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "wizFileRowsMany": {
+    "message": "$ROWS$ Zeilen",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "11"
+      }
+    }
+  },
+  "wizFileRowsOther": {
+    "message": "$ROWS$ Zeilen",
+    "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
+    "placeholders": {
+      "rows": {
+        "content": "$2",
+        "example": "40,000"
+      }
+    }
+  },
+  "wizBatchIntro": {
+    "message": "— eine Warteschlange, die Sie von Hand abarbeiten. Importieren Sie jetzt ein Paket; für das nächste laden Sie die Datei später erneut (schon importierte Zeilen werden über den Schlüssel zusammengeführt).",
+    "description": "Follows the bold row count of the batch panel and finishes its sentence, so it opens with an em dash."
+  },
+  "wizBatchRowsLabel": {
+    "message": "Zeilen",
+    "description": "Opens the batch form row: Rows [from] to [to] · batch of [size]."
+  },
+  "wizBatchTo": {
+    "message": "bis",
+    "description": "Between the first row of the batch (an input) and the last one (a number) in the batch form row."
+  },
+  "wizBatchSizeLabel": {
+    "message": "Paketgröße",
+    "description": "Label of the batch size input in the batch form row. Lowercase on purpose — it continues the line."
+  },
+  "wizBatchFirstAria": {
+    "message": "Erste Zeile des Pakets",
+    "description": "Accessible name of the number input that picks where the batch starts."
+  },
+  "wizBatchSizeAria": {
+    "message": "Zeilen im Paket",
+    "description": "Accessible name of the number input that picks how many rows the batch takes."
+  },
+  "wizBatchFirst": {
+    "message": "erste $COUNT$",
+    "description": "Button of the batch form row: jump back to the first N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizBatchNext": {
+    "message": "nächste $COUNT$",
+    "description": "Button of the batch form row: move on to the next N rows of the file. Lowercase on purpose.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizBatchMax": {
+    "message": "höchstens $COUNT$ pro Paket",
+    "description": "Muted note next to the batch buttons: the hard cap on one batch.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5,000"
+      }
+    }
+  },
+  "wizContinueRolesOne": {
+    "message": "Weiter zu Rollen & Dubletten ($COUNT$ Zeile)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizContinueRolesFew": {
+    "message": "Weiter zu Rollen & Dubletten ($COUNT$ Zeilen)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizContinueRolesMany": {
+    "message": "Weiter zu Rollen & Dubletten ($COUNT$ Zeilen)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizContinueRolesOther": {
+    "message": "Weiter zu Rollen & Dubletten ($COUNT$ Zeilen)",
+    "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
+    }
+  },
+  "wizStep2Title": {
+    "message": "Schritt 2 — Rollen & Dubletten",
+    "description": "Heading of wizard step 2."
+  },
+  "wizNothingImported": {
+    "message": "In dieser Sitzung wurde nichts importiert — gehen Sie zu Schritt 1 zurück und importieren Sie eine Liste.",
+    "description": "Wizard step 2 opened without a table in memory (after a reload)."
+  },
+  "wizImportSummaryOne": {
+    "message": "Import: $COUNT$ Zeile · neu $ADDS$ · aktualisiert $UPDATES$ · in der Datei zusammengeführt $MERGED$ · exakte Dubletten $DUPES$ · ausgeschlossen $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "0"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryFew": {
+    "message": "Import: $COUNT$ Zeilen · neu $ADDS$ · aktualisiert $UPDATES$ · in der Datei zusammengeführt $MERGED$ · exakte Dubletten $DUPES$ · ausgeschlossen $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "2"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "1"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryMany": {
+    "message": "Import: $COUNT$ Zeilen · neu $ADDS$ · aktualisiert $UPDATES$ · in der Datei zusammengeführt $MERGED$ · exakte Dubletten $DUPES$ · ausgeschlossen $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "9"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "2"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
+    }
+  },
+  "wizImportSummaryOther": {
+    "message": "Import: $COUNT$ Zeilen · neu $ADDS$ · aktualisiert $UPDATES$ · in der Datei zusammengeführt $MERGED$ · exakte Dubletten $DUPES$ · ausgeschlossen $EXCLUDED$",
+    "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1180"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "12"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "5"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "2"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "1"
+      }
+    }
+  },
+  "wizNoTargetColumn": {
+    "message": "Wählen Sie eine Ziel-Spalte (URL / E-Mail / @Handle) — Zeilen ohne Ziel lassen sich nicht importieren.",
+    "description": "Blocker on wizard step 2: no column carries the role \"target\" yet."
+  },
+  "wizApplyImport": {
+    "message": "Import anwenden ($COUNT$)",
+    "description": "Primary button of wizard step 2: how many rows will be written (added plus updated).",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
+    }
+  },
+  "wizNamingPastePlaceholder": {
+    "message": "Antwortzeile einfügen: id; email; phone; …",
+    "description": "Placeholder of the input that takes the AI chat's answer. The example names show the expected shape — semicolons separate them."
+  },
+  "wizNamingPasteAria": {
+    "message": "Spaltennamen aus der KI-Antwort",
+    "description": "Accessible name of the input that takes the AI chat's answer."
+  },
+  "wizNamingExpectedOne": {
+    "message": "Erwartet: $COUNT$ Name, getrennt durch „;“.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizNamingExpectedFew": {
+    "message": "Erwartet: $COUNT$ Namen, getrennt durch „;“.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizNamingExpectedMany": {
+    "message": "Erwartet: $COUNT$ Namen, getrennt durch „;“.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizNamingExpectedOther": {
+    "message": "Erwartet: $COUNT$ Namen, getrennt durch „;“.",
+    "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "wizPromptCopied": {
+    "message": "Prompt kopiert — fügen Sie ihn in Ihren KI-Chat ein und die Antwort dann hier.",
+    "description": "The \"name these columns\" prompt reached the clipboard."
+  },
+  "wizClipboardBlocked": {
+    "message": "Zwischenablage blockiert — markieren Sie die Namen von Hand.",
+    "description": "The browser refused clipboard access, so the prompt could not be copied."
+  },
+  "wizCopyNamingPrompt": {
+    "message": "Prompt kopieren: diese Spalten benennen",
+    "description": "Button that copies a prompt for an AI chat. The prompt itself is sent to a model and stays English."
+  },
+  "wizApplyNames": {
+    "message": "Namen übernehmen",
+    "description": "Button that renames the columns from the pasted answer line."
+  },
+  "wizColumnNameAria": {
+    "message": "Spaltenname",
+    "description": "Accessible name of the header input in the roles table."
+  },
+  "wizVariableTitle": {
+    "message": "Variable: %$NAME$%",
+    "description": "Tooltip of the header input: the template variable this column feeds. The percent signs are spintax syntax — keep them around the name, and leave the name itself as it is.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "company"
+      }
+    }
+  },
+  "wizRoleFor": {
+    "message": "Rolle für $COLUMN$",
+    "description": "Accessible name of the role dropdown. COLUMN is the user's own column header — data, never translated.",
+    "placeholders": {
+      "column": {
+        "content": "$1",
+        "example": "E-mail"
+      }
+    }
+  },
+  "wizRoleNone": {
+    "message": "— keine Rolle",
+    "description": "Role dropdown item: an ordinary column, used only as a template variable. Opens with an em dash."
+  },
+  "wizRoleNoneHint": {
+    "message": "eine einfache Variable",
+    "description": "Hint under the \"no role\" dropdown item."
+  },
+  "wizRoleTarget": {
+    "message": "Ziel",
+    "description": "Role dropdown item: the column that says where to reach the recipient. Lowercase on purpose."
+  },
+  "wizRoleTargetHint": {
+    "message": "Website / E-Mail / @Handle als Kontakt",
+    "description": "Hint under the \"target\" dropdown item."
+  },
+  "wizRoleLang": {
+    "message": "Sprache",
+    "description": "Role dropdown item: the column that says which language the row is written in. Lowercase on purpose."
+  },
+  "wizRoleLangHint": {
+    "message": "Sprache der Zeile (Vorlage je Sprache)",
+    "description": "Hint under the \"lang\" dropdown item."
+  },
+  "wizRoleKey": {
+    "message": "Schlüssel (überschreibt)",
+    "description": "Role dropdown item: the column that carries the user's own row key. Lowercase on purpose."
+  },
+  "wizRoleKeyHint": {
+    "message": "eigener Schlüssel statt des abgeleiteten",
+    "description": "Hint under the \"key (override)\" dropdown item."
+  },
+  "wizSampleValue": {
+    "message": "z. B. $VALUE$",
+    "description": "Tooltip of a variable chip: the first non-empty value in that column. The value is the user's data.",
+    "placeholders": {
+      "value": {
+        "content": "$1",
+        "example": "anna@example.com"
+      }
+    }
+  },
+  "wizNoValues": {
+    "message": "keine Werte",
+    "description": "Tooltip of a variable chip whose column is empty in every row."
+  },
+  "wizEmptyPct": {
+    "message": "leer $PCT$%",
+    "description": "Badge on a variable chip: the share of rows where this column is blank. Keep the percent sign next to the number.",
+    "placeholders": {
+      "pct": {
+        "content": "$1",
+        "example": "40"
+      }
+    }
+  },
+  "wizConflictsOne": {
+    "message": "$COUNT$ Zeile weicht ab — Feld für Feld entscheiden",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizConflictsFew": {
+    "message": "$COUNT$ Zeilen weichen ab — Feld für Feld entscheiden",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizConflictsMany": {
+    "message": "$COUNT$ Zeilen weichen ab — Feld für Feld entscheiden",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizConflictsOther": {
+    "message": "$COUNT$ Zeilen weichen ab — Feld für Feld entscheiden",
+    "description": "Heading of the conflicts block on wizard step 2.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "wizConflictTwiceInFile": {
+    "message": "zweimal in der Datei",
+    "description": "Follows the row key of a conflict: the same key appears twice in the imported file. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictAlreadyInCampaign": {
+    "message": "schon in der Kampagne",
+    "description": "Follows the row key of a conflict: the key is already stored in the campaign. Lowercase — it continues the line after a middle dot."
+  },
+  "wizConflictColField": {
+    "message": "Feld",
+    "description": "Conflict table header: which field of the row differs. Lowercase on purpose."
+  },
+  "wizConflictColCampaign": {
+    "message": "in Kampagne",
+    "description": "Conflict table header: the value stored in the campaign. Lowercase on purpose."
+  },
+  "wizConflictColFile": {
+    "message": "in Datei",
+    "description": "Conflict table header: the value the imported file carries. Lowercase on purpose."
+  },
+  "wizConflictColAction": {
+    "message": "Aktion",
+    "description": "Conflict table header: what to do with this field. Lowercase on purpose."
+  },
+  "wizChoiceFillEmpty": {
+    "message": "leere füllen",
+    "description": "Conflict choice: write the incoming value only where the stored one is blank. Lowercase on purpose."
+  },
+  "wizChoiceKeep": {
+    "message": "behalten",
+    "description": "Conflict choice: keep the value already stored in the campaign. Lowercase on purpose."
+  },
+  "wizChoiceTake": {
+    "message": "neue nehmen",
+    "description": "Conflict choice: overwrite with the value from the imported file. Lowercase on purpose."
+  },
+  "wizWhoWrites": {
+    "message": "Wer schreibt",
+    "description": "Heading of the sender profile card on wizard step 3."
+  },
+  "wizNoProfile": {
+    "message": "Noch kein Absenderprofil — die Formularfelder Name / E-Mail / Website und %my_*% bleiben leer.",
+    "description": "The campaign has no sender profile. %my_*% is spintax syntax for the profile variables — keep it as it is."
+  },
+  "wizAddProfile": {
+    "message": "Profil hinzufügen",
+    "description": "Button that opens the sender profile drawer when there is no profile yet."
+  },
+  "wizAddAnotherProfile": {
+    "message": "Weiteres Profil hinzufügen",
+    "description": "Button that opens the sender profile drawer when the campaign already has one."
+  },
+  "wizManageProfiles": {
+    "message": "Profile verwalten",
+    "description": "Link from wizard step 3 to the profiles screen."
+  },
+  "wizContinueProblems": {
+    "message": "Weiter zu den Problemen",
+    "description": "Primary button of wizard step 3 when the template is already saved."
+  },
+  "wizEditFullEditor": {
+    "message": "Im vollen Editor bearbeiten",
+    "description": "Link from wizard step 3 to the template screen."
+  },
+  "wizTemplatePlaceholder": {
+    "message": "{Hallo|Guten Tag} %$VAR1$%, {kurze|schnelle} Frage zu %$VAR2$% …  (aus Ihrem KI-Chat einfügen oder hier schreiben)",
+    "description": "Placeholder of the small template editor on wizard step 3. The braces are spintax alternatives and the percent signs mark variables — keep both; translate the words inside the braces and the sentence in the parentheses. VAR1 and VAR2 are the campaign's own column variables.",
+    "placeholders": {
+      "var1": {
+        "content": "$1",
+        "example": "name"
+      },
+      "var2": {
+        "content": "$2",
+        "example": "topic"
+      }
+    }
+  },
+  "wizSaveTemplate": {
+    "message": "Vorlage speichern",
+    "description": "Primary button that stores the step 1 message written on wizard step 3."
+  },
+  "wizErrorsOne": {
+    "message": "$COUNT$ Fehler: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsFew": {
+    "message": "$COUNT$ Fehler: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsMany": {
+    "message": "$COUNT$ Fehler: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizErrorsOther": {
+    "message": "$COUNT$ Fehler: $MESSAGES$",
+    "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
+    }
+  },
+  "wizUnknownVars": {
+    "message": "Unbekannte Variablen: $VARS$ — sie rendern leer.",
+    "description": "The template uses variables the campaign does not have. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%topic%, %city%"
+      }
+    }
+  },
+  "wizTemplateValid": {
+    "message": "Gültig. Verwendete Variablen: $VARS$.",
+    "description": "The template parses. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%name%, %topic%"
+      }
+    }
+  },
+  "wizVarsNone": {
+    "message": "keine",
+    "description": "Stands in for the variable list when the template uses no variables at all. Lowercase — it sits inside the sentence above."
+  },
+  "wizSpintaxVars": {
+    "message": "Spintax mit Ihren Variablen: $VARS$. Includes, KI-Prompt und eine Vorschau pro Zeile gibt es im vollen Editor.",
+    "description": "Hint above the small template editor. VARS is a list of %name% tokens — spintax syntax, left as it is.",
+    "placeholders": {
+      "vars": {
+        "content": "$1",
+        "example": "%name% %topic% %my_name%"
+      }
+    }
+  },
+  "wizFullEditorLink": {
+    "message": "Voller Editor (KI-Prompt, Includes, Vorschau)",
+    "description": "Link from the small template editor to the template screen."
+  },
+  "wizWhatIsWritten": {
+    "message": "Was geschrieben wird — Nachricht für Schritt 1",
+    "description": "Heading of the template card on wizard step 3. \"Step 1\" here is the first message of the sequence, not a wizard step."
+  },
+  "wizStep4Title": {
+    "message": "Schritt 4 — Probleme",
+    "description": "Heading of wizard step 4."
+  },
+  "wizChipBlocking": {
+    "message": "$COUNT$ blockierend",
+    "description": "Chip on wizard step 4: rows that cannot be sent as they are.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizChipWarnings": {
+    "message": "$COUNT$ mit Warnungen",
+    "description": "Chip on wizard step 4: rows that render but look suspicious.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "wizChipClean": {
+    "message": "$COUNT$ sauber",
+    "description": "Chip on wizard step 4: rows with nothing to fix.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1185"
+      }
+    }
+  },
+  "wizChipUnchecked": {
+    "message": "$COUNT$ hier nicht geprüft — unter „Prüfung“ kommen alle dran",
+    "description": "Chip on wizard step 4: the screen checks the first few thousand rows only. \"Review\" is the name of another screen — keep it the same as the navigation item.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3000"
+      }
+    }
+  },
+  "wizNoTemplate": {
+    "message": "Noch keine Vorlage — gehen Sie zurück zu Schritt 3.",
+    "description": "Wizard step 4 has nothing to check because the campaign has no message yet."
+  },
+  "wizBlockingExplain": {
+    "message": "Blockierend: leere Pflichtvariable, übrig gebliebene Klammer, überschrittenes Feldlimit. Reparieren Sie die Vorlage oder die Zeile unter „Prüfung“; saubere Zeilen lassen sich dort mit einem Klick bestätigen.",
+    "description": "Explains what counts as blocking on wizard step 4. \"Review\" is the name of another screen — keep it the same as the navigation item."
+  },
+  "wizReviewCountOne": {
+    "message": "$COUNT$ Zeile prüfen",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "wizReviewCountFew": {
+    "message": "$COUNT$ Zeilen prüfen",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "wizReviewCountMany": {
+    "message": "$COUNT$ Zeilen prüfen",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
+    }
+  },
+  "wizReviewCountOther": {
+    "message": "$COUNT$ Zeilen prüfen",
+    "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "wizReviewAll": {
+    "message": "Zeilen prüfen",
+    "description": "Link from wizard step 4 to the Review screen when nothing needs attention."
+  },
+  "wizContinueQueue": {
+    "message": "Weiter zur Warteschlange",
+    "description": "Button of wizard step 4 that moves on to the last step."
+  },
+  "wizStep5Title": {
+    "message": "Schritt 5 — Warteschlange abarbeiten",
+    "description": "Heading of wizard step 5."
+  },
+  "wizOpenSidePanel": {
+    "message": "Seitenleiste öffnen",
+    "description": "Primary button of wizard step 5."
+  },
+  "wizHowto1": {
+    "message": "Öffnen Sie die Seitenleiste (Schaltfläche in der Symbolleiste oder unten) — sie zeigt die aktuelle Zeile und ihre Nachricht.",
+    "description": "First line of the how-to list on wizard step 5."
+  },
+  "wizHowtoOpenTarget": {
+    "message": "Ziel öffnen",
+    "description": "Quotes the side panel's \"Open target\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoOpens": {
+    "message": "→ die Kontaktseite öffnet sich;",
+    "description": "Follows the quoted \"Open target\" button in the how-to list. Keep the arrow at the front."
+  },
+  "wizHowtoFillOnSite": {
+    "message": "site.com ausfüllen",
+    "description": "Quotes the side panel's \"Fill on <host>\" button inside the how-to list; site.com is a stand-in host name — must read exactly like that button."
+  },
+  "wizHowtoFilled": {
+    "message": "→ die Felder werden gefüllt, Sie prüfen sie und drücken auf der Seite auf Senden.",
+    "description": "Follows the quoted \"Fill on site.com\" button in the how-to list. Keep the arrow at the front; \"Send\" is the contact form's own button on the target site."
+  },
+  "wizHowtoSentNext": {
+    "message": "Gesendet — weiter",
+    "description": "Quotes the side panel's \"Sent — next\" button inside the how-to list — must read exactly like that button."
+  },
+  "wizHowtoRecords": {
+    "message": "(oder S) hält das Ergebnis fest und geht weiter; die übrigen Ergebnisse stehen unter „Nicht gesendet …“ und „Mehr …“.",
+    "description": "Follows the quoted \"Sent — next\" button in the how-to list. S is the keyboard shortcut — keep the letter; the two quoted names are side panel buttons."
+  },
+  "wizHowtoShortcuts": {
+    "message": "Eigene Tastenkürzel können Sie im Browser auf der Seite für Erweiterungs-Kürzel vergeben.",
+    "description": "Last line of the how-to list on wizard step 5."
+  },
+  "wizSeeList": {
+    "message": "Zur Liste",
+    "description": "Link from wizard step 5 to the List screen."
+  },
+  "panelOpenCampaign": {
+    "message": "Kampagne öffnen — Zeilen, Spalten, Schritte",
+    "description": "Tooltip on the campaign name in the side panel header; it opens the List screen."
+  },
+  "drwRowsPasteNoColumns": {
+    "message": "Ein Ziel pro Zeile — diese Kampagne hat noch keine Spalten; der Assistent legt sie beim ersten Import an.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  },
+  "drwRowsNoColumnsHint": {
+    "message": "Diese Kampagne hat noch keine Spalten — der Assistent liest sie aus Ihrer Liste und zeigt das Ergebnis.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  },
+  "setOpenTitle": {
+    "message": "Wo ein Ziel geöffnet wird",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenIntro": {
+    "message": "Das Panel bleibt in jedem Fall; es geht um die Seite, die Sie gerade lesen.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenReuse": {
+    "message": "Aktuellen Tab wiederverwenden — die gelesene Seite wird ersetzt; mit Zurück kommen Sie hin",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenNewTab": {
+    "message": "Immer ein neuer Tab — die gelesene Seite bleibt offen, Tabs sammeln sich an",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "setOpenHint": {
+    "message": "Strg-Klick (⌘-Klick) oder Mittelklick öffnet immer einen neuen Tab.",
+    "description": "Settings card: reuse the current tab or open the target in a new one (UX review, ask 2)."
+  },
+  "panelMoreCaption": {
+    "message": "Ergebnisse & mehr",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "panelEditStep": {
+    "message": "Nachricht von Schritt $N$ ändern",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener).",
+    "placeholders": {
+      "n": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelOpenSidePanel": {
+    "message": "Seitenleiste öffnen",
+    "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.10/schema.json",
+  "files": {
+    "includes": [
+      "src/**",
+      "wxt.config.ts",
+      "!dist/**",
+      "!.wxt/**",
+      "!.output/**",
+      "!src/assets/css/theme.css",
+      "!src/assets/css/tables.css",
+      "!src/public/icons/*.svg",
+      "!src/public/demo/**",
+      "!src/assets/css/ui.css",
+      "!src/assets/css/layout.css",
+      "!src/assets/css/drawers.css"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always"
+    }
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "optPageTitle": {
+    "message": "Spintax — Campaigns"
+  },
+  "optNavWelcome": {
+    "message": "Welcome & help"
+  },
+  "optNavWizard": {
+    "message": "Campaign wizard"
+  },
+  "optNavList": {
+    "message": "List"
+  },
+  "optNavTemplate": {
+    "message": "Template"
+  },
+  "optNavReview": {
+    "message": "Review"
+  },
+  "optNavProfiles": {
+    "message": "Profiles"
+  },
+  "optNavRecipes": {
+    "message": "Recipes"
+  },
+  "optNavAssets": {
+    "message": "Assets"
+  },
+  "optNavJournal": {
+    "message": "Journal"
+  },
+  "optNavSettings": {
+    "message": "Settings"
+  },
+  "optNavNews": {
+    "message": "News"
+  },
+  "optToggleSidebar": {
+    "message": "Toggle sidebar"
+  },
+  "optSections": {
+    "message": "Sections"
+  },
+  "optRecipesStub": {
+    "message": "Recipes are the field mappings the helper saves per site. Manage them from the side panel: Field mapping → pin, clear, or \"Forget this recipe\"."
+  },
+  "optJournalStub": {
+    "message": "Each row's history (sent, deferred, edited…) is in its row: List → click a row → Journal."
+  },
+  "optNewsStub": {
+    "message": "Publisher news shows under the bell in the header once you switch it on there."
+  },
+  "optNotHereYet": {
+    "message": "$SECTION$ is not here yet.",
+    "placeholders": {
+      "section": {
+        "content": "$1"
+      }
+    }
+  },
+  "optViewFailed": {
+    "message": "This screen failed to load: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "optDefaultCampaign": {
+    "message": "My campaign"
+  },
+  "listFilterRows": {
+    "message": "Filter rows"
+  },
+  "listEmpty": {
+    "message": "Nothing here."
+  },
+  "listNoRows": {
+    "message": "No rows yet — import a list in the wizard."
+  },
+  "listRowsOne": {
+    "message": "$COUNT$ row",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsOther": {
+    "message": "$COUNT$ rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsFew": {
+    "message": "$COUNT$ rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsMany": {
+    "message": "$COUNT$ rows",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOne": {
+    "message": "$COUNT$ column",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsOther": {
+    "message": "$COUNT$ columns",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsFew": {
+    "message": "$COUNT$ columns",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listColumnsMany": {
+    "message": "$COUNT$ columns",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "listRowsColumns": {
+    "message": "$ROWS$ · $COLUMNS$",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOne": {
+    "message": "Showing $RANGE$ of $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingOther": {
+    "message": "Showing $RANGE$ of $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingFew": {
+    "message": "Showing $RANGE$ of $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listShowingMany": {
+    "message": "Showing $RANGE$ of $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "range": {
+        "content": "$2"
+      }
+    }
+  },
+  "listPrevious": {
+    "message": "Previous"
+  },
+  "listNext": {
+    "message": "Next"
+  },
+  "listColKey": {
+    "message": "key"
+  },
+  "listColTarget": {
+    "message": "target"
+  },
+  "listColStatus": {
+    "message": "status"
+  },
+  "listColLang": {
+    "message": "lang"
+  },
+  "listOpenRow": {
+    "message": "Open row"
+  },
+  "listExportCsv": {
+    "message": "Export CSV (filtered)"
+  },
+  "listExportCsvTitle": {
+    "message": "CSV with your columns plus _status, _step, _due… — re-import it any time, statuses are kept"
+  },
+  "listBadgeReason": {
+    "message": "$STATUS$ · $REASON$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "reason": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeUntil": {
+    "message": "$STATUS$ until $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "date": {
+        "content": "$2"
+      }
+    }
+  },
+  "listBadgeStepDue": {
+    "message": "$STATUS$ · step $STEP$ due $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "listBadgeStepOn": {
+    "message": "$STATUS$ · step $STEP$ on $DATE$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      },
+      "step": {
+        "content": "$2"
+      },
+      "date": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusNotStarted": {
+    "message": "not started"
+  },
+  "statusFilledUnconfirmed": {
+    "message": "filled, unconfirmed"
+  },
+  "statusSent": {
+    "message": "sent"
+  },
+  "statusDeferred": {
+    "message": "deferred"
+  },
+  "statusNotSent": {
+    "message": "not sent"
+  },
+  "statusNotApplicable": {
+    "message": "not applicable"
+  },
+  "statusReplied": {
+    "message": "replied"
+  },
+  "statusDeclined": {
+    "message": "declined"
+  },
+  "failNoForm": {
+    "message": "no form"
+  },
+  "failCaptcha": {
+    "message": "captcha"
+  },
+  "failNoContact": {
+    "message": "no contact"
+  },
+  "failTechnical": {
+    "message": "technical"
+  }
+}

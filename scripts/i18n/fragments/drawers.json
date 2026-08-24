@@ -1,0 +1,629 @@
+{
+  "drwQuickActions": {
+    "message": "Quick actions"
+  },
+  "drwChipProfile": {
+    "message": "Profile"
+  },
+  "drwChipProfileTitle": {
+    "message": "Add a sender profile"
+  },
+  "drwChipRows": {
+    "message": "Rows"
+  },
+  "drwChipRowsTitle": {
+    "message": "Paste more rows into this campaign"
+  },
+  "drwChipRowsBlocked": {
+    "message": "Import a list in the wizard first — rows need columns to land in"
+  },
+  "drwChipFiles": {
+    "message": "Files"
+  },
+  "drwChipFilesTitle": {
+    "message": "Add files to the library"
+  },
+  "drwChipBackup": {
+    "message": "Backup"
+  },
+  "drwChipBackupTitle": {
+    "message": "Backup / restore"
+  },
+  "drwProfileTitle": {
+    "message": "Sender profile"
+  },
+  "drwProfileTitleMore": {
+    "message": "Another sender profile"
+  },
+  "drwProfileSubtitle": {
+    "message": "Who writes: fills %my_name%, %my_email%… and the name / e-mail / site fields of contact forms."
+  },
+  "drwProfileSubtitleMore": {
+    "message": "The first matching profile wins; the \"always\" profile is the fallback."
+  },
+  "drwProfileLabel": {
+    "message": "Profile label"
+  },
+  "drwProfileLabelHint": {
+    "message": "For you only — e.g. \"RU\", \"EN\", \"Partnerships\"."
+  },
+  "drwProfilePattern": {
+    "message": "Use when the target matches"
+  },
+  "drwProfilePatternAria": {
+    "message": "Target pattern"
+  },
+  "drwProfilePatternHint": {
+    "message": "Leave empty to pick it by hand later on the Profiles page."
+  },
+  "drwProfilePatternPlaceholder": {
+    "message": "regex over the target, e.g. \\.de$$|\\.at$$"
+  },
+  "drwProfileNeedsContact": {
+    "message": "A name or an e-mail is needed — the form fields \"name\" and \"email\" are filled from them."
+  },
+  "drwProfileSave": {
+    "message": "Save profile"
+  },
+  "drwProfileCancel": {
+    "message": "Cancel"
+  },
+  "drwRowsTitle": {
+    "message": "Add rows"
+  },
+  "drwRowsSubtitle": {
+    "message": "Rows merge by key (site / e-mail): existing ones keep their status and their non-empty values."
+  },
+  "drwRowsLabel": {
+    "message": "Rows"
+  },
+  "drwRowsPasteSubmit": {
+    "message": "One site per line — or full rows (CSV / tab-separated) with the columns $COLUMNS$; a header line is optional.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPasteMail": {
+    "message": "One site or e-mail per line — or full rows (CSV / tab-separated) with the columns $COLUMNS$; a header line is optional.",
+    "placeholders": {
+      "columns": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNoTargetSubmit": {
+    "message": "Nothing here looks like a site."
+  },
+  "drwRowsNoTargetMail": {
+    "message": "Nothing here looks like a site or e-mail."
+  },
+  "drwRowsNoTargetHint": {
+    "message": "Paste one per line, or rows with a \"$HEADER$\" column ($COLUMNS$). A different layout is a new campaign — the wizard.",
+    "placeholders": {
+      "header": {
+        "content": "$1"
+      },
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPlanOne": {
+    "message": "$COUNT$ row: $ADD$ new, $FILLS$ existing get empty cells filled, $DUPES$ already there, $EXCLUDED$ without a target.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanFew": {
+    "message": "$COUNT$ rows: $ADD$ new, $FILLS$ existing get empty cells filled, $DUPES$ already there, $EXCLUDED$ without a target.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanMany": {
+    "message": "$COUNT$ rows: $ADD$ new, $FILLS$ existing get empty cells filled, $DUPES$ already there, $EXCLUDED$ without a target.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanOther": {
+    "message": "$COUNT$ rows: $ADD$ new, $FILLS$ existing get empty cells filled, $DUPES$ already there, $EXCLUDED$ without a target.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "add": {
+        "content": "$2"
+      },
+      "fills": {
+        "content": "$3"
+      },
+      "dupes": {
+        "content": "$4"
+      },
+      "excluded": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwRowsPlanConflictOne": {
+    "message": "$COUNT$ row differs from what is stored — existing values are KEPT here; use the wizard to choose field by field.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictFew": {
+    "message": "$COUNT$ rows differ from what is stored — existing values are KEPT here; use the wizard to choose field by field.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictMany": {
+    "message": "$COUNT$ rows differ from what is stored — existing values are KEPT here; use the wizard to choose field by field.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsPlanConflictOther": {
+    "message": "$COUNT$ rows differ from what is stored — existing values are KEPT here; use the wizard to choose field by field.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAdd": {
+    "message": "Add rows"
+  },
+  "drwRowsAddedOne": {
+    "message": "Added $COUNT$ row.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedFew": {
+    "message": "Added $COUNT$ rows.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedMany": {
+    "message": "Added $COUNT$ rows.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsAddedOther": {
+    "message": "Added $COUNT$ rows.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOne": {
+    "message": "Updated $COUNT$ row.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedFew": {
+    "message": "Updated $COUNT$ rows.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedMany": {
+    "message": "Updated $COUNT$ rows.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsUpdatedOther": {
+    "message": "Updated $COUNT$ rows.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwRowsNewColumnsOne": {
+    "message": "New column: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsFew": {
+    "message": "New columns: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsMany": {
+    "message": "New columns: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsNewColumnsOther": {
+    "message": "New columns: $COLUMNS$.",
+    "placeholders": {
+      "columns": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwRowsPasteMore": {
+    "message": "Paste more or close."
+  },
+  "drwAssetsTitle": {
+    "message": "Add files"
+  },
+  "drwAssetsSubtitle": {
+    "message": "Logos, screenshots, documents for file-typed columns; stored locally, deduplicated by content."
+  },
+  "drwAssetsFiles": {
+    "message": "Files"
+  },
+  "drwAssetsAddedOne": {
+    "message": "Added $COUNT$ file.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedFew": {
+    "message": "Added $COUNT$ files.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedMany": {
+    "message": "Added $COUNT$ files.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedOther": {
+    "message": "Added $COUNT$ files.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwAssetsAddedHint": {
+    "message": "Put the file name into a file column cell to use it."
+  },
+  "drwAssetsDone": {
+    "message": "Done"
+  },
+  "drwBackupTitle": {
+    "message": "Backup"
+  },
+  "drwBackupSubtitle": {
+    "message": "A ZIP with rows, templates, journal, recipes and the files they use. Restoring replaces the campaign with the same id and overwrites site recipes."
+  },
+  "drwBackupDownloadLabel": {
+    "message": "Download"
+  },
+  "drwBackupDownloadHint": {
+    "message": "Keep it with your other files — nothing leaves the browser otherwise."
+  },
+  "drwBackupDownload": {
+    "message": "Download backup"
+  },
+  "drwBackupNoCampaign": {
+    "message": "No campaign to export yet"
+  },
+  "drwBackupPacking": {
+    "message": "Packing…"
+  },
+  "drwBackupReady": {
+    "message": "Backup ready: $SIZE$.",
+    "placeholders": {
+      "size": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupExportFailed": {
+    "message": "Could not export: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreLabel": {
+    "message": "Restore"
+  },
+  "drwBackupFileAria": {
+    "message": "Backup file"
+  },
+  "drwBackupPicked": {
+    "message": "$FILE$ · $SIZE$ — restoring replaces the campaign with the same id.",
+    "placeholders": {
+      "file": {
+        "content": "$1"
+      },
+      "size": {
+        "content": "$2"
+      }
+    }
+  },
+  "drwBackupRestore": {
+    "message": "Restore from this file"
+  },
+  "drwBackupRestoring": {
+    "message": "Restoring…"
+  },
+  "drwBackupRestored": {
+    "message": "Restored: $ROWS$ rows, $TEMPLATES$ templates, $JOURNAL$ journal events, $RECIPES$ recipes, $ASSETS$ files.",
+    "placeholders": {
+      "rows": {
+        "content": "$1"
+      },
+      "templates": {
+        "content": "$2"
+      },
+      "journal": {
+        "content": "$3"
+      },
+      "recipes": {
+        "content": "$4"
+      },
+      "assets": {
+        "content": "$5"
+      }
+    }
+  },
+  "drwBackupMissingOne": {
+    "message": "$COUNT$ file missing in the archive.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingFew": {
+    "message": "$COUNT$ files missing in the archive.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingMany": {
+    "message": "$COUNT$ files missing in the archive.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupMissingOther": {
+    "message": "$COUNT$ files missing in the archive.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwBackupRestoreFailed": {
+    "message": "Could not restore: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "drwFooterClose": {
+    "message": "Close"
+  },
+  "rowGone": {
+    "message": "Row no longer exists."
+  },
+  "rowLegendRow": {
+    "message": "Row"
+  },
+  "rowLegendMessage": {
+    "message": "Message"
+  },
+  "rowLegendOutcome": {
+    "message": "Outcome"
+  },
+  "rowLegendJournal": {
+    "message": "Journal"
+  },
+  "rowStepState": {
+    "message": "step $STEP$ · $STATE$",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      },
+      "state": {
+        "content": "$2"
+      }
+    }
+  },
+  "rowTarget": {
+    "message": "Target"
+  },
+  "rowTargetHint": {
+    "message": "Changing it re-derives the row key."
+  },
+  "rowLanguage": {
+    "message": "Language"
+  },
+  "rowNote": {
+    "message": "Note"
+  },
+  "rowAssetHint": {
+    "message": "asset name from the library"
+  },
+  "rowTargetInvalid": {
+    "message": "The target must be a site, an e-mail or an @handle."
+  },
+  "rowKeyClash": {
+    "message": "Another row already has the key \"$KEY$\" — merge them instead.",
+    "placeholders": {
+      "key": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSaveFailed": {
+    "message": "Could not save: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowSave": {
+    "message": "Save row"
+  },
+  "rowSaved": {
+    "message": "Saved."
+  },
+  "rowRecordFailed": {
+    "message": "Could not record: $ERROR$",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowClosed": {
+    "message": "Closed row — follow-ups stopped."
+  },
+  "rowDefer": {
+    "message": "Defer"
+  },
+  "rowDaysAria": {
+    "message": "Days"
+  },
+  "rowNotApplicable": {
+    "message": "Not applicable"
+  },
+  "rowDelete": {
+    "message": "Delete row"
+  },
+  "rowDeleteConfirm": {
+    "message": "Sure? Delete row and its journal"
+  },
+  "rowEdited": {
+    "message": "Edited text for step $STEP$.",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowEditedTranslated": {
+    "message": "Edited text for step $STEP$ (translated).",
+    "placeholders": {
+      "step": {
+        "content": "$1"
+      }
+    }
+  },
+  "rowResetTemplate": {
+    "message": "Reset to template"
+  },
+  "rowResetDone": {
+    "message": "Back to the template."
+  },
+  "rowJournalLoading": {
+    "message": "Loading…"
+  },
+  "rowJournalEmpty": {
+    "message": "No events yet."
+  },
+  "rowDeferDays": {
+    "message": "Delay in days",
+    "description": "Label of the numeric field next to the Defer button. Replaces the old \"Defer [n] days\" sentence, which produced \"Defer 1 days\" and could not be reordered."
+  },
+  "drwRowsPasteNoColumns": {
+    "message": "One target per line — this campaign has no columns yet, so the wizard sets them up from your first import.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  },
+  "drwRowsNoColumnsHint": {
+    "message": "This campaign has no columns yet — the wizard reads them from your list and shows what it found.",
+    "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
+  }
+}

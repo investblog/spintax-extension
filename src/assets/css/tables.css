@@ -1,0 +1,1909 @@
+/**
+ * tables.css
+ *
+ * Table System Components
+ * - Data tables with responsive behavior
+ * - Table controls (search, filters, dropdowns)
+ * - Bulk selection and actions
+ * - Empty/loading states
+ * - Pagination
+ *
+ * This stylesheet is loaded ONLY on dashboard pages with tables (domains, redirects, etc.)
+ * to keep the main site.css lean for auth and marketing pages.
+ *
+ * Dependencies: Requires site.css for base button/control styles
+ *
+ * Architecture:
+ * 1. Dropdown Menus (used in filters and kebab menus)
+ * 2. Table Structure & Variants
+ * 3. Table Controls & Filters
+ * 4. Bulk Actions Bar
+ * 5. Table States (loading, empty)
+ * 6. Pagination
+ * 7. Table-Specific Components (badges, domain-cell, IDN, etc.)
+ * 8. Drawer (side panel for edit/add forms)
+ * 9. Page-Specific Components (domains, redirects)
+ */
+
+/* ============================================
+   1. DROPDOWN MENUS
+   (Used in table filters and kebab actions)
+   ============================================ */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown__trigger {
+  color: var(--text-muted);
+}
+
+.dropdown__menu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  min-width: var(--menu-min);
+  max-width: var(--menu-max);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-2) 0;
+  display: none;
+  z-index: var(--z-dropdown, 20);
+}
+
+.dropdown__menu--align-right {
+  right: 0;
+}
+
+.dropdown__menu--align-left {
+  left: 0;
+  right: auto;
+}
+
+/* Fit menu to trigger width (for edge-aligned dropdowns on mobile) */
+.dropdown__menu--fit-trigger {
+  width: 100%;
+  min-width: unset;
+  max-width: unset;
+}
+
+/* Auto width by widest content */
+.dropdown__menu--auto {
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Wider menu with scrolling and ellipsis — for lists of long entries
+   (e.g., CF account names with email parens). Bounds prevent runaway width. */
+.dropdown__menu--wide {
+  min-width: 280px;
+  max-width: 400px;
+  max-height: 320px;
+  overflow: hidden auto;
+}
+.dropdown__menu--wide .dropdown__item {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.dropdown__item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: var(--fs-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition-md), color var(--transition-md);
+}
+
+.dropdown__item:hover {
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  color: var(--text);
+}
+
+/* The currently chosen entry. Applied by every filter and selector dropdown
+   (site, domain, bulk actions) but never styled, so the open menu gave no clue
+   which option was already active — you had to close it and read the trigger.
+   Matches the weight the language switcher already uses for the same idea. */
+.dropdown__item--selected {
+  font-weight: var(--fw-semibold);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.dropdown__item--action {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+/* No `background` here: the modifier is always applied alongside base
+   `.dropdown__item`, whose :hover already sets the house wash, and nothing
+   competes for that property on this element. Its only deliberate difference
+   on hover is the colour stepping from muted to main. Restating the wash — as
+   the removed `var(--hover)` did — would just be two values free to drift. */
+.dropdown__item--action:hover:not(:disabled) {
+  color: var(--text-main);
+}
+
+.dropdown__item--danger {
+  color: var(--danger);
+}
+
+.dropdown__item--danger:hover {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+}
+
+/* Warning actions - orange text */
+.dropdown__item--warning {
+  color: var(--warning);
+}
+
+.dropdown__item--warning:hover {
+  background: color-mix(in srgb, var(--warning) 12%, transparent);
+}
+
+/* Cloudflare-specific actions - orange hover */
+.dropdown__item--cf:hover {
+  background: color-mix(in srgb, var(--accent-cf) 12%, transparent);
+}
+
+/* When both action and danger are applied, danger wins */
+.dropdown__item--action.dropdown__item--danger {
+  color: var(--danger);
+}
+
+.dropdown__item--action.dropdown__item--danger:hover {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+}
+
+.dropdown__item:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dropdown--open .dropdown__menu {
+  display: block;
+}
+
+/* Smart positioning: flip menu upward when near bottom of viewport */
+.dropdown__menu--up {
+  top: auto;
+  bottom: calc(100% + var(--space-2));
+}
+
+.dropdown__menu .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dropdown__divider {
+  height: 1px;
+  margin: var(--space-2) 0;
+  background: var(--border-subtle);
+  border: none;
+}
+
+/* Rich dropdown items (label + hint sub-elements) */
+.dropdown__item--rich {
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block: var(--space-2);
+}
+
+.dropdown__item-label {
+  font-weight: var(--fw-medium);
+}
+
+.dropdown__item-hint {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.dropdown__item--rich.is-active .dropdown__item-label {
+  color: var(--primary);
+}
+
+/* ============================================
+   3. TABLE STRUCTURE
+   ============================================ */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.table thead {
+  background: var(--bg-soft);
+}
+
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+}
+
+/* The rule above is a compound selector (0,0,1,1); `.text-right`, `.text-center`
+   and `.th-num` are bare classes (0,0,1,0), so inside a table they lose no matter
+   where they sit in the file. That is why every numeric column in the app rendered
+   left-aligned even after `.text-right` was given a definition on 2026-07-28 — the
+   class existed, it just never won. Measured, not deduced: a `<td class="text-right">`
+   computed to `text-align: left` on /sites, /projects and /streams.
+   These pairs restore the intent at equal-or-higher specificity; `!important` is
+   banned by the StyleGuide, and raising specificity is the sanctioned fix. */
+.table th.text-right,
+.table td.text-right,
+.table th.th-num,
+.table td.th-num {
+  text-align: right;
+  /* Digits share one advance width, so amounts line up column-wise instead of
+     drifting with the glyphs. Scoped to tables: elsewhere `.text-right` is prose. */
+  font-variant-numeric: tabular-nums;
+}
+
+.table th.text-center,
+.table td.text-center {
+  text-align: center;
+}
+
+.table th {
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-strong);
+  white-space: nowrap;
+}
+
+/* Sortable table header button. Wired 2026-08-12 via src/ui/table-sort.ts
+   (domains, sites, projects, integrations) — recipe in StyleGuide → Tables.
+   Merged 2026-08-01 from two full declarations ~700 lines apart, which disagreed
+   on nine properties and on the hover colour (--text here, --brand there). The
+   later one won, so everything in this block was dead — and since the component
+   was wired to zero tables back then, nobody could have noticed.
+   Values below are the ones that actually rendered. */
+.th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.th-sort:hover {
+  color: var(--brand);
+}
+
+/* Direction indicator: dim two-way arrow at rest, full-color chevron when the
+   column is active. State lives in aria-sort on the <th> (set by
+   src/ui/table-sort.ts), so CSS keys off the attribute instead of a class. */
+.th-sort .icon {
+  width: 1em;
+  height: 1em;
+  opacity: 0.45;
+}
+
+th[aria-sort] .th-sort {
+  color: var(--brand);
+}
+
+th[aria-sort] .th-sort .icon {
+  opacity: 1;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Note: .table-scroll is defined in layout.css */
+
+/* Reduce gap between card header (filters) and adjacent body (table).
+   Scoped to adjacent-sibling — cards without a header keep default body
+   padding, otherwise their content would be flush with the top edge. */
+.card--panel .card__header + .card__body {
+  padding-top: 0;  /* Header border provides visual separation */
+}
+
+/* Compensate for card padding on mobile to prevent overflow */
+@media (max-width: 1023px) {
+  .card__body .table-scroll {
+    margin-inline: calc(var(--card-pad-x) * -1);
+    width: calc(100% + var(--card-pad-x) * 2);
+  }
+
+  /* Allow header actions to use full width */
+  .card__header .card__actions {
+    margin-inline: calc(var(--card-pad-x) * -1);
+    padding-inline: var(--card-pad-x);
+  }
+
+  /* Prevent table search from causing overflow */
+  .card__actions .table-search {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Allow footer pagination to use full width */
+  .card__footer .pagination {
+    margin-inline: calc(var(--card-pad-x) * -1);
+    padding-inline: var(--card-pad-x);
+  }
+}
+
+/* ============================================
+   3a. TABLE VARIANTS
+   ============================================ */
+
+/* Domains Table */
+.table--domains {
+  min-width: var(--table-min-domains);
+}
+
+/* Mobile: remove min-width to allow table to fit screen */
+@media (max-width: 768px) {
+  .table--domains {
+    min-width: 100%;
+  }
+}
+
+/* Optimize Domain column width - prevent excessive space waste */
+.table--domains th:first-child,
+.table--domains td:first-child {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* The cap lives on the inner element, not the cell. `max-width` on a <td> under
+   `table-layout: auto` is a hint the layout algorithm may ignore, and it did:
+   measured on the live table, this column rendered at 300px on a roomy viewport
+   and swelled to 576px as the container narrowed, so the horizontal scrollbar
+   survived even after data-priority had hidden every optional column. An
+   inline-block child genuinely caps its own width, so the column can no longer
+   ask the table for more. Long names wrap instead of being clipped — no
+   ellipsis, because the domain is the row's identity and must stay readable. */
+.table--domains td:first-child > strong {
+  display: inline-block;
+  max-width: 220px;
+  overflow-wrap: anywhere;
+}
+
+/* Center-align Status, Health (data only), and checkbox columns */
+.table--domains th:nth-child(2),
+.table--domains td:nth-child(2),  /* Status */
+.table--domains td:nth-child(3),  /* Health data centered, header left-aligned */
+.table--domains th:nth-child(6),
+.table--domains td:nth-child(6) { /* Checkbox */
+  text-align: center;
+}
+
+/* Reduce padding for Actions and checkbox columns for consistent icon spacing */
+.table--domains th:nth-child(5),
+.table--domains td:nth-child(5),
+.table--domains th:nth-child(6),
+.table--domains td:nth-child(6) {
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+}
+
+/* Mobile optimizations for domains table */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: var(--space-2) var(--space-2);
+  }
+
+  .table--domains th:nth-child(5),
+  .table--domains td:nth-child(5),
+  .table--domains th:nth-child(6),
+  .table--domains td:nth-child(6) {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+}
+
+/* Redirects Table - auto-sizing with container queries */
+
+/* Checkbox Column - rightmost */
+.th-checkbox,
+.table__th-checkbox,
+.table__cell-checkbox {
+  width: var(--col-check);
+  text-align: center;
+}
+
+.table__cell-checkbox {
+  vertical-align: middle;
+}
+
+.table__cell-checkbox .icon {
+  font-size: 1.1em;
+}
+
+/* Group Header */
+.table__group-header td {
+  padding: 0;
+  border-bottom: none;
+}
+
+.table__group-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) var(--space-3);  /* Increased padding for better touch targets and readability */
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-md);
+}
+
+.table__group-toggle:hover {
+  background: color-mix(in srgb, var(--panel) 70%, var(--bg-elevated));
+}
+
+.table__group-toggle:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+
+.table__group-toggle > .icon {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.table__group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.table__group-name {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+}
+
+.table__group-count {
+  margin-left: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.table__group-count .checkbox {
+  margin: 0;
+}
+
+/* ============================================
+   Target Subgroup (Level 1)
+   ============================================ */
+
+.table__target-subgroup td {
+  padding: 0;
+  border-bottom: none;
+}
+
+.table__target-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.table__target-name {
+  font-weight: var(--fw-medium);
+  color: var(--text);
+}
+
+.table__target-count {
+  margin-left: var(--space-1);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* ============================================
+   3-Level Indentation System (Domain column only)
+   ============================================ */
+
+:root {
+  --indent-unit: 1rem;  /* Base indent step (reduced for compact hierarchy) */
+}
+
+/* Level 0: Project - uses .table__group-toggle padding, no extra rule needed */
+
+/* Level 1: Primary domains (indent 1×) - only Domain column */
+.table__row--level-1 td:first-child {
+  padding-left: calc(var(--space-3) + var(--indent-unit));
+}
+
+/* Level 2: Child domains (indent 2×) - only Domain column */
+.table__row--level-2 td:first-child {
+  padding-left: calc(var(--space-3) + var(--indent-unit) * 2);
+}
+
+/* Mobile: Reduce indentation for compact display */
+@media (max-width: 768px) {
+  .table__row--level-1 td:first-child {
+    padding-left: calc(var(--space-2) + var(--indent-unit) * 0.5);
+  }
+
+  .table__row--level-2 td:first-child {
+    padding-left: calc(var(--space-2) + var(--indent-unit));
+  }
+}
+
+/* Column Sizing for Redirects Table */
+/* Activity column (clicks) — center-align. The comment here used to say "Status",
+   copy-pasted from the rule below; Status is nth-child(4). */
+.table--redirects th:nth-child(3),
+.table--redirects td:nth-child(3) {
+  text-align: center;
+}
+
+/* Status column - center-align */
+.table--redirects th:nth-child(4),
+.table--redirects td:nth-child(4) {
+  text-align: center;
+}
+
+/* Actions column - uses fluid token */
+.table--redirects th:nth-child(5),
+.table--redirects td:nth-child(5) {
+  width: var(--col-actions);
+}
+
+/* Checkbox column - uses fluid token */
+.table--redirects th:nth-child(6),
+.table--redirects td:nth-child(6) {
+  width: var(--col-check);
+  text-align: center;
+}
+
+.redirect-arrow {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+/* ============================================
+   3b. TABLE CELL UTILITIES
+   ============================================ */
+
+.table__cell-code,
+.table__cell-state,
+.table__cell-sync {
+  white-space: nowrap;
+}
+
+.table-cell-stack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ============================================
+   HIERARCHY CONNECTOR COMPONENT
+   ============================================
+
+   Visual hierarchy for parent-child relationships in tables.
+   Uses indentation + left border to show subordination (simple, no layout shifts).
+
+   Visual Output:
+   → example.com (parent/level-1)
+     | ↗ child1.com
+     | ↗ child2.com
+     | ↗ child3.com
+
+   HTML Structure:
+   <!-- Parent row (level-1) -->
+   <div class="table-cell-stack">
+     <span class="icon">→</span>
+     <span class="table-cell-main">example.com</span>
+   </div>
+
+   <!-- Child rows (level-2) -->
+   <div class="table-cell-stack table-cell-stack--child">
+     <span class="icon">↗</span>
+     <span class="table-cell-main">child1.com</span>
+   </div>
+
+   Design Tokens Used:
+   - --space-2: Left margin (visual offset from parent)
+   - --space-4: Left padding (content indentation)
+   - --border-strong: Vertical line color (14% opacity, visible in both themes)
+
+   Modifiers:
+   - .table-cell-stack--child: Adds indentation + left border
+
+   JS Requirements:
+   - Apply .table-cell-stack--child class to child rows (level-2)
+   - Pass isTopLevel=false to rendering function
+
+   Use Cases:
+   - Redirects table: donor domains under acceptor domains
+   - File/folder hierarchies
+   - Category/subcategory listings
+   - Any parent-child table relationships
+
+   Performance:
+   - Pure CSS (no pseudo-elements, no absolute positioning)
+   - No horizontal shifts (border-left doesn't affect layout width)
+   - Works with collapse/expand, pagination, filtering
+
+   ============================================ */
+
+.table-cell-stack--child {
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--border-strong);
+  margin-left: var(--space-2);
+}
+
+.table-cell-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.table-cell-main {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Empty state cell with hover quick action */
+.table-cell-empty-state {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.table-cell-quick-action {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-md);
+}
+
+tr:hover .table-cell-quick-action {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.table-actions--inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  width: 100%;
+}
+
+/* Muted Row */
+.table__row--muted {
+  opacity: 0.5;
+}
+
+/* Paused/Archived Site Row */
+.table__row--paused {
+  opacity: 0.6;
+}
+
+.table__row--paused:hover {
+  opacity: 0.8;
+}
+
+/* Target Domain Row */
+.table__row--target {
+  background: color-mix(in srgb, var(--primary) 3%, transparent);
+}
+
+.table__row--target:hover {
+  background: color-mix(in srgb, var(--primary) 5%, var(--bg-soft));
+}
+
+.th-actions,
+.table__th-actions,
+.table__cell-actions {
+  width: var(--col-actions);
+  text-align: right;
+}
+
+/* Same specificity trap as the alignment utilities above: bare classes lose to
+   `.table th`, so the "Actions" heading rendered left-aligned in every table in
+   the app while this rule sat here looking correct. */
+.table th.th-actions,
+.table th.table__th-actions,
+.table td.table__cell-actions {
+  text-align: right;
+}
+
+/* Narrow numeric columns — shrink to content width */
+.th-num {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* ============================================
+   4. TABLE CONTROLS & FILTERS
+   ============================================ */
+
+/* ============================================
+   STATUS BUTTON COMPONENT (Drawer)
+   ============================================
+
+   Color-coded status button with icon for binary states (enabled/disabled, active/inactive)
+
+   HTML Structure:
+   <button
+     class="btn btn--sm ${enabled ? 'btn--success' : 'btn--ghost'}"
+     type="button"
+     data-drawer-toggle="enabled"
+     data-enabled="${enabled}"
+     style="border-color: ${enabled ? 'var(--ok)' : 'var(--danger)'};"
+   >
+     <span class="icon" data-icon="mono/${enabled ? 'check-circle' : 'close-circle'}"
+           style="color: ${enabled ? 'var(--ok)' : 'var(--danger)'}"></span>
+     <span>${enabled ? 'Enabled' : 'Disabled'}</span>
+   </button>
+
+   Visual States:
+   - Enabled: Green border + green icon (var(--ok)) + check-circle icon
+   - Disabled: Red border + red icon (var(--danger)) + close-circle icon
+
+   JS Requirements:
+   - Toggle data-enabled attribute on click
+   - Update border-color, icon color, icon name, and text dynamically
+   - Example: see src/redirects/drawer.ts setupToggleHandlers()
+
+   Design Pattern:
+   - Matches Redirect Code dropdown color coding (301=green, 302=yellow)
+   - Provides instant visual feedback of current state
+   - Border + icon color reinforce the status (redundant encoding)
+   ============================================ */
+
+/* ============================================
+   TABLE SEARCH COMPONENT
+   ============================================
+
+   Unified search bar for all tables (domains, redirects, etc.)
+
+   HTML Structure:
+   <div class="table-search" data-table-search>
+     <span class="icon" data-icon="mono/search"></span>
+     <input type="text" class="table-search__input" placeholder="..." data-search-input />
+     <button class="table-search__clear" type="button" aria-label="Clear" data-search-clear>
+       <span class="icon" data-icon="mono/close"></span>
+     </button>
+   </div>
+
+   States:
+   - Default: Search icon visible, clear button hidden
+   - Active (.table-search--active): Clear button visible when input has value
+
+   JS Requirements:
+   - Add/remove .table-search--active class when input value changes
+   - Clear button click should clear input and remove active class
+   ============================================ */
+
+.table-search {
+  flex: 1 1 16rem;
+  min-width: 0;
+  border-color: var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-main);
+}
+
+.table-search__input {
+  flex: 1 1 auto;
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  line-height: inherit;
+  background: transparent;
+  border: 0;
+  outline: none;
+  width: 100%;
+  color: var(--text);
+  padding: 0;
+}
+
+/* Prevent iOS zoom on input focus */
+@supports (-webkit-touch-callout: none) {
+  .table-search__input {
+    font-size: 1rem;
+  }
+}
+
+/* Hide native search clear button (we use custom one) */
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.table-search__input::placeholder {
+  color: var(--muted);
+}
+
+/* Clear button - hidden by default, shown when .table-search--active */
+.table-search__clear {
+  display: none;  /* Hidden by default */
+  border: 0;
+  padding: 0;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+  flex: 0 0 1.5em;
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+}
+
+.table-search__clear:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Active state - show clear button when input has value */
+.table-search--active .table-search__clear {
+  display: inline-flex;
+}
+
+.table-search__clear .icon {
+  color: var(--muted);
+}
+
+/* Table controls (filter chips) - Adaptive flex layout */
+.table-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: normal;
+  justify-content: flex-start;
+  gap: var(--inline-gap);
+}
+
+/* Filter chips wrapper - display: contents makes children direct flex items */
+.filter-chips {
+  display: contents;
+}
+
+/* Domains page filter ordering: Project → Status → Health → Provider → Role → Expiry */
+.table-controls [data-filter-id="project"] { order: 1; }
+[data-domains-card] .table-controls [data-filter-id="status"] { order: 2; }
+.table-controls [data-filter-id="health"] { order: 3; }
+.table-controls [data-filter-id="provider"] { order: 4; }
+.table-controls [data-filter-id="role"] { order: 5; }
+.table-controls [data-filter-id="site"] { order: 6; }
+.table-controls [data-filter-id="expiry"] { order: 7; }
+
+/* Redirects page filter ordering: Project → Site → Configured → Sync → Enabled */
+[data-redirects-card] .table-controls [data-site-selector] { order: 2; }
+.table-controls [data-filter-id="configured"] { order: 3; }
+.table-controls [data-filter-id="sync"] { order: 4; }
+.table-controls [data-filter-id="enabled"] { order: 5; }
+
+/* TDS page filter ordering: Site → Type → Action → Status */
+[data-tds-card] .table-controls [data-site-selector] { order: 1; }
+.table-controls [data-filter-id="tds_type"] { order: 2; }
+.table-controls [data-filter-id="action"] { order: 3; }
+[data-tds-card] .table-controls [data-filter-id="status"] { order: 4; }
+
+/* Override controls-row column stacking on mobile - filters can wrap horizontally */
+@media (max-width: 768px) {
+  .table-controls {
+    flex-direction: row;
+  }
+}
+
+/* Progressive filter hiding based on priority (matches column priority system) */
+/* Hide low-priority filters (< 720px) */
+@media (max-width: 720px) {
+  .table-controls [data-priority="low"] {
+    display: none;
+  }
+}
+
+/* Hide medium-priority filters (< 600px) */
+@media (max-width: 600px) {
+  .table-controls [data-priority="medium"] {
+    display: none;
+  }
+}
+
+/* Hide high-priority filters on narrow screens (< 480px) */
+/* Keep only critical filters visible */
+@media (max-width: 480px) {
+  .table-controls [data-priority="high"] {
+    display: none;
+  }
+}
+
+/* Default: dropdown menus align left */
+.table-controls .dropdown__menu {
+  left: 0;
+  right: auto;
+}
+
+/* Smart positioning classes (added via adjustDropdownPosition JS) */
+.dropdown__menu.dropdown__menu--right {
+  left: auto;
+  right: 0;
+}
+
+/* Phase 4: Priority-based progressive column hiding
+ *
+ * Column priority levels (set via data-priority attribute on <th> and <td>):
+ * - critical: Never hidden (Domain, Actions, Checkbox)
+ * - high: Hidden at < 560px (Status, Code, Provider)
+ * - medium: Hidden at < 720px (Health, Last Sync)
+ * - low: Hidden at < 880px (Expires, Created At, Notes)
+ *
+ * See StyleGuide.md section "Table Column Priorities" for full documentation.
+ */
+
+/* Container < 720px: Hide low-priority columns (Expires, Notes) */
+@container table (max-width: 720px) {
+  th[data-priority="low"],
+  td[data-priority="low"] {
+    display: none;
+  }
+}
+
+/* Container < 600px: Hide medium-priority columns (Health, Last Sync) */
+@container table (max-width: 600px) {
+  th[data-priority="medium"],
+  td[data-priority="medium"] {
+    display: none;
+  }
+}
+
+/* Container < 480px: Hide high-priority columns, keep only critical */
+@container table (max-width: 480px) {
+  th[data-priority="high"],
+  td[data-priority="high"] {
+    display: none;
+  }
+
+  /* Compact actions: hide secondary buttons, kebab only */
+  .table-actions--inline .btn:not(.btn-icon) {
+    display: none;
+  }
+}
+
+/* Critical columns ([data-priority="critical"]) are NEVER hidden */
+
+/* .th-sort lived here as a second full declaration and won over the one beside
+   the table rules. Merged there 2026-08-01 — see the comment at that block. */
+
+th {
+  white-space: nowrap;
+}
+
+.table-filter {
+  position: relative;
+}
+
+.table-filter__menu {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  z-index: var(--z-dropdown);
+
+  min-width: var(--menu-min);
+  max-width: var(--menu-max);
+  padding: var(--space-1) 0;
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+}
+
+.table-filter__menu[hidden] {
+  display: none;
+}
+
+/* Controls row layout is defined in layout.css */
+
+/* Domains page: card__actions as block container for vertical stacking */
+.card__header .card__actions {
+  display: block;
+}
+
+.card__header .card__actions .controls-row {
+  margin-bottom: var(--space-3);
+}
+
+.card__header .card__actions .controls-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Search row needs flex container (domains page) */
+.card__actions .controls-row:not(.table-controls) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--inline-gap);
+}
+
+.card__actions .controls-row:not(.table-controls) .table-search {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
+}
+
+/* Site filter slot in search row */
+.controls-row__site-filter {
+  flex: 0 0 auto;
+}
+
+/* Reset button in search row */
+.card__actions .controls-row .btn-icon[data-reset-filters] {
+  flex: 0 0 auto;
+  margin-left: var(--space-2);
+  color: var(--muted);
+}
+
+/* Active state for reset button */
+.btn-icon[data-reset-filters].is-active {
+  color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 10%, transparent);
+  border-color: color-mix(in srgb, var(--warning) 55%, transparent);
+}
+
+.btn-icon[data-reset-filters].is-active:hover {
+  background: color-mix(in srgb, var(--warning) 15%, transparent);
+}
+
+/* Collapsible filters for very small phones only */
+/* Toggle button: hidden by default, visible only on tiny screens */
+[data-toggle-filters] {
+  display: none;
+}
+
+/* Tablets and larger: filters wrap into 2 rows naturally via grid */
+/* No toggle needed, filters visible and usable */
+
+/* Only hide filters on very small phones where even 2 columns too cramped */
+@media (max-width: 480px) {
+  [data-toggle-filters] {
+    display: inline-flex;
+    position: relative;
+  }
+
+  /* Badge on toggle button */
+  [data-toggle-filters] .badge {
+    position: absolute;
+    top: calc(var(--space-1) * -1);
+    right: calc(var(--space-1) * -1);
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 var(--space-1);
+    font-size: 0.625rem;
+    line-height: 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+}
+
+/* ============================================
+   5. BULK ACTIONS BAR
+   ============================================ */
+
+.bulk-actions-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-global-notice);
+  /* Glassmorphism effect */
+  background: color-mix(in srgb, var(--bg-elevated) 85%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid var(--border-strong);
+  /* Upward shadow - uses canonical --shadow-md opacity (0.12 light, 0.45 dark) */
+  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme - uses canonical shadow opacity */
+[data-theme="dark"] .bulk-actions-bar {
+  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.bulk-actions-bar:not([hidden]) {
+  transform: translateY(0);
+}
+
+.bulk-actions-bar__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--inline-gap);
+  padding: var(--space-3) 0;
+}
+
+.bulk-actions-bar__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Selection counter chip - match small button sizing */
+.bulk-actions-bar__info .btn-chip {
+  font-size: calc(var(--fs-control) * var(--control-scale-sm));
+  padding-block: calc(var(--control-pad-y) * var(--control-scale-sm));
+  padding-inline: calc(var(--control-pad-x) * var(--control-scale-sm));
+  min-height: calc(var(--control-min-height) * var(--control-scale-sm));
+  cursor: default;
+  pointer-events: none;
+}
+
+.bulk-actions-bar__info .btn-chip .icon {
+  color: var(--success);
+}
+
+/* Cancel button in info section - canonical ghost styling */
+.bulk-actions-bar__info [data-bulk-cancel] {
+  border-color: var(--border-subtle);
+  color: var(--text-main);
+}
+
+.bulk-actions-bar__info [data-bulk-cancel]:hover {
+  background: var(--panel);
+  border-color: var(--border-strong);
+  color: var(--text-main);
+}
+
+/* Actions grid - follows table-controls pattern */
+.bulk-actions-bar__actions {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  align-items: center;
+  gap: var(--inline-gap);
+}
+
+/* Bulk actions buttons styling */
+.bulk-actions-bar__actions .btn--ghost {
+  border: 1px solid var(--brand);
+  color: var(--brand);
+}
+
+.bulk-actions-bar__actions .btn--ghost:hover {
+  background: var(--brand);
+  color: var(--btn-text-on-dark);
+}
+
+.bulk-actions-bar__actions .btn--primary {
+  background: transparent;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+}
+
+.bulk-actions-bar__actions .btn--primary:hover {
+  background: var(--brand);
+  color: var(--btn-text-on-dark);
+}
+
+.bulk-actions-bar__actions .btn--danger {
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.bulk-actions-bar__actions .btn--danger:hover {
+  background: var(--danger);
+  color: var(--btn-text-on-dark);
+}
+
+.bulk-actions-bar__actions .btn--cf {
+  background: transparent;
+  border: 1px solid var(--accent-cf);
+  color: var(--accent-cf);
+}
+
+.bulk-actions-bar__actions .btn--cf:hover {
+  background: var(--accent-cf-hover);
+  border-color: var(--accent-cf-hover);
+  color: var(--btn-text-on-dark);
+}
+
+/* Light theme overrides - ensure brand color styling works */
+html[data-theme="light"] .bulk-actions-bar__actions .btn--ghost {
+  background: transparent;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+}
+
+html[data-theme="light"] .bulk-actions-bar__actions .btn--ghost:hover {
+  background: var(--brand);
+  color: var(--btn-text-on-dark);
+}
+
+/* Responsive grid breakpoints - follows table-controls pattern */
+
+/* Tablet and smaller: Cancel wraps to second row */
+@media (max-width: 768px) {
+  .bulk-actions-bar__info {
+    /* Allow wrapping for Cancel button */
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+/* Tablet portrait: 3 columns × 2 rows */
+@media (max-width: 767px) and (min-width: 481px) {
+  .bulk-actions-bar__actions {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+/* Mobile: 2 columns × 3 rows */
+@media (max-width: 480px) {
+  .bulk-actions-bar__content {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .bulk-actions-bar__actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bulk-actions-bar__actions .btn {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   6. TABLE STATES
+   ============================================ */
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.empty-state .stack,
+.empty-state .stack--md {
+  align-items: center;
+}
+
+.empty-state .icon--lg {
+  width: 64px;
+  height: 64px;
+  color: var(--text-muted);
+}
+
+.empty-state .btn-group {
+  margin-top: var(--space-4);
+  justify-content: center;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 400px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-strong);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   7. PAGINATION
+   ============================================ */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--inline-gap);
+}
+
+.pagination__info {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.pagination__controls {
+  display: flex;
+  gap: var(--inline-gap);
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination__controls {
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   8. TABLE-SPECIFIC COMPONENTS
+   (Domain cells, provider labels, IDN indicators)
+   Note: Badges moved to site.css (universal component)
+   ============================================ */
+
+/* Domain Cell Component (used in domain tables) */
+.domain-cell {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-weight: var(--fw-medium);
+}
+
+.domain-cell__name {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.domain-cell__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+}
+
+.domain-cell__meta .badge {
+  font-size: var(--fs-xs);
+  padding-inline: 0.6em;
+}
+
+/* Provider Cell (icon + label) */
+.provider-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.provider-cell > .icon {
+  margin-top: 0.125rem; /* Align icon with first line of text */
+}
+
+/* Provider Info Stack (name + email) */
+.provider-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  line-height: 1.3;
+}
+
+.provider-email {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* A sub-line carrying a semantic colour must not be dimmed. --danger was
+   retuned specifically to clear AA 4.5:1 (theme.css); blending it at 0.7
+   over the surface drops it back to ~3.3:1, so the one line meant to raise
+   an alarm would be the least legible one in the row. */
+.provider-email.text-danger {
+  opacity: 1;
+}
+
+/* Provider Labels (Namecheap, Namesilo, etc.) */
+.provider-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+/* Generic table cell with icon (used in projects table, sites table, etc.) */
+.table-cell-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Role Icon (Acceptor/Donor/Reserve) */
+.role-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-icon[data-role="acceptor"] {
+  color: var(--ok);
+}
+
+.role-icon[data-role="donor"] {
+  color: var(--info);
+}
+
+.role-icon[data-role="reserve"] {
+  color: var(--text-muted);
+}
+
+/* IDN Domain Display */
+.domain-readable {
+  /* Primary display: Unicode version */
+}
+
+.domain-punycode {
+  /* Secondary display: punycode in parentheses (full mode) */
+  display: inline-block;
+  margin-left: 0.5ch;
+  opacity: 0.7;
+}
+
+/* Subdomain hierarchy display: bold prefix + muted parent */
+.domain-sub-prefix {
+  font-weight: var(--fw-semibold);
+}
+
+/* TDS columns: cap widths to prevent horizontal scroll on narrow viewports */
+.td-action-url {
+  max-width: 160px;
+}
+
+.td-domain {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.idn-badge {
+  /* Compact badge for IDN domains in tables */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.4em;
+  padding: 0.15em 0.35em;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  cursor: help;
+  transition: all var(--transition-md);
+  vertical-align: middle;
+}
+
+.idn-badge .icon {
+  font-size: 0.875em; /* 14px at 16px base */
+}
+
+.idn-badge:hover {
+  background: var(--bg-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Tabs component moved to site.css (core component — needed on auth/landing
+   which loads site.css but not tables.css). */
+
+/* ============================================
+   10. PAGE-SPECIFIC COMPONENTS
+   ============================================ */
+
+/* --- Domains Page --- */
+
+.expires-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.provider-icon-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.provider-icon-sm .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.health-icons {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+/* --- Redirects Page --- */
+
+/* Stats Grid - responsive grid for stat cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Stat Card as link — clickable card without underline */
+a.stat-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Stat Card - individual metric display */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-md);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.stat-card__value {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.stat-card__label {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-weight: var(--fw-medium);
+}
+
+/* Stat card variants with left border accent */
+.stat-card--ok {
+  border-left: 3px solid var(--ok);
+}
+
+.stat-card--ok .stat-card__value {
+  color: var(--ok);
+}
+
+.stat-card--neutral {
+  border-left: 3px solid var(--text-muted);
+}
+
+.stat-card--danger {
+  border-left: 3px solid var(--danger);
+}
+
+.stat-card--danger .stat-card__value {
+  color: var(--danger);
+}
+
+.stat-card--primary {
+  border-left: 3px solid var(--primary);
+}
+
+.stat-card--primary .stat-card__value {
+  color: var(--primary);
+}
+
+/* Table Metric - inline metric display in table cells */
+.table-metric {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+  font-size: var(--fs-sm);
+}
+
+.table-metric__row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.table-metric__value {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.table-metric__row--muted .table-metric__value {
+  color: var(--text-muted);
+}
+
+.table-metric__label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+
+/* ============================================
+   Sync Status Primary Button (indicator only)
+   ============================================ */
+
+.sync-indicator-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: auto;
+}
+
+/* Higher contrast text/icons on primary button background */
+.sync-indicator-btn .icon {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Compact metric pill for button context.
+   Double-class for higher specificity so .metric-pill { width: 100% } in
+   site.css can't override this if the stylesheet load order drifts. */
+.metric-pill.metric-pill--compact {
+  width: calc(var(--space-6) * 3.125); /* 100px = 2rem * 3.125 */
+  flex-shrink: 0;
+}
+
+.metric-pill.metric-pill--compact .metric-pill__track {
+  height: calc(var(--space-2) - 2px); /* 6px = 0.5rem - 2px */
+}
+
+/* Metric pill inside primary button - high contrast for visibility */
+button.btn.btn--primary.sync-indicator-btn .metric-pill__track {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  border-radius: var(--r-pill);
+}
+
+button.btn.btn--primary.sync-indicator-btn .metric-pill__fill {
+  position: absolute;
+  inset: 1px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  transform-origin: left center;
+  transform: scaleX(var(--metric-fill));
+  transition: transform 0.3s ease;
+}
+
+/* Status-specific colors with higher specificity */
+button.btn.btn--primary.sync-indicator-btn[data-status="pending"] .metric-pill__fill {
+  background: var(--accent-cf);
+  box-shadow: 0 0 12px var(--accent-cf);
+}
+
+button.btn.btn--primary.sync-indicator-btn[data-status="synced"] .metric-pill__fill {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+button.btn.btn--primary.sync-indicator-btn[data-status="error"] .metric-pill__fill {
+  background: var(--danger);
+  box-shadow: 0 0 12px var(--danger);
+}
+
+/* Success state - green after successful sync */
+button.btn.btn--primary.sync-indicator-btn[data-status="success"] .metric-pill__fill {
+  background: var(--success);
+  box-shadow: 0 0 12px var(--success);
+}
+
+/* Syncing animation - CF orange sweep → green success */
+@keyframes cf-sync-success {
+  0% {
+    background: var(--accent-cf);
+    transform: scaleX(0);
+  }
+  40% {
+    background: var(--accent-cf);
+    transform: scaleX(1);
+  }
+  70% {
+    background: var(--accent-cf);
+    transform: scaleX(var(--metric-fill));
+  }
+  100% {
+    background: var(--success);
+    transform: scaleX(var(--metric-fill));
+  }
+}
+
+button.btn.btn--primary.sync-indicator-btn.is-syncing .metric-pill__fill {
+  box-shadow: 0 0 16px var(--accent-cf);
+  animation: cf-sync-success 2s ease-in-out;
+}
+
+/* Site label inside a group header. The header `td` zeroes its own padding so a
+   collapsible toggle can fill the cell edge-to-edge; this row is a plain label,
+   not a button, so it carries the padding itself. */
+.table__group-label {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  font-weight: var(--fw-medium);
+}
+
+/* Compact spinner for inline use inside a drawer — the base is 32px, which is a
+ * page-level loader and dominates a form row.
+ *
+ * Lives here, beside `.spinner`, and not in site.css where the rest of item 24's
+ * fixes went: tables.css loads AFTER site.css, so at equal specificity the base
+ * width would win and the modifier would do nothing. Caught by measuring in the
+ * browser, not by reading the file. */
+.spinner--sm {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+
+/* ============================================
+   BAR SERIES — a short series over time
+
+   Ten bars do not justify a charting dependency, and this project ships no
+   chart code at all. Divs and tokens instead: both themes and every breakpoint
+   come for free, and the bundle does not move.
+
+   Documented in StyleGuide → "Bar Series".
+   ============================================ */
+
+.bar-series {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  /* Enough height to read a shape, not so much that the panel dominates the
+     page — the numbers themselves live in the tables above. */
+  min-height: 8rem;
+  overflow-x: auto;
+  padding-bottom: var(--space-1);
+}
+
+.bar-series__col {
+  display: flex;
+  flex: 1 0 2.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 2.5rem;
+}
+
+.bar-series__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 100%;
+  height: 6rem;
+}
+
+.bar-series__bar {
+  --bar: 0%;
+  flex: 1;
+  /* A zero period must read as "zero here", not as a period that failed to
+     load — hence a visible sliver rather than nothing. */
+  min-height: 2px;
+  height: var(--bar);
+  border-radius: var(--r-field) var(--r-field) 0 0;
+  background: var(--primary);
+  transition: height 0.3s ease;
+}
+
+.bar-series__bar--alt {
+  background: var(--success);
+}
+
+.bar-series__label {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Legend for the two bars; a third series would need more than this, which is
+   the point at which the number belongs in a table instead. */
+.bar-series-legend {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.bar-series-legend__key {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: var(--r-field);
+  background: var(--primary);
+  vertical-align: middle;
+  margin-right: var(--space-1);
+}
+
+.bar-series-legend__key--alt {
+  background: var(--success);
+}
+
+/* ============================================
+   PRIORITY STEPPER
+   The reorder arrows beside a rule's priority number (TDS rules table).
+   Deliberately NOT `.cluster`: that utility wraps, and in a column this narrow
+   the three items broke onto two lines as a diagonal — up-arrow, number,
+   down-arrow — which reads as a layout mistake rather than a control.
+   ============================================ */
+
+.priority-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  /* The whole point: the pair stays one unit whatever the column width. */
+  flex-wrap: nowrap;
+}
+
+.priority-stepper__arrows {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}

@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare WXT types
+        run: npx wxt prepare
+
+      - name: TypeScript check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Locale guard (keys, placeholders, length budgets)
+        run: npm run i18n:check
+
+      - name: Build all browsers
+        run: npm run build:all
+
+      - name: AMO lint (Firefox build)
+        run: npx web-ext lint --source-dir dist/firefox-mv2 --warnings-as-errors=false
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare WXT types
+        run: npx wxt prepare
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      # run.mjs builds dist itself (WXT_E2E=1) and drives Playwright's chromium channel in the
+      # new headless mode, which does load MV3 extensions — no display needed.
+      - name: E2E (54 checks)
+        run: node e2e/run.mjs
+
+      # The length guard's second half: the real UI in all seven manifest locales.
+      - name: i18n overflow sweep
+        run: node e2e/i18n-overflow.mjs --shots
+
+      - name: Upload overflow screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: i18n-overflow-shots
+          path: dist/i18n-shots/
+          if-no-files-found: ignore
