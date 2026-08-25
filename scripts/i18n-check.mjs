@@ -158,6 +158,34 @@ for (const key of Object.keys(budgets))
 for (const name of unknownPlaceholders)
   check(false, `placeholder ${name} has no worst-case value in WORST — its budget is measured blind`);
 
+// 8. Manifest strings go through store package validation, which is stricter than the browser.
+// Edge Partner Center silently strips U+00A0 from the Description and warns on every upload — the
+// French listing hit this with the non-breaking space French typography puts before a colon. UI
+// strings keep proper typography; only the handful the manifest embeds must stay plain.
+const MANIFEST_KEYS = [
+  ...new Set([...fs.readFileSync(path.join(root, 'wxt.config.ts'), 'utf8').matchAll(/__MSG_([A-Za-z0-9_]+)__/g)].map((m) => m[1])),
+];
+const EXOTIC = {
+  ' ': 'a non-breaking space',
+  ' ': 'a narrow non-breaking space',
+  ' ': 'a thin space',
+  '​': 'a zero-width space',
+  '­': 'a soft hyphen',
+  '﻿': 'a byte-order mark',
+};
+for (const locale of locales) {
+  const messages = readJson(path.join(localesDir, locale, 'messages.json'));
+  for (const key of MANIFEST_KEYS) {
+    const text = messages[key]?.message;
+    if (!text) continue;
+    for (const [ch, name] of Object.entries(EXOTIC))
+      check(
+        !text.includes(ch),
+        `${locale}.${key} contains ${name} — stores strip it from the package and warn; use a plain space`,
+      );
+  }
+}
+
 if (process.argv.includes('--budgets')) {
   const rows = Object.keys(budgets).map((key) => {
     const worst = locales

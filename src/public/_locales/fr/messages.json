@@ -3,7 +3,8 @@
     "message": "Spintax — assistant d'outreach manuel"
   },
   "extDescription": {
-    "message": "Modèles Spintax pour l'outreach manuel : remplissez formulaires et chats depuis votre liste, ligne par ligne. Local, sans compte."
+    "message": "Modèles Spintax pour l'outreach manuel : remplissez formulaires et chats depuis votre liste, ligne par ligne. Local, sans compte.",
+    "description": " Plain ASCII space before the colon on purpose: Edge Partner Center strips U+00A0 from the package Description and warns on every upload. French typography stays intact everywhere else."
   },
   "drwQuickActions": {
     "message": "Actions rapides"
