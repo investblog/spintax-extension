@@ -409,7 +409,6 @@ async function commandFill(tabId?: number): Promise<void> {
   if (!state.permitted && state.fillError !== 'none') await allowAndFill();
 }
 
-/** Open an options screen in a tab (openOptionsPage cannot carry a hash). */
 /** Footer: a row of small icon links (the geo-tier-builder `.app-footer` idiom), no text to wrap. */
 function panelFooter(): HTMLElement {
   const store = getStoreInfo();
@@ -435,6 +434,7 @@ function panelFooter(): HTMLElement {
   );
 }
 
+/** Open an options screen in a tab (openOptionsPage cannot carry a hash). */
 async function openOptions(hash: string): Promise<void> {
   const base = browser.runtime.getURL('/options.html');
   const url = `${base}#${hash}`;
