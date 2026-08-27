@@ -851,7 +851,7 @@ function stepQueue(campaign: Campaign): HTMLElement {
         await updateCampaign(campaign.id, { wizardStep: 'done' });
       },
     },
-    svgIcon('play'),
+    svgIcon('dock-right'),
     ' ',
     t('wizOpenSidePanel'),
   );

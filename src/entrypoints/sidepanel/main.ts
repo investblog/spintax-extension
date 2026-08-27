@@ -1110,7 +1110,7 @@ function draw(): void {
     primary = h(
       'button',
       { type: 'button', class: 'btn btn--primary panel__primary', onclick: () => void allowAndFill() },
-      svgIcon('play'),
+      svgIcon('auto-fix'),
       ' ',
       t('panelAllowFill', tabHost),
     );
@@ -1123,7 +1123,7 @@ function draw(): void {
         disabled: state.busy !== 0,
         onclick: () => void fill(),
       },
-      svgIcon('play'),
+      svgIcon('auto-fix'),
       ' ',
       state.busy !== 0 ? t('panelFilling') : t('panelFillOn', tabHost),
     );

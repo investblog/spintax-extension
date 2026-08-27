@@ -54,7 +54,7 @@ export async function renderWelcome(root: HTMLElement, opts: WelcomeOptions): Pr
   const openPanel = h(
     'button',
     { type: 'button', class: 'btn btn--ghost', onclick: () => void openSidePanel() },
-    svgIcon('play'),
+    svgIcon('dock-right'),
     ' ',
     t('panelOpenSidePanel'),
   );
