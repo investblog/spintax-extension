@@ -3,8 +3,9 @@
  * listing is published (step 16); an empty URL hides the link instead of pointing nowhere.
  * Fill them from the store dashboards after approval (docs/store/listing.md keeps the checklist).
  *
- * Edge is addressed by product id without the slug: the slug is derived from the name, which
- * contains an em dash, and a percent-encoded slug in a shipped URL is one rename away from a 404.
+ * Chrome and Edge are addressed by product id without the slug: the slug is derived from the
+ * name, which contains an em dash. Edge 404s on a stale slug after a rename; Chrome 301s any
+ * slug to the current one, so the id-only form survives a rename in both stores.
  */
 export interface StoreInfo {
   url: string;
@@ -13,7 +14,11 @@ export interface StoreInfo {
 }
 
 const STORES: Record<string, StoreInfo> = {
-  chrome: { url: '', icon: '/icons/chrome.svg', label: 'Chrome Web Store' },
+  chrome: {
+    url: 'https://chromewebstore.google.com/detail/gjmkkcgkhnfibcoghhdpffkjfdmeocei/reviews',
+    icon: '/icons/chrome.svg',
+    label: 'Chrome Web Store',
+  },
   edge: {
     url: 'https://microsoftedge.microsoft.com/addons/detail/joddeoojfbefdpfbbhannlhofakamlld',
     icon: '/icons/edge.svg',
