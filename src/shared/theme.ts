@@ -47,8 +47,11 @@ export function toggleTheme(): void {
 }
 
 export function initTheme(): void {
-  const preference = getThemePreference();
-  setTheme(preference === 'auto' ? null : preference);
+  const apply = (): void => {
+    const preference = getThemePreference();
+    setTheme(preference === 'auto' ? null : preference);
+  };
+  apply();
   try {
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
       if (getThemePreference() === 'auto') setTheme(null);
@@ -56,6 +59,11 @@ export function initTheme(): void {
   } catch {
     // matchMedia may not be available
   }
+  // All extension pages share one origin, so a toggle in the panel must reach the welcome /
+  // options documents that are already open. The storage event fires only in the OTHER documents.
+  window.addEventListener('storage', (e) => {
+    if (e.key === THEME_STORAGE_KEY || e.key === null) apply();
+  });
 }
 
 /** Icon for the toggle: shows what you will switch TO. */
