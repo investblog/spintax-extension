@@ -1,6 +1,6 @@
 {
   "name": "spintax-outreach",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Spintax Outreach — templates, variables and a queue for manual outreach (browser extension)",
   "license": "GPL-3.0-or-later",

@@ -2,7 +2,24 @@
 
 All notable changes to Spintax — Manual Outreach Helper are documented here.
 
-## [0.2.0] — unreleased
+## [0.2.1] — 2026-08-28
+
+### Added
+
+- **"Rate us" in the panel footer links all three stores** — Chrome Web Store, Edge Add-ons and
+  Firefox Add-ons are all live, so the link now shows in every build
+- **A welcome hint for Chrome users** — once the side panel is open, the pin in its header keeps
+  the Spintax icon on the toolbar; the hint renders only where that control exists
+
+### Fixed
+
+- **A theme toggled in the panel now reaches the pages already open** — the welcome and options
+  pages used to keep the old theme until a reload
+- **Icons say what the button does** — "Open the side panel" carries the side-panel glyph (the one
+  Chrome draws on its own toolbar button) and Fill carries the autofill wand; the play triangle no
+  longer stands for three different verbs
+
+## [0.2.0] — 2026-08-24
 
 ### Added
 
