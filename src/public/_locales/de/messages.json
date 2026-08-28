@@ -3219,6 +3219,9 @@
   "welStartOwn": {
     "message": "Mit meiner Liste starten"
   },
+  "welPinTip": {
+    "message": "Ist das Seitenpanel geöffnet, heften Sie es mit der Stecknadel in seiner Kopfzeile an — das Spintax-Symbol bleibt in der Symbolleiste, nur einen Klick entfernt."
+  },
   "welDemoInstalled": {
     "message": "Die Demo-Kampagne „$NAME$“ ist eingerichtet — fünf Blogs, die der Erweiterung beiliegen, nichts davon echt.",
     "placeholders": {

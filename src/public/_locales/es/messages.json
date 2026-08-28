@@ -3219,6 +3219,9 @@
   "welStartOwn": {
     "message": "Empezar con mi lista"
   },
+  "welPinTip": {
+    "message": "El panel abierto se fija con la chincheta de su cabecera — el icono de Spintax se queda en la barra de herramientas, a un clic."
+  },
   "welDemoInstalled": {
     "message": "La campaña de demo «$NAME$» está instalada — cinco blogs incluidos en la extensión, nada real.",
     "placeholders": {

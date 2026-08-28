@@ -61,7 +61,8 @@ export type IconName =
   | 'download'
   | 'console'
   | 'dock-right'
-  | 'auto-fix';
+  | 'auto-fix'
+  | 'pin';
 
 export const ICON_NAMES: readonly IconName[] = [
   'copy',
@@ -121,6 +122,7 @@ export const ICON_NAMES: readonly IconName[] = [
   'console',
   'dock-right',
   'auto-fix',
+  'pin',
 ];
 
 const SPRITE = `<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -181,6 +183,7 @@ const SPRITE = `<svg xmlns="http://www.w3.org/2000/svg" style="display:none" ari
 <symbol id="i-mono-console" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.11.9-2 2-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9h2.83l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l4-4z" fill="currentColor"/></symbol>
 <symbol id="i-mono-dock-right" viewBox="0 0 24 24"><path d="M20 4H4A2 2 0 0 0 2 6V18A2 2 0 0 0 4 20H20A2 2 0 0 0 22 18V6A2 2 0 0 0 20 4M15 18H4V6H15Z" fill="currentColor"/></symbol>
 <symbol id="i-mono-auto-fix" viewBox="0 0 24 24"><path d="M7.5,5.6L5,7L6.4,4.5L5,2L7.5,3.4L10,2L8.6,4.5L10,7L7.5,5.6M19.5,15.4L22,14L20.6,16.5L22,19L19.5,17.6L17,19L18.4,16.5L17,14L19.5,15.4M22,2L20.6,4.5L22,7L19.5,5.6L17,7L18.4,4.5L17,2L19.5,3.4L22,2M13.34,12.78L15.78,10.34L13.66,8.22L11.22,10.66L13.34,12.78M14.37,7.29L16.71,9.63C17.1,10 17.1,10.65 16.71,11.04L5.04,22.71C4.65,23.1 4,23.1 3.63,22.71L1.29,20.37C0.9,20 0.9,19.35 1.29,18.96L12.96,7.29C13.35,6.9 14,6.9 14.37,7.29Z" fill="currentColor"/></symbol>
+<symbol id="i-mono-pin" viewBox="0 0 24 24"><path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" fill="currentColor"/></symbol>
 </svg>`;
 
 let injected = false;

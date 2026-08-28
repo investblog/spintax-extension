@@ -26,6 +26,10 @@
   "welStartOwn": {
     "message": "Start with my list"
   },
+  "welPinTip": {
+    "message": "Once the panel is open, click the pin in its header — the Spintax icon stays on the browser toolbar, one click away.",
+    "description": "Hint under the welcome hero buttons. Rendered on the Chrome build only: the pin control in the side panel header is Chrome's own UI."
+  },
   "welDemoInstalled": {
     "message": "The demo campaign \"$NAME$\" is installed — five blogs bundled with the extension, nothing real.",
     "placeholders": {

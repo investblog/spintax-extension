@@ -107,6 +107,11 @@ export async function renderWelcome(root: HTMLElement, opts: WelcomeOptions): Pr
         h('h2', { class: 'card__title' }, t('welHeroTitle')),
         h('p', { class: 'muted' }, t('welHeroText')),
         h('div', { class: 'card__actions' }, tryDemo, startOwn, openPanel),
+        // The pin control in the side panel header is Chrome's own UI — Edge and Firefox have no
+        // such affordance, so the hint would send their users hunting for a control that isn't there.
+        import.meta.env.BROWSER === 'chrome'
+          ? h('p', { class: 'field-hint welcome__pin-tip' }, svgIcon('pin'), ' ', t('welPinTip'))
+          : null,
         demo
           ? h(
               'p',

@@ -3219,6 +3219,9 @@
   "welStartOwn": {
     "message": "Kendi listemle başla"
   },
+  "welPinTip": {
+    "message": "Panel açıkken başlığındaki raptiyeyle sabitleyin — Spintax simgesi araç çubuğunda kalır, tek tık uzakta."
+  },
   "welDemoInstalled": {
     "message": "\"$NAME$\" demo kampanyası kuruldu — uzantıyla gelen beş blog, gerçek hiçbir şey yok.",
     "placeholders": {
