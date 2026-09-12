@@ -2,6 +2,16 @@
 
 All notable changes to Spintax — Manual Outreach Helper are documented here.
 
+## [0.2.2] — 2026-09-12
+
+### Changed
+
+- **The engine is `@spintax/core` 0.7.0** — a `%variable%` written directly inside `{…}` or `[…]`
+  is now spliced as text before the construct is split, so a value holding `a|b|c` renders as three
+  options or elements instead of one literal run. That is what the PHP engines have always done;
+  this one was the odd family member out. A template that relied on the old behaviour renders
+  differently, and every render recorded from here on carries `0.7.0` as its engine version.
+
 ## [0.2.1] — 2026-08-28
 
 ### Added
