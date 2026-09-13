@@ -2,6 +2,18 @@
 
 All notable changes to Spintax — Manual Outreach Helper are documented here.
 
+## [0.2.3] — 2026-09-13
+
+### Changed
+
+- **The engine is `@spintax/core` 0.8.0**, which reads a template the way the PHP engines do in three
+  more places. Russian abbreviations such as `и т.д.` no longer turn into `и т. Д.`, a Cyrillic domain
+  or email stays whole, and a no-break space spaces and capitalizes like an ordinary one. A `%variable%`
+  in a permutation's `<config>` and a `{?…}` inside `{…}` or `[…]` count before the construct is
+  split, and an element that renders empty is dropped instead of leaving `a, , b`. Templates of these
+  shapes render differently, and every render recorded from here on carries `0.8.0` as its engine
+  version.
+
 ## [0.2.2] — 2026-09-12
 
 ### Changed
