@@ -1,6 +1,6 @@
 {
   "name": "spintax-outreach",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "private": true,
   "description": "Spintax Outreach — templates, variables and a queue for manual outreach (browser extension)",
   "license": "GPL-3.0-or-later",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@spintax/authoring-prompt": "^0.1.0",
-    "@spintax/core": "^0.8.0",
+    "@spintax/core": "^0.12.0",
     "fflate": "^0.8.3"
   },
   "devDependencies": {

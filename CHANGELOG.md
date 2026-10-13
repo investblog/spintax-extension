@@ -2,6 +2,19 @@
 
 All notable changes to Spintax — Manual Outreach Helper are documented here.
 
+## [0.2.4] — 2026-10-13
+
+### Changed
+
+- **The engine is `@spintax/core` 0.12.0.** Two sentences glued without a space (`compact.Game`,
+  `конец.Начало`) now get the space and the capital, while `example.com` and `ASP.NET` stay whole — at
+  the cost of a Title-case pair such as `Yandex.Money`, which now renders `Yandex. Money`. No space is
+  left between a punctuation mark and the quote or bracket that closes it (`"yes, " and` → `"yes," and`).
+  Permutation separators join bare in Chinese, Japanese, Thai and Lao, Arabic و and Hebrew ו attach to
+  the next word, and Arabic plurals take their six CLDR forms (a two-form `ar` block is now an error).
+  Templates of these shapes render differently, and every render recorded from here on carries `0.12.0`
+  as its engine version.
+
 ## [0.2.3] — 2026-09-13
 
 ### Changed
