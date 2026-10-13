@@ -4652,5 +4652,68 @@
   "panelOpenSidePanel": {
     "message": "Seitenleiste öffnen",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Kampagnen: wechseln, umbenennen, hinzufügen"
+  },
+  "optCampaignsNone": {
+    "message": "Noch keine Kampagne"
+  },
+  "drwCampTitle": {
+    "message": "Kampagnen"
+  },
+  "drwCampSubtitle": {
+    "message": "Jede Kampagne hat ihre eigene Liste, Vorlagen und Warteschlange."
+  },
+  "drwCampOpenNow": {
+    "message": "Gerade geöffnet"
+  },
+  "drwCampName": {
+    "message": "Name"
+  },
+  "drwCampScenario": {
+    "message": "Szenario"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Nachrichten"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-Mail und Kontaktformulare: ein Schlüssel pro Empfänger"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Einreichungen"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Profile, Einträge, Beiträge: ein Schlüssel pro Website und Sprache"
+  },
+  "drwCampScenarioHint": {
+    "message": "Vor dem ersten Import festlegen: Die Zeilenschlüssel hängen davon ab."
+  },
+  "drwCampScenarioLocked": {
+    "message": "Die Liste ist importiert, das Szenario bleibt: Die Zeilenschlüssel hängen davon ab."
+  },
+  "drwCampSave": {
+    "message": "Speichern"
+  },
+  "drwCampNeedsName": {
+    "message": "Geben Sie der Kampagne einen Namen."
+  },
+  "drwCampDelete": {
+    "message": "Kampagne löschen"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Zeilen, Vorlagen, Profile, Journal löschen"
+  },
+  "drwCampOthers": {
+    "message": "Andere Kampagnen"
+  },
+  "drwCampSwitch": {
+    "message": "Öffnen"
+  },
+  "drwCampNew": {
+    "message": "Neue Kampagne"
+  },
+  "drwCampCreate": {
+    "message": "Erstellen und öffnen"
   }
 }

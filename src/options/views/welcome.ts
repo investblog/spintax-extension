@@ -126,6 +126,7 @@ export async function renderWelcome(root: HTMLElement, opts: WelcomeOptions): Pr
                   class: 'btn btn--ghost btn--sm',
                   onclick: async () => {
                     await removeDemo();
+                    await ensureCampaign(); // the demo may have been the open campaign
                     notify();
                     status.textContent = t('welDemoRemoved');
                     await renderWelcome(root, opts);

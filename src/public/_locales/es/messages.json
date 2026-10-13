@@ -4652,5 +4652,68 @@
   "panelOpenSidePanel": {
     "message": "Abrir el panel lateral",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Campañas: cambiar, renombrar, añadir"
+  },
+  "optCampaignsNone": {
+    "message": "Aún no hay campañas"
+  },
+  "drwCampTitle": {
+    "message": "Campañas"
+  },
+  "drwCampSubtitle": {
+    "message": "Cada campaña tiene su propia lista, plantillas y cola."
+  },
+  "drwCampOpenNow": {
+    "message": "Abierta ahora"
+  },
+  "drwCampName": {
+    "message": "Nombre"
+  },
+  "drwCampScenario": {
+    "message": "Escenario"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Mensajes"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "Correo y formularios de contacto: una clave por destinatario"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Publicaciones"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Perfiles, fichas, artículos: una clave por sitio e idioma"
+  },
+  "drwCampScenarioHint": {
+    "message": "Elígelo antes de la primera importación: las claves de las filas dependen de él."
+  },
+  "drwCampScenarioLocked": {
+    "message": "La lista ya está importada y el escenario se mantiene: las claves de las filas dependen de él."
+  },
+  "drwCampSave": {
+    "message": "Guardar"
+  },
+  "drwCampNeedsName": {
+    "message": "Ponle un nombre a la campaña."
+  },
+  "drwCampDelete": {
+    "message": "Eliminar campaña"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Eliminar filas, plantillas, perfiles, registro"
+  },
+  "drwCampOthers": {
+    "message": "Otras campañas"
+  },
+  "drwCampSwitch": {
+    "message": "Abrir"
+  },
+  "drwCampNew": {
+    "message": "Nueva campaña"
+  },
+  "drwCampCreate": {
+    "message": "Crear y abrir"
   }
 }

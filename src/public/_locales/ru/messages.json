@@ -4652,5 +4652,68 @@
   "panelOpenSidePanel": {
     "message": "Открыть боковую панель",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Кампании: переключить, переименовать, добавить"
+  },
+  "optCampaignsNone": {
+    "message": "Кампаний пока нет"
+  },
+  "drwCampTitle": {
+    "message": "Кампании"
+  },
+  "drwCampSubtitle": {
+    "message": "У каждой кампании свой список, шаблоны и очередь."
+  },
+  "drwCampOpenNow": {
+    "message": "Открыта сейчас"
+  },
+  "drwCampName": {
+    "message": "Название"
+  },
+  "drwCampScenario": {
+    "message": "Сценарий"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Письма"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "Почта и контактные формы: ключ — получатель"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Сабмиты"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Профили, листинги, посты: ключ — сайт и язык"
+  },
+  "drwCampScenarioHint": {
+    "message": "Задайте до первого импорта: от него зависят ключи строк."
+  },
+  "drwCampScenarioLocked": {
+    "message": "Список уже импортирован, сценарий не меняется: от него зависят ключи строк."
+  },
+  "drwCampSave": {
+    "message": "Сохранить"
+  },
+  "drwCampNeedsName": {
+    "message": "Дайте кампании название."
+  },
+  "drwCampDelete": {
+    "message": "Удалить кампанию"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Удалить строки, шаблоны, профили, журнал"
+  },
+  "drwCampOthers": {
+    "message": "Другие кампании"
+  },
+  "drwCampSwitch": {
+    "message": "Открыть"
+  },
+  "drwCampNew": {
+    "message": "Новая кампания"
+  },
+  "drwCampCreate": {
+    "message": "Создать и открыть"
   }
 }

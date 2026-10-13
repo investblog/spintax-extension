@@ -26,9 +26,9 @@ import {
   providerInfo,
 } from '@/shared/mail';
 import type { Campaign } from '@/shared/model';
-import { deleteCampaign, findTemplate, getSetting, listRows, setSetting, storageEstimate } from '@/shared/repo';
+import { findTemplate, getSetting, listRows, setSetting, storageEstimate } from '@/shared/repo';
 import { deleteAllData, listOrphanAssets, purgeOrphanAssets } from '@/shared/storage';
-import { notify, notifyPanel } from '../state';
+import { ensureCampaign, notify, notifyPanel, removeCampaign } from '../state';
 
 /** Two-click destructive button: the first click arms it and changes the label. */
 
@@ -75,6 +75,7 @@ async function storageCard(campaign: Campaign | null): Promise<HTMLElement> {
               class: 'btn btn--ghost',
               onclick: async () => {
                 await removeDemo();
+                await ensureCampaign(); // the demo may have been the open campaign
                 status.textContent = t('setDemoRemoved');
                 notify();
               },
@@ -87,7 +88,7 @@ async function storageCard(campaign: Campaign | null): Promise<HTMLElement> {
         : null,
       campaign
         ? armedButton(t('setDeleteCampaign', campaign.name), t('setDeleteCampaignConfirm'), async () => {
-            await deleteCampaign(campaign.id);
+            await removeCampaign(campaign.id);
             notify();
           })
         : null,

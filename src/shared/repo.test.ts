@@ -10,6 +10,7 @@ import {
   findTemplate,
   getAsset,
   getRow,
+  getSetting,
   lastSavedText,
   listCampaigns,
   listEvents,
@@ -17,6 +18,8 @@ import {
   makeRow,
   putAsset,
   putRows,
+  setCampaignScenario,
+  setSetting,
   updateCampaign,
   upsertRecipe,
   upsertTemplate,
@@ -73,10 +76,20 @@ describe('campaigns and rows', () => {
       includes: {},
       engineVersion: ENGINE,
     });
+    await setSetting(`queue:${campaign.id}:rowId`, row.rowId);
     await deleteCampaign(campaign.id);
     expect(await listCampaigns()).toHaveLength(0);
     expect(await listRows(campaign.id)).toHaveLength(0);
     expect(await listEvents(row.rowId)).toHaveLength(0);
+    expect(await getSetting(`queue:${campaign.id}:rowId`, null)).toBeNull();
+  });
+
+  it('changes the scenario only while the campaign has no rows (#4)', async () => {
+    const empty = await createCampaign({ name: 'Empty' });
+    expect((await setCampaignScenario(empty.id, 'submit')).scenario).toBe('submit');
+    const { campaign } = await seedCampaign();
+    await expect(setCampaignScenario(campaign.id, 'submit')).rejects.toThrow('scenario-locked');
+    expect((await setCampaignScenario(campaign.id, 'outreach')).scenario).toBe('outreach'); // unchanged: fine
   });
 });
 

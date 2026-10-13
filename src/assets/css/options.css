@@ -182,6 +182,32 @@ body.sidebar-collapsed .sidebar__brand {
   font-size: var(--fs-sm);
 }
 
+/* The campaign name under the title opens the campaigns drawer (#4). */
+.options__campaign {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+
+.options__campaign:hover,
+.options__campaign:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.options__campaign svg {
+  width: 1em;
+  height: 1em;
+}
+
 .wizard-step.is-done {
   color: var(--success);
 }

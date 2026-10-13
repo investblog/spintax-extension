@@ -218,20 +218,29 @@ function row(): Row | null {
 
 // ── Data ───────────────────────────────────────────────────────────────────────
 
+let reloadSeq = 0;
+
 async function reload(): Promise<void> {
-  state.campaign = await currentCampaign();
-  state.mail = { ...MAIL_DEFAULTS, ...(await getSetting<Partial<MailSettings>>(MAIL_SETTINGS_KEY, {})) };
-  state.openTargetIn = await getSetting<OpenTargetIn>(OPEN_TARGET_KEY, OPEN_TARGET_DEFAULT);
-  if (!state.campaign) {
-    state.rows = [];
+  // Everything is read into locals and committed at once by the newest call only: a quick A→B
+  // campaign switch must not pair campaign B with A's rows or cursor (Codex review of #4).
+  const seq = ++reloadSeq;
+  const campaign = await currentCampaign();
+  const mail = { ...MAIL_DEFAULTS, ...(await getSetting<Partial<MailSettings>>(MAIL_SETTINGS_KEY, {})) };
+  const openTargetIn = await getSetting<OpenTargetIn>(OPEN_TARGET_KEY, OPEN_TARGET_DEFAULT);
+  const rows = campaign ? await loadRows(campaign.id) : [];
+  const cursor = campaign ? await loadCursor(campaign.id) : null;
+  if (seq !== reloadSeq) return;
+  state.campaign = campaign;
+  state.mail = mail;
+  state.openTargetIn = openTargetIn;
+  state.rows = rows;
+  if (!campaign) {
     state.render = null;
     draw();
     return;
   }
-  state.rows = await loadRows(state.campaign.id);
   performance.mark('panel:rows');
-  const cursor = await loadCursor(state.campaign.id);
-  const i = cursor ? state.rows.findIndex((r) => r.rowId === cursor) : -1;
+  const i = cursor ? rows.findIndex((r) => r.rowId === cursor) : -1;
   state.index = i >= 0 ? i : 0;
   await refreshRow();
 }
@@ -250,8 +259,13 @@ async function refreshRow(): Promise<void> {
   state.pendingPaste = false;
   state.fillError = 'none';
   state.toast = '';
-  if (state.campaign && r) {
-    const res = await renderFor(state.campaign, r);
+  const campaign = state.campaign;
+  // A newer reload or a row change while we awaited owns the state now: write nothing, save no
+  // cursor (Codex review of #4 — row A must not become campaign B's cursor).
+  const stale = (): boolean => state.campaign !== campaign || row()?.rowId !== r?.rowId;
+  if (campaign && r) {
+    const res = await renderFor(campaign, r);
+    if (stale()) return;
     if (res) {
       state.render = res.render;
       state.step = res.step;
@@ -260,10 +274,11 @@ async function refreshRow(): Promise<void> {
     // so it is read back from the journal instead of the in-memory report (Codex review #3).
     if (r.deliveryStatus === 'filled_unconfirmed') {
       const events = await listEvents(r.rowId);
+      if (stale()) return;
       const last = [...events].reverse().find((e) => e.event === 'filled');
       state.pendingPaste = !!last?.fillReport?.some((x) => x.slot === 'output.body' && x.outcome === 'clipboard');
     }
-    await saveCursor(state.campaign.id, r.rowId);
+    await saveCursor(campaign.id, r.rowId);
   }
   performance.mark('panel:render');
   await refreshTab();
@@ -625,11 +640,17 @@ browser.runtime.onMessage.addListener((raw: unknown, sender) => {
   const msg = raw as RuntimeMessage;
   if (msg.type === 'data-changed') {
     // Options page wrote something (rows, profile, template, campaign switch): refresh the queue.
-    window.clearTimeout(reloadTimer);
-    reloadTimer = window.setTimeout(() => {
-      if (state.busy || state.draft !== null || state.pickingSlot) return; // the user is mid-action here
+    // While the user is mid-action here the reload waits instead of being dropped: a campaign
+    // switched or deleted in options must reach the panel once the fill or edit is over.
+    const attempt = (): void => {
+      if (state.busy || state.draft !== null || state.pickingSlot) {
+        reloadTimer = window.setTimeout(attempt, 1000);
+        return;
+      }
       void reload();
-    }, 150);
+    };
+    window.clearTimeout(reloadTimer);
+    reloadTimer = window.setTimeout(attempt, 150);
     return;
   }
   if (msg.type === 'picked') {

@@ -4653,5 +4653,68 @@
   "panelOpenSidePanel": {
     "message": "Ouvrir le panneau latéral",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Campagnes : changer, renommer, ajouter"
+  },
+  "optCampaignsNone": {
+    "message": "Pas encore de campagne"
+  },
+  "drwCampTitle": {
+    "message": "Campagnes"
+  },
+  "drwCampSubtitle": {
+    "message": "Chaque campagne a sa propre liste, ses modèles et sa file."
+  },
+  "drwCampOpenNow": {
+    "message": "Ouverte"
+  },
+  "drwCampName": {
+    "message": "Nom"
+  },
+  "drwCampScenario": {
+    "message": "Scénario"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Messages"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-mail et formulaires de contact : une clé par destinataire"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Soumissions"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Profils, fiches, articles : une clé par site et par langue"
+  },
+  "drwCampScenarioHint": {
+    "message": "À choisir avant le premier import : les clés des lignes en dépendent."
+  },
+  "drwCampScenarioLocked": {
+    "message": "La liste est importée, le scénario reste : les clés des lignes en dépendent."
+  },
+  "drwCampSave": {
+    "message": "Enregistrer"
+  },
+  "drwCampNeedsName": {
+    "message": "Donnez un nom à la campagne."
+  },
+  "drwCampDelete": {
+    "message": "Supprimer la campagne"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Supprimer lignes, modèles, profils, journal"
+  },
+  "drwCampOthers": {
+    "message": "Autres campagnes"
+  },
+  "drwCampSwitch": {
+    "message": "Ouvrir"
+  },
+  "drwCampNew": {
+    "message": "Nouvelle campagne"
+  },
+  "drwCampCreate": {
+    "message": "Créer et ouvrir"
   }
 }

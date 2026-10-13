@@ -47,6 +47,8 @@ const userData = fs.mkdtempSync(path.join(root, 'dist', 'e2e-profile-'));
 
 const context = await chromium.launchPersistentContext(userData, {
   channel: E2E_BROWSER,
+  // A local browser build when the one Playwright pins is not installed; CI leaves it unset.
+  executablePath: process.env.E2E_CHROME || undefined,
   headless: true,
   args: [`--disable-extensions-except=${dist}`, `--load-extension=${dist}`, '--lang=en-US'],
 });
@@ -445,6 +447,34 @@ try {
   await options.getByRole('button', { name: /Remove the demo campaign/ }).click();
   await options.getByRole('button', { name: /Remove the demo campaign/ }).waitFor({ state: 'detached', timeout: 10_000 });
   check(true, 'demo removed from Settings (button gone after the re-render)');
+
+  // 12. Campaigns drawer (#4): create a submit campaign, the panel follows, switch back, delete it.
+  await options.goto(`chrome-extension://${extId}/options.html#wizard`);
+  const firstName = ((await options.locator('.options__campaign').textContent()) ?? '').trim();
+  await options.locator('.options__campaign').click();
+  await options.locator('.drawer .dropdown__trigger').nth(1).waitFor(); // the drawer paints after a read
+  check(
+    (await options.locator('.drawer .dropdown__trigger[aria-label^="Scenario: "]').count()) === 2,
+    'campaigns drawer: both scenario pickers name their current value',
+  );
+  await options.locator('.drawer input.input').last().fill('E2E submissions');
+  await options.locator('.drawer .btn', { hasText: 'Create and open' }).click();
+  await options.locator('.options__campaign', { hasText: 'E2E submissions' }).waitFor({ timeout: 10_000 });
+  check(true, 'campaigns drawer: a new campaign is created and opened');
+  await panel.locator('.panel__campaign-link', { hasText: 'E2E submissions' }).waitFor({ timeout: 10_000 });
+  check(true, 'panel follows the campaign switch without a reload');
+  await options.locator('.options__campaign').click();
+  await options.locator('.drawer .dropdown__trigger').first().waitFor();
+  check(
+    await options.locator('.drawer .dropdown__trigger[aria-label="Scenario: Submissions"]').first().isVisible(),
+    'campaigns drawer: the new campaign is a submissions campaign',
+  );
+  await options.locator('.drawer .btn', { hasText: 'Delete campaign' }).click();
+  await options.locator('.drawer .btn', { hasText: /Delete rows, templates/ }).click();
+  await options.locator('.options__campaign', { hasText: firstName }).waitFor({ timeout: 10_000 });
+  check(true, 'campaigns drawer: deleting the open campaign falls back to the previous one');
+  await panel.locator('.panel__campaign-link', { hasText: firstName }).waitFor({ timeout: 10_000 });
+  check(true, 'panel follows the deletion');
 } finally {
   await context.close();
   server.close();

@@ -4652,5 +4652,68 @@
   "panelOpenSidePanel": {
     "message": "Yan paneli aç",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Kampanyalar: değiştir, yeniden adlandır, ekle"
+  },
+  "optCampaignsNone": {
+    "message": "Henüz kampanya yok"
+  },
+  "drwCampTitle": {
+    "message": "Kampanyalar"
+  },
+  "drwCampSubtitle": {
+    "message": "Her kampanyanın kendi listesi, şablonları ve kuyruğu vardır."
+  },
+  "drwCampOpenNow": {
+    "message": "Şu an açık"
+  },
+  "drwCampName": {
+    "message": "Ad"
+  },
+  "drwCampScenario": {
+    "message": "Senaryo"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Mesajlar"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-posta ve iletişim formları: alıcı başına bir anahtar"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Gönderimler"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Profiller, ilanlar, yazılar: site ve dil başına bir anahtar"
+  },
+  "drwCampScenarioHint": {
+    "message": "İlk içe aktarmadan önce seçin: satır anahtarları buna bağlıdır."
+  },
+  "drwCampScenarioLocked": {
+    "message": "Liste içe aktarıldı, senaryo değişmez: satır anahtarları buna bağlıdır."
+  },
+  "drwCampSave": {
+    "message": "Kaydet"
+  },
+  "drwCampNeedsName": {
+    "message": "Kampanyaya bir ad verin."
+  },
+  "drwCampDelete": {
+    "message": "Kampanyayı sil"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Satırları, şablonları, profilleri, günlüğü sil"
+  },
+  "drwCampOthers": {
+    "message": "Diğer kampanyalar"
+  },
+  "drwCampSwitch": {
+    "message": "Aç"
+  },
+  "drwCampNew": {
+    "message": "Yeni kampanya"
+  },
+  "drwCampCreate": {
+    "message": "Oluştur ve aç"
   }
 }

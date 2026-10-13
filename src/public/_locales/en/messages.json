@@ -632,6 +632,69 @@
     "message": "This campaign has no columns yet — the wizard reads them from your list and shows what it found.",
     "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
   },
+  "optCampaignsTitle": {
+    "message": "Campaigns: switch, rename, add"
+  },
+  "optCampaignsNone": {
+    "message": "No campaign yet"
+  },
+  "drwCampTitle": {
+    "message": "Campaigns"
+  },
+  "drwCampSubtitle": {
+    "message": "Each campaign has its own list, templates and queue."
+  },
+  "drwCampOpenNow": {
+    "message": "Open now"
+  },
+  "drwCampName": {
+    "message": "Name"
+  },
+  "drwCampScenario": {
+    "message": "Scenario"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Messages"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-mail and contact forms: one key per recipient"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Submissions"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Profiles, listings, posts: one key per site and language"
+  },
+  "drwCampScenarioHint": {
+    "message": "Set it before the first import: row keys depend on it."
+  },
+  "drwCampScenarioLocked": {
+    "message": "The list is imported, so the scenario stays: row keys depend on it."
+  },
+  "drwCampSave": {
+    "message": "Save"
+  },
+  "drwCampNeedsName": {
+    "message": "Give the campaign a name."
+  },
+  "drwCampDelete": {
+    "message": "Delete campaign"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Delete rows, templates, profiles, journal"
+  },
+  "drwCampOthers": {
+    "message": "Other campaigns"
+  },
+  "drwCampSwitch": {
+    "message": "Open"
+  },
+  "drwCampNew": {
+    "message": "New campaign"
+  },
+  "drwCampCreate": {
+    "message": "Create and open"
+  },
   "slotProfileName": {
     "message": "Your name"
   },
