@@ -1012,15 +1012,7 @@ function draw(): void {
         ? h('div', { class: 'text-warning' }, t('panelOtherPage', pathOf(state.tab.url), pathOf(tUrl ?? '')))
         : null,
     ),
-    h(
-      'div',
-      { class: 'panel__row-vars muted' },
-      c.columns
-        .filter((col) => col.type === 'text' && col.role === 'none' && !col.hidden)
-        .slice(0, 3)
-        .map((col) => `${col.header}: ${r.values[col.id] ?? ''}`)
-        .join(' · '),
-    ),
+    rowVars(c, r),
     h(
       'div',
       { class: 'panel__row-nav' },
@@ -1508,6 +1500,30 @@ function draw(): void {
     notes,
     actionBar(primary, secondary, sheet),
   ]);
+}
+
+/**
+ * The row's own columns: one clipped line, and the whole text one click away — a column like
+ * "instruction" is the thing to read on the site, and it was cut after a few words (field test).
+ */
+function rowVars(c: Campaign, r: Row): HTMLElement {
+  const cols = c.columns.filter((col) => col.type === 'text' && col.role === 'none' && !col.hidden);
+  const line = cols
+    .slice(0, 3)
+    .map((col) => `${col.header}: ${r.values[col.id] ?? ''}`)
+    .join(' · ');
+  const filled = cols.filter((col) => (r.values[col.id] ?? '').trim() !== '');
+  if (filled.length === 0) return h('div', { class: 'panel__row-vars muted' }, line);
+  return h(
+    'details',
+    { class: 'panel__row-vars-box' },
+    h('summary', { class: 'panel__row-vars muted' }, line),
+    h(
+      'dl',
+      { class: 'panel__row-values' },
+      ...filled.flatMap((col) => [h('dt', {}, col.header), h('dd', {}, r.values[col.id] ?? '')]),
+    ),
+  );
 }
 
 /**

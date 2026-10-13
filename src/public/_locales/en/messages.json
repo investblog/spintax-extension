@@ -3385,6 +3385,9 @@
     "message": "Clipboard blocked — select the text in the preview and copy it manually.",
     "description": "Shown when the browser refused clipboard access in the AI section."
   },
+  "tplVariantRows": {
+    "message": "Preview row"
+  },
   "welPageTitle": {
     "message": "Welcome to Spintax",
     "description": "Title of the standalone welcome page (welcome.html); the <title> tag carries the English fallback."

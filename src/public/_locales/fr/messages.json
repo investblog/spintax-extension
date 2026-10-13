@@ -4818,5 +4818,8 @@
   },
   "flagRefused": {
     "message": "refusé"
+  },
+  "tplVariantRows": {
+    "message": "Ligne de l'aperçu"
   }
 }

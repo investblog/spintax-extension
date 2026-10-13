@@ -4817,5 +4817,8 @@
   },
   "flagRefused": {
     "message": "engel"
+  },
+  "tplVariantRows": {
+    "message": "Önizleme satırı"
   }
 }

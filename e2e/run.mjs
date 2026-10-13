@@ -139,6 +139,16 @@ try {
   const variantCount = await options.locator('.variant').count();
   check(/used/.test(nameRow) && /Anna|Chrome Web Store/.test(nameRow), 'variables block: %name% marked used with a sample value');
   check(variantCount === 2, `variants block renders one item per row (${variantCount})`);
+  // One variant on screen at a time, picked by its row-key chip.
+  check((await options.locator('.variant:not([hidden])').count()) === 1, 'variants: one shown at a time');
+  const secondChip = options.locator('.variants__tabs button').nth(1);
+  const secondKey = ((await secondChip.textContent()) ?? '').trim();
+  await secondChip.click();
+  check(
+    (await secondChip.getAttribute('aria-pressed')) === 'true' &&
+      ((await options.locator('.variant:not([hidden]) .variant__head').textContent()) ?? '').includes(secondKey),
+    'variants: a row chip switches the shown variant',
+  );
 
   // Subject template too (mapped to the form's subject field).
   await pick(options, 'Channel', 'Subject');

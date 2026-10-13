@@ -229,6 +229,15 @@ body.sidebar-collapsed .sidebar__brand {
   max-width: 100%;
 }
 
+/* Import previews: a long cell (an instruction, a description) is one clipped line, so eight
+   columns fit the page instead of one column taking the width (field test, 2026-10-13). */
+.view .table td.cell-clip {
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .cell-key {
   font-weight: var(--fw-medium);
 }
@@ -656,8 +665,8 @@ body.sidebar-collapsed .sidebar__brand {
 
 /* Step 2: editable column names + AI naming helper */
 .th-name {
-  width: 11rem;
-  min-width: 8rem;
+  width: 8.5rem;
+  min-width: 6rem;
   font-weight: var(--fw-medium);
 }
 
@@ -1096,6 +1105,23 @@ body.sidebar-collapsed .sidebar__brand {
 
 .variant__body .template__text {
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* One variant at a time, picked by row key. */
+.variants__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.variants__tabs .btn-chip.is-active {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.variant[hidden] {
+  display: none;
 }
 
 .error-banner {

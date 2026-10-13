@@ -298,6 +298,9 @@ function importStep(campaign: Campaign, reload: () => void): HTMLElement {
   );
 }
 
+/** A preview cell: long text (an instruction, a description) is cut to one line; all of it in the tooltip. */
+const clippedCell = (c: string): HTMLElement => h('td', { class: 'cell-clip', title: c || undefined }, c);
+
 function previewTable(table: ImportedTable, limit: number): HTMLElement {
   return h(
     'div',
@@ -306,7 +309,7 @@ function previewTable(table: ImportedTable, limit: number): HTMLElement {
       'table',
       { class: 'table' },
       h('thead', {}, h('tr', {}, ...table.headers.map((hd) => h('th', {}, hd)))),
-      h('tbody', {}, ...table.rows.slice(0, limit).map((r) => h('tr', {}, ...r.map((c) => h('td', {}, c))))),
+      h('tbody', {}, ...table.rows.slice(0, limit).map((r) => h('tr', {}, ...r.map(clippedCell)))),
     ),
   );
 }
@@ -493,7 +496,7 @@ function rolesTable(table: ImportedTable, columns: ColumnDef[], onChange: () => 
         {},
         h('tr', {}, ...columns.map((c) => h('th', {}, h('div', { class: 'th-stack' }, headerInput(c), roleSelect(c))))),
       ),
-      h('tbody', {}, ...table.rows.slice(0, 3).map((r) => h('tr', {}, ...r.map((c) => h('td', {}, c))))),
+      h('tbody', {}, ...table.rows.slice(0, 3).map((r) => h('tr', {}, ...r.map(clippedCell)))),
     ),
   );
 }

@@ -4817,5 +4817,8 @@
   },
   "flagRefused": {
     "message": "tabu"
+  },
+  "tplVariantRows": {
+    "message": "Vorschau-Zeile"
   }
 }

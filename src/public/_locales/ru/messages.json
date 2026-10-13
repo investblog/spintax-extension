@@ -4817,5 +4817,8 @@
   },
   "flagRefused": {
     "message": "запрет"
+  },
+  "tplVariantRows": {
+    "message": "Строка превью"
   }
 }

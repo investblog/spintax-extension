@@ -4817,5 +4817,8 @@
   },
   "flagRefused": {
     "message": "vetado"
+  },
+  "tplVariantRows": {
+    "message": "Linha da prévia"
   }
 }

@@ -158,6 +158,25 @@ body.sidepanel {
   white-space: nowrap;
 }
 
+summary.panel__row-vars {
+  cursor: pointer;
+}
+
+.panel__row-values {
+  margin: var(--space-1) 0 0;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.panel__row-values dt {
+  color: var(--text-muted);
+}
+
+.panel__row-values dd {
+  margin: 0 0 var(--space-1);
+  white-space: pre-wrap;
+}
+
 .panel__subject {
   margin: 0 0 var(--space-2);
 }
@@ -170,6 +189,8 @@ body.sidepanel {
 .panel__preview .template__text {
   margin: var(--space-2) 0 0;
   white-space: pre-wrap;
+  /* A long URL used to push the box sideways into a horizontal scrollbar (field test). */
+  overflow-wrap: anywhere;
   max-height: 12rem;
   overflow: auto;
 }
