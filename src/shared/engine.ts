@@ -163,9 +163,11 @@ export interface RenderedText {
   warnings: RenderWarning[];
 }
 
-const M_START = '';
-const M_SEP = '';
-const M_END = '';
+// Private-use markers, kept far from U+E000: @spintax/core's neutralize() sentinels start there and its
+// output pass turns them back into `{ } [ ] % #`, which silently broke every marker (#3).
+const M_START = '\uF8F0';
+const M_SEP = '\uF8F1';
+const M_END = '\uF8F2';
 
 /** Render with private-use markers around variable values, then strip them to get positions. */
 export function renderWithHighlights(
@@ -184,20 +186,54 @@ export function renderWithHighlights(
   const names = Object.keys(context);
   const marked: Record<string, string> = {};
   names.forEach((n, i) => {
-    marked[n] = context[n] === '' ? '' : `${M_START}${i}${M_SEP}${context[n]}${M_END}`;
+    const v = context[n] ?? '';
+    // A blank value stays as is: wrapped in markers it would turn truthy for `{?var?…}` and send the
+    // marked render down another branch (Codex review of #3).
+    marked[n] = v.trim() === '' ? v : `${M_START}${i}${M_SEP}${v}${M_END}`;
   });
   let highlights: Highlight[] = [];
   try {
     const withMarkers = render(source, { context: marked, seed: opts.seed, locale: opts.locale, includeResolver });
     const out = stripMarkers(withMarkers, names);
-    if (out.text === plain) highlights = dedupeHighlights(out.highlights);
-    else highlights = searchHighlights(plain, context);
+    highlights = markersHold(out, plain, context)
+      ? dedupeHighlights(out.highlights)
+      : searchHighlights(plain, context, referencedVariables(source, opts.includes));
   } catch {
-    highlights = searchHighlights(plain, context);
+    highlights = searchHighlights(plain, context, referencedVariables(source, opts.includes));
   }
   const leaked = plain.match(/[{}]|%[a-z_]\w*%|#(set|def|include)\b/i);
   if (leaked) warnings.push({ kind: 'leakedMarkup', sample: leaked[0] });
   return { text: plain, highlights, warnings };
+}
+
+/**
+ * Same text up to letter case (the capitalizer's only edit). Per code point through toUpperCase(), as
+ * the engine capitalizes: "ışık" vs "Işık" and "ς" vs "Σ" agree, which lowercasing gets wrong.
+ */
+function sameUpToCase(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  if (a === b) return true;
+  for (let i = 0; i < a.length; ) {
+    const ca = String.fromCodePoint(a.codePointAt(i) ?? 0);
+    const cb = String.fromCodePoint(b.codePointAt(i) ?? 0);
+    if (ca !== cb && ca.toUpperCase() !== cb.toUpperCase()) return false;
+    i += ca.length;
+  }
+  return true;
+}
+
+/**
+ * Marker positions are trusted when the marked render matches the plain one up to case — a marker
+ * hides a value from the sentence capitalizer — and every span still holds its value up to case, so a
+ * space the post-process slipped inside a marker is caught even when the two texts agree.
+ */
+function markersHold(
+  out: { text: string; highlights: Highlight[] },
+  plain: string,
+  context: Record<string, string>,
+): boolean {
+  if (!sameUpToCase(out.text, plain)) return false;
+  return out.highlights.every((h) => sameUpToCase(plain.slice(h.start, h.end), context[h.variable] ?? ''));
 }
 
 function stripMarkers(s: string, names: string[]): { text: string; highlights: Highlight[] } {
@@ -216,22 +252,86 @@ function stripMarkers(s: string, names: string[]): { text: string; highlights: H
   return { text, highlights };
 }
 
+/** extract() per template text, memoized: the Review screen renders every row of the list. */
+const extractCache = new Map<string, ReturnType<typeof extract> | null>();
+function extractCached(src: string): ReturnType<typeof extract> | null {
+  let hit = extractCache.get(src);
+  if (hit === undefined) {
+    try {
+      hit = extract(src);
+    } catch {
+      hit = null; // a source that does not parse contributes nothing
+    }
+    if (extractCache.size > 64) extractCache.clear();
+    extractCache.set(src, hit);
+  }
+  return hit;
+}
+
+/** Variables the template references, following only the includes it actually reaches. */
+function referencedVariables(source: string, includes: Record<string, string> = {}): Set<string> {
+  const refs = new Set<string>();
+  const seen = new Set<string>();
+  const queue: string[] = [source];
+  while (queue.length > 0) {
+    const found = extractCached(queue.pop() as string);
+    if (!found) continue;
+    for (const r of found.refs) refs.add(r.toLowerCase());
+    for (const inc of found.includes) {
+      const body = includes[inc];
+      if (body === undefined || seen.has(inc)) continue;
+      seen.add(inc);
+      queue.push(body);
+    }
+  }
+  return refs;
+}
+
+/** The engine's word class: letters, digits, combining marks, connectors. */
+const WORD_CHAR = /^[\p{L}\p{N}\p{Mn}\p{Pc}]$/u;
+
+/** Code point ending right before `i` / starting at `i` — never half of a surrogate pair. */
+function charBefore(text: string, i: number): string {
+  if (i <= 0) return '';
+  const low = text.charCodeAt(i - 1);
+  const pair = low >= 0xdc00 && low <= 0xdfff && i >= 2;
+  return text.slice(pair ? i - 2 : i - 1, i);
+}
+function charAt(text: string, i: number): string {
+  const cp = text.codePointAt(i);
+  return cp === undefined ? '' : String.fromCodePoint(cp);
+}
+
 /**
- * Fallback when post-processing moved markers: find each non-empty value by search. Longer values
- * first; overlapping spans are dropped (several variables often share a value, e.g. key/domain/target).
+ * Fallback when post-processing moved markers: find the values of the variables the template uses.
+ * Whole words only — "en" from %lang% must not light up inside "engine" (#3); letter case is ignored,
+ * since the capitalizer may have touched the value. Longer values first; overlapping spans are dropped
+ * (several variables often share a value, e.g. key/domain/target).
  */
-function searchHighlights(text: string, context: Record<string, string>): Highlight[] {
+export function searchHighlights(text: string, context: Record<string, string>, used: Set<string>): Highlight[] {
   const candidates: Highlight[] = [];
   const entries = Object.entries(context)
-    .filter(([, value]) => value.trim().length >= 2)
+    .filter(([name, value]) => used.has(name.toLowerCase()) && [...value.trim()].length >= 2)
     .sort((a, b) => b[1].length - a[1].length);
+  // Uppercased code point at each offset, computed once: a cheap first-letter filter, so the slice and
+  // the full comparison run only where a value can start (the Review screen renders every row).
+  const upperAt: string[] = [];
+  for (let i = 0; i < text.length; ) {
+    const c = charAt(text, i);
+    upperAt[i] = c.toUpperCase();
+    i += c.length;
+  }
   for (const [variable, value] of entries) {
-    let from = 0;
-    for (;;) {
-      const i = text.indexOf(value, from);
-      if (i < 0) break;
-      candidates.push({ start: i, end: i + value.length, variable });
-      from = i + value.length;
+    const firstUpper = charAt(value, 0).toUpperCase();
+    const wordStart = WORD_CHAR.test(charAt(value, 0));
+    const wordEnd = WORD_CHAR.test(charBefore(value, value.length));
+    for (let i = 0; i + value.length <= text.length; i++) {
+      if (upperAt[i] !== firstUpper) continue;
+      const end = i + value.length;
+      if (!sameUpToCase(text.slice(i, end), value)) continue;
+      const glued =
+        (wordStart && WORD_CHAR.test(charBefore(text, i))) || (wordEnd && WORD_CHAR.test(charAt(text, end)));
+      if (!glued) candidates.push({ start: i, end, variable });
     }
   }
   return dedupeHighlights(candidates);
