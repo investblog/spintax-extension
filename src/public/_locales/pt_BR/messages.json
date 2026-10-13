@@ -4736,5 +4736,86 @@
   },
   "wizAddTitle": {
     "message": "Adicionar título"
+  },
+  "panelTabsAria": {
+    "message": "Cadastro ou envio"
+  },
+  "panelTabSignup": {
+    "message": "Cadastro"
+  },
+  "panelTabSubmit": {
+    "message": "Envio"
+  },
+  "panelAccountNone": {
+    "message": "Ainda sem cadastro neste site"
+  },
+  "panelAccountAwaiting": {
+    "message": "Cadastrado — aguardando o e-mail de confirmação"
+  },
+  "panelAccountReady": {
+    "message": "Conta pronta — vamos ao envio"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Este site não exige cadastro"
+  },
+  "panelSignupIntro": {
+    "message": "Preencher coloca seu perfil no formulário de cadastro do site. Senha, captcha, caixas de seleção e o botão continuam com você."
+  },
+  "panelSignupNoProfile": {
+    "message": "Adicione primeiro um perfil de remetente: o nome e o e-mail vão para o formulário."
+  },
+  "panelSignupFill": {
+    "message": "Preencher cadastro em $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Permitir e preencher cadastro em $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Abrir a página de cadastro"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Agora a senha, o captcha e as caixas de seleção — depois o botão do site."
+  },
+  "panelSignupRegistered": {
+    "message": "Cadastrado — aguardo o e-mail"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-mail confirmado"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Sem cadastro"
+  },
+  "panelSignupThisPage": {
+    "message": "Esta é a página de cadastro"
+  },
+  "panelSignupPageLabel": {
+    "message": "Página de cadastro:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Página de cadastro salva: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "O endereço fica oculto até o site ser permitido — clique em Preencher uma vez e depois marque a página."
+  },
+  "flagSecretField": {
+    "message": "Um campo de senha nunca é preenchido"
+  },
+  "flagRefused": {
+    "message": "vetado"
   }
 }

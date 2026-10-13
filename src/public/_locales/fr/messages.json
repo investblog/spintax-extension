@@ -4737,5 +4737,86 @@
   },
   "wizAddTitle": {
     "message": "Ajouter un titre"
+  },
+  "panelTabsAria": {
+    "message": "Inscription ou soumission"
+  },
+  "panelTabSignup": {
+    "message": "Inscription"
+  },
+  "panelTabSubmit": {
+    "message": "Soumission"
+  },
+  "panelAccountNone": {
+    "message": "Pas encore inscrit sur ce site"
+  },
+  "panelAccountAwaiting": {
+    "message": "Inscrit — en attente de l'e-mail de confirmation"
+  },
+  "panelAccountReady": {
+    "message": "Compte prêt — place à la soumission"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Pas d'inscription nécessaire sur ce site"
+  },
+  "panelSignupIntro": {
+    "message": "Remplir place votre profil dans le formulaire d'inscription du site. Le mot de passe, le captcha, les cases et le bouton restent à vous."
+  },
+  "panelSignupNoProfile": {
+    "message": "Ajoutez d'abord un profil d'expéditeur : son nom et son e-mail vont dans le formulaire."
+  },
+  "panelSignupFill": {
+    "message": "Remplir l'inscription sur $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Autoriser et remplir l'inscription sur $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Ouvrir la page d'inscription"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Reste le mot de passe, le captcha et les cases — puis le bouton du site."
+  },
+  "panelSignupRegistered": {
+    "message": "Inscrit — j'attends l'e-mail"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-mail confirmé"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Pas d'inscription"
+  },
+  "panelSignupThisPage": {
+    "message": "C'est la page d'inscription"
+  },
+  "panelSignupPageLabel": {
+    "message": "Page d'inscription :"
+  },
+  "panelSignupPageSaved": {
+    "message": "Page d'inscription enregistrée : $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "L'adresse reste masquée tant que le site n'est pas autorisé — appuyez une fois sur Remplir, puis marquez la page."
+  },
+  "flagSecretField": {
+    "message": "Un champ de mot de passe n'est jamais rempli"
+  },
+  "flagRefused": {
+    "message": "refusé"
   }
 }

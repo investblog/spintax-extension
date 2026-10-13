@@ -464,19 +464,59 @@ try {
   await panel.locator('.panel__campaign-link', { hasText: 'E2E submissions' }).waitFor({ timeout: 10_000 });
   check(true, 'panel follows the campaign switch without a reload');
   // Wizard step 3 (#5): a submissions campaign gets a labelled Title and Text; both are saved.
-  await options.getByPlaceholder(/Paste rows/).fill('url;site\nhttp://127.0.0.1:8766/contact-cf7.html;cf7.test\n');
+  await options.getByPlaceholder(/Paste rows/).fill('url;site\nhttp://127.0.0.1:8766/signup.html;signup.test\n');
   await options.getByRole('button', { name: /Continue to roles/ }).click();
   await options.getByRole('button', { name: /Apply import/ }).click();
   const titleBox = options.getByRole('textbox', { name: 'Title (optional)' });
   await titleBox.waitFor({ timeout: 30_000 });
   check(await options.getByRole('textbox', { name: 'Text' }).isVisible(), 'wizard step 3: Title and Text are labelled');
+  await options.getByRole('button', { name: /Add profile/ }).click();
+  const subInputs = options.locator('.drawer input.input, .drawer textarea');
+  await subInputs.nth(1).fill('Spintax');
+  await subInputs.nth(2).fill('hello@spintax.test');
+  await options.getByRole('button', { name: /Save profile$/ }).click();
+  await options.locator('.drawer').waitFor({ state: 'detached' });
+  await titleBox.waitFor({ timeout: 10_000 }); // step 3 re-rendered with the profile
   await titleBox.fill('{Bad');
   await options.getByRole('textbox', { name: 'Text' }).fill('Hello %site%');
   check(await options.getByRole('button', { name: 'Save template' }).isDisabled(), 'wizard step 3: a broken title blocks Save');
   await titleBox.fill('Notes for %site%');
   await options.getByRole('button', { name: 'Save template' }).click();
-  await panel.getByText('Notes for cf7.test').first().waitFor({ timeout: 10_000 });
-  check(true, 'wizard step 3: the title is stored as the subject template and the panel renders it');
+
+  // Sign-up tab (#6, ADR 0014): a submissions row opens on Sign-up until the account is settled.
+  await target.goto('http://127.0.0.1:8766/signup.html');
+  await target.bringToFront();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Sign-up' }).waitFor({ timeout: 10_000 });
+  check(await panel.getByText('Not registered on this site yet').isVisible(), 'panel opens a new site on the Sign-up tab');
+  // The panel may still be redrawing after the template save (data-changed): a click on a button
+  // that is replaced mid-click is lost, so press again until the fill's note shows.
+  let signupNote = false;
+  for (let i = 0; i < 3 && !signupNote; i++) {
+    await panel.locator('.panel__primary', { hasText: /sign-up on/ }).click();
+    signupNote = await panel
+      .waitForFunction(() => /password, captcha/.test(document.querySelector('.panel__note')?.textContent ?? ''), null, {
+        timeout: 5_000,
+      })
+      .then(
+        () => true,
+        () => false,
+      );
+  }
+  check(signupNote, 'sign-up fill: the note says what stays with the human');
+  const signed = await target.evaluate(() => ({
+    name: document.querySelector('#display').value,
+    email: document.querySelector('#email').value,
+    password: document.querySelector('#password').value,
+    terms: document.querySelector('#terms').checked,
+  }));
+  check(
+    signed.name === 'Spintax' && signed.email === 'hello@spintax.test' && signed.password === '' && !signed.terms,
+    'sign-up fill: profile name and e-mail in, password and terms untouched',
+  );
+  await panel.getByRole('button', { name: 'E-mail confirmed' }).click();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Submission' }).waitFor({ timeout: 10_000 });
+  await panel.getByText('Notes for signup.test').first().waitFor({ timeout: 10_000 });
+  check(true, 'account settled: the panel switches to Submission and renders the saved title');
   await options.locator('.options__campaign').click();
   await options.locator('.drawer .dropdown__trigger').first().waitFor();
   check(

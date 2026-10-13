@@ -663,3 +663,60 @@ a.panel__target:hover {
 .panel__no-message:focus-visible {
   border-color: var(--warning);
 }
+
+/* ── Sign-up / Submission tabs (submissions campaigns, ADR 0014) ───────────── */
+.panel__tabs {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: var(--border-width) var(--border-style) var(--border-subtle);
+}
+
+.panel__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: calc(-1 * var(--border-width));
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+
+.panel__tab:hover,
+.panel__tab:focus-visible {
+  color: var(--text);
+}
+
+.panel__tab.is-active {
+  color: var(--text);
+  border-bottom-color: var(--target-accent, var(--primary));
+  font-weight: 600;
+}
+
+.panel__tab-badge {
+  color: var(--success);
+}
+
+.panel__signup p {
+  margin: 0 0 var(--space-2);
+}
+
+.panel__signup-values {
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.panel__signup .cluster {
+  margin-bottom: var(--space-2);
+}
+
+.panel__signup-page {
+  font-size: var(--fs-sm);
+}

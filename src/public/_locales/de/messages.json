@@ -4736,5 +4736,86 @@
   },
   "wizAddTitle": {
     "message": "Titel hinzufügen"
+  },
+  "panelTabsAria": {
+    "message": "Registrierung oder Einreichung"
+  },
+  "panelTabSignup": {
+    "message": "Registrierung"
+  },
+  "panelTabSubmit": {
+    "message": "Einreichung"
+  },
+  "panelAccountNone": {
+    "message": "Auf dieser Website noch nicht registriert"
+  },
+  "panelAccountAwaiting": {
+    "message": "Registriert — Bestätigungs-E-Mail steht aus"
+  },
+  "panelAccountReady": {
+    "message": "Konto bereit — weiter zur Einreichung"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Auf dieser Website ist keine Registrierung nötig"
+  },
+  "panelSignupIntro": {
+    "message": "Ausfüllen setzt Ihr Profil in das Registrierungsformular der Website. Passwort, Captcha, Häkchen und die Schaltfläche bleiben bei Ihnen."
+  },
+  "panelSignupNoProfile": {
+    "message": "Legen Sie zuerst ein Absenderprofil an: Name und E-Mail kommen ins Formular."
+  },
+  "panelSignupFill": {
+    "message": "Registrierung auf $HOST$ ausfüllen",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Erlauben und Registrierung auf $HOST$ ausfüllen",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Registrierungsseite öffnen"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Jetzt Passwort, Captcha und Häkchen — dann die Schaltfläche der Website drücken."
+  },
+  "panelSignupRegistered": {
+    "message": "Registriert — warte auf E-Mail"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-Mail bestätigt"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Keine Registrierung nötig"
+  },
+  "panelSignupThisPage": {
+    "message": "Das ist die Registrierungsseite"
+  },
+  "panelSignupPageLabel": {
+    "message": "Registrierungsseite:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Registrierungsseite gespeichert: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "Die Seitenadresse ist verborgen, bis die Website erlaubt ist — einmal Ausfüllen drücken, dann die Seite markieren."
+  },
+  "flagSecretField": {
+    "message": "Ein Passwortfeld wird nie ausgefüllt"
+  },
+  "flagRefused": {
+    "message": "tabu"
   }
 }

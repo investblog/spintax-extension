@@ -60,4 +60,4 @@ export type RuntimeMessage =
   /** Sent by the options page after any write: the side panel reloads its campaign and rows. */
   | { type: 'data-changed' };
 
-export const CONTENT_SCRIPT_VERSION = 1;
+export const CONTENT_SCRIPT_VERSION = 2;

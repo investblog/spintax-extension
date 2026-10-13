@@ -4736,5 +4736,86 @@
   },
   "wizAddTitle": {
     "message": "Başlık ekle"
+  },
+  "panelTabsAria": {
+    "message": "Kayıt veya gönderim"
+  },
+  "panelTabSignup": {
+    "message": "Kayıt"
+  },
+  "panelTabSubmit": {
+    "message": "Gönderim"
+  },
+  "panelAccountNone": {
+    "message": "Bu sitede henüz kayıt yok"
+  },
+  "panelAccountAwaiting": {
+    "message": "Kayıt yapıldı — onay e-postası bekleniyor"
+  },
+  "panelAccountReady": {
+    "message": "Hesap hazır — gönderime geçin"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Bu sitede kayıt gerekmiyor"
+  },
+  "panelSignupIntro": {
+    "message": "Doldur, profilinizi sitenin kayıt formuna yerleştirir. Parola, captcha, onay kutuları ve düğme sizde kalır."
+  },
+  "panelSignupNoProfile": {
+    "message": "Önce bir gönderen profili ekleyin: adı ve e-postası forma girer."
+  },
+  "panelSignupFill": {
+    "message": "$HOST$ kaydını doldur",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "İzin ver ve $HOST$ kaydını doldur",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Kayıt sayfasını aç"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Şimdi parola, captcha ve onay kutuları — sonra sitenin düğmesi."
+  },
+  "panelSignupRegistered": {
+    "message": "Kayıt oldum — e-posta bekliyorum"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-posta onaylandı"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Kayıt gerekmiyor"
+  },
+  "panelSignupThisPage": {
+    "message": "Kayıt sayfası bu"
+  },
+  "panelSignupPageLabel": {
+    "message": "Kayıt sayfası:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Kayıt sayfası kaydedildi: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "Site izin verilene kadar adres gizli — bir kez Doldur'a basın, sonra sayfayı işaretleyin."
+  },
+  "flagSecretField": {
+    "message": "Parola alanı asla doldurulmaz"
+  },
+  "flagRefused": {
+    "message": "engel"
   }
 }

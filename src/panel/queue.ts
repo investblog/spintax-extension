@@ -215,13 +215,38 @@ export async function resolveMapping(
     const missing = fields.filter((f) => !f.field).length;
     if (missing === 0) {
       const mappedSlots = new Set(fields.map((f) => f.slot));
-      return {
-        recipe: exact,
-        fields,
-        unmapped: slots.filter((s) => !mappedSlots.has(s)),
-        stale: false,
-        source: 'recipe',
-      };
+      const absent = slots.filter((s) => !mappedSlots.has(s));
+      // A recipe saved by another workflow on this form (a sign-up fill maps the profile only,
+      // ADR 0014) must not hide the slots this fill asks for: heuristics look for those among the
+      // fields the recipe leaves free, and a hit extends the recipe (Codex review of #6).
+      const used = new Set(fields.map((f) => f.field?.fieldId));
+      const extra =
+        absent.length > 0
+          ? mapSlots(
+              scan.fields.filter((f) => !used.has(f.fieldId)),
+              absent,
+              specs,
+            )
+          : null;
+      if (extra && extra.mapped.length > 0) {
+        const extraFields = toRecipeFields(extra.mapped);
+        return {
+          recipe: exact,
+          fields: [
+            ...fields,
+            ...extra.mapped.map((m, i) => ({
+              slot: m.slot,
+              field: m.field,
+              recipeField: extraFields[i] as RecipeField,
+              score: m.confidence,
+            })),
+          ],
+          unmapped: extra.unmapped,
+          stale: false,
+          source: 'heuristic',
+        };
+      }
+      return { recipe: exact, fields, unmapped: absent, stale: false, source: 'recipe' };
     }
   }
   const previous = recipes[0] ?? null;

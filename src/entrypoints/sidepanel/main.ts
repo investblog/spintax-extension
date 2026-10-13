@@ -27,6 +27,14 @@ import {
   type TabInfo,
   withManualField,
 } from '@/panel/queue';
+import {
+  type AccountState,
+  accountDomain,
+  accountSettled,
+  getAccount,
+  type SiteAccount,
+  saveAccount,
+} from '@/shared/accounts';
 import { PUBLISHER_URL, SPINTAX_URL, svg301Logo } from '@/shared/brand';
 import { append, byId, clear, h } from '@/shared/dom';
 import { ENGINE_VERSION, pickProfile, type RowRender } from '@/shared/engine';
@@ -78,6 +86,7 @@ const FLAG_LABEL: Record<FillOutcome, MessageKey> = {
   partial: 'flagPartial',
   skippedNonEmpty: 'flagKept',
   clipboard: 'flagClipboard',
+  refused: 'flagRefused',
 };
 
 /** The outcome a row was marked with, for the toast. */
@@ -124,6 +133,16 @@ interface State {
   fillError: 'none' | 'no-access' | 'old-helper' | 'other';
   /** Where a site target opens (Settings → "Where a target opens"). */
   openTargetIn: OpenTargetIn;
+  /** Submissions campaigns: the site account note of the current row (ADR 0014). */
+  account: SiteAccount | null;
+  /** Site + profile the note belongs to; null when the row has no site (or not a submissions campaign). */
+  accountKey: { domain: string; profileId: string } | null;
+  /** Which panel tab is open: sign-up first, submission once the account is settled. */
+  panelTab: 'signup' | 'submit';
+  /** The user picked the tab by hand: a same-row reload keeps it. */
+  manualTab: boolean;
+  /** Row the account fields above were read for. */
+  accountRowId: string | null;
 }
 
 const state: State = {
@@ -150,6 +169,11 @@ const state: State = {
   pendingPaste: false,
   fillError: 'none',
   openTargetIn: OPEN_TARGET_DEFAULT,
+  account: null,
+  accountKey: null,
+  panelTab: 'submit',
+  manualTab: false,
+  accountRowId: null,
 };
 let opToken = 0;
 
@@ -230,6 +254,7 @@ async function reload(): Promise<void> {
   const rows = campaign ? await loadRows(campaign.id) : [];
   const cursor = campaign ? await loadCursor(campaign.id) : null;
   if (seq !== reloadSeq) return;
+  const before = { campaignId: state.campaign?.id, rowId: row()?.rowId, target: row()?.target };
   state.campaign = campaign;
   state.mail = mail;
   state.openTargetIn = openTargetIn;
@@ -242,23 +267,29 @@ async function reload(): Promise<void> {
   performance.mark('panel:rows');
   const i = cursor ? rows.findIndex((r) => r.rowId === cursor) : -1;
   state.index = i >= 0 ? i : 0;
-  await refreshRow();
+  // Same campaign, same row: something changed in options (a template, a profile). Re-render, but
+  // keep what the user just did here — the fill note and mapping must not vanish under them.
+  await refreshRow({
+    keep: before.campaignId === campaign.id && row()?.rowId === before.rowId && row()?.target === before.target,
+  });
 }
 
-async function refreshRow(): Promise<void> {
+async function refreshRow(opts: { keep?: boolean } = {}): Promise<void> {
   const r = row();
   state.render = null;
-  state.scan = null;
-  state.mapping = null;
-  state.fillNote = '';
-  state.report = [];
-  state.draft = null;
-  state.staleAck = false;
-  state.mailOrigin = null;
-  state.handedOff = false;
-  state.pendingPaste = false;
-  state.fillError = 'none';
-  state.toast = '';
+  if (!opts.keep) {
+    state.scan = null;
+    state.mapping = null;
+    state.fillNote = '';
+    state.report = [];
+    state.draft = null;
+    state.staleAck = false;
+    state.mailOrigin = null;
+    state.handedOff = false;
+    state.pendingPaste = false;
+    state.fillError = 'none';
+    state.toast = '';
+  }
   const campaign = state.campaign;
   // A newer reload or a row change while we awaited owns the state now: write nothing, save no
   // cursor (Codex review of #4 — row A must not become campaign B's cursor).
@@ -278,7 +309,25 @@ async function refreshRow(): Promise<void> {
       const last = [...events].reverse().find((e) => e.event === 'filled');
       state.pendingPaste = !!last?.fillReport?.some((x) => x.slot === 'output.body' && x.outcome === 'clipboard');
     }
+    // Submissions: sign-up comes first on most sites (ADR 0014). The tab follows the account note.
+    const domain = campaign.scenario === 'submit' ? accountDomain(r) : null;
+    const key = domain ? { domain, profileId: pickProfile(campaign, r)?.id ?? '-' } : null;
+    const account = key ? await getAccount(key.domain, key.profileId) : null;
+    if (stale()) return;
+    // The tab follows the note unless the user picked one by hand for this very site and profile.
+    const sameKey = sameAccountKey(state.accountKey, key);
+    state.accountKey = key;
+    state.account = account;
+    // A hand-picked tab survives a re-read of the same row (a saved edit, an options change).
+    if (!sameKey || state.accountRowId !== r.rowId) state.manualTab = false;
+    state.accountRowId = r.rowId;
+    if (!state.manualTab) switchTab(key && !accountSettled(account) ? 'signup' : 'submit');
     await saveCursor(campaign.id, r.rowId);
+  } else {
+    state.accountKey = null;
+    state.account = null;
+    switchTab('submit');
+    state.manualTab = false;
   }
   performance.mark('panel:render');
   await refreshTab();
@@ -385,6 +434,81 @@ async function openTarget(newTab = false): Promise<void> {
   draw();
 }
 
+// ── Site account (ADR 0014) ────────────────────────────────────────────────────
+
+/** The sign-up page when the user marked one, else the row's target. */
+function signupUrl(r: Row): string | null {
+  return state.account?.signupUrl ?? targetUrl(r);
+}
+
+async function openSignup(newTab = false): Promise<void> {
+  const r = row();
+  const url = r ? signupUrl(r) : null;
+  if (!url) return;
+  const inNewTab = newTab || state.openTargetIn === 'new';
+  const tab =
+    state.tab && !inNewTab ? await browser.tabs.update(state.tab.id, { url }) : await browser.tabs.create({ url });
+  state.tab = tab?.id && tab.url ? { id: tab.id, url: tab.url, origin: originOf(tab.url) } : state.tab;
+  state.toast = t('panelOpened', url);
+  draw();
+}
+
+/**
+ * Every change of tab goes through here: the mapping, its report, the fill note and an acknowledged
+ * stale recipe belong to one tab's fill and must not carry over to the other (Codex review of #6).
+ */
+function switchTab(next: State['panelTab']): void {
+  if (state.panelTab === next) return;
+  state.panelTab = next;
+  state.staleAck = false;
+  state.fillNote = '';
+  state.mapping = null;
+  state.scan = null;
+  state.report = [];
+}
+
+const sameAccountKey = (a: State['accountKey'], b: State['accountKey']): boolean =>
+  !!a && !!b && a.domain === b.domain && a.profileId === b.profileId;
+
+async function setAccount(patch: Partial<Pick<SiteAccount, 'state' | 'signupUrl'>>): Promise<void> {
+  const key = state.accountKey;
+  if (!key) return;
+  const account = await saveAccount(key.domain, key.profileId, patch);
+  // The row may have moved to another site or profile meanwhile: this note is not its note.
+  if (!sameAccountKey(state.accountKey, key)) return;
+  state.account = account;
+  if (patch.state) {
+    state.fillNote = '';
+    state.toast = t(ACCOUNT_LABEL[account.state]);
+    // Done with sign-up: the submission is the next step.
+    if (accountSettled(account)) {
+      switchTab('submit');
+      state.manualTab = false;
+    }
+  }
+  draw();
+}
+
+/** "This is the sign-up page": remember the open tab's address for this site. */
+async function markSignupPage(): Promise<void> {
+  const url = state.tab?.url;
+  if (!url || !/^https?:/.test(url)) {
+    state.toast = t('panelSignupPageUnknown');
+    draw();
+    return;
+  }
+  await setAccount({ signupUrl: url });
+  state.toast = t('panelSignupPageSaved', new URL(url).hostname + pathOf(url));
+  draw();
+}
+
+const ACCOUNT_LABEL: Record<AccountState, MessageKey> = {
+  none: 'panelAccountNone',
+  awaiting_email: 'panelAccountAwaiting',
+  ready: 'panelAccountReady',
+  not_needed: 'panelAccountNotNeeded',
+};
+
 /** An unsaved edit in the textarea is what the user sees — every action uses it (review #5). */
 async function flushDraft(): Promise<void> {
   if (state.draft === null) return;
@@ -489,9 +613,18 @@ async function allowAndFill(): Promise<void> {
   await fill();
 }
 
+/** A sign-up form gets the sender profile only — never the message, never a password (ADR 0014). */
+const SIGNUP_SLOTS: Slot[] = ['profile.name', 'profile.email', 'profile.site', 'profile.phone'];
+
 async function fill(): Promise<void> {
   if (state.busy) return;
-  await flushDraft();
+  const signup = state.panelTab === 'signup';
+  // An unsaved message edit belongs to the submission; a sign-up fill must not write it into the
+  // row and the journal (Codex review of #6).
+  if (!signup) await flushDraft();
+  // Saving the draft re-reads the row; if that moved the panel to the other tab, this fill is not
+  // the one the user asked for any more.
+  if (state.panelTab !== (signup ? 'signup' : 'submit')) return;
   // Snapshot everything the operation needs: a tab or row change mid-way must not leak text
   // into the wrong page (review 2026-08-23 #1).
   const r = row();
@@ -499,17 +632,19 @@ async function fill(): Promise<void> {
   const render = state.render;
   const tab = state.tab;
   const step = state.step;
-  if (!r || !campaign || !render || !tab) return;
+  const mode = state.panelTab;
+  if (!r || !campaign || !tab || (!render && !signup)) return;
   const token = ++opToken;
   state.busy = token;
   state.fillError = 'none';
-  const stillValid = (): boolean => opToken === token && row()?.rowId === r.rowId && state.tab?.id === tab.id;
+  const stillValid = (): boolean =>
+    opToken === token && row()?.rowId === r.rowId && state.tab?.id === tab.id && state.panelTab === mode;
   try {
     state.fillNote = t('panelScanning');
     draw();
     const scan = await scanTab(tab.id);
     if (!stillValid()) return;
-    const { slots, specs } = slotsFor(campaign);
+    const { slots, specs } = signup ? { slots: SIGNUP_SLOTS, specs: [] } : slotsFor(campaign);
     const mapping = await resolveMapping(scan, slots, specs);
     if (!stillValid()) return;
     state.scan = scan;
@@ -524,7 +659,15 @@ async function fill(): Promise<void> {
     const targets = mapping.fields.filter((f) => f.field).map((f) => f.field?.fieldId ?? '');
     if (targets.length > 0) await highlightFields(tab.id, targets);
     const profile = pickProfile(campaign, r);
-    const values = slotValues(campaign, r, render, profile);
+    const values: Partial<Record<Slot, string>> =
+      signup || !render
+        ? {
+            'profile.name': profile?.values.name ?? '',
+            'profile.email': profile?.values.email ?? '',
+            'profile.site': profile?.values.site ?? '',
+            'profile.phone': profile?.values.phone ?? '',
+          }
+        : slotValues(campaign, r, render, profile);
     const fileColumns = new Map(campaign.columns.filter((c) => c.type === 'file').map((c) => [c.id, c.header]));
     const { report, clipboardSlots, warnings } = await fillTab(tab.id, mapping, values, fileColumns, scan.token);
     if (!stillValid()) return;
@@ -533,6 +676,23 @@ async function fill(): Promise<void> {
       (x) => x.outcome === 'exact' || x.outcome === 'equivalent' || x.outcome === 'changedBySite',
     ).length;
     const skipped = report.filter((x) => x.outcome === 'skippedNonEmpty').length;
+    if (signup || !render) {
+      // The row's status is about the message; a sign-up fill leaves it alone and says what is
+      // still the human's: password, captcha, checkboxes, the button.
+      if (mapping.fields.some((f) => f.field) && (mapping.source === 'heuristic' || mapping.stale))
+        mapping.recipe = await saveMapping(
+          scan,
+          mapping,
+          mapping.fields.some((f) => f.recipeField.manual) ? 'manual' : 'heuristic',
+        );
+      const parts: string[] = [];
+      if (landed > 0) parts.push(tn(landed, 'panelFilled'));
+      else parts.push(t('panelNothingFilled'));
+      if (skipped > 0) parts.push(t('panelSkipped', String(skipped)));
+      parts.push(...warnings.map((w) => `⚠ ${w}`));
+      state.fillNote = `${parts.join('; ')}. ${t('panelSignupLeftToYou')}`;
+      return;
+    }
     let copied = false;
     if (clipboardSlots.includes('output.body')) copied = await copyText(render.body.text);
     if (mapping.fields.some((f) => f.field) && (mapping.source === 'heuristic' || mapping.stale)) {
@@ -575,15 +735,23 @@ async function fill(): Promise<void> {
       state.fillNote = t('panelFillFailed', (err as Error).message);
     }
   } finally {
-    if (opToken === token) state.busy = 0;
+    if (opToken === token) {
+      state.busy = 0;
+      // A fill abandoned half-way (the row or the tab changed under it) must not leave the
+      // "Scanning…" note and a disabled button on screen.
+      if (state.fillNote === t('panelScanning')) state.fillNote = '';
+    }
+    // In `finally`: the early returns above used to skip the redraw (e2e found a stuck "Filling…").
+    draw();
   }
-  draw();
 }
 
 async function outcome(
   kind: 'sent' | 'deferred' | 'failed' | 'excluded' | 'replied' | 'declined',
   extra?: { reason?: FailureReason; until?: string },
 ): Promise<void> {
+  // "Sent" (button, S, the global command) is about the message: nothing was sent from Sign-up.
+  if (kind === 'sent' && state.panelTab === 'signup') return;
   await flushDraft();
   const r = row();
   if (!r || !state.render) return;
@@ -1173,6 +1341,64 @@ function draw(): void {
         ),
       );
   }
+  // Sign-up tab (ADR 0014): the profile goes into the site's registration form; the human sets the
+  // password, solves the captcha, ticks the boxes and presses the button.
+  const signupTab = !!state.accountKey && state.panelTab === 'signup';
+  if (signupTab) {
+    const sUrl = signupUrl(r);
+    const onWeb = !!state.tab && (state.tab.url === undefined || /^https?:/.test(state.tab.url));
+    if (!onWeb && sUrl)
+      primary = h(
+        'button',
+        {
+          type: 'button',
+          class: 'btn btn--primary panel__primary',
+          title: sUrl,
+          onclick: (e: Event) => void openSignup(wantsNewTab(e)),
+        },
+        svgIcon('open-in-new'),
+        ' ',
+        t('panelOpenHost', new URL(sUrl).hostname),
+      );
+    else if (!state.permitted)
+      primary = h(
+        'button',
+        { type: 'button', class: 'btn btn--primary panel__primary', onclick: () => void allowAndFill() },
+        svgIcon('auto-fix'),
+        ' ',
+        t('panelSignupAllowFill', tabHost),
+      );
+    else
+      primary = h(
+        'button',
+        {
+          type: 'button',
+          class: 'btn btn--primary panel__primary',
+          disabled: state.busy !== 0,
+          onclick: () => void fill(),
+        },
+        svgIcon('auto-fix'),
+        ' ',
+        state.busy !== 0 ? t('panelFilling') : t('panelSignupFill', tabHost),
+      );
+    secondary.length = 0;
+    if (sUrl && onWeb)
+      secondary.push(
+        h(
+          'button',
+          {
+            type: 'button',
+            class: 'btn btn--ghost btn--sm',
+            title: sUrl,
+            onclick: (e: Event) => void openSignup(wantsNewTab(e)),
+          },
+          svgIcon('open-in-new'),
+          ' ',
+          t('panelSignupOpenPage'),
+        ),
+      );
+  }
+
   // Everything that is not the one obvious next step lives in the sheet behind the grip: two
   // nested <details> used to reflow the footer into a two-row cluster (UX review U11).
   const act = (label: string, run: () => void, icon?: Parameters<typeof svgIcon>[0]): HTMLElement =>
@@ -1273,7 +1499,99 @@ function draw(): void {
     );
   }
 
-  append(app, [header, card, message, recipe, notes, actionBar(primary, secondary, sheet)]);
+  append(app, [
+    header,
+    card,
+    state.accountKey ? panelTabs() : null,
+    signupTab ? signupSection(c, r) : message,
+    recipe,
+    notes,
+    actionBar(primary, secondary, sheet),
+  ]);
+}
+
+/**
+ * Sign-up / Submission switch over the row (submissions campaigns, ADR 0014). Two toggle buttons
+ * in a group (aria-pressed), not an ARIA tabs widget: there is no tabpanel to own.
+ */
+function panelTabs(): HTMLElement {
+  const tab = (id: 'signup' | 'submit', label: string, badge?: string): HTMLElement =>
+    h(
+      'button',
+      {
+        type: 'button',
+        class: `panel__tab${state.panelTab === id ? ' is-active' : ''}`,
+        'aria-pressed': String(state.panelTab === id),
+        onclick: () => {
+          if (state.panelTab === id) return;
+          switchTab(id);
+          state.manualTab = true;
+          draw();
+        },
+      },
+      label,
+      badge ? h('span', { class: 'panel__tab-badge' }, badge) : null,
+    );
+  const settled = accountSettled(state.account);
+  return h(
+    'div',
+    { class: 'panel__tabs', role: 'group', 'aria-label': t('panelTabsAria') },
+    tab('signup', t('panelTabSignup'), settled ? '✓' : undefined),
+    tab('submit', t('panelTabSubmit')),
+  );
+}
+
+function signupSection(c: Campaign, r: Row): HTMLElement {
+  const profile = pickProfile(c, r);
+  const state_ = state.account?.state ?? 'none';
+  const values = SIGNUP_SLOTS.map(
+    (s) => [s, profile?.values[s.slice(8) as 'name' | 'email' | 'site' | 'phone'] ?? ''] as const,
+  ).filter(([, v]) => v.trim() !== '');
+  const stateBtn = (label: string, next: AccountState, primary = false): HTMLElement =>
+    h(
+      'button',
+      {
+        type: 'button',
+        class: `btn ${primary ? 'btn--primary' : 'btn--ghost'} btn--sm`,
+        'aria-pressed': String(state_ === next),
+        onclick: () => void setAccount({ state: next }),
+      },
+      label,
+    );
+  return h(
+    'section',
+    { class: 'panel__message panel__signup', 'aria-label': t('panelTabSignup') },
+    h('p', { class: 'panel__signup-state' }, h('strong', {}, t(ACCOUNT_LABEL[state_]))),
+    h('p', { class: 'muted' }, t('panelSignupIntro')),
+    values.length > 0
+      ? h(
+          'ul',
+          { class: 'panel__signup-values' },
+          ...values.map(([s, v]) => h('li', {}, h('span', { class: 'muted' }, `${slotLabel(s)}: `), v)),
+        )
+      : h(
+          'button',
+          { type: 'button', class: 'panel panel--warning panel--compact', onclick: () => void openOptions('profiles') },
+          t('panelSignupNoProfile'),
+        ),
+    h(
+      'div',
+      { class: 'cluster' },
+      state_ === 'none' ? stateBtn(t('panelSignupRegistered'), 'awaiting_email') : null,
+      stateBtn(t('panelSignupConfirmed'), 'ready', state_ === 'awaiting_email'),
+      stateBtn(t('panelSignupNotNeeded'), 'not_needed'),
+    ),
+    h(
+      'p',
+      { class: 'muted panel__signup-page' },
+      state.account?.signupUrl ? `${t('panelSignupPageLabel')} ${pathOf(state.account.signupUrl)} · ` : '',
+      h(
+        'button',
+        { type: 'button', class: 'btn-link', onclick: () => void markSignupPage() },
+        t('panelSignupThisPage'),
+      ),
+    ),
+  );
 }
 
 const SHEET_KEY = 'spintax_panel_sheet';

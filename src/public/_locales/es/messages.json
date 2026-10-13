@@ -4736,5 +4736,86 @@
   },
   "wizAddTitle": {
     "message": "Añadir título"
+  },
+  "panelTabsAria": {
+    "message": "Registro o publicación"
+  },
+  "panelTabSignup": {
+    "message": "Registro"
+  },
+  "panelTabSubmit": {
+    "message": "Publicación"
+  },
+  "panelAccountNone": {
+    "message": "Aún sin registro en este sitio"
+  },
+  "panelAccountAwaiting": {
+    "message": "Registrado: falta el correo de confirmación"
+  },
+  "panelAccountReady": {
+    "message": "Cuenta lista: a la publicación"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Este sitio no necesita registro"
+  },
+  "panelSignupIntro": {
+    "message": "Rellenar pone tu perfil en el formulario de registro del sitio. La contraseña, el captcha, las casillas y el botón siguen siendo tuyos."
+  },
+  "panelSignupNoProfile": {
+    "message": "Primero añade un perfil de remitente: su nombre y correo van al formulario."
+  },
+  "panelSignupFill": {
+    "message": "Rellenar registro en $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Permitir y rellenar registro en $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Abrir la página de registro"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Ahora la contraseña, el captcha y las casillas; después, el botón del sitio."
+  },
+  "panelSignupRegistered": {
+    "message": "Registrado: espero el correo"
+  },
+  "panelSignupConfirmed": {
+    "message": "Correo confirmado"
+  },
+  "panelSignupNotNeeded": {
+    "message": "No hace falta registro"
+  },
+  "panelSignupThisPage": {
+    "message": "Esta es la página de registro"
+  },
+  "panelSignupPageLabel": {
+    "message": "Página de registro:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Página de registro guardada: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "La dirección se oculta hasta permitir el sitio: pulsa Rellenar una vez y luego marca la página."
+  },
+  "flagSecretField": {
+    "message": "Un campo de contraseña nunca se rellena"
+  },
+  "flagRefused": {
+    "message": "vetado"
   }
 }

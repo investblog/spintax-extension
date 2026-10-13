@@ -4736,5 +4736,86 @@
   },
   "wizAddTitle": {
     "message": "Добавить заголовок"
+  },
+  "panelTabsAria": {
+    "message": "Регистрация или сабмит"
+  },
+  "panelTabSignup": {
+    "message": "Регистрация"
+  },
+  "panelTabSubmit": {
+    "message": "Сабмит"
+  },
+  "panelAccountNone": {
+    "message": "На этом сайте ещё не зарегистрированы"
+  },
+  "panelAccountAwaiting": {
+    "message": "Зарегистрированы — ждём письмо с подтверждением"
+  },
+  "panelAccountReady": {
+    "message": "Аккаунт готов — переходим к сабмиту"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Регистрация на этом сайте не нужна"
+  },
+  "panelSignupIntro": {
+    "message": "«Заполнить» подставит ваш профиль в форму регистрации сайта. Пароль, капча, галочки и кнопка — за вами."
+  },
+  "panelSignupNoProfile": {
+    "message": "Сначала добавьте профиль отправителя: его имя и почта пойдут в форму."
+  },
+  "panelSignupFill": {
+    "message": "Заполнить регистрацию на $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Разрешить и заполнить регистрацию на $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Открыть страницу регистрации"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Теперь пароль, капча и галочки — и кнопка на сайте."
+  },
+  "panelSignupRegistered": {
+    "message": "Зарегистрировался — жду письмо"
+  },
+  "panelSignupConfirmed": {
+    "message": "Почта подтверждена"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Регистрация не нужна"
+  },
+  "panelSignupThisPage": {
+    "message": "Это страница регистрации"
+  },
+  "panelSignupPageLabel": {
+    "message": "Страница регистрации:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Страница регистрации запомнена: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "Адрес страницы скрыт, пока сайт не разрешён: нажмите «Заполнить» один раз, потом отметьте страницу."
+  },
+  "flagSecretField": {
+    "message": "Поле пароля никогда не заполняется"
+  },
+  "flagRefused": {
+    "message": "запрет"
   }
 }
