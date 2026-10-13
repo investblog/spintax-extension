@@ -4715,5 +4715,26 @@
   },
   "drwCampCreate": {
     "message": "Oluştur ve aç"
+  },
+  "wizSubjectLabel": {
+    "message": "Konu (isteğe bağlı)"
+  },
+  "wizTitleLabel": {
+    "message": "Başlık (isteğe bağlı)"
+  },
+  "wizBodyLabel": {
+    "message": "Mesaj"
+  },
+  "wizTextLabel": {
+    "message": "Metin"
+  },
+  "wizSubjectHint": {
+    "message": "Tek satır. Spintax burada da çalışır."
+  },
+  "wizAddSubject": {
+    "message": "Konu ekle"
+  },
+  "wizAddTitle": {
+    "message": "Başlık ekle"
   }
 }

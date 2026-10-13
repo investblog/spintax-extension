@@ -463,6 +463,20 @@ try {
   check(true, 'campaigns drawer: a new campaign is created and opened');
   await panel.locator('.panel__campaign-link', { hasText: 'E2E submissions' }).waitFor({ timeout: 10_000 });
   check(true, 'panel follows the campaign switch without a reload');
+  // Wizard step 3 (#5): a submissions campaign gets a labelled Title and Text; both are saved.
+  await options.getByPlaceholder(/Paste rows/).fill('url;site\nhttp://127.0.0.1:8766/contact-cf7.html;cf7.test\n');
+  await options.getByRole('button', { name: /Continue to roles/ }).click();
+  await options.getByRole('button', { name: /Apply import/ }).click();
+  const titleBox = options.getByRole('textbox', { name: 'Title (optional)' });
+  await titleBox.waitFor({ timeout: 30_000 });
+  check(await options.getByRole('textbox', { name: 'Text' }).isVisible(), 'wizard step 3: Title and Text are labelled');
+  await titleBox.fill('{Bad');
+  await options.getByRole('textbox', { name: 'Text' }).fill('Hello %site%');
+  check(await options.getByRole('button', { name: 'Save template' }).isDisabled(), 'wizard step 3: a broken title blocks Save');
+  await titleBox.fill('Notes for %site%');
+  await options.getByRole('button', { name: 'Save template' }).click();
+  await panel.getByText('Notes for cf7.test').first().waitFor({ timeout: 10_000 });
+  check(true, 'wizard step 3: the title is stored as the subject template and the panel renders it');
   await options.locator('.options__campaign').click();
   await options.locator('.drawer .dropdown__trigger').first().waitFor();
   check(

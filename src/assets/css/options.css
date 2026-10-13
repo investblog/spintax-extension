@@ -854,6 +854,14 @@ body.sidebar-collapsed .sidebar__brand {
   overflow: auto;
 }
 
+/* A one-line template (subject / title on wizard step 3, #5). */
+.editor--line,
+.editor--line .editor__overlay,
+.editor--line .editor__textarea,
+.editor--line .template__source {
+  min-height: 0;
+}
+
 .editor__textarea::selection {
   background: color-mix(in srgb, var(--primary) 45%, transparent);
 }

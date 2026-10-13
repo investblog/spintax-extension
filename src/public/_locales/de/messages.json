@@ -4715,5 +4715,26 @@
   },
   "drwCampCreate": {
     "message": "Erstellen und öffnen"
+  },
+  "wizSubjectLabel": {
+    "message": "Betreff (optional)"
+  },
+  "wizTitleLabel": {
+    "message": "Titel (optional)"
+  },
+  "wizBodyLabel": {
+    "message": "Nachricht"
+  },
+  "wizTextLabel": {
+    "message": "Text"
+  },
+  "wizSubjectHint": {
+    "message": "Eine Zeile. Spintax funktioniert auch hier."
+  },
+  "wizAddSubject": {
+    "message": "Betreff hinzufügen"
+  },
+  "wizAddTitle": {
+    "message": "Titel hinzufügen"
   }
 }

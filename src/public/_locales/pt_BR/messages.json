@@ -4715,5 +4715,26 @@
   },
   "drwCampCreate": {
     "message": "Criar e abrir"
+  },
+  "wizSubjectLabel": {
+    "message": "Assunto (opcional)"
+  },
+  "wizTitleLabel": {
+    "message": "Título (opcional)"
+  },
+  "wizBodyLabel": {
+    "message": "Mensagem"
+  },
+  "wizTextLabel": {
+    "message": "Texto"
+  },
+  "wizSubjectHint": {
+    "message": "Uma linha. Spintax funciona aqui também."
+  },
+  "wizAddSubject": {
+    "message": "Adicionar assunto"
+  },
+  "wizAddTitle": {
+    "message": "Adicionar título"
   }
 }

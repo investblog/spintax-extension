@@ -4716,5 +4716,26 @@
   "wizSeeList": {
     "message": "See the list",
     "description": "Link from wizard step 5 to the List screen."
+  },
+  "wizSubjectLabel": {
+    "message": "Subject (optional)"
+  },
+  "wizTitleLabel": {
+    "message": "Title (optional)"
+  },
+  "wizBodyLabel": {
+    "message": "Message"
+  },
+  "wizTextLabel": {
+    "message": "Text"
+  },
+  "wizSubjectHint": {
+    "message": "One line. Spintax works here too."
+  },
+  "wizAddSubject": {
+    "message": "Add a subject"
+  },
+  "wizAddTitle": {
+    "message": "Add a title"
   }
 }

@@ -4715,5 +4715,26 @@
   },
   "drwCampCreate": {
     "message": "Создать и открыть"
+  },
+  "wizSubjectLabel": {
+    "message": "Тема (необязательно)"
+  },
+  "wizTitleLabel": {
+    "message": "Заголовок (необязательно)"
+  },
+  "wizBodyLabel": {
+    "message": "Сообщение"
+  },
+  "wizTextLabel": {
+    "message": "Текст"
+  },
+  "wizSubjectHint": {
+    "message": "Одна строка. Spintax работает и здесь."
+  },
+  "wizAddSubject": {
+    "message": "Добавить тему"
+  },
+  "wizAddTitle": {
+    "message": "Добавить заголовок"
   }
 }
