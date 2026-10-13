@@ -203,6 +203,98 @@ describe('renderWithHighlights', () => {
     const capFound = searchHighlights(capText, { name: 'anna' }, new Set(['name']));
     expect(capFound.map((h) => [h.start, capText.slice(h.start, h.end)])).toEqual([[0, 'Anna']]);
   });
+  it('a value from the list reaches the text as written — data, not spintax (#2)', () => {
+    const ctx = {
+      company: 'Acme [Beta]',
+      offer: 'save {50|60}% today',
+      link: 'see [docs](https://a.io)',
+      v: '%x% #set',
+    };
+    for (const seed of ['k:1', 'k:2', 'k:3']) {
+      const r = renderWithHighlights('{Hi|Hello} %company% team, %offer%. %link%. %v%', ctx, { seed });
+      expect(r.text).toMatch(
+        /^(Hi|Hello) Acme \[Beta\] team, save \{50\|60\}% today\. See \[docs\]\(https:\/\/a\.io\)\. %x% #set$/,
+      );
+      expect(r.warnings).toEqual([]); // braces from data are not "leftover markup"
+      expect(r.highlights.map((h) => r.text.slice(h.start, h.end))).toEqual([
+        'Acme [Beta]',
+        'save {50|60}% today',
+        'See [docs](https://a.io)', // sentence start: capitalized like any word
+        '%x% #set',
+      ]);
+    }
+    // inside an enumeration or a permutation a pipe in the value does not split it (Codex review of #2)
+    for (const seed of ['k:1', 'k:2', 'k:3', 'k:4']) {
+      const e = renderWithHighlights('{%v%|%v%}', { v: 'a|b' }, { seed });
+      expect(e.text).toBe('A|b');
+      const p = renderWithHighlights('[%v%|%v%]', { v: 'a|b' }, { seed });
+      expect(p.text).toMatch(/^A\|b a\|b$/);
+    }
+    // `?` and `:` in a value are text, not a conditional or a plural re-read inside braces (the
+    // typographer may still space a sentence `?`, as it would in the template's own words)
+    for (const seed of ['k:1', 'k:2', 'k:3']) {
+      const cond = renderWithHighlights('{%v%|%v%}', { v: '?c?then' }, { seed }).text;
+      expect(cond.replace(/\s/g, '').toLowerCase()).toBe('?c?then');
+      expect(renderWithHighlights('{%v%|%v%}', { v: 'plural 1:one' }, { seed }).text).toBe('Plural 1:one');
+    }
+    const bang = renderWithHighlights('{%v%|%v%}', { v: '!c?a=b /#x#/ "q"' }, { seed: 'k:1' }).text;
+    expect(bang.replace(/\s/g, '').toLowerCase()).toBe('!c?a=b/#x#/"q"');
+    // a macro body is re-read where the macro is used: its variables are shielded too
+    for (const seed of ['k:1', 'k:2', 'k:3', 'k:4'])
+      expect(renderWithHighlights('#def %d% = %v%\n{%d%|%d%}', { v: 'a|b' }, { seed }).text).toBe('A|b');
+    // in plain text a value is typeset exactly like the same words written in the template: quotes,
+    // tags and sentence ends stay visible to the typographer
+    for (const v of ['he said "wow!"', '<p>hello.</p>', '?really? yes', 'plural:next', 'a = b']) {
+      const asValue = renderWithHighlights('%v% next', { v }, { seed: 'k:1' }).text;
+      const asText = renderWithHighlights(`${v} next`, {}, { seed: 'k:1' }).text;
+      expect(asValue).toBe(asText);
+    }
+    // sentence punctuation in a value still ends a sentence for the typographer
+    expect(renderWithHighlights('%v% next', { v: 'Wow!' }, { seed: 'k:1' }).text).toBe('Wow! Next');
+    // ...and a URL keeps every character, in and around a sentence
+    const url = 'https://spintax.net/play/?a=1&b=two:three';
+    expect(renderWithHighlights('see %u% now. next one', { u: url }, { seed: 'k:1' }).text).toBe(
+      `See ${url} now. Next one`,
+    );
+    // angle brackets in a value are text, not a permutation config or separator
+    for (const seed of ['k:1', 'k:2', 'k:3', 'k:4']) {
+      const cfg = renderWithHighlights('[%v%|%w%]', { v: '<maxsize=1>bad', w: 'x <sep=" + "> y' }, { seed });
+      expect(cfg.text).toMatch(/^(<maxsize=1>bad x <sep=" \+ "> y|X <sep=" \+ "> y <maxsize=1>bad)$/);
+    }
+    // the engine's own sentinels and our marker glyphs in a cell come out as they went in
+    const odd = '\uE000\uE005\uF8F2x';
+    const oddR = renderWithHighlights('%v%', { v: odd }, { seed: 'k:1' });
+    expect(oddR.text).toBe(odd);
+    expect(oddR.warnings).toEqual([]);
+    expect(renderWithHighlights('%v%', { v: '\uE005set' }, { seed: 'k:1' }).warnings).toEqual([]);
+    // a value glued to the template's own `#set` does not hide it
+    expect(
+      renderWithHighlights('oops #set%v%', { v: '{' }, { seed: 'k:1' }).warnings.some((w) => w.kind === 'leakedMarkup'),
+    ).toBe(true);
+    // ...and data never completes markup across a variable's edge
+    expect(renderWithHighlights('#%v% here', { v: 'set' }, { seed: 'k:1' }).warnings).toEqual([]);
+    expect(renderWithHighlights('%%v%% here', { v: 'q' }, { seed: 'k:1' }).warnings).toEqual([]);
+    // a value blank to the engine (U+0085) keeps the marked render on the same branch: no false leak
+    const nel = renderWithHighlights('{?c?%z%|ok}', { c: '\u0085', z: 'zz' }, { seed: 'k:1' });
+    expect(nel.text).toBe('Ok');
+    expect(nel.warnings).toEqual([]);
+    // the leak check knows where markup came from: a real `%q%` next to a value that reads `%q%` is
+    // still reported, and a value that is a lone `{` is not (Codex review of #2)
+    const plural = '{plural %n%: one|many} %x% %q%';
+    expect(
+      renderWithHighlights(plural, { n: '1', x: '%q%' }, { seed: 'k:1' }).warnings.some(
+        (w) => w.kind === 'leakedMarkup',
+      ),
+    ).toBe(true);
+    expect(renderWithHighlights('{plural %n%: one|many} %x%', { n: '1', x: '{' }, { seed: 'k:1' }).warnings).toEqual(
+      [],
+    );
+    const mvs = renderWithHighlights('{?c?%x%|%q%}', { c: '᠎', x: '%q%' }, { seed: 'k:1' });
+    expect(mvs.warnings.some((w) => w.kind === 'leakedMarkup')).toBe(true); // the blank branch prints the template's %q%
+    // the template's own mistake is still reported, data or not
+    const broken = renderWithHighlights('Hi %company% {', ctx, { seed: 'k:1' });
+    expect(broken.warnings.some((w) => w.kind === 'leakedMarkup')).toBe(true);
+  });
   it('is deterministic per seed and flags leaked markup', () => {
     const a = renderWithHighlights('{A|B|C|D} %x%', { x: '1' }, { seed: 'k:1' });
     const b = renderWithHighlights('{A|B|C|D} %x%', { x: '1' }, { seed: 'k:1' });

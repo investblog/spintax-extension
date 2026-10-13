@@ -3,7 +3,7 @@
  * Pure functions; no storage access. docs/data-model.md §9.
  */
 
-import { analyze, type Diagnostic, extract, render, validate } from '@spintax/core';
+import { analyze, type Diagnostic, extract, neutralize, render, validate } from '@spintax/core';
 import corePkg from '@spintax/core/package.json';
 import { buildSeed } from './keys';
 import type { Campaign, ColumnDef, Constraint, Profile, Row, Template } from './model';
@@ -169,6 +169,90 @@ const M_START = '\uF8F0';
 const M_SEP = '\uF8F1';
 const M_END = '\uF8F2';
 
+/**
+ * Characters neutralize() leaves alone but that must not act inside a value either: `|` (splits
+ * `{…|…}` and `[…|…]`), `< > " =` (a permutation's config and separator), `? : !` (a
+ * value re-read as `{?var?…}`, `{!var?…}` or `{plural n: …}` inside braces), and the engine's own
+ * sentinels and our markers, should a cell ever carry them. Each is swapped for a code point of its
+ * own before the render and back after — one UTF-16 unit for one, so positions hold (Codex review
+ * of #2). Letters, digits, `-` and white space cannot be shielded — a plural count and a
+ * conditional's blankness depend on them — so a variable the template itself puts INSIDE its own
+ * syntax (`{?%v%?…}`, `{%v%: …}`, `[<sep=%v%>…]`) can still be read as syntax: an engine matter,
+ * investblog/spintax-js#93.
+ */
+const SHIELDED = [...'|<>"=?:!', '\uE000', '\uE001', '\uE002', '\uE003', '\uE004', '\uE005', M_START, M_SEP, M_END];
+// 17 codes from U+F8C0, well below the markers at U+F8F0 — the two ranges must never meet.
+const SHIELD_BASE = 0xf8c0;
+const shieldOf = new Map(SHIELDED.map((c, i) => [c, String.fromCharCode(SHIELD_BASE + i)]));
+const unshieldOf = new Map(SHIELDED.map((c, i) => [String.fromCharCode(SHIELD_BASE + i), c]));
+const SHIELD_RE = /[|<>"=\uE000-\uE005\uF8F0-\uF8F2]/g;
+const UNSHIELD_RE = new RegExp(
+  `[\\u${SHIELD_BASE.toString(16)}-\\u${(SHIELD_BASE + SHIELDED.length - 1).toString(16)}]`,
+  'g',
+);
+const shieldChar = (c: string): string => shieldOf.get(c) ?? c;
+const SENTINELS_RE = /[\uE000-\uE005\uF8F0-\uF8F2]/g;
+
+/**
+ * Shielding depends on where the template puts the variable. In plain text only the sentinels and
+ * markers are swapped: `| < > " = ? ! :` are ordinary punctuation there, and hiding them would blind
+ * the typographer to a closing quote, an HTML tag or a value's `Wow!`. Inside the template's own
+ * braces or brackets a value can be re-read as syntax, so there `| < > " =` are shielded, plus a
+ * leading `?`/`!` (`{?var?…}` / `{!var?…}`) and `:` in a value that starts with `plural`. The choice
+ * is per variable, not per occurrence (a context holds one value): a variable used both inside a
+ * construct and in plain text gets the shield everywhere — safe, at worst plainer typography there.
+ */
+function shieldValue(v: string, inConstruct: boolean): string {
+  if (!inConstruct) return neutralize(v.replace(SENTINELS_RE, shieldChar));
+  let out = v.replace(SHIELD_RE, shieldChar);
+  if (/^[?!]/.test(out)) out = shieldChar(out.charAt(0)) + out.slice(1);
+  if (/^\s*plural\b/i.test(out)) out = out.replace(/:/g, shieldChar);
+  return neutralize(out);
+}
+
+/**
+ * Variables the template (or an include) references from inside a `{…}` or `[…]` of its own —
+ * the only places where a value can be re-read as syntax. Comments `/# … #/` are skipped.
+ */
+function varsInsideConstructs(source: string, includes: Record<string, string> = {}): Set<string> {
+  const inside = new Set<string>();
+  for (const text of [source, ...Object.values(includes)]) {
+    const plain = text.replace(/\/#[\s\S]*?#\//g, '');
+    // A `#set` / `#def` body is re-read wherever the macro is used — inside a construct, possibly —
+    // so every variable on such a line counts as inside (Codex review of #2).
+    for (const line of plain.split('\n'))
+      if (/^\s*#(set|def)\b/.test(line))
+        for (const m of line.matchAll(/%([a-z_]\w*)%/gi)) inside.add((m[1] ?? '').toLowerCase());
+    let depth = 0;
+    for (let i = 0; i < plain.length; i++) {
+      const c = plain[i];
+      if (c === '{' || c === '[') depth++;
+      else if ((c === '}' || c === ']') && depth > 0) depth--;
+      else if (c === '%' && depth > 0) {
+        const m = /^%([a-z_]\w*)%/i.exec(plain.slice(i));
+        if (m?.[1]) {
+          inside.add(m[1].toLowerCase());
+          i += m[0].length - 1;
+        }
+      }
+    }
+  }
+  return inside;
+}
+const unshield = (s: string): string => s.replace(UNSHIELD_RE, (c) => unshieldOf.get(c) ?? c);
+
+/** Blank the way the engine sees it for `{?var?…}`: Unicode white space plus the engine's extras. */
+const isBlank = (v: string): boolean => /^[\p{White_Space}\u180E\u200B\uFEFF]*$/u.test(v);
+
+/**
+ * The value reduced to what can steer a render: digits and number punctuation (for `{plural %n%: …}`)
+ * and white space or control characters (for `{?var?…}` blankness) stay, everything else — letters, markup, the engine's
+ * sentinels — becomes `~`, which is neither a word character nor syntax. So the render takes the
+ * branch the real one takes, and no markup can be completed by data across a variable's edge
+ * (`#%v%` with `set`, `%%v%%` with `q`). Whatever markup appears in it came from the template itself.
+ */
+const inert = (v: string): string => v.replace(/[^\p{N}\p{White_Space}\p{Cc}\u180E\u200B\uFEFF.,+-]/gu, '~');
+
 /** Render with private-use markers around variable values, then strip them to get positions. */
 export function renderWithHighlights(
   source: string,
@@ -177,31 +261,47 @@ export function renderWithHighlights(
 ): RenderedText {
   const includeResolver = opts.includes ? (ref: string): string | null => opts.includes?.[ref] ?? null : undefined;
   const warnings: RenderWarning[] = [];
+  // Values are data, never spintax (#2): a cell `save {50|60}%` or `Acme [Beta]` reaches the text as
+  // written. neutralize() hides the structural characters from the parser; the engine puts them back.
+  const safe: Record<string, string> = {};
+  const deep = varsInsideConstructs(source, opts.includes);
+  for (const [n, v] of Object.entries(context)) safe[n] = shieldValue(v, deep.has(n.toLowerCase()));
   let plain: string;
   try {
-    plain = render(source, { context, seed: opts.seed, locale: opts.locale, includeResolver });
+    plain = unshield(render(source, { context: safe, seed: opts.seed, locale: opts.locale, includeResolver }));
   } catch (err) {
     return { text: '', highlights: [], warnings: [{ kind: 'renderError', message: (err as Error).message }] };
   }
   const names = Object.keys(context);
   const marked: Record<string, string> = {};
   names.forEach((n, i) => {
-    const v = context[n] ?? '';
+    const v = safe[n] ?? '';
     // A blank value stays as is: wrapped in markers it would turn truthy for `{?var?…}` and send the
     // marked render down another branch (Codex review of #3).
-    marked[n] = v.trim() === '' ? v : `${M_START}${i}${M_SEP}${v}${M_END}`;
+    marked[n] = isBlank(context[n] ?? '') ? v : `${M_START}${i}${M_SEP}${v}${M_END}`;
   });
-  let highlights: Highlight[] = [];
+  let highlights: Highlight[] | null = null;
   try {
     const withMarkers = render(source, { context: marked, seed: opts.seed, locale: opts.locale, includeResolver });
     const out = stripMarkers(withMarkers, names);
-    highlights = markersHold(out, plain, context)
-      ? dedupeHighlights(out.highlights)
-      : searchHighlights(plain, context, referencedVariables(source, opts.includes));
+    out.text = unshield(out.text);
+    if (markersHold(out, plain, context)) highlights = dedupeHighlights(out.highlights);
   } catch {
-    highlights = searchHighlights(plain, context, referencedVariables(source, opts.includes));
+    // fall through to the search below
   }
-  const leaked = plain.match(/[{}]|%[a-z_]\w*%|#(set|def|include)\b/i);
+  highlights ??= searchHighlights(plain, context, referencedVariables(source, opts.includes));
+  // Leftover markup is looked for in the template's own words (#2): a third render with inert values,
+  // so braces that came from the data are never mistaken for a broken template, and a real leak is
+  // never hidden behind a value that happens to look the same.
+  let own = plain;
+  try {
+    const quiet: Record<string, string> = {};
+    for (const [n, v] of Object.entries(context)) quiet[n] = inert(v);
+    own = render(source, { context: quiet, seed: opts.seed, locale: opts.locale, includeResolver });
+  } catch {
+    // the plain render succeeded, so this one does too; keep the plain text if it ever does not
+  }
+  const leaked = own.match(/[{}]|%[a-z_]\w*%|#(set|def|include)\b/i);
   if (leaked) warnings.push({ kind: 'leakedMarkup', sample: leaked[0] });
   return { text: plain, highlights, warnings };
 }
