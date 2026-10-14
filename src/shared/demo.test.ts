@@ -4,9 +4,9 @@ vi.mock('wxt/browser', () => ({
   browser: { runtime: { getURL: (p: string) => `chrome-extension://demo-id${p}` } },
 }));
 
-import { accountDomain, getAccount, listAccounts } from './accounts';
+import { accountDomain, getAccount, listAccounts, saveAccount } from './accounts';
 import { DEMO_SUBMIT_KEY, demoCampaign, removeDemo, seedDemo, submitDemoCampaign } from './demo';
-import { findTemplate, listRows, setSetting } from './repo';
+import { deleteCampaign, findTemplate, listRows, setSetting } from './repo';
 
 describe('demo campaign', () => {
   it('seeds once, with five rows on distinct keys, a profile and both templates; removes cleanly', async () => {
@@ -45,11 +45,17 @@ describe('demo campaign', () => {
     expect(hub?.state).toBe('none');
     expect(hub?.signupUrl).toBe('chrome-extension://demo-id/demo/hub/join.html');
     // A demo seeded before this one existed gets it added, once.
+    await deleteCampaign(s?.id ?? '');
     await setSetting(DEMO_SUBMIT_KEY, null);
     await seedDemo();
-    expect((await submitDemoCampaign())?.id).not.toBe(s?.id);
+    const again = await submitDemoCampaign();
+    expect(again?.id).not.toBe(s?.id);
+    // Removing the demo takes its own notes only: a note of another profile on a demo site stays.
+    await saveAccount('demo/hub', 'someone-else', { state: 'ready' });
     expect(await removeDemo()).toBe(true);
     expect(await submitDemoCampaign()).toBeNull();
-    expect(await listAccounts()).toEqual([]);
+    const left = await listAccounts();
+    expect(left.some((a) => a.profileId === again?.profiles[0]?.id)).toBe(false);
+    expect(left.some((a) => a.profileId === 'someone-else')).toBe(true);
   });
 });

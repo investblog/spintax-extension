@@ -53,6 +53,9 @@ const SUBMIT_BODY = `{Hi|Hello} %site_name%! I'm %my_name% and I {write about|co
 
 {Glad to join|Happy to be here} — {I'll share|expect} {practical notes|short how-tos} {now and then|every few weeks}.`;
 
+/** Account domains of the submissions demo (one per folder under /demo/, see accountDomain). */
+const DEMO_SITES = ['demo/hub', 'demo/board'];
+
 const SUBMIT_COLUMNS: Omit<ColumnDef, 'id'>[] = [
   { header: 'url', variable: 'url', role: 'target', type: 'text', fillable: false },
   { header: 'site_name', variable: 'site_name', role: 'none', type: 'text', fillable: false },
@@ -205,11 +208,12 @@ export async function removeDemo(): Promise<boolean> {
   const c = await demoCampaign();
   const s = await submitDemoCampaign();
   if (!c && !s) return false;
+  // The submissions demo's own account notes go with it — its sites, its profile, nothing else.
+  const profiles = new Set(s?.profiles.map((p) => p.id) ?? []);
+  if (s) await deleteAccounts((a) => DEMO_SITES.includes(a.domain) && profiles.has(a.profileId));
   if (c) await deleteCampaign(c.id);
   if (s) await deleteCampaign(s.id);
   await setSetting(DEMO_SETTING_KEY, null);
   await setSetting(DEMO_SUBMIT_KEY, null);
-  // The demo sites' account notes go with it (domains `demo/hub`, `demo/board`).
-  await deleteAccounts((a) => a.domain === 'demo' || a.domain.startsWith('demo/'));
   return true;
 }

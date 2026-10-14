@@ -38,9 +38,14 @@ export default defineUnlistedScript(() => {
       e.preventDefault();
       const banner = form.querySelector<HTMLElement>('[data-demo-banner]');
       if (!banner) return;
-      const password = form.querySelector<HTMLInputElement>('input[type=password]')?.value ?? '';
+      // Every password box set, and a confirmation equal to the password.
+      const passwords = Array.from(form.querySelectorAll<HTMLInputElement>('input[type=password]')).map((p) => p.value);
       const boxes = Array.from(form.querySelectorAll<HTMLInputElement>('input[type=checkbox]'));
-      const done = password !== '' && boxes.every((b) => b.checked);
+      const done =
+        passwords.length > 0 &&
+        passwords[0] !== '' &&
+        passwords.every((p) => p === passwords[0]) &&
+        boxes.every((b) => b.checked);
       banner.hidden = false;
       banner.classList.toggle('banner--warn', !done);
       banner.textContent = done
