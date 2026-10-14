@@ -632,6 +632,69 @@
     "message": "This campaign has no columns yet — the wizard reads them from your list and shows what it found.",
     "description": "Rows drawer on a campaign that has no columns yet (UX review, blocker #2)."
   },
+  "optCampaignsTitle": {
+    "message": "Campaigns: switch, rename, add"
+  },
+  "optCampaignsNone": {
+    "message": "No campaign yet"
+  },
+  "drwCampTitle": {
+    "message": "Campaigns"
+  },
+  "drwCampSubtitle": {
+    "message": "Each campaign has its own list, templates and queue."
+  },
+  "drwCampOpenNow": {
+    "message": "Open now"
+  },
+  "drwCampName": {
+    "message": "Name"
+  },
+  "drwCampScenario": {
+    "message": "Scenario"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Messages"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-mail and contact forms: one key per recipient"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Submissions"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Profiles, listings, posts: one key per site and language"
+  },
+  "drwCampScenarioHint": {
+    "message": "Set it before the first import: row keys depend on it."
+  },
+  "drwCampScenarioLocked": {
+    "message": "The list is imported, so the scenario stays: row keys depend on it."
+  },
+  "drwCampSave": {
+    "message": "Save"
+  },
+  "drwCampNeedsName": {
+    "message": "Give the campaign a name."
+  },
+  "drwCampDelete": {
+    "message": "Delete campaign"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Delete rows, templates, profiles, journal"
+  },
+  "drwCampOthers": {
+    "message": "Other campaigns"
+  },
+  "drwCampSwitch": {
+    "message": "Open"
+  },
+  "drwCampNew": {
+    "message": "New campaign"
+  },
+  "drwCampCreate": {
+    "message": "Create and open"
+  },
   "slotProfileName": {
     "message": "Your name"
   },
@@ -1106,7 +1169,7 @@
     "message": "nothing could be filled on this page"
   },
   "panelBodyNotFilled": {
-    "message": "the message box was not filled — use \"Copy & open\""
+    "message": "the message box was not filled — copy the message with the button next to it"
   },
   "panelNotFoundHere": {
     "message": "not found on this page: $SLOTS$",
@@ -1494,6 +1557,112 @@
   "panelOpenSidePanel": {
     "message": "Open the side panel",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "panelTabsAria": {
+    "message": "Sign-up or submission"
+  },
+  "panelTabSignup": {
+    "message": "Sign-up"
+  },
+  "panelTabSubmit": {
+    "message": "Submission"
+  },
+  "panelAccountNone": {
+    "message": "Not registered on this site yet"
+  },
+  "panelAccountAwaiting": {
+    "message": "Registered — waiting for the confirmation e-mail"
+  },
+  "panelAccountReady": {
+    "message": "Account ready — on to the submission"
+  },
+  "panelAccountNotNeeded": {
+    "message": "No sign-up needed on this site"
+  },
+  "panelSignupIntro": {
+    "message": "Fill puts your profile into the site's sign-up form. The password, captcha, checkboxes and the button stay yours."
+  },
+  "panelSignupNoProfile": {
+    "message": "Add a sender profile first: its name and e-mail go into the form."
+  },
+  "panelSignupFill": {
+    "message": "Fill sign-up on $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Allow & fill sign-up on $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Open the sign-up page"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Now the password, captcha and checkboxes — then press the site's button."
+  },
+  "panelSignupRegistered": {
+    "message": "Registered — waiting for e-mail"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-mail confirmed"
+  },
+  "panelSignupNotNeeded": {
+    "message": "No sign-up needed"
+  },
+  "panelSignupThisPage": {
+    "message": "This is the sign-up page"
+  },
+  "panelSignupPageLabel": {
+    "message": "Sign-up page:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Sign-up page saved: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "The page address is hidden until the site is allowed — press Fill once, then mark the page."
+  },
+  "flagSecretField": {
+    "message": "A password box is never filled"
+  },
+  "flagRefused": {
+    "message": "refused"
+  },
+  "panelCopyValue": {
+    "message": "Copy: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copied: $SLOT$ — paste it on the page with Ctrl+V.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "No form fields on this page"
+  },
+  "slotTitle": {
+    "message": "Title"
+  },
+  "panelTitleLabel": {
+    "message": "Title:"
   },
   "revNoBody": {
     "message": "No body template for step 1 yet — save one on the Template screen first."
@@ -3241,6 +3410,9 @@
     "message": "Clipboard blocked — select the text in the preview and copy it manually.",
     "description": "Shown when the browser refused clipboard access in the AI section."
   },
+  "tplVariantRows": {
+    "message": "Preview row"
+  },
   "welPageTitle": {
     "message": "Welcome to Spintax",
     "description": "Title of the standalone welcome page (welcome.html); the <title> tag carries the English fallback."
@@ -3595,6 +3767,25 @@
   "cmdSidebar": {
     "message": "Open the Spintax sidebar",
     "description": "Firefox only: the bindable _execute_sidebar_action command."
+  },
+  "demoBannerSignedUp": {
+    "message": "Demo: account created and a confirmation e-mail \"sent\" to $EMAIL$ — consider it confirmed. In the side panel press \"Registered — waiting for e-mail\", then \"E-mail confirmed\".",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Demo: the password and the boxes are yours to fill — the helper never touches them."
+  },
+  "welDemoSubmit": {
+    "message": "A second demo, \"$NAME$\", shows two sites that ask for an account first — open it from the campaign menu at the top.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
   },
   "wizStepImport": {
     "message": "Import",
@@ -4653,5 +4844,26 @@
   "wizSeeList": {
     "message": "See the list",
     "description": "Link from wizard step 5 to the List screen."
+  },
+  "wizSubjectLabel": {
+    "message": "Subject (optional)"
+  },
+  "wizTitleLabel": {
+    "message": "Title (optional)"
+  },
+  "wizBodyLabel": {
+    "message": "Message"
+  },
+  "wizTextLabel": {
+    "message": "Text"
+  },
+  "wizSubjectHint": {
+    "message": "One line. Spintax works here too."
+  },
+  "wizAddSubject": {
+    "message": "Add a subject"
+  },
+  "wizAddTitle": {
+    "message": "Add a title"
   }
 }

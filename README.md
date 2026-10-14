@@ -31,6 +31,10 @@ behind [Spintax Studio](https://spintax.net/spintax-editor/#studio) and
   can export.
 - **Field mapping** by autocomplete, type and multilingual labels, saved as per-site recipes;
   *Point at field* for the rest; honeypots skipped; rich editors (Gmail, LinkedIn) via the clipboard.
+- **Campaigns per scenario** — letters and contact forms, or submissions to sites. For submissions
+  the panel has a *Sign-up* tab: it fills the name, e-mail, phone and website from your profile,
+  leaves the password and the captcha to you, and keeps a local note of where each site's sign-up
+  stands.
 - **Follow-ups** as steps, each with its own template and delay; due rows return to the same queue.
 - **Asset library** for file inputs (logos, screenshots) with a size check before the upload.
 - **7 languages** — English, Russian, German, Spanish, French, Brazilian Portuguese, Turkish: the
@@ -54,8 +58,9 @@ helper recognises the contact form, fills the fields it understands from that ro
 tells you what went where and what it could not find. You read the message, press Send on the page
 yourself, and mark the row done — the next one is already there.
 
-A bundled demo campaign with four demo pages ships in the package, so the whole flow can be tried
-without touching a real site and without a single network request.
+Two bundled demo campaigns ship in the package — guest posts on four demo blogs, and profiles and
+submissions on two demo sites that ask for an account first — so the whole flow, sign-up included,
+can be tried without touching a real site and without a single network request.
 
 ## Build
 

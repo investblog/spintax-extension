@@ -1,7 +1,8 @@
 /* 301.st UI components — copied by value from 301-ui/static/css/site.css (ADR 0008).
    Ranges: base reset + .icon (1–80), Utility Classes + Components + chips + tabs (300–2057),
    shared components + links + dashboard shell + sidebar + collapse + tooltips (2676–3326),
-   panel (3609–3691), wizard + dialog (4675–4895), kbd (5179–5200). Do not edit here — change
+   panel (3609–3691), wizard + dialog (4675–4895), kbd (5179–5200);
+   field-details (2389–2425) and fieldset group + detail rows (4487–4542) @ 267c0958. Do not edit here — change
    301-ui first, then re-copy. Excluded from biome on purpose. */
 /* Bridge: two tokens referenced by site.css but defined nowhere in 301-ui (flagged by the token check). */
 :root {
@@ -2950,3 +2951,97 @@ kbd {
   margin: -0.25rem 0 0;
 }
 
+/* Collapsible field group (native <details>) */
+.field-details {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-field);
+  padding: var(--space-2) var(--space-3);
+}
+
+.field-details__summary {
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.field-details__summary::-webkit-details-marker {
+  display: none;
+}
+
+.field-details__summary::before {
+  content: '›';
+  font-size: 1.1em;
+  transition: transform 150ms ease;
+}
+
+.field-details[open] > .field-details__summary::before {
+  transform: rotate(90deg);
+}
+
+.field-details__body {
+  padding-top: var(--space-3);
+}
+
+.field-details__body .field:last-child {
+  margin-bottom: 0;
+}
+
+/* Fieldset group — bordered section with legend on border line */
+.fieldset-group {
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  margin: 0;
+  /* A fieldset's default floor is min-content: one long unbreakable line (a
+     postback URL in a `.text-truncate` code box) pushed the source drawer's
+     URLs tab 11px past a 390px screen. At 0 it fits its container and the
+     truncation inside does its job (measured, postback-recipe harness). */
+  min-width: 0;
+}
+
+.fieldset-group:first-child {
+  margin-top: var(--space-2);
+}
+
+/* Hugs its content (a compact table) instead of spanning the parent.
+   `min-width: 0` undoes the fieldset's default min-content floor, so a long
+   currency list wraps instead of pushing the card wider than a phone. */
+.fieldset-group--fit {
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.fieldset-group > legend {
+  padding: 0 var(--space-2);
+  margin-left: calc(var(--space-2) * -1);
+}
+
+.fieldset-group > .textarea,
+.fieldset-group > .input {
+  width: 100%;
+}
+
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.detail-row {
+  display: grid;
+  /* minmax(0, 1fr): without the 0-min the value column floors at its content's
+     min-content size, so a long unbreakable URL overflows the drawer (breaks
+     layout, adds a horizontal scrollbar) instead of letting .text-truncate clip. */
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.detail-row--center {
+  align-items: center;
+}

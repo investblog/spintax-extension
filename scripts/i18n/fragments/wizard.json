@@ -47,32 +47,56 @@
     "message": "$NAME$ ($COUNT$ row)",
     "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" },
-      "name": { "content": "$2", "example": "Contacts" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
     }
   },
   "wizSheetOptionFew": {
     "message": "$NAME$ ($COUNT$ rows)",
     "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" },
-      "name": { "content": "$2", "example": "Contacts" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
     }
   },
   "wizSheetOptionMany": {
     "message": "$NAME$ ($COUNT$ rows)",
     "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" },
-      "name": { "content": "$2", "example": "Contacts" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
     }
   },
   "wizSheetOptionOther": {
     "message": "$NAME$ ($COUNT$ rows)",
     "description": "Sheet dropdown item: the sheet name as written in the file, and how many rows it holds.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1200" },
-      "name": { "content": "$2", "example": "Contacts" }
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Contacts"
+      }
     }
   },
   "wizPastedTable": {
@@ -83,7 +107,10 @@
     "message": "Could not read the file: $ERROR$",
     "description": "Import failed: the browser's own error message follows and stays untranslated.",
     "placeholders": {
-      "error": { "content": "$1", "example": "Unsupported zip entry" }
+      "error": {
+        "content": "$1",
+        "example": "Unsupported zip entry"
+      }
     }
   },
   "wizNoRowsFound": {
@@ -94,65 +121,98 @@
     "message": "$COUNT$ row",
     "description": "Row count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
     }
   },
   "wizRowsFew": {
     "message": "$COUNT$ rows",
     "description": "Row count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizRowsMany": {
     "message": "$COUNT$ rows",
     "description": "Row count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
     }
   },
   "wizRowsOther": {
     "message": "$COUNT$ rows",
     "description": "Row count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1200" }
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
     }
   },
   "wizColumnsOne": {
     "message": "$COUNT$ column",
     "description": "Column count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
     }
   },
   "wizColumnsFew": {
     "message": "$COUNT$ columns",
     "description": "Column count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizColumnsMany": {
     "message": "$COUNT$ columns",
     "description": "Column count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
     }
   },
   "wizColumnsOther": {
     "message": "$COUNT$ columns",
     "description": "Column count in the import status line.",
     "placeholders": {
-      "count": { "content": "$1", "example": "7" }
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
     }
   },
   "wizImportedCounts": {
     "message": "$SOURCE$: $ROWS$ × $COLUMNS$.",
     "description": "First sentence of the import status line: where the table came from and its size. SOURCE is a file name (data, never translated), ROWS and COLUMNS arrive already pluralised.",
     "placeholders": {
-      "source": { "content": "$1", "example": "contacts.csv" },
-      "rows": { "content": "$2", "example": "1200 rows" },
-      "columns": { "content": "$3", "example": "7 columns" }
+      "source": {
+        "content": "$1",
+        "example": "contacts.csv"
+      },
+      "rows": {
+        "content": "$2",
+        "example": "1200 rows"
+      },
+      "columns": {
+        "content": "$3",
+        "example": "7 columns"
+      }
     }
   },
   "wizNoHeaderRow": {
@@ -163,64 +223,94 @@
     "message": "Skipped $COUNT$ title row above the header.",
     "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
     }
   },
   "wizSkippedTitleRowsFew": {
     "message": "Skipped $COUNT$ title rows above the header.",
     "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizSkippedTitleRowsMany": {
     "message": "Skipped $COUNT$ title rows above the header.",
     "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
     }
   },
   "wizSkippedTitleRowsOther": {
     "message": "Skipped $COUNT$ title rows above the header.",
     "description": "Second sentence of the import status line: decorative rows above the real header were dropped.",
     "placeholders": {
-      "count": { "content": "$1", "example": "2" }
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
     }
   },
   "wizBatchRange": {
     "message": "Batch: rows $FROM$–$TO$.",
     "description": "Last sentence of the import status line for a big file: which slice of the rows is being imported. The dash between the two numbers is an en dash.",
     "placeholders": {
-      "from": { "content": "$1", "example": "1" },
-      "to": { "content": "$2", "example": "1000" }
+      "from": {
+        "content": "$1",
+        "example": "1"
+      },
+      "to": {
+        "content": "$2",
+        "example": "1000"
+      }
     }
   },
   "wizFileRowsOne": {
     "message": "$ROWS$ row",
     "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
     "placeholders": {
-      "rows": { "content": "$2", "example": "1" }
+      "rows": {
+        "content": "$2",
+        "example": "1"
+      }
     }
   },
   "wizFileRowsFew": {
     "message": "$ROWS$ rows",
     "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
     "placeholders": {
-      "rows": { "content": "$2", "example": "3" }
+      "rows": {
+        "content": "$2",
+        "example": "3"
+      }
     }
   },
   "wizFileRowsMany": {
     "message": "$ROWS$ rows",
     "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
     "placeholders": {
-      "rows": { "content": "$2", "example": "11" }
+      "rows": {
+        "content": "$2",
+        "example": "11"
+      }
     }
   },
   "wizFileRowsOther": {
     "message": "$ROWS$ rows",
     "description": "Bold row count that opens the batch panel. ROWS is already grouped for the locale (40,000), so it is a formatted string, not a raw number.",
     "placeholders": {
-      "rows": { "content": "$2", "example": "40,000" }
+      "rows": {
+        "content": "$2",
+        "example": "40,000"
+      }
     }
   },
   "wizBatchIntro": {
@@ -251,49 +341,70 @@
     "message": "first $COUNT$",
     "description": "Button of the batch form row: jump back to the first N rows of the file. Lowercase on purpose.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1000" }
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
     }
   },
   "wizBatchNext": {
     "message": "next $COUNT$",
     "description": "Button of the batch form row: move on to the next N rows of the file. Lowercase on purpose.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1000" }
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
     }
   },
   "wizBatchMax": {
     "message": "up to $COUNT$ per batch",
     "description": "Muted note next to the batch buttons: the hard cap on one batch.",
     "placeholders": {
-      "count": { "content": "$1", "example": "5,000" }
+      "count": {
+        "content": "$1",
+        "example": "5,000"
+      }
     }
   },
   "wizContinueRolesOne": {
     "message": "Continue to roles & duplicates ($COUNT$ row)",
     "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
     }
   },
   "wizContinueRolesFew": {
     "message": "Continue to roles & duplicates ($COUNT$ rows)",
     "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizContinueRolesMany": {
     "message": "Continue to roles & duplicates ($COUNT$ rows)",
     "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
     }
   },
   "wizContinueRolesOther": {
     "message": "Continue to roles & duplicates ($COUNT$ rows)",
     "description": "Primary button of wizard step 1, with the size of the batch it will carry over.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1000" }
+      "count": {
+        "content": "$1",
+        "example": "1000"
+      }
     }
   },
   "wizStep2Title": {
@@ -308,48 +419,120 @@
     "message": "Import: $COUNT$ row · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
     "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" },
-      "adds": { "content": "$2", "example": "1" },
-      "updates": { "content": "$3", "example": "0" },
-      "merged": { "content": "$4", "example": "0" },
-      "dupes": { "content": "$5", "example": "0" },
-      "excluded": { "content": "$6", "example": "0" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "0"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
     }
   },
   "wizImportSummaryFew": {
     "message": "Import: $COUNT$ rows · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
     "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" },
-      "adds": { "content": "$2", "example": "2" },
-      "updates": { "content": "$3", "example": "1" },
-      "merged": { "content": "$4", "example": "0" },
-      "dupes": { "content": "$5", "example": "0" },
-      "excluded": { "content": "$6", "example": "0" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "2"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "1"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
     }
   },
   "wizImportSummaryMany": {
     "message": "Import: $COUNT$ rows · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
     "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" },
-      "adds": { "content": "$2", "example": "9" },
-      "updates": { "content": "$3", "example": "2" },
-      "merged": { "content": "$4", "example": "0" },
-      "dupes": { "content": "$5", "example": "0" },
-      "excluded": { "content": "$6", "example": "0" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "9"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "2"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "0"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "0"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "0"
+      }
     }
   },
   "wizImportSummaryOther": {
     "message": "Import: $COUNT$ rows · adds $ADDS$ · updates $UPDATES$ · merged within file $MERGED$ · exact duplicates $DUPES$ · excluded $EXCLUDED$",
     "description": "One line of counters the user reads left to right before applying the import. Keep the counters in one line and each label next to its number.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1200" },
-      "adds": { "content": "$2", "example": "1180" },
-      "updates": { "content": "$3", "example": "12" },
-      "merged": { "content": "$4", "example": "5" },
-      "dupes": { "content": "$5", "example": "2" },
-      "excluded": { "content": "$6", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      },
+      "adds": {
+        "content": "$2",
+        "example": "1180"
+      },
+      "updates": {
+        "content": "$3",
+        "example": "12"
+      },
+      "merged": {
+        "content": "$4",
+        "example": "5"
+      },
+      "dupes": {
+        "content": "$5",
+        "example": "2"
+      },
+      "excluded": {
+        "content": "$6",
+        "example": "1"
+      }
     }
   },
   "wizNoTargetColumn": {
@@ -360,7 +543,10 @@
     "message": "Apply import ($COUNT$)",
     "description": "Primary button of wizard step 2: how many rows will be written (added plus updated).",
     "placeholders": {
-      "count": { "content": "$1", "example": "1200" }
+      "count": {
+        "content": "$1",
+        "example": "1200"
+      }
     }
   },
   "wizNamingPastePlaceholder": {
@@ -375,28 +561,40 @@
     "message": "Expected $COUNT$ name separated by \";\".",
     "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
     }
   },
   "wizNamingExpectedFew": {
     "message": "Expected $COUNT$ names separated by \";\".",
     "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizNamingExpectedMany": {
     "message": "Expected $COUNT$ names separated by \";\".",
     "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
     }
   },
   "wizNamingExpectedOther": {
     "message": "Expected $COUNT$ names separated by \";\".",
     "description": "The pasted answer did not carry one name per column. Keep the semicolon in the quotes — it is the separator the user must type.",
     "placeholders": {
-      "count": { "content": "$1", "example": "7" }
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
     }
   },
   "wizPromptCopied": {
@@ -423,14 +621,20 @@
     "message": "Variable: %$NAME$%",
     "description": "Tooltip of the header input: the template variable this column feeds. The percent signs are spintax syntax — keep them around the name, and leave the name itself as it is.",
     "placeholders": {
-      "name": { "content": "$1", "example": "company" }
+      "name": {
+        "content": "$1",
+        "example": "company"
+      }
     }
   },
   "wizRoleFor": {
     "message": "Role for $COLUMN$",
     "description": "Accessible name of the role dropdown. COLUMN is the user's own column header — data, never translated.",
     "placeholders": {
-      "column": { "content": "$1", "example": "E-mail" }
+      "column": {
+        "content": "$1",
+        "example": "E-mail"
+      }
     }
   },
   "wizRoleNone": {
@@ -469,7 +673,10 @@
     "message": "e.g. $VALUE$",
     "description": "Tooltip of a variable chip: the first non-empty value in that column. The value is the user's data.",
     "placeholders": {
-      "value": { "content": "$1", "example": "anna@example.com" }
+      "value": {
+        "content": "$1",
+        "example": "anna@example.com"
+      }
     }
   },
   "wizNoValues": {
@@ -480,35 +687,50 @@
     "message": "empty $PCT$%",
     "description": "Badge on a variable chip: the share of rows where this column is blank. Keep the percent sign next to the number.",
     "placeholders": {
-      "pct": { "content": "$1", "example": "40" }
+      "pct": {
+        "content": "$1",
+        "example": "40"
+      }
     }
   },
   "wizConflictsOne": {
     "message": "$COUNT$ row differs — decide per field",
     "description": "Heading of the conflicts block on wizard step 2.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
     }
   },
   "wizConflictsFew": {
     "message": "$COUNT$ rows differ — decide per field",
     "description": "Heading of the conflicts block on wizard step 2.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizConflictsMany": {
     "message": "$COUNT$ rows differ — decide per field",
     "description": "Heading of the conflicts block on wizard step 2.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
     }
   },
   "wizConflictsOther": {
     "message": "$COUNT$ rows differ — decide per field",
     "description": "Heading of the conflicts block on wizard step 2.",
     "placeholders": {
-      "count": { "content": "$1", "example": "12" }
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
     }
   },
   "wizConflictTwiceInFile": {
@@ -579,8 +801,14 @@
     "message": "{Hi|Hello} %$VAR1$%, {quick|short} question about %$VAR2$% …  (paste from your AI chat or write it here)",
     "description": "Placeholder of the small template editor on wizard step 3. The braces are spintax alternatives and the percent signs mark variables — keep both; translate the words inside the braces and the sentence in the parentheses. VAR1 and VAR2 are the campaign's own column variables.",
     "placeholders": {
-      "var1": { "content": "$1", "example": "name" },
-      "var2": { "content": "$2", "example": "topic" }
+      "var1": {
+        "content": "$1",
+        "example": "name"
+      },
+      "var2": {
+        "content": "$2",
+        "example": "topic"
+      }
     }
   },
   "wizSaveTemplate": {
@@ -591,46 +819,76 @@
     "message": "$COUNT$ error: $MESSAGES$",
     "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" },
-      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
     }
   },
   "wizErrorsFew": {
     "message": "$COUNT$ errors: $MESSAGES$",
     "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" },
-      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
     }
   },
   "wizErrorsMany": {
     "message": "$COUNT$ errors: $MESSAGES$",
     "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" },
-      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
     }
   },
   "wizErrorsOther": {
     "message": "$COUNT$ errors: $MESSAGES$",
     "description": "Status line under the small template editor: how many errors the engine found, then the first ones.",
     "placeholders": {
-      "count": { "content": "$1", "example": "2" },
-      "messages": { "content": "$2", "example": "unclosed brace on line 2" }
+      "count": {
+        "content": "$1",
+        "example": "2"
+      },
+      "messages": {
+        "content": "$2",
+        "example": "unclosed brace on line 2"
+      }
     }
   },
   "wizUnknownVars": {
     "message": "Unknown variables: $VARS$ — they will render empty.",
     "description": "The template uses variables the campaign does not have. VARS is a list of %name% tokens — spintax syntax, left as it is.",
     "placeholders": {
-      "vars": { "content": "$1", "example": "%topic%, %city%" }
+      "vars": {
+        "content": "$1",
+        "example": "%topic%, %city%"
+      }
     }
   },
   "wizTemplateValid": {
     "message": "Valid. Variables used: $VARS$.",
     "description": "The template parses. VARS is a list of %name% tokens — spintax syntax, left as it is.",
     "placeholders": {
-      "vars": { "content": "$1", "example": "%name%, %topic%" }
+      "vars": {
+        "content": "$1",
+        "example": "%name%, %topic%"
+      }
     }
   },
   "wizVarsNone": {
@@ -641,7 +899,10 @@
     "message": "Spintax with your variables: $VARS$. Includes, the AI prompt and a per-row preview live in the full editor.",
     "description": "Hint above the small template editor. VARS is a list of %name% tokens — spintax syntax, left as it is.",
     "placeholders": {
-      "vars": { "content": "$1", "example": "%name% %topic% %my_name%" }
+      "vars": {
+        "content": "$1",
+        "example": "%name% %topic% %my_name%"
+      }
     }
   },
   "wizFullEditorLink": {
@@ -660,28 +921,40 @@
     "message": "$COUNT$ blocking",
     "description": "Chip on wizard step 4: rows that cannot be sent as they are.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizChipWarnings": {
     "message": "$COUNT$ with warnings",
     "description": "Chip on wizard step 4: rows that render but look suspicious.",
     "placeholders": {
-      "count": { "content": "$1", "example": "12" }
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
     }
   },
   "wizChipClean": {
     "message": "$COUNT$ clean",
     "description": "Chip on wizard step 4: rows with nothing to fix.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1185" }
+      "count": {
+        "content": "$1",
+        "example": "1185"
+      }
     }
   },
   "wizChipUnchecked": {
     "message": "$COUNT$ not checked here — Review checks all",
     "description": "Chip on wizard step 4: the screen checks the first few thousand rows only. \"Review\" is the name of another screen — keep it the same as the navigation item.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3000" }
+      "count": {
+        "content": "$1",
+        "example": "3000"
+      }
     }
   },
   "wizNoTemplate": {
@@ -696,28 +969,40 @@
     "message": "Review $COUNT$ row",
     "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
     "placeholders": {
-      "count": { "content": "$1", "example": "1" }
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
     }
   },
   "wizReviewCountFew": {
     "message": "Review $COUNT$ rows",
     "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
     "placeholders": {
-      "count": { "content": "$1", "example": "3" }
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
     }
   },
   "wizReviewCountMany": {
     "message": "Review $COUNT$ rows",
     "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
     "placeholders": {
-      "count": { "content": "$1", "example": "11" }
+      "count": {
+        "content": "$1",
+        "example": "11"
+      }
     }
   },
   "wizReviewCountOther": {
     "message": "Review $COUNT$ rows",
     "description": "Link from wizard step 4 to the Review screen, with the number of rows that need attention.",
     "placeholders": {
-      "count": { "content": "$1", "example": "15" }
+      "count": {
+        "content": "$1",
+        "example": "15"
+      }
     }
   },
   "wizReviewAll": {
@@ -771,5 +1056,26 @@
   "wizSeeList": {
     "message": "See the list",
     "description": "Link from wizard step 5 to the List screen."
+  },
+  "wizSubjectLabel": {
+    "message": "Subject (optional)"
+  },
+  "wizTitleLabel": {
+    "message": "Title (optional)"
+  },
+  "wizBodyLabel": {
+    "message": "Message"
+  },
+  "wizTextLabel": {
+    "message": "Text"
+  },
+  "wizSubjectHint": {
+    "message": "One line. Spintax works here too."
+  },
+  "wizAddSubject": {
+    "message": "Add a subject"
+  },
+  "wizAddTitle": {
+    "message": "Add a title"
   }
 }

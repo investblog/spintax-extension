@@ -1094,7 +1094,7 @@
     "message": "bu sayfada hiçbir şey doldurulamadı"
   },
   "panelBodyNotFilled": {
-    "message": "mesaj kutusu doldurulmadı — \"Kopyala ve aç\" kullanın"
+    "message": "mesaj kutusu doldurulmadı — mesajı yanındaki düğmeyle kopyalayın"
   },
   "panelNotFoundHere": {
     "message": "bu sayfada bulunamadı: $SLOTS$",
@@ -4652,5 +4652,217 @@
   "panelOpenSidePanel": {
     "message": "Yan paneli aç",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Kampanyalar: değiştir, yeniden adlandır, ekle"
+  },
+  "optCampaignsNone": {
+    "message": "Henüz kampanya yok"
+  },
+  "drwCampTitle": {
+    "message": "Kampanyalar"
+  },
+  "drwCampSubtitle": {
+    "message": "Her kampanyanın kendi listesi, şablonları ve kuyruğu vardır."
+  },
+  "drwCampOpenNow": {
+    "message": "Şu an açık"
+  },
+  "drwCampName": {
+    "message": "Ad"
+  },
+  "drwCampScenario": {
+    "message": "Senaryo"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Mesajlar"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-posta ve iletişim formları: alıcı başına bir anahtar"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Gönderimler"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Profiller, ilanlar, yazılar: site ve dil başına bir anahtar"
+  },
+  "drwCampScenarioHint": {
+    "message": "İlk içe aktarmadan önce seçin: satır anahtarları buna bağlıdır."
+  },
+  "drwCampScenarioLocked": {
+    "message": "Liste içe aktarıldı, senaryo değişmez: satır anahtarları buna bağlıdır."
+  },
+  "drwCampSave": {
+    "message": "Kaydet"
+  },
+  "drwCampNeedsName": {
+    "message": "Kampanyaya bir ad verin."
+  },
+  "drwCampDelete": {
+    "message": "Kampanyayı sil"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Satırları, şablonları, profilleri, günlüğü sil"
+  },
+  "drwCampOthers": {
+    "message": "Diğer kampanyalar"
+  },
+  "drwCampSwitch": {
+    "message": "Aç"
+  },
+  "drwCampNew": {
+    "message": "Yeni kampanya"
+  },
+  "drwCampCreate": {
+    "message": "Oluştur ve aç"
+  },
+  "wizSubjectLabel": {
+    "message": "Konu (isteğe bağlı)"
+  },
+  "wizTitleLabel": {
+    "message": "Başlık (isteğe bağlı)"
+  },
+  "wizBodyLabel": {
+    "message": "Mesaj"
+  },
+  "wizTextLabel": {
+    "message": "Metin"
+  },
+  "wizSubjectHint": {
+    "message": "Tek satır. Spintax burada da çalışır."
+  },
+  "wizAddSubject": {
+    "message": "Konu ekle"
+  },
+  "wizAddTitle": {
+    "message": "Başlık ekle"
+  },
+  "panelTabsAria": {
+    "message": "Kayıt veya gönderim"
+  },
+  "panelTabSignup": {
+    "message": "Kayıt"
+  },
+  "panelTabSubmit": {
+    "message": "Gönderim"
+  },
+  "panelAccountNone": {
+    "message": "Bu sitede henüz kayıt yok"
+  },
+  "panelAccountAwaiting": {
+    "message": "Kayıt yapıldı — onay e-postası bekleniyor"
+  },
+  "panelAccountReady": {
+    "message": "Hesap hazır — gönderime geçin"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Bu sitede kayıt gerekmiyor"
+  },
+  "panelSignupIntro": {
+    "message": "Doldur, profilinizi sitenin kayıt formuna yerleştirir. Parola, captcha, onay kutuları ve düğme sizde kalır."
+  },
+  "panelSignupNoProfile": {
+    "message": "Önce bir gönderen profili ekleyin: adı ve e-postası forma girer."
+  },
+  "panelSignupFill": {
+    "message": "$HOST$ kaydını doldur",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "İzin ver ve $HOST$ kaydını doldur",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Kayıt sayfasını aç"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Şimdi parola, captcha ve onay kutuları — sonra sitenin düğmesi."
+  },
+  "panelSignupRegistered": {
+    "message": "Kayıt oldum — e-posta bekliyorum"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-posta onaylandı"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Kayıt gerekmiyor"
+  },
+  "panelSignupThisPage": {
+    "message": "Kayıt sayfası bu"
+  },
+  "panelSignupPageLabel": {
+    "message": "Kayıt sayfası:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Kayıt sayfası kaydedildi: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "Site izin verilene kadar adres gizli — bir kez Doldur'a basın, sonra sayfayı işaretleyin."
+  },
+  "flagSecretField": {
+    "message": "Parola alanı asla doldurulmaz"
+  },
+  "flagRefused": {
+    "message": "engel"
+  },
+  "tplVariantRows": {
+    "message": "Önizleme satırı"
+  },
+  "panelCopyValue": {
+    "message": "Kopyala: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Kopyalandı: $SLOT$ — sayfaya Ctrl+V ile yapıştırın.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "Bu sayfada form alanı yok"
+  },
+  "demoBannerSignedUp": {
+    "message": "Demo: hesap oluşturuldu ve $EMAIL$ adresine bir onay e-postası \"gönderildi\" — onaylanmış sayın. Yan panelde önce \"Kayıt oldum — e-posta bekliyorum\", sonra \"E-posta onaylandı\" düğmesine basın.",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Demo: şifre ve kutucuklar size ait — yardımcı onlara asla dokunmaz."
+  },
+  "welDemoSubmit": {
+    "message": "İkinci bir demo, \"$NAME$\", önce hesap isteyen iki siteyi gösterir — üstteki kampanya menüsünden açın.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Başlık"
+  },
+  "panelTitleLabel": {
+    "message": "Başlık:"
   }
 }

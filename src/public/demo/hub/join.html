@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Maker Hub — Join</title><link rel="stylesheet" href="../demo.css"></head>
+<body>
+  <header><strong>Maker Hub</strong><small>Submissions demo, site 1 of 2 — a one-page sign-up form</small></header>
+  <main>
+    <article>
+      <h1>Join Maker Hub</h1>
+      <p>Most sites want an account before they take a profile or a post. The helper fills what your profile knows; the password, the boxes and the button stay yours.</p>
+    </article>
+    <form data-demo-signup>
+      <label for="display">Display name</label><input id="display" type="text" name="DisplayName">
+      <label for="email">Email address</label><input id="email" type="email" name="Email">
+      <label for="password">Choose a password</label><input id="password" type="password" name="Password" autocomplete="new-password">
+      <label for="confirm">Repeat the password</label><input id="confirm" type="password" name="ConfirmPassword" autocomplete="new-password">
+      <label class="check"><input id="terms" type="checkbox" name="AcceptTerms"> I accept the terms</label>
+      <label class="check human"><input type="checkbox" name="demo-human"> I am a human (a stand-in for the captcha)</label>
+      <button type="submit">Create account</button>
+      <p class="banner" data-demo-banner hidden></p>
+      <p data-demo-next hidden><a href="profile.html">Open your profile →</a></p>
+    </form>
+    <p class="note">On the side panel's <strong>Sign-up</strong> tab press <strong>Fill</strong>: the display name and e-mail come from your profile. Set a password, tick both boxes and press <strong>Create account</strong> yourself, then mark the account in the panel: "Registered — waiting for e-mail", then "E-mail confirmed".</p>
+  </main>
+  <script src="/demo-fill.js"></script>
+</body>
+</html>

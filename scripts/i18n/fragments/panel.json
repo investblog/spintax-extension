@@ -473,7 +473,7 @@
     "message": "nothing could be filled on this page"
   },
   "panelBodyNotFilled": {
-    "message": "the message box was not filled — use \"Copy & open\""
+    "message": "the message box was not filled — copy the message with the button next to it"
   },
   "panelNotFoundHere": {
     "message": "not found on this page: $SLOTS$",
@@ -861,5 +861,111 @@
   "panelOpenSidePanel": {
     "message": "Open the side panel",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "panelTabsAria": {
+    "message": "Sign-up or submission"
+  },
+  "panelTabSignup": {
+    "message": "Sign-up"
+  },
+  "panelTabSubmit": {
+    "message": "Submission"
+  },
+  "panelAccountNone": {
+    "message": "Not registered on this site yet"
+  },
+  "panelAccountAwaiting": {
+    "message": "Registered — waiting for the confirmation e-mail"
+  },
+  "panelAccountReady": {
+    "message": "Account ready — on to the submission"
+  },
+  "panelAccountNotNeeded": {
+    "message": "No sign-up needed on this site"
+  },
+  "panelSignupIntro": {
+    "message": "Fill puts your profile into the site's sign-up form. The password, captcha, checkboxes and the button stay yours."
+  },
+  "panelSignupNoProfile": {
+    "message": "Add a sender profile first: its name and e-mail go into the form."
+  },
+  "panelSignupFill": {
+    "message": "Fill sign-up on $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Allow & fill sign-up on $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Open the sign-up page"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Now the password, captcha and checkboxes — then press the site's button."
+  },
+  "panelSignupRegistered": {
+    "message": "Registered — waiting for e-mail"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-mail confirmed"
+  },
+  "panelSignupNotNeeded": {
+    "message": "No sign-up needed"
+  },
+  "panelSignupThisPage": {
+    "message": "This is the sign-up page"
+  },
+  "panelSignupPageLabel": {
+    "message": "Sign-up page:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Sign-up page saved: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "The page address is hidden until the site is allowed — press Fill once, then mark the page."
+  },
+  "flagSecretField": {
+    "message": "A password box is never filled"
+  },
+  "flagRefused": {
+    "message": "refused"
+  },
+  "panelCopyValue": {
+    "message": "Copy: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copied: $SLOT$ — paste it on the page with Ctrl+V.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "No form fields on this page"
+  },
+  "slotTitle": {
+    "message": "Title"
+  },
+  "panelTitleLabel": {
+    "message": "Title:"
   }
 }

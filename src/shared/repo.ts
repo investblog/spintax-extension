@@ -64,7 +64,12 @@ export async function createCampaign(input: NewCampaign): Promise<Campaign> {
 export const getCampaign = (id: CampaignId): Promise<Campaign | undefined> => get<Campaign>('campaigns', id);
 export const listCampaigns = (): Promise<Campaign[]> => getAll<Campaign>('campaigns');
 
-export async function updateCampaign(id: CampaignId, patch: Partial<Omit<Campaign, 'id'>>): Promise<Campaign> {
+/** Any field but the scenario, which only changes through setCampaignScenario (row keys depend on it). */
+export async function updateCampaign(
+  id: CampaignId,
+  patch: Partial<Omit<Campaign, 'id' | 'scenario'>>,
+): Promise<Campaign> {
+  if ('scenario' in patch) throw new Error('scenario changes go through setCampaignScenario');
   return runTx('campaigns', 'readwrite', async (s) => {
     const current = (await req(s('campaigns').get(id))) as Campaign | undefined;
     if (!current) throw new Error(`campaign ${id} not found`);
@@ -83,9 +88,27 @@ export async function deleteCampaignSubgraph(s: Store, id: CampaignId): Promise<
 }
 
 export async function deleteCampaign(id: CampaignId): Promise<void> {
-  await runTx(['campaigns', 'rows', 'templates', 'journal'], 'readwrite', async (s) => {
+  await runTx(['campaigns', 'rows', 'templates', 'journal', 'settings'], 'readwrite', async (s) => {
     await deleteCampaignSubgraph(s, id);
     await req(s('campaigns').delete(id));
+    await req(s('settings').delete(`queue:${id}:rowId`)); // the panel's cursor in this campaign
+  });
+}
+
+/**
+ * Change the scenario — only while the campaign has no rows: row keys (and so seeds) were derived
+ * with the old one (#4). Checked inside the write transaction, not from what a screen saw earlier.
+ */
+export async function setCampaignScenario(id: CampaignId, scenario: Scenario): Promise<Campaign> {
+  return runTx(['campaigns', 'rows'], 'readwrite', async (s) => {
+    const current = (await req(s('campaigns').get(id))) as Campaign | undefined;
+    if (!current) throw new Error(`campaign ${id} not found`);
+    if (current.scenario === scenario) return current;
+    const rows = (await req(s('rows').index('campaignId').count(id))) as number;
+    if (rows > 0) throw new Error('scenario-locked');
+    const next: Campaign = { ...current, scenario, updatedAt: now() };
+    await req(s('campaigns').put(next));
+    return next;
   });
 }
 

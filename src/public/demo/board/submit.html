@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Story Board — Submit a story</title><link rel="stylesheet" href="../demo.css"></head>
+<body>
+  <header><strong>Story Board</strong><small>Submissions demo, site 2 of 2 — the submission form (the row's target)</small></header>
+  <main>
+    <article>
+      <h1>Submit a story</h1>
+      <p>Members only — <a href="join.html">sign up</a> first. The side panel keeps a note of where the account stands, per site and profile, so the next campaign on this site skips the sign-up.</p>
+    </article>
+    <form data-demo>
+      <label for="title">Title</label><input id="title" type="text" name="title" maxlength="100">
+      <label for="story">Your story</label><textarea id="story" name="story" rows="8"></textarea>
+      <label for="link">Link to your site</label><input id="link" type="url" name="link">
+      <button type="submit">Publish</button>
+      <p class="banner" data-demo-banner hidden></p>
+    </form>
+    <p class="note">The title and the text come from the campaign's templates, rendered for this row; the link comes from your profile. Nothing is published until you press <strong>Publish</strong>.</p>
+  </main>
+  <script src="/demo-fill.js"></script>
+</body>
+</html>

@@ -1094,7 +1094,7 @@
     "message": "nada pôde ser preenchido nesta página"
   },
   "panelBodyNotFilled": {
-    "message": "a caixa de mensagem não foi preenchida — use \"Copiar e abrir\""
+    "message": "a caixa de mensagem não foi preenchida — copie a mensagem com o botão ao lado"
   },
   "panelNotFoundHere": {
     "message": "não encontrados nesta página: $SLOTS$",
@@ -4652,5 +4652,217 @@
   "panelOpenSidePanel": {
     "message": "Abrir o painel lateral",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Campanhas: trocar, renomear, adicionar"
+  },
+  "optCampaignsNone": {
+    "message": "Nenhuma campanha ainda"
+  },
+  "drwCampTitle": {
+    "message": "Campanhas"
+  },
+  "drwCampSubtitle": {
+    "message": "Cada campanha tem a própria lista, modelos e fila."
+  },
+  "drwCampOpenNow": {
+    "message": "Aberta agora"
+  },
+  "drwCampName": {
+    "message": "Nome"
+  },
+  "drwCampScenario": {
+    "message": "Cenário"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Mensagens"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-mail e formulários de contato: uma chave por destinatário"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Envios"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Perfis, fichas, posts: uma chave por site e idioma"
+  },
+  "drwCampScenarioHint": {
+    "message": "Escolha antes da primeira importação: as chaves das linhas dependem dele."
+  },
+  "drwCampScenarioLocked": {
+    "message": "A lista já foi importada e o cenário fica: as chaves das linhas dependem dele."
+  },
+  "drwCampSave": {
+    "message": "Salvar"
+  },
+  "drwCampNeedsName": {
+    "message": "Dê um nome à campanha."
+  },
+  "drwCampDelete": {
+    "message": "Excluir campanha"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Excluir linhas, modelos, perfis, registro"
+  },
+  "drwCampOthers": {
+    "message": "Outras campanhas"
+  },
+  "drwCampSwitch": {
+    "message": "Abrir"
+  },
+  "drwCampNew": {
+    "message": "Nova campanha"
+  },
+  "drwCampCreate": {
+    "message": "Criar e abrir"
+  },
+  "wizSubjectLabel": {
+    "message": "Assunto (opcional)"
+  },
+  "wizTitleLabel": {
+    "message": "Título (opcional)"
+  },
+  "wizBodyLabel": {
+    "message": "Mensagem"
+  },
+  "wizTextLabel": {
+    "message": "Texto"
+  },
+  "wizSubjectHint": {
+    "message": "Uma linha. Spintax funciona aqui também."
+  },
+  "wizAddSubject": {
+    "message": "Adicionar assunto"
+  },
+  "wizAddTitle": {
+    "message": "Adicionar título"
+  },
+  "panelTabsAria": {
+    "message": "Cadastro ou envio"
+  },
+  "panelTabSignup": {
+    "message": "Cadastro"
+  },
+  "panelTabSubmit": {
+    "message": "Envio"
+  },
+  "panelAccountNone": {
+    "message": "Ainda sem cadastro neste site"
+  },
+  "panelAccountAwaiting": {
+    "message": "Cadastrado — aguardando o e-mail de confirmação"
+  },
+  "panelAccountReady": {
+    "message": "Conta pronta — vamos ao envio"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Este site não exige cadastro"
+  },
+  "panelSignupIntro": {
+    "message": "Preencher coloca seu perfil no formulário de cadastro do site. Senha, captcha, caixas de seleção e o botão continuam com você."
+  },
+  "panelSignupNoProfile": {
+    "message": "Adicione primeiro um perfil de remetente: o nome e o e-mail vão para o formulário."
+  },
+  "panelSignupFill": {
+    "message": "Preencher cadastro em $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Permitir e preencher cadastro em $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Abrir a página de cadastro"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Agora a senha, o captcha e as caixas de seleção — depois o botão do site."
+  },
+  "panelSignupRegistered": {
+    "message": "Cadastrado — aguardo o e-mail"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-mail confirmado"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Sem cadastro"
+  },
+  "panelSignupThisPage": {
+    "message": "Esta é a página de cadastro"
+  },
+  "panelSignupPageLabel": {
+    "message": "Página de cadastro:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Página de cadastro salva: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "O endereço fica oculto até o site ser permitido — clique em Preencher uma vez e depois marque a página."
+  },
+  "flagSecretField": {
+    "message": "Um campo de senha nunca é preenchido"
+  },
+  "flagRefused": {
+    "message": "vetado"
+  },
+  "tplVariantRows": {
+    "message": "Linha da prévia"
+  },
+  "panelCopyValue": {
+    "message": "Copiar: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copiado: $SLOT$ — cole com Ctrl+V na página.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "Não há campos de formulário nesta página"
+  },
+  "demoBannerSignedUp": {
+    "message": "Demo: conta criada e um e-mail de confirmação \"enviado\" para $EMAIL$ — considere confirmado. No painel lateral, clique em \"Cadastrado — aguardo o e-mail\" e depois em \"E-mail confirmado\".",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Demo: a senha e as caixas são com você — o assistente nunca mexe nelas."
+  },
+  "welDemoSubmit": {
+    "message": "Uma segunda demo, \"$NAME$\", mostra dois sites que pedem uma conta primeiro — abra-a pelo menu de campanhas no topo.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Título"
+  },
+  "panelTitleLabel": {
+    "message": "Título:"
   }
 }

@@ -31,7 +31,7 @@ import type { Campaign, ColumnDef, Row } from '@/shared/model';
 import { openSidePanel } from '@/shared/open-panel';
 import { cleanPasted, columnNamingPrompt, parseColumnNames } from '@/shared/prompts';
 import { findTemplate, listRows, putRows, updateCampaign, upsertTemplate } from '@/shared/repo';
-import { openProfileDrawer } from '../quick-actions';
+import { field, openProfileDrawer } from '../quick-actions';
 import { notify } from '../state';
 import { severityOf } from './review';
 
@@ -298,6 +298,9 @@ function importStep(campaign: Campaign, reload: () => void): HTMLElement {
   );
 }
 
+/** A preview cell: long text (an instruction, a description) is cut to one line; all of it in the tooltip. */
+const clippedCell = (c: string): HTMLElement => h('td', { class: 'cell-clip', title: c || undefined }, c);
+
 function previewTable(table: ImportedTable, limit: number): HTMLElement {
   return h(
     'div',
@@ -306,7 +309,7 @@ function previewTable(table: ImportedTable, limit: number): HTMLElement {
       'table',
       { class: 'table' },
       h('thead', {}, h('tr', {}, ...table.headers.map((hd) => h('th', {}, hd)))),
-      h('tbody', {}, ...table.rows.slice(0, limit).map((r) => h('tr', {}, ...r.map((c) => h('td', {}, c))))),
+      h('tbody', {}, ...table.rows.slice(0, limit).map((r) => h('tr', {}, ...r.map(clippedCell)))),
     ),
   );
 }
@@ -493,7 +496,7 @@ function rolesTable(table: ImportedTable, columns: ColumnDef[], onChange: () => 
         {},
         h('tr', {}, ...columns.map((c) => h('th', {}, h('div', { class: 'th-stack' }, headerInput(c), roleSelect(c))))),
       ),
-      h('tbody', {}, ...table.rows.slice(0, 3).map((r) => h('tr', {}, ...r.map((c) => h('td', {}, c))))),
+      h('tbody', {}, ...table.rows.slice(0, 3).map((r) => h('tr', {}, ...r.map(clippedCell)))),
     ),
   );
 }
@@ -634,7 +637,13 @@ async function stepProfileTemplate(campaign: Campaign, reload: () => void): Prom
     ),
   );
 
+  // Subject and body, each labelled (#5): the box used to be the body without saying so, and the
+  // subject could only be set in the full editor. For submissions the subject is a title.
+  const submit = campaign.scenario === 'submit';
+  const subjectLabel = t(submit ? 'wizTitleLabel' : 'wizSubjectLabel');
+  const bodyLabel = t(submit ? 'wizTextLabel' : 'wizBodyLabel');
   const existing = await findTemplate(campaign.id, 'body', 1, campaign.defaultLocale);
+  const existingSubject = await findTemplate(campaign.id, 'subject', 1, campaign.defaultLocale);
   const status = h('p', { class: 'field-hint', role: 'status' });
   const continueBtn = h(
     'button',
@@ -650,16 +659,22 @@ async function stepProfileTemplate(campaign: Campaign, reload: () => void): Prom
     ' ',
     svgIcon('arrow-right'),
   );
+  const excerpt = (s: string): string => s.slice(0, 600) + (s.length > 600 ? '…' : '');
   let templateBody: HTMLElement;
   if (existing) {
     templateBody = h(
       'div',
       { class: 'stack stack--sm' },
-      h(
-        'pre',
-        { class: 'wizard__template' },
-        existing.source.slice(0, 600) + (existing.source.length > 600 ? '…' : ''),
-      ),
+      existingSubject
+        ? field(subjectLabel, h('pre', { class: 'wizard__template' }, excerpt(existingSubject.source)))
+        : h(
+            'a',
+            { class: 'btn btn--ghost btn--sm', href: '#template?channel=subject' },
+            svgIcon('plus'),
+            ' ',
+            t(submit ? 'wizAddTitle' : 'wizAddSubject'),
+          ),
+      field(bodyLabel, h('pre', { class: 'wizard__template' }, excerpt(existing.source))),
       h(
         'div',
         { class: 'card__actions' },
@@ -668,10 +683,22 @@ async function stepProfileTemplate(campaign: Campaign, reload: () => void): Prom
       ),
     );
   } else {
+    const subjectSource = h('textarea', {
+      class: 'textarea template__source',
+      rows: 1,
+      spellcheck: 'false',
+      'aria-label': subjectLabel,
+    }) as HTMLTextAreaElement;
+    // A subject is one line: Enter does nothing, a pasted line break becomes a space.
+    subjectSource.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+    const oneLine = (s: string): string => cleanPasted(s).replace(/\s*[\r\n]+\s*/g, ' ');
     const source = h('textarea', {
       class: 'textarea template__source',
       rows: 7,
       spellcheck: 'false',
+      'aria-label': bodyLabel,
       placeholder: (() => {
         const vars = campaign.columns
           .filter((c) => c.role === 'none' && !c.hidden && c.type === 'text')
@@ -687,51 +714,83 @@ async function stepProfileTemplate(campaign: Campaign, reload: () => void): Prom
       ' ',
       t('wizSaveTemplate'),
     ) as HTMLButtonElement;
+    const subjectEditor = mountEditor(subjectSource);
+    subjectEditor.root.classList.add('editor--line');
     const editor = mountEditor(source);
     let analysis: ReturnType<typeof analyzeTemplate> | null = null;
+    let subjectAnalysis: ReturnType<typeof analyzeTemplate> | null = null;
+    const errorsOf = (a: ReturnType<typeof analyzeTemplate>): string =>
+      tn(
+        a.errors,
+        'wizErrors',
+        a.diagnostics
+          .filter((d) => d.severity === 'error')
+          .map((d) => d.message)
+          .slice(0, 2)
+          .join('; '),
+      );
     const check = (): void => {
+      const subjectText = oneLine(subjectSource.value);
+      subjectAnalysis = subjectText.trim() ? analyzeTemplate(subjectText, campaign, campaign.defaultLocale) : null;
+      subjectEditor.refresh(subjectAnalysis?.diagnostics ?? []);
       const text = cleanPasted(source.value);
-      if (!text.trim()) {
-        analysis = null;
-        editor.refresh([]);
-        save.disabled = true;
+      analysis = text.trim() ? analyzeTemplate(text, campaign, campaign.defaultLocale) : null;
+      editor.refresh(analysis?.diagnostics ?? []);
+      const subjectErrors = subjectAnalysis?.errors ?? 0;
+      save.disabled = !analysis || analysis.errors > 0 || subjectErrors > 0;
+      if (subjectAnalysis && subjectErrors > 0) {
+        status.textContent = `${subjectLabel}: ${errorsOf(subjectAnalysis)}`;
+        return;
+      }
+      if (!analysis) {
         status.textContent = '';
         return;
       }
-      analysis = analyzeTemplate(text, campaign, campaign.defaultLocale);
-      editor.refresh(analysis.diagnostics);
-      save.disabled = analysis.errors > 0;
+      const missing = [...new Set([...analysis.missing, ...(subjectAnalysis?.missing ?? [])])];
+      const resolved = [...new Set([...analysis.resolved, ...(subjectAnalysis?.resolved ?? [])])];
       status.textContent =
         analysis.errors > 0
-          ? tn(
-              analysis.errors,
-              'wizErrors',
-              analysis.diagnostics
-                .filter((d) => d.severity === 'error')
-                .map((d) => d.message)
-                .slice(0, 2)
-                .join('; '),
-            )
-          : analysis.missing.length > 0
-            ? t('wizUnknownVars', analysis.missing.map((m) => `%${m}%`).join(', '))
-            : t('wizTemplateValid', analysis.resolved.map((m) => `%${m}%`).join(', ') || t('wizVarsNone'));
+          ? errorsOf(analysis)
+          : missing.length > 0
+            ? t('wizUnknownVars', missing.map((m) => `%${m}%`).join(', '))
+            : t('wizTemplateValid', resolved.map((m) => `%${m}%`).join(', ') || t('wizVarsNone'));
     };
+    subjectSource.addEventListener('input', check);
     source.addEventListener('input', check);
     save.addEventListener('click', async () => {
-      if (!analysis || analysis.errors > 0) return;
-      await upsertTemplate({
+      // Everything that is written is taken now, before the first await: an edit made while the
+      // body is being stored must not slip in unvalidated (Codex review of #5).
+      const body = analysis;
+      const subject = subjectAnalysis;
+      const bodyText = cleanPasted(source.value);
+      const subjectText = oneLine(subjectSource.value);
+      if (!body || body.errors > 0 || (subject?.errors ?? 0) > 0 || save.disabled) return;
+      save.disabled = true;
+      subjectSource.readOnly = true;
+      source.readOnly = true;
+      const base = {
         campaignId: campaign.id,
-        channel: 'body',
         step: 1,
         locale: campaign.defaultLocale,
-        source: cleanPasted(source.value),
         includes: {},
         engineVersion: ENGINE_VERSION,
         validatedAt: new Date().toISOString(),
-        constructs: analysis.constructs,
+      };
+      await upsertTemplate({
+        ...base,
+        channel: 'body',
+        source: bodyText,
+        constructs: body.constructs,
       });
+      if (subject)
+        await upsertTemplate({
+          ...base,
+          channel: 'subject',
+          source: subjectText,
+          constructs: subject.constructs,
+        });
       await updateCampaign(campaign.id, { wizardStep: 4 });
-      reload();
+      notify(); // re-routes here and tells an open side panel the template changed
     });
     templateBody = h(
       'div',
@@ -749,7 +808,8 @@ async function stepProfileTemplate(campaign: Campaign, reload: () => void): Prom
             .join(' ') + (campaign.profiles.length ? ' %my_name% %my_email%' : ''),
         ),
       ),
-      editor.root,
+      field(subjectLabel, subjectEditor.root, t('wizSubjectHint')),
+      field(bodyLabel, editor.root),
       status,
       h(
         'div',

@@ -12,6 +12,9 @@ describe('target labels and page matching', () => {
         'chrome-extension://id',
       ),
     ).toBe('demo page 3');
+    expect(targetLabel('', 'chrome-extension://id/demo/hub/profile.html', 'chrome-extension://id')).toBe(
+      'demo page hub/profile.html',
+    );
   });
   it('samePage: path matters when the target has one; a bare host matches any page of that host', () => {
     expect(samePage('https://site.com/blog-1?x=1#top', 'https://site.com/blog-1/')).toBe(true);

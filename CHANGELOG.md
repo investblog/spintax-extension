@@ -2,6 +2,60 @@
 
 All notable changes to Spintax — Manual Outreach Helper are documented here.
 
+## [0.2.4] — 2026-10-15
+
+### Added
+
+- **More than one campaign.** Create, rename, switch and delete campaigns from the campaign menu in
+  the options header; the side panel follows the campaign you pick. Each campaign picks its scenario when it is created:
+  letters and contact forms, or submissions — profiles, listings and posts on sites
+- **A sign-up step for submission sites.** Most sites want an account before they take a profile or
+  a post, so a submissions campaign shows two tabs in the panel, *Sign-up* and *Submission*. *Fill*
+  on a sign-up form puts in the name, e-mail, phone and website from your profile and does not count a
+  missing message box as a failure. The password, the boxes, the captcha and the button stay yours.
+  The panel keeps a local note per site and profile: the sign-up page you marked, "registered —
+  waiting for e-mail", "e-mail confirmed", "no sign-up needed". It never stores a password. Notes go
+  into the backup
+- **A subject (or title) next to the body** on step 3 of the wizard. Both fields are labelled, and
+  the subject is optional; a submissions campaign calls it *Title*
+- **A copy button next to each text value in the panel** — subject, message, each mapped text field
+  and every sign-up value. When a field does not take the text (a rich editor, a field in a frame), copy it and
+  paste it yourself; copying never changes the row's status
+- **A second demo campaign, "Demo — profiles and submissions"**, with two sites that ask for an
+  account first: a one-page sign-up form, and a sign-up in two steps. It walks the whole path —
+  sign-up, the e-mail wait, then the profile or the submission form — without a network request.
+  Removing the demo removes both campaigns and their site notes
+
+### Changed
+
+- **List values are data, not spintax.** A cell such as `Acme [Beta]` or `save {50|60}%` is pasted
+  into the template as written; it used to render as `Acme Beta` or a random number
+- **The panel is laid out like the rest of the 301 family**: each block is a titled group, the field
+  mapping and the row editor fold away, and a page without form fields says so in one line instead
+  of listing every slot as not found. Slots with no value are no longer reported as missing
+- **The wizard's import table clips long cells** to one line (the full text is in the tooltip), so a
+  wide list no longer runs off the page. The template preview shows one variant at a time, picked by
+  its row key, instead of one long ribbon. In the panel a long URL wraps instead of scrolling the
+  message sideways, and the row's columns open into a list with every value in full
+
+- **The engine is `@spintax/core` 0.12.0.** Two sentences glued without a space (`compact.Game`,
+  `конец.Начало`) now get the space and the capital, while `example.com` and `ASP.NET` stay whole — at
+  the cost of a Title-case pair such as `Yandex.Money`, which now renders `Yandex. Money`. No space is
+  left between a punctuation mark and the quote or bracket that closes it (`"yes, " and` → `"yes," and`).
+  Permutation separators join bare in Chinese, Japanese, Thai and Lao, Arabic و and Hebrew ו attach to
+  the next word, and Arabic plurals take their six CLDR forms (a two-form `ar` block is now an error).
+  Templates of these shapes render differently, and every render recorded from here on carries `0.12.0`
+  as its engine version.
+
+### Fixed
+
+- **Preview highlights no longer light up pieces of words.** With `lang=en`, the "en" inside ordinary
+  words was highlighted, and so were variables the template does not use: the highlight markers
+  collided with characters the engine reserves for itself
+- **The second step of a multi-step form is a new form, not a changed one.** A sign-up that asks for
+  the e-mail first and the rest on the same address made the panel ask you to check the field
+  mapping and press *Fill* again on every step
+
 ## [0.2.3] — 2026-09-13
 
 ### Changed

@@ -21,4 +21,38 @@ export default defineUnlistedScript(() => {
       }
     });
   }
+  // Sign-up demo (ADR 0014): a multi-step form shows its next step, and "creating the account"
+  // only checks that the human did their part — a password and both boxes.
+  for (const next of Array.from(document.querySelectorAll<HTMLElement>('[data-demo-next-step]'))) {
+    next.addEventListener('click', () => {
+      const step = next.closest<HTMLElement>('[data-demo-step]');
+      const following = step?.nextElementSibling as HTMLElement | null;
+      if (!step || !following?.hasAttribute('data-demo-step')) return;
+      step.hidden = true;
+      following.hidden = false;
+      following.querySelector<HTMLElement>('input')?.focus();
+    });
+  }
+  for (const form of Array.from(document.querySelectorAll<HTMLFormElement>('form[data-demo-signup]'))) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const banner = form.querySelector<HTMLElement>('[data-demo-banner]');
+      if (!banner) return;
+      // Every password box set, and a confirmation equal to the password.
+      const passwords = Array.from(form.querySelectorAll<HTMLInputElement>('input[type=password]')).map((p) => p.value);
+      const boxes = Array.from(form.querySelectorAll<HTMLInputElement>('input[type=checkbox]'));
+      const done =
+        passwords.length > 0 &&
+        passwords[0] !== '' &&
+        passwords.every((p) => p === passwords[0]) &&
+        boxes.every((b) => b.checked);
+      banner.hidden = false;
+      banner.classList.toggle('banner--warn', !done);
+      banner.textContent = done
+        ? t('demoBannerSignedUp', form.querySelector<HTMLInputElement>('input[type=email]')?.value || '—')
+        : t('demoBannerSignupYours');
+      const link = form.querySelector<HTMLElement>('[data-demo-next]');
+      if (link) link.hidden = !done;
+    });
+  }
 });

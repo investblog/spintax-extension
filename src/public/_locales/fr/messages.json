@@ -1095,7 +1095,7 @@
     "message": "rien n'a pu être rempli sur cette page"
   },
   "panelBodyNotFilled": {
-    "message": "la zone de message n'a pas été remplie — utilisez « Copier et ouvrir »"
+    "message": "la zone de message n'a pas été remplie — copiez le message avec le bouton à côté"
   },
   "panelNotFoundHere": {
     "message": "introuvables sur cette page : $SLOTS$",
@@ -4653,5 +4653,217 @@
   "panelOpenSidePanel": {
     "message": "Ouvrir le panneau latéral",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Campagnes : changer, renommer, ajouter"
+  },
+  "optCampaignsNone": {
+    "message": "Pas encore de campagne"
+  },
+  "drwCampTitle": {
+    "message": "Campagnes"
+  },
+  "drwCampSubtitle": {
+    "message": "Chaque campagne a sa propre liste, ses modèles et sa file."
+  },
+  "drwCampOpenNow": {
+    "message": "Ouverte"
+  },
+  "drwCampName": {
+    "message": "Nom"
+  },
+  "drwCampScenario": {
+    "message": "Scénario"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Messages"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "E-mail et formulaires de contact : une clé par destinataire"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Soumissions"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Profils, fiches, articles : une clé par site et par langue"
+  },
+  "drwCampScenarioHint": {
+    "message": "À choisir avant le premier import : les clés des lignes en dépendent."
+  },
+  "drwCampScenarioLocked": {
+    "message": "La liste est importée, le scénario reste : les clés des lignes en dépendent."
+  },
+  "drwCampSave": {
+    "message": "Enregistrer"
+  },
+  "drwCampNeedsName": {
+    "message": "Donnez un nom à la campagne."
+  },
+  "drwCampDelete": {
+    "message": "Supprimer la campagne"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Supprimer lignes, modèles, profils, journal"
+  },
+  "drwCampOthers": {
+    "message": "Autres campagnes"
+  },
+  "drwCampSwitch": {
+    "message": "Ouvrir"
+  },
+  "drwCampNew": {
+    "message": "Nouvelle campagne"
+  },
+  "drwCampCreate": {
+    "message": "Créer et ouvrir"
+  },
+  "wizSubjectLabel": {
+    "message": "Objet (facultatif)"
+  },
+  "wizTitleLabel": {
+    "message": "Titre (facultatif)"
+  },
+  "wizBodyLabel": {
+    "message": "Message"
+  },
+  "wizTextLabel": {
+    "message": "Texte"
+  },
+  "wizSubjectHint": {
+    "message": "Une ligne. Spintax fonctionne aussi ici."
+  },
+  "wizAddSubject": {
+    "message": "Ajouter un objet"
+  },
+  "wizAddTitle": {
+    "message": "Ajouter un titre"
+  },
+  "panelTabsAria": {
+    "message": "Inscription ou soumission"
+  },
+  "panelTabSignup": {
+    "message": "Inscription"
+  },
+  "panelTabSubmit": {
+    "message": "Soumission"
+  },
+  "panelAccountNone": {
+    "message": "Pas encore inscrit sur ce site"
+  },
+  "panelAccountAwaiting": {
+    "message": "Inscrit — en attente de l'e-mail de confirmation"
+  },
+  "panelAccountReady": {
+    "message": "Compte prêt — place à la soumission"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Pas d'inscription nécessaire sur ce site"
+  },
+  "panelSignupIntro": {
+    "message": "Remplir place votre profil dans le formulaire d'inscription du site. Le mot de passe, le captcha, les cases et le bouton restent à vous."
+  },
+  "panelSignupNoProfile": {
+    "message": "Ajoutez d'abord un profil d'expéditeur : son nom et son e-mail vont dans le formulaire."
+  },
+  "panelSignupFill": {
+    "message": "Remplir l'inscription sur $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Autoriser et remplir l'inscription sur $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Ouvrir la page d'inscription"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Reste le mot de passe, le captcha et les cases — puis le bouton du site."
+  },
+  "panelSignupRegistered": {
+    "message": "Inscrit — j'attends l'e-mail"
+  },
+  "panelSignupConfirmed": {
+    "message": "E-mail confirmé"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Pas d'inscription"
+  },
+  "panelSignupThisPage": {
+    "message": "C'est la page d'inscription"
+  },
+  "panelSignupPageLabel": {
+    "message": "Page d'inscription :"
+  },
+  "panelSignupPageSaved": {
+    "message": "Page d'inscription enregistrée : $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "L'adresse reste masquée tant que le site n'est pas autorisé — appuyez une fois sur Remplir, puis marquez la page."
+  },
+  "flagSecretField": {
+    "message": "Un champ de mot de passe n'est jamais rempli"
+  },
+  "flagRefused": {
+    "message": "refusé"
+  },
+  "tplVariantRows": {
+    "message": "Ligne de l'aperçu"
+  },
+  "panelCopyValue": {
+    "message": "Copier : $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copié : $SLOT$ — collez-le avec Ctrl+V sur la page.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "Aucun champ de formulaire sur cette page"
+  },
+  "demoBannerSignedUp": {
+    "message": "Démo : compte créé et un e-mail de confirmation « envoyé » à $EMAIL$ — considérez-le comme confirmé. Dans le panneau latéral, appuyez sur « Inscrit — j'attends l'e-mail », puis « E-mail confirmé ».",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Démo : le mot de passe et les cases sont à vous — l'assistant n'y touche jamais."
+  },
+  "welDemoSubmit": {
+    "message": "Une seconde démo, « $NAME$ », montre deux sites qui demandent d'abord un compte — ouvrez-la depuis le menu des campagnes en haut.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Titre"
+  },
+  "panelTitleLabel": {
+    "message": "Titre :"
   }
 }

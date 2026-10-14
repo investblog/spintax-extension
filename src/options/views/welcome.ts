@@ -4,7 +4,7 @@
  * quick actions, keys, privacy. Rendered both as the standalone welcome.html and as an options view.
  */
 import { browser } from 'wxt/browser';
-import { demoCampaign, removeDemo, seedDemo } from '@/shared/demo';
+import { DEMO_SUBMIT_NAME, demoCampaign, removeDemo, seedDemo } from '@/shared/demo';
 import { clear, h } from '@/shared/dom';
 import { newsBellButton } from '@/shared/header-controls';
 import { t } from '@/shared/i18n';
@@ -117,6 +117,8 @@ export async function renderWelcome(root: HTMLElement, opts: WelcomeOptions): Pr
               'p',
               { class: 'field-hint' },
               t('welDemoInstalled', demo.name),
+              ' ',
+              t('welDemoSubmit', DEMO_SUBMIT_NAME),
               // The gap before the button stays in code — a trailing space in a message does not survive translation.
               ' ',
               h(
@@ -126,6 +128,7 @@ export async function renderWelcome(root: HTMLElement, opts: WelcomeOptions): Pr
                   class: 'btn btn--ghost btn--sm',
                   onclick: async () => {
                     await removeDemo();
+                    await ensureCampaign(); // the demo may have been the open campaign
                     notify();
                     status.textContent = t('welDemoRemoved');
                     await renderWelcome(root, opts);

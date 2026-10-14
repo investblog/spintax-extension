@@ -132,6 +132,7 @@ export async function renderTemplateView(
     'aria-label': t('tplRowsAria'),
   }) as HTMLInputElement;
   let previewSalt = 0;
+  let previewIndex = 0;
   const errorBanner = h('div', { class: 'error-banner hidden', role: 'alert' });
   const tab = (label: string, mode: 'structured' | 'raw', active: boolean): HTMLButtonElement =>
     h(
@@ -443,42 +444,74 @@ export async function renderTemplateView(
       includes: draft.includes,
       engineVersion: ENGINE_VERSION,
     };
-    for (const row of rows) {
-      const spun = previewSalt ? { ...row, salt: row.salt + previewSalt } : row;
-      const r = renderRow(campaign, spun, draft.step, { body: template });
+    // Several long variants one under another push all but the first out of sight: one at a time,
+    // picked by row key (field test, 2026-10-13). The choice survives re-renders while typing.
+    const items: HTMLElement[] = [];
+    const tabs: HTMLButtonElement[] = [];
+    previewIndex = Math.min(previewIndex, rows.length - 1);
+    const show = (i: number): void => {
+      previewIndex = i;
+      items.forEach((el, k) => {
+        el.hidden = k !== i;
+      });
+      tabs.forEach((b, k) => {
+        b.setAttribute('aria-pressed', String(k === i));
+        b.classList.toggle('is-active', k === i);
+      });
+    };
+    if (rows.length > 1)
       preview.append(
         h(
           'li',
-          { class: 'variant' },
-          h(
-            'div',
-            { class: 'variant__head' },
-            row.seedKey,
-            ' · ',
-            h('span', { class: 'variant__seed' }, t('tplSeed', r.seed)),
-            h(
+          { class: 'variants__tabs', role: 'group', 'aria-label': t('tplVariantRows') },
+          ...rows.map((row, i) => {
+            const b = h(
               'button',
-              {
-                type: 'button',
-                class: 'btn-icon btn-icon--compact variant__copy',
-                'aria-label': t('tplCopyVariant'),
-                title: t('tplCopyVariant'),
-                onclick: async () => {
-                  try {
-                    await navigator.clipboard.writeText(r.body.text);
-                    flash(status, t('tplVariantCopied'));
-                  } catch {
-                    status.textContent = t('tplClipboardBlocked');
-                  }
-                },
-              },
-              svgIcon('copy'),
-            ),
-          ),
-          h('div', { class: 'variant__body' }, withLeftovers(highlighted(r.body)), warningsList(r.warnings)),
+              { type: 'button', class: 'btn-chip btn-chip--sm', onclick: () => show(i) },
+              row.seedKey,
+            ) as HTMLButtonElement;
+            tabs.push(b);
+            return b;
+          }),
         ),
       );
+    for (const row of rows) {
+      const spun = previewSalt ? { ...row, salt: row.salt + previewSalt } : row;
+      const r = renderRow(campaign, spun, draft.step, { body: template });
+      const item = h(
+        'li',
+        { class: 'variant' },
+        h(
+          'div',
+          { class: 'variant__head' },
+          row.seedKey,
+          ' · ',
+          h('span', { class: 'variant__seed' }, t('tplSeed', r.seed)),
+          h(
+            'button',
+            {
+              type: 'button',
+              class: 'btn-icon btn-icon--compact variant__copy',
+              'aria-label': t('tplCopyVariant'),
+              title: t('tplCopyVariant'),
+              onclick: async () => {
+                try {
+                  await navigator.clipboard.writeText(r.body.text);
+                  flash(status, t('tplVariantCopied'));
+                } catch {
+                  status.textContent = t('tplClipboardBlocked');
+                }
+              },
+            },
+            svgIcon('copy'),
+          ),
+        ),
+        h('div', { class: 'variant__body' }, withLeftovers(highlighted(r.body)), warningsList(r.warnings)),
+      );
+      items.push(item);
+      preview.append(item);
     }
+    show(previewIndex);
   };
   countInput.addEventListener('change', () => void renderPreview());
   const respin = h(

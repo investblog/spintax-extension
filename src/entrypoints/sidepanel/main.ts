@@ -27,6 +27,15 @@ import {
   type TabInfo,
   withManualField,
 } from '@/panel/queue';
+import {
+  type AccountState,
+  accountDomain,
+  accountSettled,
+  getAccount,
+  isDemoUrl,
+  type SiteAccount,
+  saveAccount,
+} from '@/shared/accounts';
 import { PUBLISHER_URL, SPINTAX_URL, svg301Logo } from '@/shared/brand';
 import { append, byId, clear, h } from '@/shared/dom';
 import { ENGINE_VERSION, pickProfile, type RowRender } from '@/shared/engine';
@@ -78,6 +87,7 @@ const FLAG_LABEL: Record<FillOutcome, MessageKey> = {
   partial: 'flagPartial',
   skippedNonEmpty: 'flagKept',
   clipboard: 'flagClipboard',
+  refused: 'flagRefused',
 };
 
 /** The outcome a row was marked with, for the toast. */
@@ -124,6 +134,16 @@ interface State {
   fillError: 'none' | 'no-access' | 'old-helper' | 'other';
   /** Where a site target opens (Settings → "Where a target opens"). */
   openTargetIn: OpenTargetIn;
+  /** Submissions campaigns: the site account note of the current row (ADR 0014). */
+  account: SiteAccount | null;
+  /** Site + profile the note belongs to; null when the row has no site (or not a submissions campaign). */
+  accountKey: { domain: string; profileId: string } | null;
+  /** Which panel tab is open: sign-up first, submission once the account is settled. */
+  panelTab: 'signup' | 'submit';
+  /** The user picked the tab by hand: a same-row reload keeps it. */
+  manualTab: boolean;
+  /** Row the account fields above were read for. */
+  accountRowId: string | null;
 }
 
 const state: State = {
@@ -150,6 +170,11 @@ const state: State = {
   pendingPaste: false,
   fillError: 'none',
   openTargetIn: OPEN_TARGET_DEFAULT,
+  account: null,
+  accountKey: null,
+  panelTab: 'submit',
+  manualTab: false,
+  accountRowId: null,
 };
 let opToken = 0;
 
@@ -160,6 +185,8 @@ function slotLabel(slot: Slot): string {
     const col = state.campaign?.columns.find((c) => c.id === slot.slice(4));
     return col ? col.header : slot;
   }
+  // A submission has a title, not an e-mail subject (the wizard says the same).
+  if (slot === 'output.subject' && state.campaign?.scenario === 'submit') return t('slotTitle');
   const key = SLOT_LABEL[slot];
   return key ? t(key) : slot;
 }
@@ -218,40 +245,61 @@ function row(): Row | null {
 
 // ── Data ───────────────────────────────────────────────────────────────────────
 
+let reloadSeq = 0;
+
 async function reload(): Promise<void> {
-  state.campaign = await currentCampaign();
-  state.mail = { ...MAIL_DEFAULTS, ...(await getSetting<Partial<MailSettings>>(MAIL_SETTINGS_KEY, {})) };
-  state.openTargetIn = await getSetting<OpenTargetIn>(OPEN_TARGET_KEY, OPEN_TARGET_DEFAULT);
-  if (!state.campaign) {
-    state.rows = [];
+  // Everything is read into locals and committed at once by the newest call only: a quick A→B
+  // campaign switch must not pair campaign B with A's rows or cursor (Codex review of #4).
+  const seq = ++reloadSeq;
+  const campaign = await currentCampaign();
+  const mail = { ...MAIL_DEFAULTS, ...(await getSetting<Partial<MailSettings>>(MAIL_SETTINGS_KEY, {})) };
+  const openTargetIn = await getSetting<OpenTargetIn>(OPEN_TARGET_KEY, OPEN_TARGET_DEFAULT);
+  const rows = campaign ? await loadRows(campaign.id) : [];
+  const cursor = campaign ? await loadCursor(campaign.id) : null;
+  if (seq !== reloadSeq) return;
+  const before = { campaignId: state.campaign?.id, rowId: row()?.rowId, target: row()?.target };
+  state.campaign = campaign;
+  state.mail = mail;
+  state.openTargetIn = openTargetIn;
+  state.rows = rows;
+  if (!campaign) {
     state.render = null;
     draw();
     return;
   }
-  state.rows = await loadRows(state.campaign.id);
   performance.mark('panel:rows');
-  const cursor = await loadCursor(state.campaign.id);
-  const i = cursor ? state.rows.findIndex((r) => r.rowId === cursor) : -1;
+  const i = cursor ? rows.findIndex((r) => r.rowId === cursor) : -1;
   state.index = i >= 0 ? i : 0;
-  await refreshRow();
+  // Same campaign, same row: something changed in options (a template, a profile). Re-render, but
+  // keep what the user just did here — the fill note and mapping must not vanish under them.
+  await refreshRow({
+    keep: before.campaignId === campaign.id && row()?.rowId === before.rowId && row()?.target === before.target,
+  });
 }
 
-async function refreshRow(): Promise<void> {
+async function refreshRow(opts: { keep?: boolean } = {}): Promise<void> {
   const r = row();
   state.render = null;
-  state.scan = null;
-  state.mapping = null;
-  state.fillNote = '';
-  state.report = [];
-  state.draft = null;
-  state.staleAck = false;
-  state.mailOrigin = null;
-  state.handedOff = false;
-  state.pendingPaste = false;
-  state.fillError = 'none';
-  state.toast = '';
-  if (state.campaign && r) {
-    const res = await renderFor(state.campaign, r);
+  if (!opts.keep) {
+    state.scan = null;
+    state.mapping = null;
+    state.fillNote = '';
+    state.report = [];
+    state.draft = null;
+    state.staleAck = false;
+    state.mailOrigin = null;
+    state.handedOff = false;
+    state.pendingPaste = false;
+    state.fillError = 'none';
+    state.toast = '';
+  }
+  const campaign = state.campaign;
+  // A newer reload or a row change while we awaited owns the state now: write nothing, save no
+  // cursor (Codex review of #4 — row A must not become campaign B's cursor).
+  const stale = (): boolean => state.campaign !== campaign || row()?.rowId !== r?.rowId;
+  if (campaign && r) {
+    const res = await renderFor(campaign, r);
+    if (stale()) return;
     if (res) {
       state.render = res.render;
       state.step = res.step;
@@ -260,10 +308,29 @@ async function refreshRow(): Promise<void> {
     // so it is read back from the journal instead of the in-memory report (Codex review #3).
     if (r.deliveryStatus === 'filled_unconfirmed') {
       const events = await listEvents(r.rowId);
+      if (stale()) return;
       const last = [...events].reverse().find((e) => e.event === 'filled');
       state.pendingPaste = !!last?.fillReport?.some((x) => x.slot === 'output.body' && x.outcome === 'clipboard');
     }
-    await saveCursor(state.campaign.id, r.rowId);
+    // Submissions: sign-up comes first on most sites (ADR 0014). The tab follows the account note.
+    const domain = campaign.scenario === 'submit' ? accountDomain(r) : null;
+    const key = domain ? { domain, profileId: pickProfile(campaign, r)?.id ?? '-' } : null;
+    const account = key ? await getAccount(key.domain, key.profileId) : null;
+    if (stale()) return;
+    // The tab follows the note unless the user picked one by hand for this very site and profile.
+    const sameKey = sameAccountKey(state.accountKey, key);
+    state.accountKey = key;
+    state.account = account;
+    // A hand-picked tab survives a re-read of the same row (a saved edit, an options change).
+    if (!sameKey || state.accountRowId !== r.rowId) state.manualTab = false;
+    state.accountRowId = r.rowId;
+    if (!state.manualTab) switchTab(key && !accountSettled(account) ? 'signup' : 'submit');
+    await saveCursor(campaign.id, r.rowId);
+  } else {
+    state.accountKey = null;
+    state.account = null;
+    switchTab('submit');
+    state.manualTab = false;
   }
   performance.mark('panel:render');
   await refreshTab();
@@ -370,6 +437,89 @@ async function openTarget(newTab = false): Promise<void> {
   draw();
 }
 
+// ── Site account (ADR 0014) ────────────────────────────────────────────────────
+
+/** The sign-up page when the user marked one, else the row's target. */
+function signupUrl(r: Row): string | null {
+  return state.account?.signupUrl ?? targetUrl(r);
+}
+
+async function openSignup(newTab = false): Promise<void> {
+  const r = row();
+  const url = r ? signupUrl(r) : null;
+  if (!url) return;
+  const inNewTab = newTab || state.openTargetIn === 'new';
+  const tab =
+    state.tab && !inNewTab ? await browser.tabs.update(state.tab.id, { url }) : await browser.tabs.create({ url });
+  state.tab = tab?.id && tab.url ? { id: tab.id, url: tab.url, origin: originOf(tab.url) } : state.tab;
+  state.toast = t('panelOpened', url);
+  draw();
+}
+
+/**
+ * Every change of tab goes through here: the mapping, its report, the fill note and an acknowledged
+ * stale recipe belong to one tab's fill and must not carry over to the other (Codex review of #6).
+ */
+function switchTab(next: State['panelTab']): void {
+  if (state.panelTab === next) return;
+  state.panelTab = next;
+  state.staleAck = false;
+  state.fillNote = '';
+  state.mapping = null;
+  state.scan = null;
+  state.report = [];
+}
+
+const sameAccountKey = (a: State['accountKey'], b: State['accountKey']): boolean =>
+  !!a && !!b && a.domain === b.domain && a.profileId === b.profileId;
+
+async function setAccount(patch: Partial<Pick<SiteAccount, 'state' | 'signupUrl'>>): Promise<void> {
+  const key = state.accountKey;
+  if (!key) return;
+  const account = await saveAccount(key.domain, key.profileId, patch);
+  // The row may have moved to another site or profile meanwhile: this note is not its note.
+  if (!sameAccountKey(state.accountKey, key)) return;
+  state.account = account;
+  if (patch.state) {
+    state.fillNote = '';
+    state.toast = t(ACCOUNT_LABEL[account.state]);
+    // Done with sign-up: the submission is the next step.
+    if (accountSettled(account)) {
+      switchTab('submit');
+      state.manualTab = false;
+    }
+  }
+  draw();
+}
+
+/** "This is the sign-up page": remember the open tab's address for this site. */
+async function markSignupPage(): Promise<void> {
+  const url = state.tab?.url;
+  if (!url || !isWebOrDemo(url)) {
+    state.toast = t('panelSignupPageUnknown');
+    draw();
+    return;
+  }
+  await setAccount({ signupUrl: url });
+  state.toast = t('panelSignupPageSaved', siteLabel(url) + pathOf(url));
+  draw();
+}
+
+/** A page the sign-up flow can work on: a web page, or one of the bundled demo sites. */
+const isWebOrDemo = (url: string): boolean => /^https?:/.test(url) || isDemoUrl(url);
+
+/** The host to name in a label — the demo's own origin is an extension id, so it says "demo page". */
+function siteLabel(url: string): string {
+  return isDemoUrl(url) ? t('panelDemoPage') : new URL(url).hostname;
+}
+
+const ACCOUNT_LABEL: Record<AccountState, MessageKey> = {
+  none: 'panelAccountNone',
+  awaiting_email: 'panelAccountAwaiting',
+  ready: 'panelAccountReady',
+  not_needed: 'panelAccountNotNeeded',
+};
+
 /** An unsaved edit in the textarea is what the user sees — every action uses it (review #5). */
 async function flushDraft(): Promise<void> {
   if (state.draft === null) return;
@@ -385,6 +535,36 @@ async function copyText(text: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+/**
+ * Icon button that copies one value — the way out when a field could not be filled (not found,
+ * over the length limit, a form the helper cannot reach). Copying changes nothing about the row.
+ */
+function copyButton(value: string | (() => string), label: string): HTMLElement {
+  const aria = t('panelCopyValue', label);
+  return h(
+    'button',
+    {
+      type: 'button',
+      class: 'btn-icon btn-icon--sm panel__copy',
+      'aria-label': aria,
+      title: aria,
+      onclick: async () => {
+        const text = typeof value === 'function' ? value() : value;
+        state.toast = (await copyText(text)) ? t('panelCopiedValue', label) : t('panelCopyBlocked');
+        // In place, not draw(): a full redraw drops keyboard focus and closes "Edit this row".
+        const notes = app.querySelector('.panel__notes');
+        let toast = notes?.querySelector('.panel__toast');
+        if (!toast && notes) {
+          toast = h('p', { class: 'panel__toast muted', role: 'status' });
+          notes.append(toast);
+        }
+        if (toast) toast.textContent = state.toast;
+      },
+    },
+    svgIcon('copy'),
+  );
 }
 
 async function copyAndOpen(): Promise<void> {
@@ -474,9 +654,18 @@ async function allowAndFill(): Promise<void> {
   await fill();
 }
 
+/** A sign-up form gets the sender profile only — never the message, never a password (ADR 0014). */
+const SIGNUP_SLOTS: Slot[] = ['profile.name', 'profile.email', 'profile.site', 'profile.phone'];
+
 async function fill(): Promise<void> {
   if (state.busy) return;
-  await flushDraft();
+  const signup = state.panelTab === 'signup';
+  // An unsaved message edit belongs to the submission; a sign-up fill must not write it into the
+  // row and the journal (Codex review of #6).
+  if (!signup) await flushDraft();
+  // Saving the draft re-reads the row; if that moved the panel to the other tab, this fill is not
+  // the one the user asked for any more.
+  if (state.panelTab !== (signup ? 'signup' : 'submit')) return;
   // Snapshot everything the operation needs: a tab or row change mid-way must not leak text
   // into the wrong page (review 2026-08-23 #1).
   const r = row();
@@ -484,17 +673,19 @@ async function fill(): Promise<void> {
   const render = state.render;
   const tab = state.tab;
   const step = state.step;
-  if (!r || !campaign || !render || !tab) return;
+  const mode = state.panelTab;
+  if (!r || !campaign || !tab || (!render && !signup)) return;
   const token = ++opToken;
   state.busy = token;
   state.fillError = 'none';
-  const stillValid = (): boolean => opToken === token && row()?.rowId === r.rowId && state.tab?.id === tab.id;
+  const stillValid = (): boolean =>
+    opToken === token && row()?.rowId === r.rowId && state.tab?.id === tab.id && state.panelTab === mode;
   try {
     state.fillNote = t('panelScanning');
     draw();
     const scan = await scanTab(tab.id);
     if (!stillValid()) return;
-    const { slots, specs } = slotsFor(campaign);
+    const { slots, specs } = signup ? { slots: SIGNUP_SLOTS, specs: [] } : slotsFor(campaign);
     const mapping = await resolveMapping(scan, slots, specs);
     if (!stillValid()) return;
     state.scan = scan;
@@ -508,8 +699,7 @@ async function fill(): Promise<void> {
     }
     const targets = mapping.fields.filter((f) => f.field).map((f) => f.field?.fieldId ?? '');
     if (targets.length > 0) await highlightFields(tab.id, targets);
-    const profile = pickProfile(campaign, r);
-    const values = slotValues(campaign, r, render, profile);
+    const values = fillValues(campaign, r, signup ? null : render);
     const fileColumns = new Map(campaign.columns.filter((c) => c.type === 'file').map((c) => [c.id, c.header]));
     const { report, clipboardSlots, warnings } = await fillTab(tab.id, mapping, values, fileColumns, scan.token);
     if (!stillValid()) return;
@@ -518,6 +708,23 @@ async function fill(): Promise<void> {
       (x) => x.outcome === 'exact' || x.outcome === 'equivalent' || x.outcome === 'changedBySite',
     ).length;
     const skipped = report.filter((x) => x.outcome === 'skippedNonEmpty').length;
+    if (signup || !render) {
+      // The row's status is about the message; a sign-up fill leaves it alone and says what is
+      // still the human's: password, captcha, checkboxes, the button.
+      if (mapping.fields.some((f) => f.field) && (mapping.source === 'heuristic' || mapping.stale))
+        mapping.recipe = await saveMapping(
+          scan,
+          mapping,
+          mapping.fields.some((f) => f.recipeField.manual) ? 'manual' : 'heuristic',
+        );
+      const parts: string[] = [];
+      if (landed > 0) parts.push(tn(landed, 'panelFilled'));
+      else parts.push(t('panelNothingFilled'));
+      if (skipped > 0) parts.push(t('panelSkipped', String(skipped)));
+      parts.push(...warnings.map((w) => `⚠ ${w}`));
+      state.fillNote = `${parts.join('; ')}. ${t('panelSignupLeftToYou')}`;
+      return;
+    }
     let copied = false;
     if (clipboardSlots.includes('output.body')) copied = await copyText(render.body.text);
     if (mapping.fields.some((f) => f.field) && (mapping.source === 'heuristic' || mapping.stale)) {
@@ -545,13 +752,16 @@ async function fill(): Promise<void> {
     if (skipped > 0) parts.push(t('panelSkipped', String(skipped)));
     if (copied) parts.push(t('panelClipboardHint'));
     else if (clipboardSlots.includes('output.body')) parts.push(t('panelClipboardBlocked'));
-    if (landed === 0 && !copied) parts.push(t('panelNothingFilled'));
-    else if (!bodyLanded && !copied) parts.push(t('panelBodyNotFilled'));
-    if (mapping.unmapped.length > 0)
-      parts.push(t('panelNotFoundHere', mapping.unmapped.map((s) => slotLabel(s)).join(', ')));
+    // A page with no fields at all: the mapping section says so; "nothing filled, not found: …"
+    // would only repeat it.
+    const formless = scan.fields.length === 0;
+    const missing = formless ? [] : missingSlots(mapping, values);
+    if (!formless && landed === 0 && !copied) parts.push(t('panelNothingFilled'));
+    else if (!formless && !bodyLanded && !copied) parts.push(t('panelBodyNotFilled'));
+    if (missing.length > 0) parts.push(t('panelNotFoundHere', missing.map((s) => slotLabel(s)).join(', ')));
     if (mapping.stale) parts.push(t('panelStaleRebuilt'));
     parts.push(...warnings.map((w) => `⚠ ${w}`));
-    state.fillNote = `${parts.join('; ')}.`;
+    state.fillNote = parts.length > 0 ? `${parts.join('; ')}.` : '';
   } catch (err) {
     if (stillValid()) {
       // The code decides what happens next; the sentence is only for the user (i18n).
@@ -560,15 +770,23 @@ async function fill(): Promise<void> {
       state.fillNote = t('panelFillFailed', (err as Error).message);
     }
   } finally {
-    if (opToken === token) state.busy = 0;
+    if (opToken === token) {
+      state.busy = 0;
+      // A fill abandoned half-way (the row or the tab changed under it) must not leave the
+      // "Scanning…" note and a disabled button on screen.
+      if (state.fillNote === t('panelScanning')) state.fillNote = '';
+    }
+    // In `finally`: the early returns above used to skip the redraw (e2e found a stuck "Filling…").
+    draw();
   }
-  draw();
 }
 
 async function outcome(
   kind: 'sent' | 'deferred' | 'failed' | 'excluded' | 'replied' | 'declined',
   extra?: { reason?: FailureReason; until?: string },
 ): Promise<void> {
+  // "Sent" (button, S, the global command) is about the message: nothing was sent from Sign-up.
+  if (kind === 'sent' && state.panelTab === 'signup') return;
   await flushDraft();
   const r = row();
   if (!r || !state.render) return;
@@ -625,11 +843,17 @@ browser.runtime.onMessage.addListener((raw: unknown, sender) => {
   const msg = raw as RuntimeMessage;
   if (msg.type === 'data-changed') {
     // Options page wrote something (rows, profile, template, campaign switch): refresh the queue.
-    window.clearTimeout(reloadTimer);
-    reloadTimer = window.setTimeout(() => {
-      if (state.busy || state.draft !== null || state.pickingSlot) return; // the user is mid-action here
+    // While the user is mid-action here the reload waits instead of being dropped: a campaign
+    // switched or deleted in options must reach the panel once the fill or edit is over.
+    const attempt = (): void => {
+      if (state.busy || state.draft !== null || state.pickingSlot) {
+        reloadTimer = window.setTimeout(attempt, 1000);
+        return;
+      }
       void reload();
-    }, 150);
+    };
+    window.clearTimeout(reloadTimer);
+    reloadTimer = window.setTimeout(attempt, 150);
     return;
   }
   if (msg.type === 'picked') {
@@ -698,9 +922,27 @@ document.addEventListener('keydown', (e) => {
 // ── View ───────────────────────────────────────────────────────────────────────
 
 /** "Field mapping — 4 mapped, 1 missing · recipe changed, confirm" — a clause per key. */
-function mappingSummary(mapping: ResolvedMapping): string {
+/** Profile values only for a sign-up fill or a step without a message; everything otherwise. */
+function fillValues(c: Campaign, r: Row, render: RowRender | null): Partial<Record<Slot, string>> {
+  const profile = pickProfile(c, r);
+  if (render) return slotValues(c, r, render, profile);
+  return {
+    'profile.name': profile?.values.name ?? '',
+    'profile.email': profile?.values.email ?? '',
+    'profile.site': profile?.values.site ?? '',
+    'profile.phone': profile?.values.phone ?? '',
+  };
+}
+
+/** Slots with no field on the page — only those with something to put there: an empty profile
+ *  phone "not found" on every form was noise (demo review). */
+function missingSlots(mapping: ResolvedMapping, values: Partial<Record<Slot, string>>): Slot[] {
+  return mapping.unmapped.filter((s) => (values[s] ?? '') !== '');
+}
+
+function mappingSummary(mapping: ResolvedMapping, missingCount: number): string {
   const mapped = t('panelMappingSummary', String(mapping.fields.filter((f) => f.field).length));
-  const missing = mapping.unmapped.length ? `, ${t('panelMappingMissing', String(mapping.unmapped.length))}` : '';
+  const missing = missingCount ? `, ${t('panelMappingMissing', String(missingCount))}` : '';
   const stale = mapping.stale ? ` · ${t('panelMappingStale')}` : '';
   return `${mapped}${missing}${stale}`;
 }
@@ -804,9 +1046,9 @@ function draw(): void {
   }
 
   const card = h(
-    'section',
-    { class: 'card card--soft panel__row', 'aria-label': t('panelRowAria') },
-    h('div', { class: 'panel__row-key' }, r.seedKey, ' ', statusBadge(r)),
+    'fieldset',
+    { class: 'fieldset-group panel__row', 'aria-label': t('panelRowAria') },
+    h('legend', { class: 'panel__row-key' }, r.seedKey, ' ', statusBadge(r)),
     h(
       'div',
       { class: 'panel__row-meta muted' },
@@ -823,15 +1065,7 @@ function draw(): void {
         ? h('div', { class: 'text-warning' }, t('panelOtherPage', pathOf(state.tab.url), pathOf(tUrl ?? '')))
         : null,
     ),
-    h(
-      'div',
-      { class: 'panel__row-vars muted' },
-      c.columns
-        .filter((col) => col.type === 'text' && col.role === 'none' && !col.hidden)
-        .slice(0, 3)
-        .map((col) => `${col.header}: ${r.values[col.id] ?? ''}`)
-        .join(' · '),
-    ),
+    rowVars(c, r),
     h(
       'div',
       { class: 'panel__row-nav' },
@@ -858,7 +1092,12 @@ function draw(): void {
     ),
   );
 
-  const message = h('section', { class: 'panel__message', 'aria-label': t('panelMessageAria') });
+  // The same values the fill would use: profile only on the Sign-up tab.
+  const values = fillValues(c, r, state.accountKey && state.panelTab === 'signup' ? null : state.render);
+  const message = h(state.render ? 'fieldset' : 'section', {
+    class: state.render ? 'fieldset-group panel__message' : 'panel__message',
+    'aria-label': t('panelMessageAria'),
+  });
   if (state.render) {
     const textarea = h('textarea', { id: 'message-body', class: 'panel__textarea', rows: 7 }) as HTMLTextAreaElement;
     textarea.value = state.draft ?? state.render.body.text;
@@ -877,30 +1116,41 @@ function draw(): void {
       saveBtn.hidden = state.draft === null;
     });
     append(message, [
+      h(
+        'legend',
+        {},
+        `${t('panelBodyChars', String(state.render.body.text.length))}${r.overrides?.body ? ` · ${t('panelEdited')}` : ''}`,
+      ),
       state.render.subject
         ? h(
-            'p',
-            { class: 'panel__subject' },
-            h('span', { class: 'muted' }, t('panelSubjectLabel'), ' '),
-            highlighted(state.render.subject),
+            'div',
+            { class: 'panel__copyrow' },
+            h(
+              'p',
+              { class: 'panel__subject' },
+              h(
+                'span',
+                { class: 'muted' },
+                c.scenario === 'submit' ? t('panelTitleLabel') : t('panelSubjectLabel'),
+                ' ',
+              ),
+              highlighted(state.render.subject),
+            ),
+            copyButton(state.render.subject.text, slotLabel('output.subject')),
           )
         : null,
       h(
-        'details',
-        { class: 'panel__preview', open: true },
-        h(
-          'summary',
-          { class: 'panel__label' },
-          `${t('panelBodyChars', String(state.render.body.text.length))}${r.overrides?.body ? ` · ${t('panelEdited')}` : ''}`,
-        ),
+        'div',
+        { class: 'panel__copyrow panel__preview' },
         highlighted(state.render.body),
+        // What the box below shows, unsaved edit included.
+        copyButton(() => textarea.value, slotLabel('output.body')),
       ),
       h(
         'details',
-        { class: 'panel__edit' },
-        h('summary', { class: 'panel__label' }, t('panelEditRow')),
-        textarea,
-        saveBtn,
+        { class: 'field-details panel__edit' },
+        h('summary', { class: 'field-details__summary' }, t('panelEditRow')),
+        h('div', { class: 'field-details__body stack--sm' }, textarea, saveBtn),
       ),
       warningsList(state.render.warnings),
     ]);
@@ -930,135 +1180,156 @@ function draw(): void {
         ? t('panelDemoPage') // tab.url is hidden without the tabs permission; the row says where we are
         : new URL(targetUrl(r) ?? 'https://x').hostname
       : '';
-  const recipe = h(
-    'details',
-    { class: 'panel__recipe card card--soft', open: !!state.mapping },
-    h(
-      'summary',
-      {},
-      state.mapping ? mappingSummary(state.mapping) : t('panelMappingHost', tabHost || t('panelNoPage')),
-    ),
-    state.mapping
-      ? h(
-          'ul',
-          { class: 'panel__slots' },
-          ...state.mapping.fields.map((f) => {
-            const rep = state.report.find((x) => x.slot === f.slot);
-            const outcomeFlag =
-              rep?.outcome === 'exact' || rep?.outcome === 'equivalent'
-                ? 'flag--ok'
-                : rep?.outcome === 'skippedNonEmpty'
-                  ? 'flag--muted'
-                  : 'flag--warn';
-            return h(
-              'li',
-              { class: 'slot' },
-              h(
-                'div',
-                { class: 'slot__main' },
-                h('span', { class: 'btn-chip btn-chip--sm chip--ok slot__name' }, slotLabel(f.slot)),
-                h('span', { class: 'slot__arrow muted' }, '→'),
-                h(
-                  'code',
-                  { class: 'slot__field', title: f.field?.label ?? f.field?.name ?? '' },
-                  f.field?.name ?? f.field?.label ?? f.field?.placeholder ?? f.field?.tag ?? '?',
-                ),
-              ),
-              h(
-                'div',
-                { class: 'row-actions' },
-                rep
-                  ? h('span', { class: `flag ${outcomeFlag}`, title: rep.detail ?? '' }, t(FLAG_LABEL[rep.outcome]))
-                  : null,
-                h(
-                  'button',
-                  {
-                    type: 'button',
-                    class: 'flag flag--button panel__policy',
-                    title: t('panelPolicyTitle'),
-                    onclick: () => {
-                      // Cursor insertion exists for text inputs only; selects and files take or skip a value.
-                      const order =
-                        f.field?.tag === 'select' || f.field?.type === 'file'
-                          ? POLICY_ORDER.filter((p) => p !== 'insertAtCursor')
-                          : POLICY_ORDER;
-                      const i = order.indexOf(f.recipeField.fillPolicy);
-                      void patchSlot(f.slot, { fillPolicy: order[(i + 1) % order.length] ?? 'skipIfFilled' });
-                    },
-                  },
-                  t(POLICY_LABEL[f.recipeField.fillPolicy]),
-                  ' ▾',
-                ),
-                f.recipeField.manual
-                  ? h('span', { class: 'flag flag--info', title: t('panelPinnedTitle') }, t('flagPinned'))
-                  : h(
-                      'button',
-                      {
-                        type: 'button',
-                        class: 'btn-icon btn-icon--compact',
-                        'aria-label': t('panelPinAria'),
-                        title: t('panelPinTitle'),
-                        onclick: () => void patchSlot(f.slot, { manual: true, confidence: 1 }),
-                      },
-                      svgIcon('lock'),
-                    ),
-                h(
-                  'button',
-                  {
-                    type: 'button',
-                    class: 'btn-icon btn-icon--compact',
-                    'aria-label': t('panelClearAria'),
-                    title: t('panelClearTitle'),
-                    onclick: () => void clearMapping(f.slot),
-                  },
-                  svgIcon('close'),
-                ),
-              ),
-            );
-          }),
-          ...state.mapping.unmapped.map((s) =>
-            h(
-              'li',
-              { class: 'slot' },
-              h(
-                'div',
-                { class: 'slot__main' },
-                h('span', { class: 'btn-chip btn-chip--sm chip--danger slot__name' }, slotLabel(s)),
-                h('span', { class: 'muted slot__field' }, t('slotNotFound')),
-              ),
-              h(
-                'div',
-                { class: 'row-actions' },
-                h(
-                  'button',
-                  { type: 'button', class: 'btn btn--ghost btn--sm', onclick: () => void pointAt(s) },
-                  svgIcon('target'),
-                  ' ',
-                  t('panelPointAt'),
-                ),
-              ),
-            ),
+  // A copy button on every slot with a value: what the helper could not put on the page, the human
+  // can (demo review). Files are uploads, not text.
+  const fileSlots = new Set(c.columns.filter((col) => col.type === 'file').map((col) => `row.${col.id}`));
+  const slotCopy = (s: Slot): HTMLElement | null => {
+    const v = values[s] ?? '';
+    if (v === '' || fileSlots.has(s)) return null;
+    return copyButton(s === 'output.body' ? () => state.draft ?? v : v, slotLabel(s));
+  };
+  const missing = state.mapping ? missingSlots(state.mapping, values) : [];
+  // A page with no fields at all (blog-4): one line, not a list of "not found" with nothing to point at.
+  const recipe =
+    state.scan?.fields.length === 0
+      ? h('p', { class: 'panel__nofields muted' }, t('panelNoFields'))
+      : h(
+          'details',
+          { class: 'field-details panel__recipe', open: !!state.mapping },
+          h(
+            'summary',
+            { class: 'field-details__summary' },
+            state.mapping
+              ? mappingSummary(state.mapping, missing.length)
+              : t('panelMappingHost', tabHost || t('panelNoPage')),
           ),
-          state.mapping.recipe
+          state.mapping
             ? h(
-                'li',
-                { class: 'panel__slots-foot' },
-                h(
-                  'button',
-                  {
-                    type: 'button',
-                    class: 'btn btn--danger btn--outline btn--sm',
-                    onclick: () => void forgetMapping(),
-                  },
-                  svgIcon('trash'),
-                  ' ',
-                  t('panelForgetRecipe'),
+                'ul',
+                { class: 'panel__slots field-details__body' },
+                ...state.mapping.fields.map((f) => {
+                  const rep = state.report.find((x) => x.slot === f.slot);
+                  const outcomeFlag =
+                    rep?.outcome === 'exact' || rep?.outcome === 'equivalent'
+                      ? 'flag--ok'
+                      : rep?.outcome === 'skippedNonEmpty'
+                        ? 'flag--muted'
+                        : 'flag--warn';
+                  return h(
+                    'li',
+                    { class: 'slot' },
+                    h(
+                      'div',
+                      { class: 'slot__main' },
+                      h('span', { class: 'btn-chip btn-chip--sm chip--ok slot__name' }, slotLabel(f.slot)),
+                      h('span', { class: 'slot__arrow muted' }, '→'),
+                      h(
+                        'code',
+                        { class: 'slot__field', title: f.field?.label ?? f.field?.name ?? '' },
+                        f.field?.name ?? f.field?.label ?? f.field?.placeholder ?? f.field?.tag ?? '?',
+                      ),
+                    ),
+                    h(
+                      'div',
+                      { class: 'row-actions' },
+                      rep
+                        ? h(
+                            'span',
+                            { class: `flag ${outcomeFlag}`, title: rep.detail ?? '' },
+                            t(FLAG_LABEL[rep.outcome]),
+                          )
+                        : null,
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          class: 'flag flag--button panel__policy',
+                          title: t('panelPolicyTitle'),
+                          onclick: () => {
+                            // Cursor insertion exists for text inputs only; selects and files take or skip a value.
+                            const order =
+                              f.field?.tag === 'select' || f.field?.type === 'file'
+                                ? POLICY_ORDER.filter((p) => p !== 'insertAtCursor')
+                                : POLICY_ORDER;
+                            const i = order.indexOf(f.recipeField.fillPolicy);
+                            void patchSlot(f.slot, { fillPolicy: order[(i + 1) % order.length] ?? 'skipIfFilled' });
+                          },
+                        },
+                        t(POLICY_LABEL[f.recipeField.fillPolicy]),
+                        ' ▾',
+                      ),
+                      f.recipeField.manual
+                        ? h('span', { class: 'flag flag--info', title: t('panelPinnedTitle') }, t('flagPinned'))
+                        : h(
+                            'button',
+                            {
+                              type: 'button',
+                              class: 'btn-icon btn-icon--sm',
+                              'aria-label': t('panelPinAria'),
+                              title: t('panelPinTitle'),
+                              onclick: () => void patchSlot(f.slot, { manual: true, confidence: 1 }),
+                            },
+                            svgIcon('lock'),
+                          ),
+                      slotCopy(f.slot),
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          class: 'btn-icon btn-icon--sm',
+                          'aria-label': t('panelClearAria'),
+                          title: t('panelClearTitle'),
+                          onclick: () => void clearMapping(f.slot),
+                        },
+                        svgIcon('close'),
+                      ),
+                    ),
+                  );
+                }),
+                ...missing.map((s) =>
+                  h(
+                    'li',
+                    { class: 'slot' },
+                    h(
+                      'div',
+                      { class: 'slot__main' },
+                      h('span', { class: 'btn-chip btn-chip--sm chip--danger slot__name' }, slotLabel(s)),
+                      h('span', { class: 'muted slot__field' }, t('slotNotFound')),
+                    ),
+                    h(
+                      'div',
+                      { class: 'row-actions' },
+                      slotCopy(s),
+                      h(
+                        'button',
+                        { type: 'button', class: 'btn btn--ghost btn--sm', onclick: () => void pointAt(s) },
+                        svgIcon('target'),
+                        ' ',
+                        t('panelPointAt'),
+                      ),
+                    ),
+                  ),
                 ),
+                state.mapping.recipe
+                  ? h(
+                      'li',
+                      { class: 'panel__slots-foot' },
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          class: 'btn btn--danger btn--outline btn--sm',
+                          onclick: () => void forgetMapping(),
+                        },
+                        svgIcon('trash'),
+                        ' ',
+                        t('panelForgetRecipe'),
+                      ),
+                    )
+                  : null,
               )
-            : null,
-        )
-      : h('p', { class: 'muted' }, t('panelMappingHelp')),
-  );
+            : h('p', { class: 'muted' }, t('panelMappingHelp')),
+        );
 
   let primary: HTMLElement;
   const secondary: HTMLElement[] = [];
@@ -1152,6 +1423,64 @@ function draw(): void {
         ),
       );
   }
+  // Sign-up tab (ADR 0014): the profile goes into the site's registration form; the human sets the
+  // password, solves the captcha, ticks the boxes and presses the button.
+  const signupTab = !!state.accountKey && state.panelTab === 'signup';
+  if (signupTab) {
+    const sUrl = signupUrl(r);
+    const onWeb = !!state.tab && (state.tab.url === undefined || isWebOrDemo(state.tab.url));
+    if (!onWeb && sUrl)
+      primary = h(
+        'button',
+        {
+          type: 'button',
+          class: 'btn btn--primary panel__primary',
+          title: sUrl,
+          onclick: (e: Event) => void openSignup(wantsNewTab(e)),
+        },
+        svgIcon('open-in-new'),
+        ' ',
+        t('panelOpenHost', siteLabel(sUrl)),
+      );
+    else if (!state.permitted)
+      primary = h(
+        'button',
+        { type: 'button', class: 'btn btn--primary panel__primary', onclick: () => void allowAndFill() },
+        svgIcon('auto-fix'),
+        ' ',
+        t('panelSignupAllowFill', tabHost),
+      );
+    else
+      primary = h(
+        'button',
+        {
+          type: 'button',
+          class: 'btn btn--primary panel__primary',
+          disabled: state.busy !== 0,
+          onclick: () => void fill(),
+        },
+        svgIcon('auto-fix'),
+        ' ',
+        state.busy !== 0 ? t('panelFilling') : t('panelSignupFill', tabHost),
+      );
+    secondary.length = 0;
+    if (sUrl && onWeb)
+      secondary.push(
+        h(
+          'button',
+          {
+            type: 'button',
+            class: 'btn btn--ghost btn--sm',
+            title: sUrl,
+            onclick: (e: Event) => void openSignup(wantsNewTab(e)),
+          },
+          svgIcon('open-in-new'),
+          ' ',
+          t('panelSignupOpenPage'),
+        ),
+      );
+  }
+
   // Everything that is not the one obvious next step lives in the sheet behind the grip: two
   // nested <details> used to reflow the footer into a two-row cluster (UX review U11).
   const act = (label: string, run: () => void, icon?: Parameters<typeof svgIcon>[0]): HTMLElement =>
@@ -1252,7 +1581,130 @@ function draw(): void {
     );
   }
 
-  append(app, [header, card, message, recipe, notes, actionBar(primary, secondary, sheet)]);
+  append(app, [
+    header,
+    card,
+    state.accountKey ? panelTabs() : null,
+    signupTab ? signupSection(c, r) : message,
+    recipe,
+    notes,
+    actionBar(primary, secondary, sheet),
+  ]);
+}
+
+/**
+ * The row's own columns: one clipped line, and the whole text one click away — a column like
+ * "instruction" is the thing to read on the site, and it was cut after a few words (field test).
+ */
+function rowVars(c: Campaign, r: Row): HTMLElement {
+  const cols = c.columns.filter((col) => col.type === 'text' && col.role === 'none' && !col.hidden);
+  const line = cols
+    .slice(0, 3)
+    .map((col) => `${col.header}: ${r.values[col.id] ?? ''}`)
+    .join(' · ');
+  const filled = cols.filter((col) => (r.values[col.id] ?? '').trim() !== '');
+  if (filled.length === 0) return h('div', { class: 'panel__row-vars muted' }, line);
+  return h(
+    'details',
+    { class: 'panel__row-vars-box' },
+    h('summary', { class: 'panel__row-vars muted' }, line),
+    h(
+      'dl',
+      { class: 'panel__row-values' },
+      ...filled.flatMap((col) => [h('dt', {}, col.header), h('dd', {}, r.values[col.id] ?? '')]),
+    ),
+  );
+}
+
+/**
+ * Sign-up / Submission switch over the row (submissions campaigns, ADR 0014). Two toggle buttons
+ * in a group (aria-pressed), not an ARIA tabs widget: there is no tabpanel to own.
+ */
+function panelTabs(): HTMLElement {
+  const tab = (id: 'signup' | 'submit', label: string, badge?: string): HTMLElement =>
+    h(
+      'button',
+      {
+        type: 'button',
+        class: `tabs__trigger panel__tab${state.panelTab === id ? ' is-active' : ''}`,
+        'aria-pressed': String(state.panelTab === id),
+        onclick: () => {
+          if (state.panelTab === id) return;
+          switchTab(id);
+          state.manualTab = true;
+          draw();
+        },
+      },
+      label,
+      badge ? h('span', { class: 'panel__tab-badge' }, badge) : null,
+    );
+  const settled = accountSettled(state.account);
+  return h(
+    'div',
+    { class: 'tabs__nav panel__tabs', role: 'group', 'aria-label': t('panelTabsAria') },
+    tab('signup', t('panelTabSignup'), settled ? '✓' : undefined),
+    tab('submit', t('panelTabSubmit')),
+  );
+}
+
+function signupSection(c: Campaign, r: Row): HTMLElement {
+  const profile = pickProfile(c, r);
+  const state_ = state.account?.state ?? 'none';
+  const values = SIGNUP_SLOTS.map(
+    (s) => [s, profile?.values[s.slice(8) as 'name' | 'email' | 'site' | 'phone'] ?? ''] as const,
+  ).filter(([, v]) => v.trim() !== '');
+  const stateBtn = (label: string, next: AccountState, primary = false): HTMLElement =>
+    h(
+      'button',
+      {
+        type: 'button',
+        class: `btn ${primary ? 'btn--primary' : 'btn--ghost'} btn--sm`,
+        'aria-pressed': String(state_ === next),
+        onclick: () => void setAccount({ state: next }),
+      },
+      label,
+    );
+  return h(
+    'fieldset',
+    { class: 'fieldset-group panel__message panel__signup', 'aria-label': t('panelTabSignup') },
+    h('legend', { class: 'panel__signup-state' }, t(ACCOUNT_LABEL[state_])),
+    h('p', { class: 'muted' }, t('panelSignupIntro')),
+    values.length > 0
+      ? h(
+          'ul',
+          { class: 'panel__signup-values' },
+          ...values.map(([s, v]) =>
+            h(
+              'li',
+              { class: 'panel__copyrow' },
+              h('span', {}, h('span', { class: 'muted' }, `${slotLabel(s)}: `), v),
+              copyButton(v, slotLabel(s)),
+            ),
+          ),
+        )
+      : h(
+          'button',
+          { type: 'button', class: 'panel panel--warning panel--compact', onclick: () => void openOptions('profiles') },
+          t('panelSignupNoProfile'),
+        ),
+    h(
+      'div',
+      { class: 'cluster' },
+      state_ === 'none' ? stateBtn(t('panelSignupRegistered'), 'awaiting_email') : null,
+      stateBtn(t('panelSignupConfirmed'), 'ready', state_ === 'awaiting_email'),
+      stateBtn(t('panelSignupNotNeeded'), 'not_needed'),
+    ),
+    h(
+      'p',
+      { class: 'muted panel__signup-page' },
+      state.account?.signupUrl ? `${t('panelSignupPageLabel')} ${pathOf(state.account.signupUrl)} · ` : '',
+      h(
+        'button',
+        { type: 'button', class: 'btn-link', onclick: () => void markSignupPage() },
+        t('panelSignupThisPage'),
+      ),
+    ),
+  );
 }
 
 const SHEET_KEY = 'spintax_panel_sheet';
