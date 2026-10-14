@@ -1,3 +1,4 @@
+import { openCampaignsDrawer } from '@/options/campaigns';
 import {
   openAssetsDrawer,
   openBackupDrawer,
@@ -81,7 +82,19 @@ const sidebar = h(
 
 const content = h('main', { class: 'dashboard-content', id: 'content' });
 const title = h('h1', { class: 'options__title', id: 'view-title' }, t('optNavWizard'));
-const subtitle = h('span', { class: 'options__subtitle muted' });
+// The campaign name is the way into the campaigns drawer: switch, rename, add, delete (#4).
+const subtitleName = h('span', {});
+const subtitle = h(
+  'button',
+  {
+    type: 'button',
+    class: 'options__subtitle options__campaign muted',
+    title: t('optCampaignsTitle'),
+    onclick: () => openCampaignsDrawer(),
+  },
+  subtitleName,
+  svgIcon('chevron-down'),
+);
 const qa = quickActions();
 const header = h(
   'header',
@@ -142,7 +155,7 @@ async function renderView(id: string, params: URLSearchParams = new URLSearchPar
     else if (open === 'files') openAssetsDrawer();
     else if (open === 'backup') openBackupDrawer(campaign);
   }
-  subtitle.textContent = campaign ? campaign.name : '';
+  subtitleName.textContent = campaign ? campaign.name : t('optCampaignsNone');
   if (item.id === 'wizard' && campaign) {
     renderWizard(view, campaign, route);
   } else if (item.id === 'list' && campaign) {

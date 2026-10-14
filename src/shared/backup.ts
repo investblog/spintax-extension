@@ -6,6 +6,7 @@
  * are tens of MB at most; a streaming writer can replace it behind the same signatures.
  */
 import { strFromU8, strToU8, unzipSync, zipSync } from 'fflate';
+import { ACCOUNT_RANGE, accountKey, canonicalAccount, type SiteAccount } from './accounts';
 import { req, runTx } from './db';
 import type { Asset, Campaign, JournalEvent, Recipe, Row, Template } from './model';
 import { SCHEMA_VERSION } from './model';
@@ -22,6 +23,8 @@ export interface CampaignBundle {
   journal: JournalEvent[];
   /** Global recipes — all of them; they are not campaign-scoped. */
   recipes: Recipe[];
+  /** Site account notes (ADR 0014) — global too; absent in older backups. */
+  accounts?: SiteAccount[];
   /** sha256 → metadata — bytes live in assets/ */
   assets: Record<string, Pick<Asset, 'name' | 'mime' | 'width' | 'height' | 'size' | 'createdAt'>>;
 }
@@ -48,15 +51,22 @@ export function referencedAssets(campaign: Campaign, rows: Row[]): Set<string> {
 }
 
 export async function exportCampaignZip(campaignId: string): Promise<Blob> {
-  const snapshot = await runTx(['campaigns', 'rows', 'templates', 'journal', 'recipes'], 'readonly', async (s) => {
-    const campaign = (await req(s('campaigns').get(campaignId))) as Campaign | undefined;
-    if (!campaign) throw new Error(`campaign ${campaignId} not found`);
-    const rows = (await req(s('rows').index('campaignId').getAll(campaignId))) as Row[];
-    const templates = (await req(s('templates').index('campaignId').getAll(campaignId))) as Template[];
-    const journal = (await req(s('journal').index('campaignId').getAll(campaignId))) as JournalEvent[];
-    const recipes = (await req(s('recipes').getAll())) as Recipe[];
-    return { campaign, rows, templates, journal, recipes };
-  });
+  const snapshot = await runTx(
+    ['campaigns', 'rows', 'templates', 'journal', 'recipes', 'settings'],
+    'readonly',
+    async (s) => {
+      const campaign = (await req(s('campaigns').get(campaignId))) as Campaign | undefined;
+      if (!campaign) throw new Error(`campaign ${campaignId} not found`);
+      const rows = (await req(s('rows').index('campaignId').getAll(campaignId))) as Row[];
+      const templates = (await req(s('templates').index('campaignId').getAll(campaignId))) as Template[];
+      const journal = (await req(s('journal').index('campaignId').getAll(campaignId))) as JournalEvent[];
+      const recipes = (await req(s('recipes').getAll())) as Recipe[];
+      const accounts = ((await req(s('settings').getAll(ACCOUNT_RANGE()))) as { value: unknown }[])
+        .map((x) => canonicalAccount(x.value))
+        .filter((a): a is SiteAccount => !!a);
+      return { campaign, rows, templates, journal, recipes, accounts };
+    },
+  );
 
   const files: Record<string, Uint8Array> = {};
   const assets: CampaignBundle['assets'] = {};
@@ -140,6 +150,11 @@ export function validateBundle(raw: unknown): CampaignBundle {
   }
   for (const r of recipes)
     if (!isRecord(r) || !isStr(r.id) || !isRecord(r.key)) throw new Error('campaign.json: invalid recipe');
+  if (raw.accounts !== undefined) {
+    const parsed = Array.isArray(raw.accounts) ? raw.accounts.map(canonicalAccount) : [null];
+    if (parsed.some((a) => !a)) throw new Error('campaign.json: invalid site account');
+    raw.accounts = parsed; // the exact stored shape only — extra fields never reach the database
+  }
   const assets = isRecord(raw.assets) ? raw.assets : {};
   for (const [sha, meta] of Object.entries(assets)) {
     if (!/^[0-9a-f]{64}$/.test(sha) || !isRecord(meta) || !isStr(meta.name) || !isStr(meta.mime))
@@ -193,6 +208,14 @@ export async function importCampaignZip(blob: Blob): Promise<ImportResult> {
     for (const t of bundle.templates) await req(s('templates').put(t));
     for (const e of bundle.journal) await req(s('journal').put({ ...e, campaignId: bundle.campaign.id }));
     for (const r of bundle.recipes ?? []) await req(s('recipes').put(r));
+    for (const a of bundle.accounts ?? []) {
+      // A note is newer on this device when it changed after the backup: keep the newer one.
+      const cur = canonicalAccount(
+        ((await req(s('settings').get(accountKey(a)))) as { value?: unknown } | undefined)?.value,
+      );
+      if (!cur || Date.parse(cur.updatedAt) < Date.parse(a.updatedAt))
+        await req(s('settings').put({ key: accountKey(a), value: a }));
+    }
     await bumpSeq(s, maxSeq);
   });
 

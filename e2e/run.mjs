@@ -47,6 +47,8 @@ const userData = fs.mkdtempSync(path.join(root, 'dist', 'e2e-profile-'));
 
 const context = await chromium.launchPersistentContext(userData, {
   channel: E2E_BROWSER,
+  // A local browser build when the one Playwright pins is not installed; CI leaves it unset.
+  executablePath: process.env.E2E_CHROME || undefined,
   headless: true,
   args: [`--disable-extensions-except=${dist}`, `--load-extension=${dist}`, '--lang=en-US'],
 });
@@ -137,6 +139,16 @@ try {
   const variantCount = await options.locator('.variant').count();
   check(/used/.test(nameRow) && /Anna|Chrome Web Store/.test(nameRow), 'variables block: %name% marked used with a sample value');
   check(variantCount === 2, `variants block renders one item per row (${variantCount})`);
+  // One variant on screen at a time, picked by its row-key chip.
+  check((await options.locator('.variant:not([hidden])').count()) === 1, 'variants: one shown at a time');
+  const secondChip = options.locator('.variants__tabs button').nth(1);
+  const secondKey = ((await secondChip.textContent()) ?? '').trim();
+  await secondChip.click();
+  check(
+    (await secondChip.getAttribute('aria-pressed')) === 'true' &&
+      ((await options.locator('.variant:not([hidden]) .variant__head').textContent()) ?? '').includes(secondKey),
+    'variants: a row chip switches the shown variant',
+  );
 
   // Subject template too (mapped to the form's subject field).
   await pick(options, 'Channel', 'Subject');
@@ -186,7 +198,13 @@ try {
 
   const mapping = (await panel.locator('.panel__recipe summary').textContent()) ?? '';
   console.log('mapping:', mapping);
-  check(/5 mapped/.test(mapping) && /6 missing/.test(mapping), 'recipe: 5 slots mapped; phone + 5 store columns missing');
+  check(
+    (await panel.getByRole('button', { name: 'Copy: Subject' }).count()) >= 1 &&
+      (await panel.getByRole('button', { name: 'Copy: Message' }).count()) >= 1,
+    'subject and message have copy buttons',
+  );
+  // Phone and the store columns are empty for this row: nothing to put there, so not "missing".
+  check(/5 mapped/.test(mapping) && !/missing/.test(mapping), 'recipe: 5 slots mapped; empty slots are not listed as missing');
   // Recipe controls in the panel: fill policy chip cycles and is saved; pin marks the field manual.
   const nameSlot = panel.locator('.panel__slots li', { hasText: 'Your name' }).first();
   await nameSlot.locator('.panel__policy').click();
@@ -441,10 +459,143 @@ try {
     hp: document.querySelector('[name=website]').value,
   }));
   check(demoValues.name === 'Alex Demo' && /Maya/.test(demoValues.message) && demoValues.hp === '', 'demo page filled from the demo profile and template, honeypot untouched');
+
+  // The submissions demo: a bundled site opens on Sign-up, the two-step join form is filled step by
+  // step (password and boxes untouched), the account is settled, the submission form is filled.
+  await options.locator('.options__campaign').click();
+  await options.getByRole('button', { name: 'Open: Demo — profiles and submissions' }).click();
+  await options.keyboard.press('Escape'); // the drawer stays open after a switch
+  await panel.locator('.panel__campaign-link', { hasText: 'Demo — profiles and submissions' }).waitFor({ timeout: 10_000 });
+  await target.goto(`chrome-extension://${extId}/demo/board/submit.html`);
+  await target.bringToFront();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Sign-up' }).waitFor({ timeout: 10_000 });
+  check(true, 'submissions demo: a bundled site opens on the Sign-up tab');
+  await panel.getByRole('button', { name: 'Open the sign-up page' }).click();
+  await target.waitForURL(/\/demo\/board\/join\.html/);
+  const demoSignupFill = async () => {
+    await panel.locator('.panel__primary', { hasText: /sign-up on/ }).click();
+    await panel
+      .waitForFunction(() => /password, captcha/.test(document.querySelector('.panel__note')?.textContent ?? ''), null, {
+        timeout: 10_000,
+      })
+      .catch(async (e) => {
+        console.log('note:', await panel.locator('.panel__notes').textContent());
+        throw e;
+      });
+  };
+  await demoSignupFill();
+  await target.locator('[data-demo-next-step]').click();
+  await demoSignupFill();
+  const joined = await target.evaluate(() => ({
+    email: document.querySelector('#email').value,
+    name: document.querySelector('#name').value,
+    password: document.querySelector('#password').value,
+    boxes: [...document.querySelectorAll('input[type=checkbox]')].some((b) => b.checked),
+  }));
+  check(
+    joined.email === 'alex@example.com' && joined.name === 'Alex Demo' && joined.password === '' && !joined.boxes,
+    'submissions demo: both sign-up steps filled from the profile, password and boxes untouched',
+  );
+  await panel.getByRole('button', { name: 'E-mail confirmed' }).click();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Submission' }).waitFor({ timeout: 10_000 });
+  await target.goto(`chrome-extension://${extId}/demo/board/submit.html`);
+  await target.bringToFront();
+  await panel.locator('.panel__primary', { hasText: 'Fill on the demo page' }).click();
+  await panel.waitForFunction(() => /Filled \d+ field/.test(document.querySelector('.panel__note')?.textContent ?? ''), null, { timeout: 15_000 });
+  const submitted = await target.evaluate(() => ({
+    title: document.querySelector('#title').value,
+    story: document.querySelector('#story').value,
+    link: document.querySelector('#link').value,
+  }));
+  check(
+    /Alex/.test(submitted.title) && /Story Board/.test(submitted.story) && submitted.link === 'https://example.com',
+    'submissions demo: title, text and link filled on the submission form',
+  );
   await options.goto(`chrome-extension://${extId}/options.html#settings`);
   await options.getByRole('button', { name: /Remove the demo campaign/ }).click();
   await options.getByRole('button', { name: /Remove the demo campaign/ }).waitFor({ state: 'detached', timeout: 10_000 });
   check(true, 'demo removed from Settings (button gone after the re-render)');
+
+  // 12. Campaigns drawer (#4): create a submit campaign, the panel follows, switch back, delete it.
+  await options.goto(`chrome-extension://${extId}/options.html#wizard`);
+  const firstName = ((await options.locator('.options__campaign').textContent()) ?? '').trim();
+  await options.locator('.options__campaign').click();
+  await options.locator('.drawer .dropdown__trigger').nth(1).waitFor(); // the drawer paints after a read
+  check(
+    (await options.locator('.drawer .dropdown__trigger[aria-label^="Scenario: "]').count()) === 2,
+    'campaigns drawer: both scenario pickers name their current value',
+  );
+  await options.locator('.drawer input.input').last().fill('E2E submissions');
+  await options.locator('.drawer .btn', { hasText: 'Create and open' }).click();
+  await options.locator('.options__campaign', { hasText: 'E2E submissions' }).waitFor({ timeout: 10_000 });
+  check(true, 'campaigns drawer: a new campaign is created and opened');
+  await panel.locator('.panel__campaign-link', { hasText: 'E2E submissions' }).waitFor({ timeout: 10_000 });
+  check(true, 'panel follows the campaign switch without a reload');
+  // Wizard step 3 (#5): a submissions campaign gets a labelled Title and Text; both are saved.
+  await options.getByPlaceholder(/Paste rows/).fill('url;site\nhttp://127.0.0.1:8766/signup.html;signup.test\n');
+  await options.getByRole('button', { name: /Continue to roles/ }).click();
+  await options.getByRole('button', { name: /Apply import/ }).click();
+  const titleBox = options.getByRole('textbox', { name: 'Title (optional)' });
+  await titleBox.waitFor({ timeout: 30_000 });
+  check(await options.getByRole('textbox', { name: 'Text' }).isVisible(), 'wizard step 3: Title and Text are labelled');
+  await options.getByRole('button', { name: /Add profile/ }).click();
+  const subInputs = options.locator('.drawer input.input, .drawer textarea');
+  await subInputs.nth(1).fill('Spintax');
+  await subInputs.nth(2).fill('hello@spintax.test');
+  await options.getByRole('button', { name: /Save profile$/ }).click();
+  await options.locator('.drawer').waitFor({ state: 'detached' });
+  await titleBox.waitFor({ timeout: 10_000 }); // step 3 re-rendered with the profile
+  await titleBox.fill('{Bad');
+  await options.getByRole('textbox', { name: 'Text' }).fill('Hello %site%');
+  check(await options.getByRole('button', { name: 'Save template' }).isDisabled(), 'wizard step 3: a broken title blocks Save');
+  await titleBox.fill('Notes for %site%');
+  await options.getByRole('button', { name: 'Save template' }).click();
+
+  // Sign-up tab (#6, ADR 0014): a submissions row opens on Sign-up until the account is settled.
+  await target.goto('http://127.0.0.1:8766/signup.html');
+  await target.bringToFront();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Sign-up' }).waitFor({ timeout: 10_000 });
+  check(await panel.getByText('Not registered on this site yet').isVisible(), 'panel opens a new site on the Sign-up tab');
+  // The panel may still be redrawing after the template save (data-changed): a click on a button
+  // that is replaced mid-click is lost, so press again until the fill's note shows.
+  let signupNote = false;
+  for (let i = 0; i < 3 && !signupNote; i++) {
+    await panel.locator('.panel__primary', { hasText: /sign-up on/ }).click();
+    signupNote = await panel
+      .waitForFunction(() => /password, captcha/.test(document.querySelector('.panel__note')?.textContent ?? ''), null, {
+        timeout: 5_000,
+      })
+      .then(
+        () => true,
+        () => false,
+      );
+  }
+  check(signupNote, 'sign-up fill: the note says what stays with the human');  const signed = await target.evaluate(() => ({
+    name: document.querySelector('#display').value,
+    email: document.querySelector('#email').value,
+    password: document.querySelector('#password').value,
+    terms: document.querySelector('#terms').checked,
+  }));
+  check(
+    signed.name === 'Spintax' && signed.email === 'hello@spintax.test' && signed.password === '' && !signed.terms,
+    'sign-up fill: profile name and e-mail in, password and terms untouched',
+  );
+  await panel.getByRole('button', { name: 'E-mail confirmed' }).click();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Submission' }).waitFor({ timeout: 10_000 });
+  await panel.getByText('Notes for signup.test').first().waitFor({ timeout: 10_000 });
+  check(true, 'account settled: the panel switches to Submission and renders the saved title');
+  await options.locator('.options__campaign').click();
+  await options.locator('.drawer .dropdown__trigger').first().waitFor();
+  check(
+    await options.locator('.drawer .dropdown__trigger[aria-label="Scenario: Submissions"]').first().isVisible(),
+    'campaigns drawer: the new campaign is a submissions campaign',
+  );
+  await options.locator('.drawer .btn', { hasText: 'Delete campaign' }).click();
+  await options.locator('.drawer .btn', { hasText: /Delete rows, templates/ }).click();
+  await options.locator('.options__campaign', { hasText: firstName }).waitFor({ timeout: 10_000 });
+  check(true, 'campaigns drawer: deleting the open campaign falls back to the previous one');
+  await panel.locator('.panel__campaign-link', { hasText: firstName }).waitFor({ timeout: 10_000 });
+  check(true, 'panel follows the deletion');
 } finally {
   await context.close();
   server.close();

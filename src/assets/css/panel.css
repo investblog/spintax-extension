@@ -44,26 +44,44 @@ body.sidepanel {
   gap: var(--space-1);
 }
 
-.panel__row {
-  padding: var(--space-3);
+/* Sections are 301-ui drawer sections: `.fieldset-group` with the title on the border line
+   (legend), collapsible blocks as `.field-details`. The shell's flex gap spaces them, so the
+   design system's first-child top margin is dropped. */
+.sidepanel-shell > .fieldset-group {
+  margin: 0;
 }
 
-.panel__recipe {
-  padding: var(--space-3);
+.sidepanel-shell > .fieldset-group > legend {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
 }
 
 .panel__row-key {
   font-weight: var(--fw-semibold);
 }
 
-.panel__row-meta {
+/* Content on the left, a copy button on the right (subject, message, sign-up values). */
+.panel__copyrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-2);
+}
+
+.panel__copy {
+  color: var(--text-muted);
+}
+
+.panel__copy:hover {
+  color: var(--text);
+}
+
+.panel__nofields {
+  margin: 0;
   font-size: var(--fs-sm);
 }
 
-.panel__label {
-  display: block;
-  margin-bottom: var(--space-1);
-  color: var(--text-muted);
+.panel__row-meta {
   font-size: var(--fs-sm);
 }
 
@@ -143,12 +161,16 @@ body.sidepanel {
   position: relative;
 }
 
+/* On the section's top border, opposite the legend — inside the box it covered the row's lines. */
 .panel__row-nav {
   position: absolute;
-  top: var(--space-2);
+  top: 0;
   right: var(--space-2);
+  transform: translateY(-50%);
   display: flex;
   gap: var(--space-1);
+  padding: 0 var(--space-1);
+  background: var(--bg);
 }
 
 .panel__row-vars {
@@ -158,18 +180,40 @@ body.sidepanel {
   white-space: nowrap;
 }
 
-.panel__subject {
-  margin: 0 0 var(--space-2);
-}
-
-.panel__preview summary,
-.panel__edit summary {
+summary.panel__row-vars {
   cursor: pointer;
 }
 
-.panel__preview .template__text {
-  margin: var(--space-2) 0 0;
+.panel__row-values {
+  margin: var(--space-1) 0 0;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.panel__row-values dt {
+  color: var(--text-muted);
+}
+
+.panel__row-values dd {
+  margin: 0 0 var(--space-1);
   white-space: pre-wrap;
+}
+
+.panel__message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.panel__subject {
+  margin: 0;
+}
+
+.panel__preview .template__text {
+  margin: 0;
+  white-space: pre-wrap;
+  /* A long URL used to push the box sideways into a horizontal scrollbar (field test). */
+  overflow-wrap: anywhere;
   max-height: 12rem;
   overflow: auto;
 }
@@ -662,4 +706,38 @@ a.panel__target:hover {
 .panel__no-message:hover,
 .panel__no-message:focus-visible {
   border-color: var(--warning);
+}
+
+/* ── Sign-up / Submission tabs (submissions campaigns, ADR 0014) ───────────── */
+/* The segmented control is 301-ui's `.tabs__nav` / `.tabs__trigger` (drawer mode switches); the
+   shell's flex gap spaces it, not the component's bottom margin. */
+.panel__tabs {
+  margin-bottom: 0;
+}
+
+.panel__tab-badge {
+  color: var(--success);
+}
+
+.panel__signup p {
+  margin: 0;
+}
+
+.panel__signup-values {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.panel__signup-values li {
+  align-items: center;
+}
+
+.panel__signup-page {
+  font-size: var(--fs-sm);
 }

@@ -3,7 +3,7 @@
  * Pure functions; no storage access. docs/data-model.md §9.
  */
 
-import { analyze, type Diagnostic, extract, render, validate } from '@spintax/core';
+import { analyze, type Diagnostic, extract, neutralize, render, validate } from '@spintax/core';
 import corePkg from '@spintax/core/package.json';
 import { buildSeed } from './keys';
 import type { Campaign, ColumnDef, Constraint, Profile, Row, Template } from './model';
@@ -163,9 +163,95 @@ export interface RenderedText {
   warnings: RenderWarning[];
 }
 
-const M_START = '';
-const M_SEP = '';
-const M_END = '';
+// Private-use markers, kept far from U+E000: @spintax/core's neutralize() sentinels start there and its
+// output pass turns them back into `{ } [ ] % #`, which silently broke every marker (#3).
+const M_START = '\uF8F0';
+const M_SEP = '\uF8F1';
+const M_END = '\uF8F2';
+
+/**
+ * Characters neutralize() leaves alone but that must not act inside a value either: `|` (splits
+ * `{…|…}` and `[…|…]`), `< > " =` (a permutation's config and separator), `? : !` (a
+ * value re-read as `{?var?…}`, `{!var?…}` or `{plural n: …}` inside braces), and the engine's own
+ * sentinels and our markers, should a cell ever carry them. Each is swapped for a code point of its
+ * own before the render and back after — one UTF-16 unit for one, so positions hold (Codex review
+ * of #2). Letters, digits, `-` and white space cannot be shielded — a plural count and a
+ * conditional's blankness depend on them — so a variable the template itself puts INSIDE its own
+ * syntax (`{?%v%?…}`, `{%v%: …}`, `[<sep=%v%>…]`) can still be read as syntax: an engine matter,
+ * investblog/spintax-js#93.
+ */
+const SHIELDED = [...'|<>"=?:!', '\uE000', '\uE001', '\uE002', '\uE003', '\uE004', '\uE005', M_START, M_SEP, M_END];
+// 17 codes from U+F8C0, well below the markers at U+F8F0 — the two ranges must never meet.
+const SHIELD_BASE = 0xf8c0;
+const shieldOf = new Map(SHIELDED.map((c, i) => [c, String.fromCharCode(SHIELD_BASE + i)]));
+const unshieldOf = new Map(SHIELDED.map((c, i) => [String.fromCharCode(SHIELD_BASE + i), c]));
+const SHIELD_RE = /[|<>"=\uE000-\uE005\uF8F0-\uF8F2]/g;
+const UNSHIELD_RE = new RegExp(
+  `[\\u${SHIELD_BASE.toString(16)}-\\u${(SHIELD_BASE + SHIELDED.length - 1).toString(16)}]`,
+  'g',
+);
+const shieldChar = (c: string): string => shieldOf.get(c) ?? c;
+const SENTINELS_RE = /[\uE000-\uE005\uF8F0-\uF8F2]/g;
+
+/**
+ * Shielding depends on where the template puts the variable. In plain text only the sentinels and
+ * markers are swapped: `| < > " = ? ! :` are ordinary punctuation there, and hiding them would blind
+ * the typographer to a closing quote, an HTML tag or a value's `Wow!`. Inside the template's own
+ * braces or brackets a value can be re-read as syntax, so there `| < > " =` are shielded, plus a
+ * leading `?`/`!` (`{?var?…}` / `{!var?…}`) and `:` in a value that starts with `plural`. The choice
+ * is per variable, not per occurrence (a context holds one value): a variable used both inside a
+ * construct and in plain text gets the shield everywhere — safe, at worst plainer typography there.
+ */
+function shieldValue(v: string, inConstruct: boolean): string {
+  if (!inConstruct) return neutralize(v.replace(SENTINELS_RE, shieldChar));
+  let out = v.replace(SHIELD_RE, shieldChar);
+  if (/^[?!]/.test(out)) out = shieldChar(out.charAt(0)) + out.slice(1);
+  if (/^\s*plural\b/i.test(out)) out = out.replace(/:/g, shieldChar);
+  return neutralize(out);
+}
+
+/**
+ * Variables the template (or an include) references from inside a `{…}` or `[…]` of its own —
+ * the only places where a value can be re-read as syntax. Comments `/# … #/` are skipped.
+ */
+function varsInsideConstructs(source: string, includes: Record<string, string> = {}): Set<string> {
+  const inside = new Set<string>();
+  for (const text of [source, ...Object.values(includes)]) {
+    const plain = text.replace(/\/#[\s\S]*?#\//g, '');
+    // A `#set` / `#def` body is re-read wherever the macro is used — inside a construct, possibly —
+    // so every variable on such a line counts as inside (Codex review of #2).
+    for (const line of plain.split('\n'))
+      if (/^\s*#(set|def)\b/.test(line))
+        for (const m of line.matchAll(/%([a-z_]\w*)%/gi)) inside.add((m[1] ?? '').toLowerCase());
+    let depth = 0;
+    for (let i = 0; i < plain.length; i++) {
+      const c = plain[i];
+      if (c === '{' || c === '[') depth++;
+      else if ((c === '}' || c === ']') && depth > 0) depth--;
+      else if (c === '%' && depth > 0) {
+        const m = /^%([a-z_]\w*)%/i.exec(plain.slice(i));
+        if (m?.[1]) {
+          inside.add(m[1].toLowerCase());
+          i += m[0].length - 1;
+        }
+      }
+    }
+  }
+  return inside;
+}
+const unshield = (s: string): string => s.replace(UNSHIELD_RE, (c) => unshieldOf.get(c) ?? c);
+
+/** Blank the way the engine sees it for `{?var?…}`: Unicode white space plus the engine's extras. */
+const isBlank = (v: string): boolean => /^[\p{White_Space}\u180E\u200B\uFEFF]*$/u.test(v);
+
+/**
+ * The value reduced to what can steer a render: digits and number punctuation (for `{plural %n%: …}`)
+ * and white space or control characters (for `{?var?…}` blankness) stay, everything else — letters, markup, the engine's
+ * sentinels — becomes `~`, which is neither a word character nor syntax. So the render takes the
+ * branch the real one takes, and no markup can be completed by data across a variable's edge
+ * (`#%v%` with `set`, `%%v%%` with `q`). Whatever markup appears in it came from the template itself.
+ */
+const inert = (v: string): string => v.replace(/[^\p{N}\p{White_Space}\p{Cc}\u180E\u200B\uFEFF.,+-]/gu, '~');
 
 /** Render with private-use markers around variable values, then strip them to get positions. */
 export function renderWithHighlights(
@@ -175,29 +261,79 @@ export function renderWithHighlights(
 ): RenderedText {
   const includeResolver = opts.includes ? (ref: string): string | null => opts.includes?.[ref] ?? null : undefined;
   const warnings: RenderWarning[] = [];
+  // Values are data, never spintax (#2): a cell `save {50|60}%` or `Acme [Beta]` reaches the text as
+  // written. neutralize() hides the structural characters from the parser; the engine puts them back.
+  const safe: Record<string, string> = {};
+  const deep = varsInsideConstructs(source, opts.includes);
+  for (const [n, v] of Object.entries(context)) safe[n] = shieldValue(v, deep.has(n.toLowerCase()));
   let plain: string;
   try {
-    plain = render(source, { context, seed: opts.seed, locale: opts.locale, includeResolver });
+    plain = unshield(render(source, { context: safe, seed: opts.seed, locale: opts.locale, includeResolver }));
   } catch (err) {
     return { text: '', highlights: [], warnings: [{ kind: 'renderError', message: (err as Error).message }] };
   }
   const names = Object.keys(context);
   const marked: Record<string, string> = {};
   names.forEach((n, i) => {
-    marked[n] = context[n] === '' ? '' : `${M_START}${i}${M_SEP}${context[n]}${M_END}`;
+    const v = safe[n] ?? '';
+    // A blank value stays as is: wrapped in markers it would turn truthy for `{?var?…}` and send the
+    // marked render down another branch (Codex review of #3).
+    marked[n] = isBlank(context[n] ?? '') ? v : `${M_START}${i}${M_SEP}${v}${M_END}`;
   });
-  let highlights: Highlight[] = [];
+  let highlights: Highlight[] | null = null;
   try {
     const withMarkers = render(source, { context: marked, seed: opts.seed, locale: opts.locale, includeResolver });
     const out = stripMarkers(withMarkers, names);
-    if (out.text === plain) highlights = dedupeHighlights(out.highlights);
-    else highlights = searchHighlights(plain, context);
+    out.text = unshield(out.text);
+    if (markersHold(out, plain, context)) highlights = dedupeHighlights(out.highlights);
   } catch {
-    highlights = searchHighlights(plain, context);
+    // fall through to the search below
   }
-  const leaked = plain.match(/[{}]|%[a-z_]\w*%|#(set|def|include)\b/i);
+  highlights ??= searchHighlights(plain, context, referencedVariables(source, opts.includes));
+  // Leftover markup is looked for in the template's own words (#2): a third render with inert values,
+  // so braces that came from the data are never mistaken for a broken template, and a real leak is
+  // never hidden behind a value that happens to look the same.
+  let own = plain;
+  try {
+    const quiet: Record<string, string> = {};
+    for (const [n, v] of Object.entries(context)) quiet[n] = inert(v);
+    own = render(source, { context: quiet, seed: opts.seed, locale: opts.locale, includeResolver });
+  } catch {
+    // the plain render succeeded, so this one does too; keep the plain text if it ever does not
+  }
+  const leaked = own.match(/[{}]|%[a-z_]\w*%|#(set|def|include)\b/i);
   if (leaked) warnings.push({ kind: 'leakedMarkup', sample: leaked[0] });
   return { text: plain, highlights, warnings };
+}
+
+/**
+ * Same text up to letter case (the capitalizer's only edit). Per code point through toUpperCase(), as
+ * the engine capitalizes: "ışık" vs "Işık" and "ς" vs "Σ" agree, which lowercasing gets wrong.
+ */
+function sameUpToCase(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  if (a === b) return true;
+  for (let i = 0; i < a.length; ) {
+    const ca = String.fromCodePoint(a.codePointAt(i) ?? 0);
+    const cb = String.fromCodePoint(b.codePointAt(i) ?? 0);
+    if (ca !== cb && ca.toUpperCase() !== cb.toUpperCase()) return false;
+    i += ca.length;
+  }
+  return true;
+}
+
+/**
+ * Marker positions are trusted when the marked render matches the plain one up to case — a marker
+ * hides a value from the sentence capitalizer — and every span still holds its value up to case, so a
+ * space the post-process slipped inside a marker is caught even when the two texts agree.
+ */
+function markersHold(
+  out: { text: string; highlights: Highlight[] },
+  plain: string,
+  context: Record<string, string>,
+): boolean {
+  if (!sameUpToCase(out.text, plain)) return false;
+  return out.highlights.every((h) => sameUpToCase(plain.slice(h.start, h.end), context[h.variable] ?? ''));
 }
 
 function stripMarkers(s: string, names: string[]): { text: string; highlights: Highlight[] } {
@@ -216,22 +352,86 @@ function stripMarkers(s: string, names: string[]): { text: string; highlights: H
   return { text, highlights };
 }
 
+/** extract() per template text, memoized: the Review screen renders every row of the list. */
+const extractCache = new Map<string, ReturnType<typeof extract> | null>();
+function extractCached(src: string): ReturnType<typeof extract> | null {
+  let hit = extractCache.get(src);
+  if (hit === undefined) {
+    try {
+      hit = extract(src);
+    } catch {
+      hit = null; // a source that does not parse contributes nothing
+    }
+    if (extractCache.size > 64) extractCache.clear();
+    extractCache.set(src, hit);
+  }
+  return hit;
+}
+
+/** Variables the template references, following only the includes it actually reaches. */
+function referencedVariables(source: string, includes: Record<string, string> = {}): Set<string> {
+  const refs = new Set<string>();
+  const seen = new Set<string>();
+  const queue: string[] = [source];
+  while (queue.length > 0) {
+    const found = extractCached(queue.pop() as string);
+    if (!found) continue;
+    for (const r of found.refs) refs.add(r.toLowerCase());
+    for (const inc of found.includes) {
+      const body = includes[inc];
+      if (body === undefined || seen.has(inc)) continue;
+      seen.add(inc);
+      queue.push(body);
+    }
+  }
+  return refs;
+}
+
+/** The engine's word class: letters, digits, combining marks, connectors. */
+const WORD_CHAR = /^[\p{L}\p{N}\p{Mn}\p{Pc}]$/u;
+
+/** Code point ending right before `i` / starting at `i` — never half of a surrogate pair. */
+function charBefore(text: string, i: number): string {
+  if (i <= 0) return '';
+  const low = text.charCodeAt(i - 1);
+  const pair = low >= 0xdc00 && low <= 0xdfff && i >= 2;
+  return text.slice(pair ? i - 2 : i - 1, i);
+}
+function charAt(text: string, i: number): string {
+  const cp = text.codePointAt(i);
+  return cp === undefined ? '' : String.fromCodePoint(cp);
+}
+
 /**
- * Fallback when post-processing moved markers: find each non-empty value by search. Longer values
- * first; overlapping spans are dropped (several variables often share a value, e.g. key/domain/target).
+ * Fallback when post-processing moved markers: find the values of the variables the template uses.
+ * Whole words only — "en" from %lang% must not light up inside "engine" (#3); letter case is ignored,
+ * since the capitalizer may have touched the value. Longer values first; overlapping spans are dropped
+ * (several variables often share a value, e.g. key/domain/target).
  */
-function searchHighlights(text: string, context: Record<string, string>): Highlight[] {
+export function searchHighlights(text: string, context: Record<string, string>, used: Set<string>): Highlight[] {
   const candidates: Highlight[] = [];
   const entries = Object.entries(context)
-    .filter(([, value]) => value.trim().length >= 2)
+    .filter(([name, value]) => used.has(name.toLowerCase()) && [...value.trim()].length >= 2)
     .sort((a, b) => b[1].length - a[1].length);
+  // Uppercased code point at each offset, computed once: a cheap first-letter filter, so the slice and
+  // the full comparison run only where a value can start (the Review screen renders every row).
+  const upperAt: string[] = [];
+  for (let i = 0; i < text.length; ) {
+    const c = charAt(text, i);
+    upperAt[i] = c.toUpperCase();
+    i += c.length;
+  }
   for (const [variable, value] of entries) {
-    let from = 0;
-    for (;;) {
-      const i = text.indexOf(value, from);
-      if (i < 0) break;
-      candidates.push({ start: i, end: i + value.length, variable });
-      from = i + value.length;
+    const firstUpper = charAt(value, 0).toUpperCase();
+    const wordStart = WORD_CHAR.test(charAt(value, 0));
+    const wordEnd = WORD_CHAR.test(charBefore(value, value.length));
+    for (let i = 0; i + value.length <= text.length; i++) {
+      if (upperAt[i] !== firstUpper) continue;
+      const end = i + value.length;
+      if (!sameUpToCase(text.slice(i, end), value)) continue;
+      const glued =
+        (wordStart && WORD_CHAR.test(charBefore(text, i))) || (wordEnd && WORD_CHAR.test(charAt(text, end)));
+      if (!glued) candidates.push({ start: i, end, variable });
     }
   }
   return dedupeHighlights(candidates);

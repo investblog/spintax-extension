@@ -36,6 +36,7 @@
   "flagEquivalent": 10,
   "flagExact": 7,
   "flagKept": 7,
+  "flagRefused": 7,
   "flagPartial": 7,
   "flagPinned": 7,
   "flagPolicyAtCursor": 12,

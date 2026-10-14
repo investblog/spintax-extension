@@ -39,6 +39,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="url"],
+input[type="password"],
 textarea,
 select {
   width: 100%;
@@ -71,6 +72,16 @@ button {
   border-radius: 6px;
   background: #e6f4ea;
   color: #1e4620;
+}
+label.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+}
+.banner--warn {
+  background: #fdf3e1;
+  color: #5c3b00;
 }
 .hp {
   position: absolute;

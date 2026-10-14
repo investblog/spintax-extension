@@ -2,7 +2,7 @@
 import { browser } from 'wxt/browser';
 import { t } from '@/shared/i18n';
 import type { Campaign } from '@/shared/model';
-import { createCampaign, getCampaign, getSetting, listCampaigns, setSetting } from '@/shared/repo';
+import { createCampaign, deleteCampaign, getCampaign, getSetting, listCampaigns, setSetting } from '@/shared/repo';
 
 const KEY = 'currentCampaignId';
 
@@ -31,6 +31,16 @@ export async function ensureCampaign(name = t('optDefaultCampaign')): Promise<Ca
   const created = await createCampaign({ name });
   await setSetting(KEY, created.id);
   return created;
+}
+
+/**
+ * Delete a campaign and leave one open — the most recent of the rest, or a fresh empty one when it
+ * was the last. Every deletion entry point goes through here, so the contract is the same on every
+ * screen (Codex review of #4).
+ */
+export async function removeCampaign(id: string): Promise<Campaign> {
+  await deleteCampaign(id);
+  return ensureCampaign();
 }
 
 /** Simple pub/sub so views re-render after writes. */

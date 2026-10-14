@@ -6,7 +6,11 @@ export function targetLabel(target: string, url: string | null, ownOrigin?: stri
   if (!url) return target;
   // Own origin is compared as a string prefix: non-special schemes (chrome-extension://) report
   // `origin === 'null'` in some engines.
-  if (ownOrigin && url.startsWith(`${ownOrigin}/`)) return t('tgtDemoPage', url.replace(/^.*blog-(\d+).*$/, '$1'));
+  // "demo page 3" for a blog, "demo page hub/profile.html" for a page of a demo site.
+  if (ownOrigin && url.startsWith(`${ownOrigin}/`)) {
+    const page = url.slice(ownOrigin.length).replace(/^\/demo\//, '');
+    return t('tgtDemoPage', /^blog-(\d+)\.html/.exec(page)?.[1] ?? page);
+  }
   try {
     const u = new URL(url);
     const path = u.pathname === '/' ? '' : u.pathname;

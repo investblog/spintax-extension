@@ -204,7 +204,15 @@ export type JournalEventKind =
   | 'translated'
   | 'corrected';
 
-export type FillOutcome = 'exact' | 'equivalent' | 'changedBySite' | 'partial' | 'skippedNonEmpty' | 'clipboard';
+/** `refused`: the field is a password box — never filled, whatever the mapping says (ADR 0014). */
+export type FillOutcome =
+  | 'exact'
+  | 'equivalent'
+  | 'changedBySite'
+  | 'partial'
+  | 'skippedNonEmpty'
+  | 'clipboard'
+  | 'refused';
 
 export interface JournalEvent {
   id: string;

@@ -111,6 +111,37 @@ describe('fillAll (spec §6 ladder)', () => {
     );
     expect(miss[0]?.outcome).toBe('clipboard');
   });
+  it('never fills a password box, whatever the mapping says (ADR 0014)', async () => {
+    page(`<input name="pw" type="password"><input name="code" type="text" autocomplete="one-time-code">
+      <label for="np">New password</label><input id="np" name="newPassword" type="text">
+      <span id="pl">Пароль</span><input name="x1" type="text" aria-labelledby="pl">`);
+    const scan = scanPage();
+    const report = await fillAll(
+      scan.fields.map((f) => ({
+        slot: 'profile.email' as const,
+        fingerprint: f,
+        fieldId: f.fieldId,
+        value: 'me@x.test',
+        policy: 'replace' as const,
+      })),
+      scan.fields,
+    );
+    expect(report.length).toBeGreaterThan(0);
+    expect(report.every((r) => r.outcome === 'refused' || r.outcome === 'clipboard')).toBe(true);
+    expect(report.some((r) => r.outcome === 'refused')).toBe(true);
+    expect([...document.querySelectorAll('input')].every((i) => i.value === '')).toBe(true);
+  });
+  it('a password label nearby does not block the e-mail box next to it', async () => {
+    page(`<div>Email: <input name="email" type="email"> Password: <input name="pw" type="password"></div>`);
+    const scan = scanPage();
+    const email = scan.fields.find((f) => f.name === 'email');
+    if (!email) throw new Error('field');
+    const [r] = await fillAll(
+      [{ slot: 'profile.email', fingerprint: email, fieldId: email.fieldId, value: 'me@x.test', policy: 'replace' }],
+      scan.fields,
+    );
+    expect(r?.outcome).toBe('exact');
+  });
   it('re-resolves by fingerprint when the fieldId is stale', async () => {
     page(`<input name="email" type="email">`);
     const scan = scanPage();

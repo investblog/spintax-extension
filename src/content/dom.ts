@@ -317,11 +317,32 @@ async function fillSelect(el: HTMLSelectElement, item: FillInstruction): Promise
   return { slot: item.slot, outcome: 'clipboard', method: 'none', detail: t('flagSelectReverted') };
 }
 
+/** Words that name a password box, also when "show password" turned it into type=text. */
+const SECRET_WORDS =
+  /password|passwd|passcode|passwort|kennwort|парол|contrase[ñn]a|mot\s*de\s*passe|senha|şifre|one-time-code|(?<![\p{L}\p{N}])(?:pass|pwd|sifre)(?!\p{L})/iu;
+
+/** A password (or one-time code) box: never filled and never offered by the picker (ADR 0014, §10). */
+export function isSecretField(el: Element): boolean {
+  if (!(el instanceof HTMLInputElement)) return false;
+  if (el.type === 'password') return true;
+  // Labels that belong to this box only: <label for>, aria-labelledby, a wrapping <label>. Not the
+  // nearby-text fallback of labelText — "Password" next to an e-mail box must not block the e-mail.
+  const root = rootOf(el);
+  const labelledBy = (el.getAttribute('aria-labelledby') ?? '')
+    .split(/\s+/)
+    .map((id) => (id ? (root.getElementById(id)?.textContent ?? '') : ''));
+  const label = [...[...(el.labels ?? [])].map((l) => l.textContent ?? ''), ...labelledBy].join(' ');
+  const text = [el.name, el.id, el.autocomplete, el.getAttribute('aria-label'), el.placeholder, label].join(' ');
+  return SECRET_WORDS.test(text);
+}
+
 export async function fillOne(item: FillInstruction, fields: FieldInfo[]): Promise<FillReportItem> {
   const byId = item.fieldId ? elementFor(item.fieldId) : undefined;
   const resolved = byId ? undefined : resolveField(item.fingerprint, fields);
   const el = byId ?? (resolved ? elementFor(resolved.field.fieldId) : undefined);
   if (!el) return { slot: item.slot, outcome: 'clipboard', method: 'none', detail: t('flagFieldNotFound') };
+  // Enforced here, at the last step, whatever a recipe or a manual mapping says.
+  if (isSecretField(el)) return { slot: item.slot, outcome: 'refused', method: 'none', detail: t('flagSecretField') };
 
   if (el instanceof HTMLInputElement && el.type === 'file') return fillFile(el, item);
   if (el instanceof HTMLSelectElement) return fillSelect(el, item);
@@ -393,7 +414,7 @@ export function startPick(onDone: (field: FieldInfo | null) => void): void {
   const byEl = new Map<Editable, FieldInfo>();
   for (const f of scan.fields) {
     const el = elementFor(f.fieldId);
-    if (el && f.visible && !f.honeypot) byEl.set(el, f);
+    if (el && f.visible && !f.honeypot && !isSecretField(el)) byEl.set(el, f);
   }
   let hovered: HTMLElement | null = null;
   let prevOutline = '';

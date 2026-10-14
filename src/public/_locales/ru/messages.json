@@ -1094,7 +1094,7 @@
     "message": "на этой странице заполнять нечего"
   },
   "panelBodyNotFilled": {
-    "message": "поле сообщения не заполнилось — нажмите «Копировать и открыть»"
+    "message": "поле сообщения не заполнилось — скопируйте сообщение кнопкой рядом с ним"
   },
   "panelNotFoundHere": {
     "message": "не найдено на странице: $SLOTS$",
@@ -4652,5 +4652,217 @@
   "panelOpenSidePanel": {
     "message": "Открыть боковую панель",
     "description": "Added after the pre-release UX review (sheet caption, step editor entry, panel opener)."
+  },
+  "optCampaignsTitle": {
+    "message": "Кампании: переключить, переименовать, добавить"
+  },
+  "optCampaignsNone": {
+    "message": "Кампаний пока нет"
+  },
+  "drwCampTitle": {
+    "message": "Кампании"
+  },
+  "drwCampSubtitle": {
+    "message": "У каждой кампании свой список, шаблоны и очередь."
+  },
+  "drwCampOpenNow": {
+    "message": "Открыта сейчас"
+  },
+  "drwCampName": {
+    "message": "Название"
+  },
+  "drwCampScenario": {
+    "message": "Сценарий"
+  },
+  "drwCampScenarioOutreach": {
+    "message": "Письма"
+  },
+  "drwCampScenarioOutreachHint": {
+    "message": "Почта и контактные формы: ключ — получатель"
+  },
+  "drwCampScenarioSubmit": {
+    "message": "Сабмиты"
+  },
+  "drwCampScenarioSubmitHint": {
+    "message": "Профили, листинги, посты: ключ — сайт и язык"
+  },
+  "drwCampScenarioHint": {
+    "message": "Задайте до первого импорта: от него зависят ключи строк."
+  },
+  "drwCampScenarioLocked": {
+    "message": "Список уже импортирован, сценарий не меняется: от него зависят ключи строк."
+  },
+  "drwCampSave": {
+    "message": "Сохранить"
+  },
+  "drwCampNeedsName": {
+    "message": "Дайте кампании название."
+  },
+  "drwCampDelete": {
+    "message": "Удалить кампанию"
+  },
+  "drwCampDeleteConfirm": {
+    "message": "Удалить строки, шаблоны, профили, журнал"
+  },
+  "drwCampOthers": {
+    "message": "Другие кампании"
+  },
+  "drwCampSwitch": {
+    "message": "Открыть"
+  },
+  "drwCampNew": {
+    "message": "Новая кампания"
+  },
+  "drwCampCreate": {
+    "message": "Создать и открыть"
+  },
+  "wizSubjectLabel": {
+    "message": "Тема (необязательно)"
+  },
+  "wizTitleLabel": {
+    "message": "Заголовок (необязательно)"
+  },
+  "wizBodyLabel": {
+    "message": "Сообщение"
+  },
+  "wizTextLabel": {
+    "message": "Текст"
+  },
+  "wizSubjectHint": {
+    "message": "Одна строка. Spintax работает и здесь."
+  },
+  "wizAddSubject": {
+    "message": "Добавить тему"
+  },
+  "wizAddTitle": {
+    "message": "Добавить заголовок"
+  },
+  "panelTabsAria": {
+    "message": "Регистрация или сабмит"
+  },
+  "panelTabSignup": {
+    "message": "Регистрация"
+  },
+  "panelTabSubmit": {
+    "message": "Сабмит"
+  },
+  "panelAccountNone": {
+    "message": "На этом сайте ещё не зарегистрированы"
+  },
+  "panelAccountAwaiting": {
+    "message": "Зарегистрированы — ждём письмо с подтверждением"
+  },
+  "panelAccountReady": {
+    "message": "Аккаунт готов — переходим к сабмиту"
+  },
+  "panelAccountNotNeeded": {
+    "message": "Регистрация на этом сайте не нужна"
+  },
+  "panelSignupIntro": {
+    "message": "«Заполнить» подставит ваш профиль в форму регистрации сайта. Пароль, капча, галочки и кнопка — за вами."
+  },
+  "panelSignupNoProfile": {
+    "message": "Сначала добавьте профиль отправителя: его имя и почта пойдут в форму."
+  },
+  "panelSignupFill": {
+    "message": "Заполнить регистрацию на $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupAllowFill": {
+    "message": "Разрешить и заполнить регистрацию на $HOST$",
+    "placeholders": {
+      "host": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupOpenPage": {
+    "message": "Открыть страницу регистрации"
+  },
+  "panelSignupLeftToYou": {
+    "message": "Теперь пароль, капча и галочки — и кнопка на сайте."
+  },
+  "panelSignupRegistered": {
+    "message": "Зарегистрировался — жду письмо"
+  },
+  "panelSignupConfirmed": {
+    "message": "Почта подтверждена"
+  },
+  "panelSignupNotNeeded": {
+    "message": "Регистрация не нужна"
+  },
+  "panelSignupThisPage": {
+    "message": "Это страница регистрации"
+  },
+  "panelSignupPageLabel": {
+    "message": "Страница регистрации:"
+  },
+  "panelSignupPageSaved": {
+    "message": "Страница регистрации запомнена: $PAGE$",
+    "placeholders": {
+      "page": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelSignupPageUnknown": {
+    "message": "Адрес страницы скрыт, пока сайт не разрешён: нажмите «Заполнить» один раз, потом отметьте страницу."
+  },
+  "flagSecretField": {
+    "message": "Поле пароля никогда не заполняется"
+  },
+  "flagRefused": {
+    "message": "запрет"
+  },
+  "tplVariantRows": {
+    "message": "Строка превью"
+  },
+  "panelCopyValue": {
+    "message": "Скопировать: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Скопировано: $SLOT$ — вставьте на странице через Ctrl+V.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "На этой странице нет полей формы"
+  },
+  "demoBannerSignedUp": {
+    "message": "Демо: аккаунт создан, письмо с подтверждением «отправлено» на $EMAIL$ — считайте, что почта подтверждена. В боковой панели нажмите «Зарегистрировался — жду письмо», затем «Почта подтверждена».",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Демо: пароль и галочки заполняете вы — помощник их никогда не трогает."
+  },
+  "welDemoSubmit": {
+    "message": "Вторая демо-кампания, «$NAME$», показывает два сайта, которые сначала просят завести аккаунт, — откройте её из меню кампаний вверху.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Заголовок"
+  },
+  "panelTitleLabel": {
+    "message": "Заголовок:"
   }
 }
