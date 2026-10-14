@@ -4839,5 +4839,30 @@
   },
   "panelNoFields": {
     "message": "Bu sayfada form alanı yok"
+  },
+  "demoBannerSignedUp": {
+    "message": "Demo: hesap oluşturuldu ve $EMAIL$ adresine bir onay e-postası \"gönderildi\" — onaylanmış sayın. Yan panelde önce \"Kayıt oldum — e-posta bekliyorum\", sonra \"E-posta onaylandı\" düğmesine basın.",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Demo: şifre ve kutucuklar size ait — yardımcı onlara asla dokunmaz."
+  },
+  "welDemoSubmit": {
+    "message": "İkinci bir demo, \"$NAME$\", önce hesap isteyen iki siteyi gösterir — üstteki kampanya menüsünden açın.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Başlık"
+  },
+  "panelTitleLabel": {
+    "message": "Başlık:"
   }
 }

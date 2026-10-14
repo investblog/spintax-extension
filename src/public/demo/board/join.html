@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Story Board — Sign up</title><link rel="stylesheet" href="../demo.css"></head>
+<body>
+  <header><strong>Story Board</strong><small>Submissions demo, site 2 of 2 — a sign-up in two steps</small></header>
+  <main>
+    <article>
+      <h1>Create your Story Board account</h1>
+      <p>Some sites ask for the e-mail first and the rest on the next step. Press <strong>Fill</strong> on each step — the helper remembers each step's form separately.</p>
+    </article>
+    <form data-demo-signup>
+      <div data-demo-step="1">
+        <label for="email">Email</label><input id="email" type="email" name="email">
+        <button type="button" data-demo-next-step>Next</button>
+      </div>
+      <div data-demo-step="2" hidden>
+        <label for="name">Your name</label><input id="name" type="text" name="name">
+        <label for="password">Password</label><input id="password" type="password" name="password" autocomplete="new-password">
+        <label class="check"><input id="terms" type="checkbox" name="terms"> I agree to the community rules</label>
+        <label class="check human"><input type="checkbox" name="demo-human"> I am a human (a stand-in for the captcha)</label>
+        <button type="submit">Sign up</button>
+      </div>
+      <p class="banner" data-demo-banner hidden></p>
+      <p data-demo-next hidden><a href="submit.html">Submit a story →</a></p>
+    </form>
+    <p class="note">Step 1: <strong>Fill</strong>, then <strong>Next</strong>. Step 2: <strong>Fill</strong> again for your name; the password, the boxes and <strong>Sign up</strong> are yours. Then mark the account in the panel.</p>
+  </main>
+  <script src="/demo-fill.js"></script>
+</body>
+</html>

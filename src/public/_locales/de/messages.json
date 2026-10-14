@@ -4839,5 +4839,30 @@
   },
   "panelNoFields": {
     "message": "Auf dieser Seite gibt es keine Formularfelder"
+  },
+  "demoBannerSignedUp": {
+    "message": "Demo: Konto erstellt, eine Bestätigungs-E-Mail an $EMAIL$ „gesendet“ — betrachten Sie sie als bestätigt. Drücken Sie in der Seitenleiste „Registriert — warte auf E-Mail“, dann „E-Mail bestätigt“.",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Demo: Passwort und Kästchen füllen Sie selbst aus — der Helfer berührt sie nie."
+  },
+  "welDemoSubmit": {
+    "message": "Eine zweite Demo, „$NAME$“, zeigt zwei Websites, die zuerst ein Konto verlangen — öffnen Sie sie über das Kampagnenmenü oben.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Titel"
+  },
+  "panelTitleLabel": {
+    "message": "Titel:"
   }
 }

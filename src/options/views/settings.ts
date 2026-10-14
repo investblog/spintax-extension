@@ -6,7 +6,7 @@
  */
 
 import { armedButton } from '@/options/armed';
-import { demoCampaign, removeDemo } from '@/shared/demo';
+import { demoCampaign, removeDemo, submitDemoCampaign } from '@/shared/demo';
 import { clear, flash, h } from '@/shared/dom';
 import { dropdown } from '@/shared/dropdown';
 import { renderRow } from '@/shared/engine';
@@ -35,7 +35,7 @@ import { ensureCampaign, notify, notifyPanel, removeCampaign } from '../state';
 async function storageCard(campaign: Campaign | null): Promise<HTMLElement> {
   const est = await storageEstimate();
   const orphans = await listOrphanAssets();
-  const demo = await demoCampaign();
+  const demo = (await demoCampaign()) ?? (await submitDemoCampaign());
   const orphanBytes = orphans.reduce((s, a) => s + a.size, 0);
   const status = h('p', { class: 'field-hint', role: 'status' });
   const body = h(

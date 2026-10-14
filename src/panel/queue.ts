@@ -249,7 +249,9 @@ export async function resolveMapping(
       return { recipe: exact, fields, unmapped: absent, stale: false, source: 'recipe' };
     }
   }
-  const previous = recipes[0] ?? null;
+  // A recipe none of whose fields is on the page belongs to another form on the same route — the
+  // next step of a multi-step sign-up (demo review) — not to this form changed: no stale warning.
+  const previous = recipes.find((r) => r.fields.some((rf) => resolveField(rf.fingerprint, scan.fields))) ?? null;
   // Pinned (manual) fields of the previous recipe come FIRST and keep their slot; heuristics
   // only fill what is left (review 2026-08-23 #10: a pinned field must survive a form change).
   const pinned: ResolvedMapping['fields'] = [];

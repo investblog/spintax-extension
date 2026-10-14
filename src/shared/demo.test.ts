@@ -4,8 +4,9 @@ vi.mock('wxt/browser', () => ({
   browser: { runtime: { getURL: (p: string) => `chrome-extension://demo-id${p}` } },
 }));
 
-import { demoCampaign, removeDemo, seedDemo } from './demo';
-import { findTemplate, listRows } from './repo';
+import { accountDomain, getAccount, listAccounts } from './accounts';
+import { DEMO_SUBMIT_KEY, demoCampaign, removeDemo, seedDemo, submitDemoCampaign } from './demo';
+import { findTemplate, listRows, setSetting } from './repo';
 
 describe('demo campaign', () => {
   it('seeds once, with five rows on distinct keys, a profile and both templates; removes cleanly', async () => {
@@ -29,5 +30,26 @@ describe('demo campaign', () => {
     expect(await demoCampaign()).toBeNull();
     expect(await listRows(a.id)).toHaveLength(0);
     expect(await removeDemo()).toBe(false);
+  });
+
+  it('seeds the submissions demo: two sites with their own account notes, removed with the demo', async () => {
+    await seedDemo();
+    const s = await submitDemoCampaign();
+    expect(s?.scenario).toBe('submit');
+    const rows = await listRows(s?.id ?? '');
+    expect(rows).toHaveLength(2);
+    const domains = rows.map((r) => accountDomain(r)).sort();
+    expect(domains).toEqual(['demo/board', 'demo/hub']);
+    const profileId = s?.profiles[0]?.id ?? '';
+    const hub = await getAccount('demo/hub', profileId);
+    expect(hub?.state).toBe('none');
+    expect(hub?.signupUrl).toBe('chrome-extension://demo-id/demo/hub/join.html');
+    // A demo seeded before this one existed gets it added, once.
+    await setSetting(DEMO_SUBMIT_KEY, null);
+    await seedDemo();
+    expect((await submitDemoCampaign())?.id).not.toBe(s?.id);
+    expect(await removeDemo()).toBe(true);
+    expect(await submitDemoCampaign()).toBeNull();
+    expect(await listAccounts()).toEqual([]);
   });
 });

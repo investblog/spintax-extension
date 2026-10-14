@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Maker Hub — Your profile</title><link rel="stylesheet" href="../demo.css"></head>
+<body>
+  <header><strong>Maker Hub</strong><small>Submissions demo, site 1 of 2 — the profile page (the row's target)</small></header>
+  <main>
+    <article>
+      <h1>Your profile</h1>
+      <p>New here? <a href="join.html">Join Maker Hub</a> first — the side panel opens this site on its <strong>Sign-up</strong> tab until you say the account is ready.</p>
+    </article>
+    <form data-demo>
+      <label for="display">Display name</label><input id="display" type="text" name="display_name">
+      <label for="headline">Profile title</label><input id="headline" type="text" name="title" maxlength="120">
+      <label for="website">Website</label><input id="website" type="url" name="website">
+      <label for="about">About you</label><textarea id="about" name="about" rows="6"></textarea>
+      <button type="submit">Save profile</button>
+      <p class="banner" data-demo-banner hidden></p>
+    </form>
+    <p class="note">Once the account is marked ready, the panel switches to <strong>Submission</strong>: <strong>Fill</strong> puts the title into "Profile title", the text into "About you", your name and site into theirs. You press <strong>Save profile</strong>, then "Sent — next" in the panel.</p>
+  </main>
+  <script src="/demo-fill.js"></script>
+</body>
+</html>

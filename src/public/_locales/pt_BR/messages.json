@@ -4839,5 +4839,30 @@
   },
   "panelNoFields": {
     "message": "Não há campos de formulário nesta página"
+  },
+  "demoBannerSignedUp": {
+    "message": "Demo: conta criada e um e-mail de confirmação \"enviado\" para $EMAIL$ — considere confirmado. No painel lateral, clique em \"Cadastrado — aguardo o e-mail\" e depois em \"E-mail confirmado\".",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Demo: a senha e as caixas são com você — o assistente nunca mexe nelas."
+  },
+  "welDemoSubmit": {
+    "message": "Uma segunda demo, \"$NAME$\", mostra dois sites que pedem uma conta primeiro — abra-a pelo menu de campanhas no topo.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Título"
+  },
+  "panelTitleLabel": {
+    "message": "Título:"
   }
 }

@@ -1658,6 +1658,12 @@
   "panelNoFields": {
     "message": "No form fields on this page"
   },
+  "slotTitle": {
+    "message": "Title"
+  },
+  "panelTitleLabel": {
+    "message": "Title:"
+  },
   "revNoBody": {
     "message": "No body template for step 1 yet — save one on the Template screen first."
   },
@@ -3761,6 +3767,25 @@
   "cmdSidebar": {
     "message": "Open the Spintax sidebar",
     "description": "Firefox only: the bindable _execute_sidebar_action command."
+  },
+  "demoBannerSignedUp": {
+    "message": "Demo: account created and a confirmation e-mail \"sent\" to $EMAIL$ — consider it confirmed. In the side panel press \"Registered — waiting for e-mail\", then \"E-mail confirmed\".",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Demo: the password and the boxes are yours to fill — the helper never touches them."
+  },
+  "welDemoSubmit": {
+    "message": "A second demo, \"$NAME$\", shows two sites that ask for an account first — open it from the campaign menu at the top.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
   },
   "wizStepImport": {
     "message": "Import",

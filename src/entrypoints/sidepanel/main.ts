@@ -32,6 +32,7 @@ import {
   accountDomain,
   accountSettled,
   getAccount,
+  isDemoUrl,
   type SiteAccount,
   saveAccount,
 } from '@/shared/accounts';
@@ -184,6 +185,8 @@ function slotLabel(slot: Slot): string {
     const col = state.campaign?.columns.find((c) => c.id === slot.slice(4));
     return col ? col.header : slot;
   }
+  // A submission has a title, not an e-mail subject (the wizard says the same).
+  if (slot === 'output.subject' && state.campaign?.scenario === 'submit') return t('slotTitle');
   const key = SLOT_LABEL[slot];
   return key ? t(key) : slot;
 }
@@ -492,14 +495,22 @@ async function setAccount(patch: Partial<Pick<SiteAccount, 'state' | 'signupUrl'
 /** "This is the sign-up page": remember the open tab's address for this site. */
 async function markSignupPage(): Promise<void> {
   const url = state.tab?.url;
-  if (!url || !/^https?:/.test(url)) {
+  if (!url || !isWebOrDemo(url)) {
     state.toast = t('panelSignupPageUnknown');
     draw();
     return;
   }
   await setAccount({ signupUrl: url });
-  state.toast = t('panelSignupPageSaved', new URL(url).hostname + pathOf(url));
+  state.toast = t('panelSignupPageSaved', siteLabel(url) + pathOf(url));
   draw();
+}
+
+/** A page the sign-up flow can work on: a web page, or one of the bundled demo sites. */
+const isWebOrDemo = (url: string): boolean => /^https?:/.test(url) || isDemoUrl(url);
+
+/** The host to name in a label — the demo's own origin is an extension id, so it says "demo page". */
+function siteLabel(url: string): string {
+  return isDemoUrl(url) ? t('panelDemoPage') : new URL(url).hostname;
 }
 
 const ACCOUNT_LABEL: Record<AccountState, MessageKey> = {
@@ -1117,7 +1128,12 @@ function draw(): void {
             h(
               'p',
               { class: 'panel__subject' },
-              h('span', { class: 'muted' }, t('panelSubjectLabel'), ' '),
+              h(
+                'span',
+                { class: 'muted' },
+                c.scenario === 'submit' ? t('panelTitleLabel') : t('panelSubjectLabel'),
+                ' ',
+              ),
               highlighted(state.render.subject),
             ),
             copyButton(state.render.subject.text, slotLabel('output.subject')),
@@ -1412,7 +1428,7 @@ function draw(): void {
   const signupTab = !!state.accountKey && state.panelTab === 'signup';
   if (signupTab) {
     const sUrl = signupUrl(r);
-    const onWeb = !!state.tab && (state.tab.url === undefined || /^https?:/.test(state.tab.url));
+    const onWeb = !!state.tab && (state.tab.url === undefined || isWebOrDemo(state.tab.url));
     if (!onWeb && sUrl)
       primary = h(
         'button',
@@ -1424,7 +1440,7 @@ function draw(): void {
         },
         svgIcon('open-in-new'),
         ' ',
-        t('panelOpenHost', new URL(sUrl).hostname),
+        t('panelOpenHost', siteLabel(sUrl)),
       );
     else if (!state.permitted)
       primary = h(

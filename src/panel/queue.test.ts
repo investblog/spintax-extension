@@ -42,4 +42,24 @@ describe('resolveMapping', () => {
     expect(submit.source).toBe('heuristic'); // so the fill extends the stored recipe
     expect(submit.unmapped).toEqual([]);
   });
+
+  it('the next step of a multi-step form is another form, not a stale recipe; a changed form still is', async () => {
+    const at = (fields: FieldInfo[]) =>
+      ({
+        url: 'https://steps.test/join',
+        origin: 'https://steps.test',
+        token: 't',
+        links: [],
+        fields,
+      }) as unknown as ScanResult;
+    const step1 = at([field({ name: 'email', type: 'email', label: 'Email' })]);
+    await saveMapping(step1, await resolveMapping(step1, ['profile.email']), 'heuristic');
+    const step2 = at([field({ name: 'name', type: 'text', label: 'Your name' })]);
+    expect((await resolveMapping(step2, ['profile.name'])).stale).toBe(false);
+    const changed = at([
+      field({ name: 'email', type: 'email', label: 'Email' }),
+      field({ name: 'name', type: 'text', label: 'Your name' }),
+    ]);
+    expect((await resolveMapping(changed, ['profile.email', 'profile.name'])).stale).toBe(true);
+  });
 });

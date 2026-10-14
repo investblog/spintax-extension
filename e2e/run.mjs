@@ -459,6 +459,58 @@ try {
     hp: document.querySelector('[name=website]').value,
   }));
   check(demoValues.name === 'Alex Demo' && /Maya/.test(demoValues.message) && demoValues.hp === '', 'demo page filled from the demo profile and template, honeypot untouched');
+
+  // The submissions demo: a bundled site opens on Sign-up, the two-step join form is filled step by
+  // step (password and boxes untouched), the account is settled, the submission form is filled.
+  await options.locator('.options__campaign').click();
+  await options.getByRole('button', { name: 'Open: Demo — profiles and submissions' }).click();
+  await options.keyboard.press('Escape'); // the drawer stays open after a switch
+  await panel.locator('.panel__campaign-link', { hasText: 'Demo — profiles and submissions' }).waitFor({ timeout: 10_000 });
+  await target.goto(`chrome-extension://${extId}/demo/board/submit.html`);
+  await target.bringToFront();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Sign-up' }).waitFor({ timeout: 10_000 });
+  check(true, 'submissions demo: a bundled site opens on the Sign-up tab');
+  await panel.getByRole('button', { name: 'Open the sign-up page' }).click();
+  await target.waitForURL(/\/demo\/board\/join\.html/);
+  const demoSignupFill = async () => {
+    await panel.locator('.panel__primary', { hasText: /sign-up on/ }).click();
+    await panel
+      .waitForFunction(() => /password, captcha/.test(document.querySelector('.panel__note')?.textContent ?? ''), null, {
+        timeout: 10_000,
+      })
+      .catch(async (e) => {
+        console.log('note:', await panel.locator('.panel__notes').textContent());
+        throw e;
+      });
+  };
+  await demoSignupFill();
+  await target.locator('[data-demo-next-step]').click();
+  await demoSignupFill();
+  const joined = await target.evaluate(() => ({
+    email: document.querySelector('#email').value,
+    name: document.querySelector('#name').value,
+    password: document.querySelector('#password').value,
+    boxes: [...document.querySelectorAll('input[type=checkbox]')].some((b) => b.checked),
+  }));
+  check(
+    joined.email === 'alex@example.com' && joined.name === 'Alex Demo' && joined.password === '' && !joined.boxes,
+    'submissions demo: both sign-up steps filled from the profile, password and boxes untouched',
+  );
+  await panel.getByRole('button', { name: 'E-mail confirmed' }).click();
+  await panel.locator('.panel__tab.is-active', { hasText: 'Submission' }).waitFor({ timeout: 10_000 });
+  await target.goto(`chrome-extension://${extId}/demo/board/submit.html`);
+  await target.bringToFront();
+  await panel.locator('.panel__primary', { hasText: 'Fill on the demo page' }).click();
+  await panel.waitForFunction(() => /Filled \d+ field/.test(document.querySelector('.panel__note')?.textContent ?? ''), null, { timeout: 15_000 });
+  const submitted = await target.evaluate(() => ({
+    title: document.querySelector('#title').value,
+    story: document.querySelector('#story').value,
+    link: document.querySelector('#link').value,
+  }));
+  check(
+    /Alex/.test(submitted.title) && /Story Board/.test(submitted.story) && submitted.link === 'https://example.com',
+    'submissions demo: title, text and link filled on the submission form',
+  );
   await options.goto(`chrome-extension://${extId}/options.html#settings`);
   await options.getByRole('button', { name: /Remove the demo campaign/ }).click();
   await options.getByRole('button', { name: /Remove the demo campaign/ }).waitFor({ state: 'detached', timeout: 10_000 });

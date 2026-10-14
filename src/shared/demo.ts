@@ -5,6 +5,7 @@
  * can be removed in one click. Seeded from the welcome page; never automatically.
  */
 
+import { accountDomain, deleteAccounts, saveAccount } from './accounts';
 import { ENGINE_VERSION } from './engine';
 import { extUrl } from './ext-url';
 import type { Campaign, ColumnDef, Row } from './model';
@@ -43,6 +44,20 @@ const COLUMNS: Omit<ColumnDef, 'id'>[] = [
   { header: 'logo', variable: 'logo', role: 'none', type: 'file', fillable: true },
 ];
 
+export const DEMO_SUBMIT_KEY = 'demo.submitCampaignId';
+export const DEMO_SUBMIT_NAME = 'Demo — profiles and submissions';
+
+const SUBMIT_TITLE = '{Alex Demo|Alex D.} — {notes on|writing about} {small budgets|side projects}';
+
+const SUBMIT_BODY = `{Hi|Hello} %site_name%! I'm %my_name% and I {write about|collect notes on} {small budgets|side projects} at %my_site%.
+
+{Glad to join|Happy to be here} — {I'll share|expect} {practical notes|short how-tos} {now and then|every few weeks}.`;
+
+const SUBMIT_COLUMNS: Omit<ColumnDef, 'id'>[] = [
+  { header: 'url', variable: 'url', role: 'target', type: 'text', fillable: false },
+  { header: 'site_name', variable: 'site_name', role: 'none', type: 'text', fillable: false },
+];
+
 export async function demoCampaign(): Promise<Campaign | null> {
   const id = await getSetting<string | null>(DEMO_SETTING_KEY, null);
   return id ? ((await getCampaign(id)) ?? null) : null;
@@ -59,9 +74,74 @@ export function seedDemo(): Promise<Campaign> {
   return seeding;
 }
 
+/** Both demo campaigns; a demo seeded before the submissions one existed gets it added. */
 async function seedDemoOnce(): Promise<Campaign> {
-  const existing = await demoCampaign();
-  if (existing) return existing;
+  const guest = (await demoCampaign()) ?? (await seedGuestPosts());
+  if (!(await submitDemoCampaign())) await seedSubmissions();
+  return guest;
+}
+
+export async function submitDemoCampaign(): Promise<Campaign | null> {
+  const id = await getSetting<string | null>(DEMO_SUBMIT_KEY, null);
+  return id ? ((await getCampaign(id)) ?? null) : null;
+}
+
+/**
+ * The submissions demo (ADR 0014): two sites under /demo/hub and /demo/board, each asking for an
+ * account first. The account notes are seeded with each site's sign-up page, so the panel's
+ * Sign-up tab can open it.
+ */
+async function seedSubmissions(): Promise<Campaign> {
+  const base = await createCampaign({ name: DEMO_SUBMIT_NAME, scenario: 'submit' });
+  const columns: ColumnDef[] = SUBMIT_COLUMNS.map((c) => ({ ...c, id: uuid() }));
+  const [url, siteName] = columns.map((c) => c.id) as [string, string];
+  const profileId = uuid();
+  const campaign = await updateCampaign(base.id, {
+    columns,
+    profiles: [
+      {
+        id: profileId,
+        name: 'Demo sender',
+        values: { name: 'Alex Demo', email: 'alex@example.com', site: 'https://example.com' },
+        activation: { kind: 'always' },
+      },
+    ],
+    wizardStep: 'done',
+  });
+  const sites: [string, string, string, string][] = [
+    ['hub/profile.html', 'hub/join.html', 'Maker Hub', 'demo-hub'],
+    ['board/submit.html', 'board/join.html', 'Story Board', 'demo-board'],
+  ];
+  const rows: Row[] = [];
+  for (const [page, join, name, key] of sites) {
+    const target = extUrl(`/demo/${page}`);
+    const row = makeRow(campaign, { target, values: { [url]: target, [siteName]: name } }, key);
+    if (!row) continue;
+    rows.push(row);
+    const domain = accountDomain(row);
+    if (domain) await saveAccount(domain, profileId, { signupUrl: extUrl(`/demo/${join}`) });
+  }
+  await putRows(rows);
+  const stamp = new Date().toISOString();
+  for (const [channel, source] of [
+    ['body', SUBMIT_BODY],
+    ['subject', SUBMIT_TITLE],
+  ] as const)
+    await upsertTemplate({
+      campaignId: campaign.id,
+      channel,
+      step: 1,
+      locale: 'en',
+      source,
+      includes: {},
+      engineVersion: ENGINE_VERSION,
+      validatedAt: stamp,
+    });
+  await setSetting(DEMO_SUBMIT_KEY, campaign.id);
+  return campaign;
+}
+
+async function seedGuestPosts(): Promise<Campaign> {
   const base = await createCampaign({ name: DEMO_NAME });
   const columns: ColumnDef[] = COLUMNS.map((c) => ({ ...c, id: uuid() }));
   const [site, blog, name, topic, logo] = columns.map((c) => c.id) as [string, string, string, string, string];
@@ -123,8 +203,13 @@ async function seedDemoOnce(): Promise<Campaign> {
 /** Remove the demo campaign with everything it owns (rows, journal, templates). */
 export async function removeDemo(): Promise<boolean> {
   const c = await demoCampaign();
-  if (!c) return false;
-  await deleteCampaign(c.id);
+  const s = await submitDemoCampaign();
+  if (!c && !s) return false;
+  if (c) await deleteCampaign(c.id);
+  if (s) await deleteCampaign(s.id);
   await setSetting(DEMO_SETTING_KEY, null);
+  await setSetting(DEMO_SUBMIT_KEY, null);
+  // The demo sites' account notes go with it (domains `demo/hub`, `demo/board`).
+  await deleteAccounts((a) => a.domain === 'demo' || a.domain.startsWith('demo/'));
   return true;
 }

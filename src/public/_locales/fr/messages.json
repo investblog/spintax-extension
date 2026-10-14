@@ -4840,5 +4840,30 @@
   },
   "panelNoFields": {
     "message": "Aucun champ de formulaire sur cette page"
+  },
+  "demoBannerSignedUp": {
+    "message": "Démo : compte créé et un e-mail de confirmation « envoyé » à $EMAIL$ — considérez-le comme confirmé. Dans le panneau latéral, appuyez sur « Inscrit — j'attends l'e-mail », puis « E-mail confirmé ».",
+    "placeholders": {
+      "email": {
+        "content": "$1"
+      }
+    }
+  },
+  "demoBannerSignupYours": {
+    "message": "Démo : le mot de passe et les cases sont à vous — l'assistant n'y touche jamais."
+  },
+  "welDemoSubmit": {
+    "message": "Une seconde démo, « $NAME$ », montre deux sites qui demandent d'abord un compte — ouvrez-la depuis le menu des campagnes en haut.",
+    "placeholders": {
+      "name": {
+        "content": "$1"
+      }
+    }
+  },
+  "slotTitle": {
+    "message": "Titre"
+  },
+  "panelTitleLabel": {
+    "message": "Titre :"
   }
 }

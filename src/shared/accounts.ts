@@ -6,6 +6,7 @@
  * Stored in the `settings` store under `account:<domain>:<profileId>` (no schema change).
  */
 import { req, runTx } from './db';
+import { extUrl } from './ext-url';
 import { hostnameKey } from './keys';
 import type { Row, Setting } from './model';
 import { getSetting } from './repo';
@@ -24,12 +25,26 @@ export interface SiteAccount {
 export const ACCOUNT_PREFIX = 'account:';
 const keyOf = (domain: string, profileId: string): string => `${ACCOUNT_PREFIX}${domain}:${profileId}`;
 
+/** A page of the bundled demo (src/public/demo/), which is served from the extension's own origin. */
+export const isDemoUrl = (url: string): boolean =>
+  /^(chrome|moz|edge)-extension:/i.test(url) && url.startsWith(extUrl('/demo/'));
+
+/**
+ * The demo stands in for several sites on one origin: each folder under /demo/ is a site of its
+ * own (`demo/hub`). Not the extension id — it differs per install, and the note would not travel.
+ */
+function demoSite(url: string): string | null {
+  if (!isDemoUrl(url)) return null;
+  const folder = url.slice(extUrl('/demo/').length).split(/[?#]/)[0]?.split('/');
+  return folder && folder.length > 1 ? `demo/${folder[0]}` : 'demo';
+}
+
 /**
  * The site a row belongs to: the host of its target (www. dropped), or the domain of an e-mail
  * target. Never the row key — a key can be overridden on import (Codex review of #6).
  */
 export function accountDomain(row: Pick<Row, 'target' | 'targetKind'>): string | null {
-  if (row.targetKind === 'url') return hostnameKey(row.target);
+  if (row.targetKind === 'url') return demoSite(row.target) ?? hostnameKey(row.target);
   if (row.targetKind === 'email')
     return (
       row.target
@@ -80,6 +95,17 @@ export async function listAccounts(): Promise<SiteAccount[]> {
   });
 }
 
+/** Delete the account notes that match (the demo's, when the demo is removed). */
+export async function deleteAccounts(match: (a: SiteAccount) => boolean): Promise<void> {
+  await runTx('settings', 'readwrite', async (s) => {
+    const all = (await req(s('settings').getAll(ACCOUNT_RANGE()))) as Setting<unknown>[];
+    for (const x of all) {
+      const a = canonicalAccount(x.value);
+      if (a && match(a)) await req(s('settings').delete(x.key));
+    }
+  });
+}
+
 /** The key range of every account note in `settings`. */
 export const ACCOUNT_RANGE = (): IDBKeyRange => IDBKeyRange.bound(ACCOUNT_PREFIX, `${ACCOUNT_PREFIX}￿`);
 
@@ -91,7 +117,9 @@ function httpUrl(v: unknown): string | undefined {
     const u = new URL(v);
     // No user:password@ — a credential must never ride into settings or a backup.
     const ok = (u.protocol === 'http:' || u.protocol === 'https:') && u.hostname && !u.username && !u.password;
-    return ok ? u.href : undefined;
+    // The one exception: a sign-up page of the bundled demo (another install has another id, and
+    // its demo URL is dropped on restore — harmless).
+    return ok || isDemoUrl(u.href) ? u.href : undefined;
   } catch {
     return undefined;
   }
