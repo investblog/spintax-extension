@@ -542,7 +542,14 @@ function copyButton(value: string | (() => string), label: string): HTMLElement 
       onclick: async () => {
         const text = typeof value === 'function' ? value() : value;
         state.toast = (await copyText(text)) ? t('panelCopiedValue', label) : t('panelCopyBlocked');
-        draw();
+        // In place, not draw(): a full redraw drops keyboard focus and closes "Edit this row".
+        const notes = app.querySelector('.panel__notes');
+        let toast = notes?.querySelector('.panel__toast');
+        if (!toast && notes) {
+          toast = h('p', { class: 'panel__toast muted', role: 'status' });
+          notes.append(toast);
+        }
+        if (toast) toast.textContent = state.toast;
       },
     },
     svgIcon('copy'),
@@ -1074,7 +1081,8 @@ function draw(): void {
     ),
   );
 
-  const values = fillValues(c, r, state.render);
+  // The same values the fill would use: profile only on the Sign-up tab.
+  const values = fillValues(c, r, state.accountKey && state.panelTab === 'signup' ? null : state.render);
   const message = h(state.render ? 'fieldset' : 'section', {
     class: state.render ? 'fieldset-group panel__message' : 'panel__message',
     'aria-label': t('panelMessageAria'),
