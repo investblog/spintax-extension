@@ -526,6 +526,29 @@ async function copyText(text: string): Promise<boolean> {
   }
 }
 
+/**
+ * Icon button that copies one value — the way out when a field could not be filled (not found,
+ * over the length limit, a form the helper cannot reach). Copying changes nothing about the row.
+ */
+function copyButton(value: string | (() => string), label: string): HTMLElement {
+  const aria = t('panelCopyValue', label);
+  return h(
+    'button',
+    {
+      type: 'button',
+      class: 'btn-icon btn-icon--sm panel__copy',
+      'aria-label': aria,
+      title: aria,
+      onclick: async () => {
+        const text = typeof value === 'function' ? value() : value;
+        state.toast = (await copyText(text)) ? t('panelCopiedValue', label) : t('panelCopyBlocked');
+        draw();
+      },
+    },
+    svgIcon('copy'),
+  );
+}
+
 async function copyAndOpen(): Promise<void> {
   await flushDraft();
   const r = row();
@@ -658,16 +681,7 @@ async function fill(): Promise<void> {
     }
     const targets = mapping.fields.filter((f) => f.field).map((f) => f.field?.fieldId ?? '');
     if (targets.length > 0) await highlightFields(tab.id, targets);
-    const profile = pickProfile(campaign, r);
-    const values: Partial<Record<Slot, string>> =
-      signup || !render
-        ? {
-            'profile.name': profile?.values.name ?? '',
-            'profile.email': profile?.values.email ?? '',
-            'profile.site': profile?.values.site ?? '',
-            'profile.phone': profile?.values.phone ?? '',
-          }
-        : slotValues(campaign, r, render, profile);
+    const values = fillValues(campaign, r, signup ? null : render);
     const fileColumns = new Map(campaign.columns.filter((c) => c.type === 'file').map((c) => [c.id, c.header]));
     const { report, clipboardSlots, warnings } = await fillTab(tab.id, mapping, values, fileColumns, scan.token);
     if (!stillValid()) return;
@@ -720,13 +734,16 @@ async function fill(): Promise<void> {
     if (skipped > 0) parts.push(t('panelSkipped', String(skipped)));
     if (copied) parts.push(t('panelClipboardHint'));
     else if (clipboardSlots.includes('output.body')) parts.push(t('panelClipboardBlocked'));
-    if (landed === 0 && !copied) parts.push(t('panelNothingFilled'));
-    else if (!bodyLanded && !copied) parts.push(t('panelBodyNotFilled'));
-    if (mapping.unmapped.length > 0)
-      parts.push(t('panelNotFoundHere', mapping.unmapped.map((s) => slotLabel(s)).join(', ')));
+    // A page with no fields at all: the mapping section says so; "nothing filled, not found: …"
+    // would only repeat it.
+    const formless = scan.fields.length === 0;
+    const missing = formless ? [] : missingSlots(mapping, values);
+    if (!formless && landed === 0 && !copied) parts.push(t('panelNothingFilled'));
+    else if (!formless && !bodyLanded && !copied) parts.push(t('panelBodyNotFilled'));
+    if (missing.length > 0) parts.push(t('panelNotFoundHere', missing.map((s) => slotLabel(s)).join(', ')));
     if (mapping.stale) parts.push(t('panelStaleRebuilt'));
     parts.push(...warnings.map((w) => `⚠ ${w}`));
-    state.fillNote = `${parts.join('; ')}.`;
+    state.fillNote = parts.length > 0 ? `${parts.join('; ')}.` : '';
   } catch (err) {
     if (stillValid()) {
       // The code decides what happens next; the sentence is only for the user (i18n).
@@ -887,9 +904,27 @@ document.addEventListener('keydown', (e) => {
 // ── View ───────────────────────────────────────────────────────────────────────
 
 /** "Field mapping — 4 mapped, 1 missing · recipe changed, confirm" — a clause per key. */
-function mappingSummary(mapping: ResolvedMapping): string {
+/** Profile values only for a sign-up fill or a step without a message; everything otherwise. */
+function fillValues(c: Campaign, r: Row, render: RowRender | null): Partial<Record<Slot, string>> {
+  const profile = pickProfile(c, r);
+  if (render) return slotValues(c, r, render, profile);
+  return {
+    'profile.name': profile?.values.name ?? '',
+    'profile.email': profile?.values.email ?? '',
+    'profile.site': profile?.values.site ?? '',
+    'profile.phone': profile?.values.phone ?? '',
+  };
+}
+
+/** Slots with no field on the page — only those with something to put there: an empty profile
+ *  phone "not found" on every form was noise (demo review). */
+function missingSlots(mapping: ResolvedMapping, values: Partial<Record<Slot, string>>): Slot[] {
+  return mapping.unmapped.filter((s) => (values[s] ?? '') !== '');
+}
+
+function mappingSummary(mapping: ResolvedMapping, missingCount: number): string {
   const mapped = t('panelMappingSummary', String(mapping.fields.filter((f) => f.field).length));
-  const missing = mapping.unmapped.length ? `, ${t('panelMappingMissing', String(mapping.unmapped.length))}` : '';
+  const missing = missingCount ? `, ${t('panelMappingMissing', String(missingCount))}` : '';
   const stale = mapping.stale ? ` · ${t('panelMappingStale')}` : '';
   return `${mapped}${missing}${stale}`;
 }
@@ -993,9 +1028,9 @@ function draw(): void {
   }
 
   const card = h(
-    'section',
-    { class: 'card card--soft panel__row', 'aria-label': t('panelRowAria') },
-    h('div', { class: 'panel__row-key' }, r.seedKey, ' ', statusBadge(r)),
+    'fieldset',
+    { class: 'fieldset-group panel__row', 'aria-label': t('panelRowAria') },
+    h('legend', { class: 'panel__row-key' }, r.seedKey, ' ', statusBadge(r)),
     h(
       'div',
       { class: 'panel__row-meta muted' },
@@ -1039,7 +1074,11 @@ function draw(): void {
     ),
   );
 
-  const message = h('section', { class: 'panel__message', 'aria-label': t('panelMessageAria') });
+  const values = fillValues(c, r, state.render);
+  const message = h(state.render ? 'fieldset' : 'section', {
+    class: state.render ? 'fieldset-group panel__message' : 'panel__message',
+    'aria-label': t('panelMessageAria'),
+  });
   if (state.render) {
     const textarea = h('textarea', { id: 'message-body', class: 'panel__textarea', rows: 7 }) as HTMLTextAreaElement;
     textarea.value = state.draft ?? state.render.body.text;
@@ -1058,30 +1097,36 @@ function draw(): void {
       saveBtn.hidden = state.draft === null;
     });
     append(message, [
+      h(
+        'legend',
+        {},
+        `${t('panelBodyChars', String(state.render.body.text.length))}${r.overrides?.body ? ` · ${t('panelEdited')}` : ''}`,
+      ),
       state.render.subject
         ? h(
-            'p',
-            { class: 'panel__subject' },
-            h('span', { class: 'muted' }, t('panelSubjectLabel'), ' '),
-            highlighted(state.render.subject),
+            'div',
+            { class: 'panel__copyrow' },
+            h(
+              'p',
+              { class: 'panel__subject' },
+              h('span', { class: 'muted' }, t('panelSubjectLabel'), ' '),
+              highlighted(state.render.subject),
+            ),
+            copyButton(state.render.subject.text, slotLabel('output.subject')),
           )
         : null,
       h(
-        'details',
-        { class: 'panel__preview', open: true },
-        h(
-          'summary',
-          { class: 'panel__label' },
-          `${t('panelBodyChars', String(state.render.body.text.length))}${r.overrides?.body ? ` · ${t('panelEdited')}` : ''}`,
-        ),
+        'div',
+        { class: 'panel__copyrow panel__preview' },
         highlighted(state.render.body),
+        // What the box below shows, unsaved edit included.
+        copyButton(() => textarea.value, slotLabel('output.body')),
       ),
       h(
         'details',
-        { class: 'panel__edit' },
-        h('summary', { class: 'panel__label' }, t('panelEditRow')),
-        textarea,
-        saveBtn,
+        { class: 'field-details panel__edit' },
+        h('summary', { class: 'field-details__summary' }, t('panelEditRow')),
+        h('div', { class: 'field-details__body stack--sm' }, textarea, saveBtn),
       ),
       warningsList(state.render.warnings),
     ]);
@@ -1111,135 +1156,156 @@ function draw(): void {
         ? t('panelDemoPage') // tab.url is hidden without the tabs permission; the row says where we are
         : new URL(targetUrl(r) ?? 'https://x').hostname
       : '';
-  const recipe = h(
-    'details',
-    { class: 'panel__recipe card card--soft', open: !!state.mapping },
-    h(
-      'summary',
-      {},
-      state.mapping ? mappingSummary(state.mapping) : t('panelMappingHost', tabHost || t('panelNoPage')),
-    ),
-    state.mapping
-      ? h(
-          'ul',
-          { class: 'panel__slots' },
-          ...state.mapping.fields.map((f) => {
-            const rep = state.report.find((x) => x.slot === f.slot);
-            const outcomeFlag =
-              rep?.outcome === 'exact' || rep?.outcome === 'equivalent'
-                ? 'flag--ok'
-                : rep?.outcome === 'skippedNonEmpty'
-                  ? 'flag--muted'
-                  : 'flag--warn';
-            return h(
-              'li',
-              { class: 'slot' },
-              h(
-                'div',
-                { class: 'slot__main' },
-                h('span', { class: 'btn-chip btn-chip--sm chip--ok slot__name' }, slotLabel(f.slot)),
-                h('span', { class: 'slot__arrow muted' }, '→'),
-                h(
-                  'code',
-                  { class: 'slot__field', title: f.field?.label ?? f.field?.name ?? '' },
-                  f.field?.name ?? f.field?.label ?? f.field?.placeholder ?? f.field?.tag ?? '?',
-                ),
-              ),
-              h(
-                'div',
-                { class: 'row-actions' },
-                rep
-                  ? h('span', { class: `flag ${outcomeFlag}`, title: rep.detail ?? '' }, t(FLAG_LABEL[rep.outcome]))
-                  : null,
-                h(
-                  'button',
-                  {
-                    type: 'button',
-                    class: 'flag flag--button panel__policy',
-                    title: t('panelPolicyTitle'),
-                    onclick: () => {
-                      // Cursor insertion exists for text inputs only; selects and files take or skip a value.
-                      const order =
-                        f.field?.tag === 'select' || f.field?.type === 'file'
-                          ? POLICY_ORDER.filter((p) => p !== 'insertAtCursor')
-                          : POLICY_ORDER;
-                      const i = order.indexOf(f.recipeField.fillPolicy);
-                      void patchSlot(f.slot, { fillPolicy: order[(i + 1) % order.length] ?? 'skipIfFilled' });
-                    },
-                  },
-                  t(POLICY_LABEL[f.recipeField.fillPolicy]),
-                  ' ▾',
-                ),
-                f.recipeField.manual
-                  ? h('span', { class: 'flag flag--info', title: t('panelPinnedTitle') }, t('flagPinned'))
-                  : h(
-                      'button',
-                      {
-                        type: 'button',
-                        class: 'btn-icon btn-icon--compact',
-                        'aria-label': t('panelPinAria'),
-                        title: t('panelPinTitle'),
-                        onclick: () => void patchSlot(f.slot, { manual: true, confidence: 1 }),
-                      },
-                      svgIcon('lock'),
-                    ),
-                h(
-                  'button',
-                  {
-                    type: 'button',
-                    class: 'btn-icon btn-icon--compact',
-                    'aria-label': t('panelClearAria'),
-                    title: t('panelClearTitle'),
-                    onclick: () => void clearMapping(f.slot),
-                  },
-                  svgIcon('close'),
-                ),
-              ),
-            );
-          }),
-          ...state.mapping.unmapped.map((s) =>
-            h(
-              'li',
-              { class: 'slot' },
-              h(
-                'div',
-                { class: 'slot__main' },
-                h('span', { class: 'btn-chip btn-chip--sm chip--danger slot__name' }, slotLabel(s)),
-                h('span', { class: 'muted slot__field' }, t('slotNotFound')),
-              ),
-              h(
-                'div',
-                { class: 'row-actions' },
-                h(
-                  'button',
-                  { type: 'button', class: 'btn btn--ghost btn--sm', onclick: () => void pointAt(s) },
-                  svgIcon('target'),
-                  ' ',
-                  t('panelPointAt'),
-                ),
-              ),
-            ),
+  // A copy button on every slot with a value: what the helper could not put on the page, the human
+  // can (demo review). Files are uploads, not text.
+  const fileSlots = new Set(c.columns.filter((col) => col.type === 'file').map((col) => `row.${col.id}`));
+  const slotCopy = (s: Slot): HTMLElement | null => {
+    const v = values[s] ?? '';
+    if (v === '' || fileSlots.has(s)) return null;
+    return copyButton(s === 'output.body' ? () => state.draft ?? v : v, slotLabel(s));
+  };
+  const missing = state.mapping ? missingSlots(state.mapping, values) : [];
+  // A page with no fields at all (blog-4): one line, not a list of "not found" with nothing to point at.
+  const recipe =
+    state.scan?.fields.length === 0
+      ? h('p', { class: 'panel__nofields muted' }, t('panelNoFields'))
+      : h(
+          'details',
+          { class: 'field-details panel__recipe', open: !!state.mapping },
+          h(
+            'summary',
+            { class: 'field-details__summary' },
+            state.mapping
+              ? mappingSummary(state.mapping, missing.length)
+              : t('panelMappingHost', tabHost || t('panelNoPage')),
           ),
-          state.mapping.recipe
+          state.mapping
             ? h(
-                'li',
-                { class: 'panel__slots-foot' },
-                h(
-                  'button',
-                  {
-                    type: 'button',
-                    class: 'btn btn--danger btn--outline btn--sm',
-                    onclick: () => void forgetMapping(),
-                  },
-                  svgIcon('trash'),
-                  ' ',
-                  t('panelForgetRecipe'),
+                'ul',
+                { class: 'panel__slots field-details__body' },
+                ...state.mapping.fields.map((f) => {
+                  const rep = state.report.find((x) => x.slot === f.slot);
+                  const outcomeFlag =
+                    rep?.outcome === 'exact' || rep?.outcome === 'equivalent'
+                      ? 'flag--ok'
+                      : rep?.outcome === 'skippedNonEmpty'
+                        ? 'flag--muted'
+                        : 'flag--warn';
+                  return h(
+                    'li',
+                    { class: 'slot' },
+                    h(
+                      'div',
+                      { class: 'slot__main' },
+                      h('span', { class: 'btn-chip btn-chip--sm chip--ok slot__name' }, slotLabel(f.slot)),
+                      h('span', { class: 'slot__arrow muted' }, '→'),
+                      h(
+                        'code',
+                        { class: 'slot__field', title: f.field?.label ?? f.field?.name ?? '' },
+                        f.field?.name ?? f.field?.label ?? f.field?.placeholder ?? f.field?.tag ?? '?',
+                      ),
+                    ),
+                    h(
+                      'div',
+                      { class: 'row-actions' },
+                      rep
+                        ? h(
+                            'span',
+                            { class: `flag ${outcomeFlag}`, title: rep.detail ?? '' },
+                            t(FLAG_LABEL[rep.outcome]),
+                          )
+                        : null,
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          class: 'flag flag--button panel__policy',
+                          title: t('panelPolicyTitle'),
+                          onclick: () => {
+                            // Cursor insertion exists for text inputs only; selects and files take or skip a value.
+                            const order =
+                              f.field?.tag === 'select' || f.field?.type === 'file'
+                                ? POLICY_ORDER.filter((p) => p !== 'insertAtCursor')
+                                : POLICY_ORDER;
+                            const i = order.indexOf(f.recipeField.fillPolicy);
+                            void patchSlot(f.slot, { fillPolicy: order[(i + 1) % order.length] ?? 'skipIfFilled' });
+                          },
+                        },
+                        t(POLICY_LABEL[f.recipeField.fillPolicy]),
+                        ' ▾',
+                      ),
+                      f.recipeField.manual
+                        ? h('span', { class: 'flag flag--info', title: t('panelPinnedTitle') }, t('flagPinned'))
+                        : h(
+                            'button',
+                            {
+                              type: 'button',
+                              class: 'btn-icon btn-icon--sm',
+                              'aria-label': t('panelPinAria'),
+                              title: t('panelPinTitle'),
+                              onclick: () => void patchSlot(f.slot, { manual: true, confidence: 1 }),
+                            },
+                            svgIcon('lock'),
+                          ),
+                      slotCopy(f.slot),
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          class: 'btn-icon btn-icon--sm',
+                          'aria-label': t('panelClearAria'),
+                          title: t('panelClearTitle'),
+                          onclick: () => void clearMapping(f.slot),
+                        },
+                        svgIcon('close'),
+                      ),
+                    ),
+                  );
+                }),
+                ...missing.map((s) =>
+                  h(
+                    'li',
+                    { class: 'slot' },
+                    h(
+                      'div',
+                      { class: 'slot__main' },
+                      h('span', { class: 'btn-chip btn-chip--sm chip--danger slot__name' }, slotLabel(s)),
+                      h('span', { class: 'muted slot__field' }, t('slotNotFound')),
+                    ),
+                    h(
+                      'div',
+                      { class: 'row-actions' },
+                      slotCopy(s),
+                      h(
+                        'button',
+                        { type: 'button', class: 'btn btn--ghost btn--sm', onclick: () => void pointAt(s) },
+                        svgIcon('target'),
+                        ' ',
+                        t('panelPointAt'),
+                      ),
+                    ),
+                  ),
                 ),
+                state.mapping.recipe
+                  ? h(
+                      'li',
+                      { class: 'panel__slots-foot' },
+                      h(
+                        'button',
+                        {
+                          type: 'button',
+                          class: 'btn btn--danger btn--outline btn--sm',
+                          onclick: () => void forgetMapping(),
+                        },
+                        svgIcon('trash'),
+                        ' ',
+                        t('panelForgetRecipe'),
+                      ),
+                    )
+                  : null,
               )
-            : null,
-        )
-      : h('p', { class: 'muted' }, t('panelMappingHelp')),
-  );
+            : h('p', { class: 'muted' }, t('panelMappingHelp')),
+        );
 
   let primary: HTMLElement;
   const secondary: HTMLElement[] = [];
@@ -1536,7 +1602,7 @@ function panelTabs(): HTMLElement {
       'button',
       {
         type: 'button',
-        class: `panel__tab${state.panelTab === id ? ' is-active' : ''}`,
+        class: `tabs__trigger panel__tab${state.panelTab === id ? ' is-active' : ''}`,
         'aria-pressed': String(state.panelTab === id),
         onclick: () => {
           if (state.panelTab === id) return;
@@ -1551,7 +1617,7 @@ function panelTabs(): HTMLElement {
   const settled = accountSettled(state.account);
   return h(
     'div',
-    { class: 'panel__tabs', role: 'group', 'aria-label': t('panelTabsAria') },
+    { class: 'tabs__nav panel__tabs', role: 'group', 'aria-label': t('panelTabsAria') },
     tab('signup', t('panelTabSignup'), settled ? '✓' : undefined),
     tab('submit', t('panelTabSubmit')),
   );
@@ -1575,15 +1641,22 @@ function signupSection(c: Campaign, r: Row): HTMLElement {
       label,
     );
   return h(
-    'section',
-    { class: 'panel__message panel__signup', 'aria-label': t('panelTabSignup') },
-    h('p', { class: 'panel__signup-state' }, h('strong', {}, t(ACCOUNT_LABEL[state_]))),
+    'fieldset',
+    { class: 'fieldset-group panel__message panel__signup', 'aria-label': t('panelTabSignup') },
+    h('legend', { class: 'panel__signup-state' }, t(ACCOUNT_LABEL[state_])),
     h('p', { class: 'muted' }, t('panelSignupIntro')),
     values.length > 0
       ? h(
           'ul',
           { class: 'panel__signup-values' },
-          ...values.map(([s, v]) => h('li', {}, h('span', { class: 'muted' }, `${slotLabel(s)}: `), v)),
+          ...values.map(([s, v]) =>
+            h(
+              'li',
+              { class: 'panel__copyrow' },
+              h('span', {}, h('span', { class: 'muted' }, `${slotLabel(s)}: `), v),
+              copyButton(v, slotLabel(s)),
+            ),
+          ),
         )
       : h(
           'button',

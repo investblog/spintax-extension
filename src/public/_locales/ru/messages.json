@@ -1094,7 +1094,7 @@
     "message": "на этой странице заполнять нечего"
   },
   "panelBodyNotFilled": {
-    "message": "поле сообщения не заполнилось — нажмите «Копировать и открыть»"
+    "message": "поле сообщения не заполнилось — скопируйте сообщение кнопкой рядом с ним"
   },
   "panelNotFoundHere": {
     "message": "не найдено на странице: $SLOTS$",
@@ -4820,5 +4820,24 @@
   },
   "tplVariantRows": {
     "message": "Строка превью"
+  },
+  "panelCopyValue": {
+    "message": "Скопировать: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Скопировано: $SLOT$ — вставьте на странице через Ctrl+V.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "На этой странице нет полей формы"
   }
 }

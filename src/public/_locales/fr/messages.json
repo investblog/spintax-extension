@@ -1095,7 +1095,7 @@
     "message": "rien n'a pu être rempli sur cette page"
   },
   "panelBodyNotFilled": {
-    "message": "la zone de message n'a pas été remplie — utilisez « Copier et ouvrir »"
+    "message": "la zone de message n'a pas été remplie — copiez le message avec le bouton à côté"
   },
   "panelNotFoundHere": {
     "message": "introuvables sur cette page : $SLOTS$",
@@ -4821,5 +4821,24 @@
   },
   "tplVariantRows": {
     "message": "Ligne de l'aperçu"
+  },
+  "panelCopyValue": {
+    "message": "Copier : $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copié : $SLOT$ — collez-le avec Ctrl+V sur la page.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "Aucun champ de formulaire sur cette page"
   }
 }

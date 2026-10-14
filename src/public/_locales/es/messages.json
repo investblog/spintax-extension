@@ -1094,7 +1094,7 @@
     "message": "no se pudo rellenar nada en esta página"
   },
   "panelBodyNotFilled": {
-    "message": "el cuadro de mensaje no se rellenó — usar «Copiar y abrir»"
+    "message": "el cuadro de mensaje no se rellenó — copia el mensaje con el botón que tiene al lado"
   },
   "panelNotFoundHere": {
     "message": "no se encuentran en esta página: $SLOTS$",
@@ -4820,5 +4820,24 @@
   },
   "tplVariantRows": {
     "message": "Fila de la vista previa"
+  },
+  "panelCopyValue": {
+    "message": "Copiar: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copiado: $SLOT$ — pégalo en la página con Ctrl+V.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "No hay campos de formulario en esta página"
   }
 }

@@ -198,7 +198,13 @@ try {
 
   const mapping = (await panel.locator('.panel__recipe summary').textContent()) ?? '';
   console.log('mapping:', mapping);
-  check(/5 mapped/.test(mapping) && /6 missing/.test(mapping), 'recipe: 5 slots mapped; phone + 5 store columns missing');
+  check(
+    (await panel.getByRole('button', { name: 'Copy: Subject' }).count()) >= 1 &&
+      (await panel.getByRole('button', { name: 'Copy: Message' }).count()) >= 1,
+    'subject and message have copy buttons',
+  );
+  // Phone and the store columns are empty for this row: nothing to put there, so not "missing".
+  check(/5 mapped/.test(mapping) && !/missing/.test(mapping), 'recipe: 5 slots mapped; empty slots are not listed as missing');
   // Recipe controls in the panel: fill policy chip cycles and is saved; pin marks the field manual.
   const nameSlot = panel.locator('.panel__slots li', { hasText: 'Your name' }).first();
   await nameSlot.locator('.panel__policy').click();
@@ -512,8 +518,7 @@ try {
         () => false,
       );
   }
-  check(signupNote, 'sign-up fill: the note says what stays with the human');
-  const signed = await target.evaluate(() => ({
+  check(signupNote, 'sign-up fill: the note says what stays with the human');  const signed = await target.evaluate(() => ({
     name: document.querySelector('#display').value,
     email: document.querySelector('#email').value,
     password: document.querySelector('#password').value,

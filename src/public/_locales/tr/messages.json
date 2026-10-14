@@ -1094,7 +1094,7 @@
     "message": "bu sayfada hiçbir şey doldurulamadı"
   },
   "panelBodyNotFilled": {
-    "message": "mesaj kutusu doldurulmadı — \"Kopyala ve aç\" kullanın"
+    "message": "mesaj kutusu doldurulmadı — mesajı yanındaki düğmeyle kopyalayın"
   },
   "panelNotFoundHere": {
     "message": "bu sayfada bulunamadı: $SLOTS$",
@@ -4820,5 +4820,24 @@
   },
   "tplVariantRows": {
     "message": "Önizleme satırı"
+  },
+  "panelCopyValue": {
+    "message": "Kopyala: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Kopyalandı: $SLOT$ — sayfaya Ctrl+V ile yapıştırın.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "Bu sayfada form alanı yok"
   }
 }

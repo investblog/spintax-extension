@@ -1094,7 +1094,7 @@
     "message": "nada pôde ser preenchido nesta página"
   },
   "panelBodyNotFilled": {
-    "message": "a caixa de mensagem não foi preenchida — use \"Copiar e abrir\""
+    "message": "a caixa de mensagem não foi preenchida — copie a mensagem com o botão ao lado"
   },
   "panelNotFoundHere": {
     "message": "não encontrados nesta página: $SLOTS$",
@@ -4820,5 +4820,24 @@
   },
   "tplVariantRows": {
     "message": "Linha da prévia"
+  },
+  "panelCopyValue": {
+    "message": "Copiar: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copiado: $SLOT$ — cole com Ctrl+V na página.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "Não há campos de formulário nesta página"
   }
 }

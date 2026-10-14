@@ -44,26 +44,44 @@ body.sidepanel {
   gap: var(--space-1);
 }
 
-.panel__row {
-  padding: var(--space-3);
+/* Sections are 301-ui drawer sections: `.fieldset-group` with the title on the border line
+   (legend), collapsible blocks as `.field-details`. The shell's flex gap spaces them, so the
+   design system's first-child top margin is dropped. */
+.sidepanel-shell > .fieldset-group {
+  margin: 0;
 }
 
-.panel__recipe {
-  padding: var(--space-3);
+.sidepanel-shell > .fieldset-group > legend {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
 }
 
 .panel__row-key {
   font-weight: var(--fw-semibold);
 }
 
-.panel__row-meta {
+/* Content on the left, a copy button on the right (subject, message, sign-up values). */
+.panel__copyrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-2);
+}
+
+.panel__copy {
+  color: var(--text-muted);
+}
+
+.panel__copy:hover {
+  color: var(--text);
+}
+
+.panel__nofields {
+  margin: 0;
   font-size: var(--fs-sm);
 }
 
-.panel__label {
-  display: block;
-  margin-bottom: var(--space-1);
-  color: var(--text-muted);
+.panel__row-meta {
   font-size: var(--fs-sm);
 }
 
@@ -143,12 +161,16 @@ body.sidepanel {
   position: relative;
 }
 
+/* On the section's top border, opposite the legend — inside the box it covered the row's lines. */
 .panel__row-nav {
   position: absolute;
-  top: var(--space-2);
+  top: 0;
   right: var(--space-2);
+  transform: translateY(-50%);
   display: flex;
   gap: var(--space-1);
+  padding: 0 var(--space-1);
+  background: var(--bg);
 }
 
 .panel__row-vars {
@@ -177,17 +199,18 @@ summary.panel__row-vars {
   white-space: pre-wrap;
 }
 
-.panel__subject {
-  margin: 0 0 var(--space-2);
+.panel__message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.panel__preview summary,
-.panel__edit summary {
-  cursor: pointer;
+.panel__subject {
+  margin: 0;
 }
 
 .panel__preview .template__text {
-  margin: var(--space-2) 0 0;
+  margin: 0;
   white-space: pre-wrap;
   /* A long URL used to push the box sideways into a horizontal scrollbar (field test). */
   overflow-wrap: anywhere;
@@ -686,36 +709,10 @@ a.panel__target:hover {
 }
 
 /* ── Sign-up / Submission tabs (submissions campaigns, ADR 0014) ───────────── */
+/* The segmented control is 301-ui's `.tabs__nav` / `.tabs__trigger` (drawer mode switches); the
+   shell's flex gap spaces it, not the component's bottom margin. */
 .panel__tabs {
-  display: flex;
-  gap: var(--space-1);
-  border-bottom: var(--border-width) var(--border-style) var(--border-subtle);
-}
-
-.panel__tab {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-2);
-  border: 0;
-  border-bottom: 2px solid transparent;
-  margin-bottom: calc(-1 * var(--border-width));
-  background: none;
-  color: var(--text-muted);
-  font: inherit;
-  font-size: var(--fs-sm);
-  cursor: pointer;
-}
-
-.panel__tab:hover,
-.panel__tab:focus-visible {
-  color: var(--text);
-}
-
-.panel__tab.is-active {
-  color: var(--text);
-  border-bottom-color: var(--target-accent, var(--primary));
-  font-weight: 600;
+  margin-bottom: 0;
 }
 
 .panel__tab-badge {
@@ -723,19 +720,22 @@ a.panel__target:hover {
 }
 
 .panel__signup p {
-  margin: 0 0 var(--space-2);
+  margin: 0;
 }
 
 .panel__signup-values {
-  margin: 0 0 var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
   padding: 0;
   list-style: none;
   font-size: var(--fs-sm);
   overflow-wrap: anywhere;
 }
 
-.panel__signup .cluster {
-  margin-bottom: var(--space-2);
+.panel__signup-values li {
+  align-items: center;
 }
 
 .panel__signup-page {

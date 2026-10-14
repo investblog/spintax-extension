@@ -1169,7 +1169,7 @@
     "message": "nothing could be filled on this page"
   },
   "panelBodyNotFilled": {
-    "message": "the message box was not filled — use \"Copy & open\""
+    "message": "the message box was not filled — copy the message with the button next to it"
   },
   "panelNotFoundHere": {
     "message": "not found on this page: $SLOTS$",
@@ -1638,6 +1638,25 @@
   },
   "flagRefused": {
     "message": "refused"
+  },
+  "panelCopyValue": {
+    "message": "Copy: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Copied: $SLOT$ — paste it on the page with Ctrl+V.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "No form fields on this page"
   },
   "revNoBody": {
     "message": "No body template for step 1 yet — save one on the Template screen first."

@@ -1094,7 +1094,7 @@
     "message": "auf dieser Seite ließ sich nichts ausfüllen"
   },
   "panelBodyNotFilled": {
-    "message": "das Nachrichtenfeld wurde nicht ausgefüllt — nutzen Sie „Kopieren & öffnen“"
+    "message": "das Nachrichtenfeld wurde nicht ausgefüllt — kopieren Sie die Nachricht mit der Schaltfläche daneben"
   },
   "panelNotFoundHere": {
     "message": "auf dieser Seite nicht gefunden: $SLOTS$",
@@ -4820,5 +4820,24 @@
   },
   "tplVariantRows": {
     "message": "Vorschau-Zeile"
+  },
+  "panelCopyValue": {
+    "message": "Kopieren: $SLOT$",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelCopiedValue": {
+    "message": "Kopiert: $SLOT$ — auf der Seite mit Ctrl+V einfügen.",
+    "placeholders": {
+      "slot": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelNoFields": {
+    "message": "Auf dieser Seite gibt es keine Formularfelder"
   }
 }
