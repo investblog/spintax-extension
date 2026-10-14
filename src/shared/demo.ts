@@ -14,6 +14,7 @@ import {
   deleteCampaign,
   getCampaign,
   getSetting,
+  listCampaigns,
   makeRow,
   putRows,
   setSetting,
@@ -208,9 +209,13 @@ export async function removeDemo(): Promise<boolean> {
   const c = await demoCampaign();
   const s = await submitDemoCampaign();
   if (!c && !s) return false;
-  // The submissions demo's own account notes go with it — its sites, its profile, nothing else.
-  const profiles = new Set(s?.profiles.map((p) => p.id) ?? []);
-  if (s) await deleteAccounts((a) => DEMO_SITES.includes(a.domain) && profiles.has(a.profileId));
+  // The submissions demo's account notes go with it: notes on its sites whose profile is its own,
+  // or belongs to no campaign any more (the demo campaign deleted on its own earlier). A demo-site
+  // note of a profile still in use stays.
+  const live = new Set(
+    (await listCampaigns()).filter((x) => x.id !== s?.id).flatMap((x) => x.profiles.map((p) => p.id)),
+  );
+  await deleteAccounts((a) => DEMO_SITES.includes(a.domain) && !live.has(a.profileId));
   if (c) await deleteCampaign(c.id);
   if (s) await deleteCampaign(s.id);
   await setSetting(DEMO_SETTING_KEY, null);

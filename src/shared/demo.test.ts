@@ -6,7 +6,7 @@ vi.mock('wxt/browser', () => ({
 
 import { accountDomain, getAccount, listAccounts, saveAccount } from './accounts';
 import { DEMO_SUBMIT_KEY, demoCampaign, removeDemo, seedDemo, submitDemoCampaign } from './demo';
-import { deleteCampaign, findTemplate, listRows, setSetting } from './repo';
+import { createCampaign, deleteCampaign, findTemplate, listRows, setSetting, updateCampaign } from './repo';
 
 describe('demo campaign', () => {
   it('seeds once, with five rows on distinct keys, a profile and both templates; removes cleanly', async () => {
@@ -50,12 +50,19 @@ describe('demo campaign', () => {
     await seedDemo();
     const again = await submitDemoCampaign();
     expect(again?.id).not.toBe(s?.id);
-    // Removing the demo takes its own notes only: a note of another profile on a demo site stays.
-    await saveAccount('demo/hub', 'someone-else', { state: 'ready' });
+    // Removing the demo takes its notes — the current profile's and the orphans of the campaign
+    // deleted above — but a demo-site note of a profile another campaign still uses stays.
+    const other = await createCampaign({ name: 'Mine' });
+    const mine = await updateCampaign(other.id, {
+      profiles: [
+        { id: 'mine', name: 'Me', values: { name: 'Me', email: 'me@mine.test' }, activation: { kind: 'always' } },
+      ],
+    });
+    await saveAccount('demo/hub', 'mine', { state: 'ready' });
     expect(await removeDemo()).toBe(true);
     expect(await submitDemoCampaign()).toBeNull();
     const left = await listAccounts();
-    expect(left.some((a) => a.profileId === again?.profiles[0]?.id)).toBe(false);
-    expect(left.some((a) => a.profileId === 'someone-else')).toBe(true);
+    expect(left.map((a) => `${a.domain}:${a.profileId}`)).toEqual([`demo/hub:${mine.profiles[0]?.id}`]);
+    expect(left.some((a) => a.profileId === profileId)).toBe(false);
   });
 });
